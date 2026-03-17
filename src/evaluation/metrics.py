@@ -22,6 +22,13 @@ def accuracy_by_field(results: List[dict], field: str) -> Dict[str, float]:
     return {k: sum(v) / len(v) for k, v in buckets.items()}
 
 
+def random_baseline(results: List[dict]) -> float:
+    """Expected accuracy of random guessing, accounting for variable choice counts."""
+    if not results:
+        return 0.0
+    return sum(1 / len(r["choices"]) for r in results) / len(results)
+
+
 def summarize(results: List[dict]) -> dict:
     total = len(results)
     correct = sum(r["correct"] for r in results)
@@ -33,4 +40,5 @@ def summarize(results: List[dict]) -> dict:
         "wrong": wrong,
         "unparseable": unparseable,
         "accuracy": accuracy(results),
+        "random_baseline": random_baseline(results),
     }
