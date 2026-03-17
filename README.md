@@ -1,134 +1,193 @@
-# 3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
+# Benchmarking Spatial and State Reasoning Skills of VLMs for Robotics
 
+ETH Zurich — 3D Vision Course Project, SS26
 
-google drive link: https://drive.google.com/drive/folders/1gMF-vDXdjZAspC9u8j9JzT4NB8wk7aGd
+Evaluates Vision-Language Models (VLMs) on two robotics-focused reasoning tasks using the [Robo2VLM-1](https://huggingface.co/datasets/keplerccc/Robo2VLM-1) dataset (~107 GB, streamed — never fully downloaded).
 
+---
 
+## Research Tasks
 
+### 1. Failure Mode Detection
+Can a VLM correctly identify the current state of a robotic task from an image?
+Questions ask things like *"Has the robot successfully completed the task?"* with multiple-choice answers. Some samples are augmented with reversed image order (as if the robot did the opposite action).
 
-## Chris's summary paper:
-1. Executive summary
-VLMs have recently 
-In this project, we will analyze the performance of vision-language models~(VLMs) in the context of robootics, specifically focusing on failure modes and multiview consistency. We will use a benchmark dataset that includes vairous robotic tasks and scenarios to evaluate the VLMs' capabilities in spatial and state reasoning. Our goal is to identify the strengths and weaknesses of current VLMs and provide insights for future improvements in their application to robotics.
+### 2. Multi-View Consistency
+Can a VLM extract spatial information from multiple camera angles?
+Questions involve two camera perspectives (ext1/ext2) presented as a single composite image. Tasks include 3D point correspondence and depth reasoning.
 
+---
 
-2. Problem Statement
-Frontier VLMs can reason over visual inputs derive follow task instructions. They are often trained through 
-* VLMs have to understand current stages correctly especially if a task failed
+## Setup
 
+```bash
+python -m venv 3dvision
+source 3dvision/bin/activate
+pip install -r requirements.txt
+```
 
-3. Project Goal and Objectives
-We investigate two scenarios: 
-    1. Robotic failure modes.  As well as if they can analyze a state to detect the current mode of a task.
-    2. Multi-view Consistency: For that we research if VLA's can extract relevant spatial information if given multiple perspectives. Can the VLM's correctly detet ... and does multi-perspective increase effectivness.
-    In both cases the VLM has to correcly identify and output the answer from multiple in context answers. The visual annotations are created through editing scene images. 
+Requires a GPU with sufficient VRAM for Qwen2.5-VL-7B (~16 GB in bfloat16).
 
-Benchmark Qwen (maybe more, such as pi, RT2)
+---
 
-4.  Methodology and Approach
-To achieve these objectives, we use a visual question answer dataset, where annotation was made thorugh non-visual msnesoric real robotic tasks, fulfilling tasks. It contains images, as well as annotations for multi and single view task state detection. Additionally we anaylze in which setting VLMs perform better such tasks.
-      
+## Running the Pipeline
 
-5. Timeline and Milestoes
-First, we will select, clean, further annotate the dataset and build a pipeline to analyze our VLMs. Then we 
-To fulfill our requirements, we select fitting questions and manually select 
+```bash
+cd src
+python main.py --task <task> --model <model> [options]
+```
 
+### Arguments
 
+| Argument | Required | Values | Default | Description |
+|---|---|---|---|---|
+| `--task` | yes | `failure_mode`, `multiview` | — | Which evaluation task to run |
+| `--model` | no | `qwen-3b`, `qwen-7b` | `qwen-3b` | Which VLM to use |
+| `--split` | no | `train`, `test` | `test` | Dataset split |
+| `--limit` | no | int | None | Stop after N samples (useful for testing) |
+| `--local-data` | no | path | None | Load from a local directory instead of HuggingFace |
 
+### Examples
 
-## Seperation of tasks
-* Dataset understanding: 
-    1. How to use data for answering hypothesis
-    2. Sorting and cleaning data
-    3. Labeling data for specfic questions 
-    4. Augmenting data for additional 
+```bash
+# Quick smoke test on Colab / local (3B, first 10 samples)
+python main.py --task failure_mode --model qwen-3b --limit 10
 
-    2 and 3 are connected to pipeline building
+# Full run on cluster (7B)
+python main.py --task failure_mode --model qwen-7b
 
-* Model set up, pipeline building and introduction for others
-    1. logging (very important)
-    2. modular pipeline
-    3. maintainable code
-    4. cluster introduction
-    5. which format will data be
+# Multiview task from local data
+python main.py --task multiview --model qwen-3b --local-data /path/to/data
+```
 
-* Writing and organization
-    * slides for each meeting
-    * writing project advancements and text
-    * literature research
+---
 
+## Outputs
 
-## Paper, what to know?
+Each run writes to `outputs/<run_id>/` where `run_id` is `<timestamp>_<task>_<model>`:
 
+```
+outputs/
+  cache.jsonl                     # persistent cross-run response cache
+  <run_id>/
+    config.json                   # exact run parameters
+    results.jsonl                 # one JSON line per evaluated sample
+    summary.json                  # aggregated accuracy metrics
+logs/
+  <run_id>.log                    # debug-level log of every inference
+```
 
+### Resume / Skip Logic
 
-## Dataset
-* Wrong answer #5 #35 #37 #67 #69
+All responses are cached in `outputs/cache.jsonl` keyed by `(entry_id, model_id)`. Restarting a run automatically skips already-processed samples. To re-run a specific sample, delete its line from `cache.jsonl`. To re-run all samples for a model, filter out lines where `model_id` matches.
 
-### Failure modes
-specific questions exist
-reverse order of images as if robots has done the opposite
+### Result Entry Schema (`results.jsonl`)
 
+```json
+{
+  "run_id": "2026-03-17_10-00-00_failure_mode_qwen",
+  "model_id": "qwen",
+  "entry_id": "42",
+  "task": "failure_mode",
+  "question": "Has the robot successfully completed the task?",
+  "choices": ["Yes", "No", "Cannot be determined"],
+  "ground_truth_index": 1,
+  "ground_truth_label": "No",
+  "response_raw": "B",
+  "predicted_index": 1,
+  "predicted_label": "No",
+  "correct": true
+}
+```
 
-### Multiview modes
-take 2 camera angles, one with space points. Reason which is closest to other camera (manual task) - similar questions exist
-multi view images exist
+---
 
+## Repository Structure
 
-## Open questions:
-* Do we train ourselves?
-* We can manipulate and augment the dataset if needed, right?
+```
+src/
+  main.py               # CLI entry point
+  pipeline.py           # main evaluation loop
+  config.py             # paths, model IDs, invalid entry IDs
 
+  data/
+    dataset.py          # HuggingFace streaming loader, Sample dataclass
+    failure_mode.py     # prompt builder for failure mode task
+    multiview.py        # prompt builder for multiview task
 
+  tasks/
+    base.py             # BaseTask: parse_response, evaluate
+    failure_mode.py     # FailureModeTask
+    multiview.py        # MultiviewTask
 
-### Points to mention
-2 scenarios
-failure modes 
-detect current state of described task [possible answers]
-multi view scenery
-input multiple visual inputs 
-select, clean and further annotate data
-frontier models (multiple?)
+  models/
+    base.py             # BaseVLM abstract interface
+    qwen.py             # Qwen2.5-VL-7B-Instruct wrapper
 
+  evaluation/
+    metrics.py          # accuracy, accuracy_by_field, summarize
+    results.py          # save_config, save_summary
 
+  utils/
+    cache.py            # ResponseCache (JSONL-based skip logic)
+    logging.py          # setup_logger, SampleLogger
+```
 
+---
 
-# Porject proposal:
+## Dataset Notes
 
-Recent advancements in Vision-Language Models (VLMs) have demonstrated significant potential for high-level reasoning. This project investigates the performance of frontier VLMs in the specific context of robotics, focusing on failure mode identification and multiview consistency. By utilizing a benchmark dataset of real-world robotic tasks, we will evaluate the capabilities of models like Qwen, Pi, and RT-2 in spatial and state reasoning. Our goal is to pinpoint current architectural weaknesses and provide actionable insights for improving VLM reliability in autonomous manipulation.
-2. Problem Statement
+- **Known wrong answers**: entries `#5, #35, #37, #67, #69` are skipped automatically (see `INVALID_ENTRIES` in `config.py`)
+- **Choices**: stored as a Python list string in HF; parsed to `["Yes", "No", ...]`. Number of choices varies per question (2–5). Labels A/B/C/D/E are assigned at prompt time.
+- **Failure mode augmentation**: some samples have images in reverse order — the model should still identify the correct state
+- **Multiview images**: the `image` field is a pre-composed side-by-side composite of both camera views
 
-Frontier VLMs are increasingly used to derive task instructions from visual inputs. However, their application in robotics faces a critical bottleneck: the "grounding gap." To be effective, a model must correctly interpret the current state of an environment, particularly when a task deviates from the expected path. Current models often fail to:
+---
 
-    Identify failure triggers: Recognizing why a grasp failed or an object slipped.
+## Cluster (SLURM)
 
-    Maintain temporal-state awareness: Understanding the transition between different task stages.
+Output and log dirs are overridable via env vars so runs write to scratch rather than filling home quota:
 
-3. Project Goal and Objectives
+```bash
+export HF_HOME=/scratch/$USER/hf_cache       # HuggingFace model weights
+export VLM_OUTPUT_DIR=/scratch/$USER/vlm_outputs
+export VLM_LOG_DIR=/scratch/$USER/vlm_logs
+```
 
-This research focuses on two primary investigative tracks to determine if VLMs can provide a robust feedback loop for robotics:
+A ready-to-use sbatch template is at `scripts/run_slurm.sh`. Customise the paths at the top, then submit with optional overrides:
 
-    Track 1: Robotic Failure Modes: We test if VLMs can analyze a scene to detect the current operational mode and identify specific failure types (e.g., collisions, misses, or slips).
+```bash
+# Defaults: failure_mode, qwen-3b, test split
+sbatch scripts/run_slurm.sh
 
-    Track 2: Multi-view Consistency: We examine if VLMs can extract more accurate spatial information when provided with multiple camera perspectives. We will measure if "multi-perspective" input significantly increases the model's effectiveness in detecting object coordinates and state changes.
+# Override task/model via env vars
+TASK=multiview MODEL=qwen-7b sbatch scripts/run_slurm.sh
+```
 
-The evaluation will require models to identify and select the correct state from a set of in-context options, using visual annotations generated through scene-image editing.
-4. Methodology and Approach
+## Google Colab
 
-The project utilizes a specialized Visual Question Answering (VQA) dataset. Unlike standard datasets, our annotations are derived from non-visual robotic sensors (such as force-torque and joint encoders), providing an objective ground truth for task success or failure.
+Use `qwen-3b` (fits on a free T4, ~8 GB VRAM). Mount Google Drive and set `VLM_OUTPUT_DIR` to a Drive path so the response cache survives session restarts:
 
-    Data Preparation: Images are paired with multi-view and single-view annotations to test spatial reasoning.
+```python
+from google.colab import drive
+drive.mount('/content/drive')
 
-    Model Selection: We will benchmark Qwen against robotics-specific models like RT-2 to compare general-purpose reasoning with domain-specific fine-tuning.
+import os
+os.environ['VLM_OUTPUT_DIR'] = '/content/drive/MyDrive/vlm_outputs'
+```
 
-    Performance Metrics: We will analyze the delta in accuracy between single-view and multi-view prompts to quantify the benefit of perspective diversity.
+Then run normally with `--model qwen-3b --limit 20` to test the pipeline.
 
-5. Timeline and Milestones
+---
 
-    Dataset Refinement: Select, clean, and further annotate the sensor-grounded dataset.
+## Adding a New Model
 
-    Pipeline Construction: Build the software interface to feed multi-view images and prompts to the target VLMs.
+1. Create `src/models/<name>.py` implementing `BaseVLM` (`load()` and `infer()`)
+2. Add a constant to `config.py`: `MODEL_<NAME> = "<name>"`
+3. Register it in `main.py`: add to `build_model()` and the `--model` choices list
 
-    Benchmarking & Selection: Manually select fitting edge-case questions to challenge model logic.
+---
 
-    Analysis & Reporting: Synthesize the data to identify which settings (single vs. multi-view) yield the most reliable robotic state detection.
+## Google Drive (data / shared files)
+
+https://drive.google.com/drive/folders/1gMF-vDXdjZAspC9u8j9JzT4NB8wk7aGd

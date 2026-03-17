@@ -16,7 +16,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from config import (
     LOG_DIR,
-    MODEL_QWEN,
+    MODEL_QWEN_3B,
+    MODEL_QWEN_7B,
     OUTPUT_DIR,
     TASK_FAILURE_MODE,
     TASK_MULTIVIEW,
@@ -36,8 +37,8 @@ def parse_args():
     )
     parser.add_argument(
         "--model",
-        default=MODEL_QWEN,
-        choices=[MODEL_QWEN],
+        default=MODEL_QWEN_3B,
+        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B],
     )
     parser.add_argument(
         "--split",
@@ -70,8 +71,8 @@ def build_task(args):
 
 
 def build_model(args):
-    if args.model == MODEL_QWEN:
-        return QwenVLM()
+    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B):
+        return QwenVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
 
 

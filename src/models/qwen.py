@@ -13,7 +13,7 @@ import torch
 from PIL import Image
 from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
 
-from config import QWEN_MAX_NEW_TOKENS, QWEN_MODEL_ID
+from config import QWEN_MAX_NEW_TOKENS, QWEN_MODEL_IDS, MODEL_QWEN_3B
 from models.base import BaseVLM
 
 logger = logging.getLogger("vlm_bench")
@@ -22,22 +22,20 @@ logger = logging.getLogger("vlm_bench")
 class QwenVLM(BaseVLM):
     def __init__(
         self,
-        model_id: str = QWEN_MODEL_ID,
-        device: str | None = None,
+        model_key: str = MODEL_QWEN_3B,
         max_new_tokens: int = QWEN_MAX_NEW_TOKENS,
     ):
-        self.model_id = model_id
-        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.model_id = QWEN_MODEL_IDS[model_key]
         self.max_new_tokens = max_new_tokens
         self._model = None
         self._processor = None
 
     def load(self) -> None:
-        logger.info(f"Loading {self.model_id} on {self.device} ...")
+        logger.info(f"Loading {self.model_id} ...")
         self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
             self.model_id,
-            torch_dtype=torch.bfloat16 if self.device == "cuda" else torch.float32,
-            device_map=self.device,
+            torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+            device_map="auto",
         )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id)
@@ -69,7 +67,7 @@ class QwenVLM(BaseVLM):
             images=image_inputs,
             padding=True,
             return_tensors="pt",
-        ).to(self.device)
+        ).to(next(self._model.parameters()).device)
 
         with torch.no_grad():
             output_ids = self._model.generate(
