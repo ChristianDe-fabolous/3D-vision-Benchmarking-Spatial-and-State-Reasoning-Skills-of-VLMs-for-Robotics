@@ -15,6 +15,7 @@ explicit task column.
 from __future__ import annotations
 
 import ast
+import re
 from dataclasses import dataclass, field
 from typing import Iterator, List, Optional
 
@@ -83,6 +84,12 @@ def _is_allowed_question(question: str, task: str) -> bool:
     return any(p.lower() in q for p in patterns)
 
 
+def _parse_scene_id(entry_id: str) -> Optional[str]:
+    """Extract scene ID from entry ID, e.g. '14346' from 'droid_..._14346_q9'."""
+    m = re.search(r'_(\d+)_q\d+$', entry_id)
+    return m.group(1) if m else None
+
+
 def _is_invalid(entry_id: str) -> bool:
     """Check against INVALID_ENTRIES (stored as ints for numeric IDs)."""
     try:
@@ -142,6 +149,7 @@ def load_dataset(
         except Exception as e:
             continue  # skip malformed entries
 
+        scene_id = _parse_scene_id(row["id"])
         yield Sample(
             id=row["id"],
             task=task,
@@ -149,5 +157,6 @@ def load_dataset(
             question=row["question"],
             choices=choices,
             correct_answer=int(row["correct_answer"]),
+            metadata={"scene_id": scene_id} if scene_id else {},
         )
         yielded += 1

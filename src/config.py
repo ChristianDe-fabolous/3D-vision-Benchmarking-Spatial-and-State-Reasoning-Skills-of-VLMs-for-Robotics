@@ -30,3 +30,7 @@ QWEN_MODEL_IDS = {
     MODEL_QWEN_7B: "Qwen/Qwen2.5-VL-7B-Instruct",
 }
 QWEN_MAX_NEW_TOKENS = 512
+
+# Scene analysis settings
+SCENE_MIN_QUESTIONS = 5       # scenes with fewer questions are excluded from analysis
+SCENE_OUTLIER_STD = 1.0       # std deviations from mean to flag a scene as outlier

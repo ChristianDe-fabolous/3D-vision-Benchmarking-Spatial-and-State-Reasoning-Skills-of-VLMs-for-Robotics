@@ -13,7 +13,8 @@ import json
 from pathlib import Path
 from typing import List
 
-from evaluation.metrics import accuracy_by_field, summarize
+from config import SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD
+from evaluation.metrics import accuracy_by_field, answer_category_analysis, scene_analysis, summarize
 
 
 def save_config(output_dir: Path, config: dict) -> None:
@@ -22,14 +23,26 @@ def save_config(output_dir: Path, config: dict) -> None:
         json.dump(config, f, indent=2)
 
 
-def save_summary(output_dir: Path, results: List[dict]) -> None:
+def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool = False) -> None:
     summary = summarize(results)
     summary["by_task"] = accuracy_by_field(results, "task")
     summary["by_augmented"] = accuracy_by_field(results, "augmented_reverse")
+    summary["scene_analysis"] = scene_analysis(results, SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD)
+
+    if analyse_categories:
+        summary["answer_category_analysis"] = answer_category_analysis(results)
+
     with open(output_dir / "summary.json", "w") as f:
         json.dump(summary, f, indent=2)
+
     print(
         f"\nResults: {summary['correct']}/{summary['total']} correct "
         f"({summary['accuracy']:.1%}) — "
         f"{summary['wrong']} wrong, {summary['unparseable']} unparseable"
+    )
+    sa = summary["scene_analysis"]
+    print(
+        f"Scenes: {sa['included_scenes']} analysed, "
+        f"{sa['excluded_scenes']} excluded (<{SCENE_MIN_QUESTIONS} questions, "
+        f"{sa['excluded_questions']} questions dropped)"
     )

@@ -27,6 +27,7 @@ def run(
     output_dir: Path,
     log_dir: Path,
     config: Optional[dict] = None,
+    analyse_categories: bool = False,
 ) -> List[dict]:
     """
     Stream and evaluate all samples from `task` using `model`.
@@ -103,6 +104,6 @@ def run(
             f"gt='{sample.correct_choice}'"
         )
 
-    save_summary(output_dir, results)
+    save_summary(output_dir, results, analyse_categories=analyse_categories)
     logger.info(f"Done. Results saved to {output_dir}")
     return results

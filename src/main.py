@@ -58,6 +58,12 @@ def parse_args():
         default=None,
         help="Path to a local dataset directory (skips HuggingFace download)",
     )
+    parser.add_argument(
+        "--analyse-categories",
+        action="store_true",
+        default=False,
+        help="Include per-answer-category accuracy breakdown in summary.json",
+    )
     return parser.parse_args()
 
 
@@ -101,6 +107,7 @@ def main():
         output_dir=OUTPUT_DIR / run_id,
         log_dir=LOG_DIR,
         config=config,
+        analyse_categories=args.analyse_categories,
     )
 
 
