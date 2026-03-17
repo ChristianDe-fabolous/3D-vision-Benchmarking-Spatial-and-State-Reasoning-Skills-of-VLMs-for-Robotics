@@ -23,8 +23,14 @@ def accuracy_by_field(results: List[dict], field: str) -> Dict[str, float]:
 
 
 def summarize(results: List[dict]) -> dict:
+    total = len(results)
+    correct = sum(r["correct"] for r in results)
+    unparseable = sum(r["predicted_index"] is None for r in results)
+    wrong = total - correct - unparseable
     return {
-        "total": len(results),
-        "correct": sum(r["correct"] for r in results),
+        "total": total,
+        "correct": correct,
+        "wrong": wrong,
+        "unparseable": unparseable,
         "accuracy": accuracy(results),
     }

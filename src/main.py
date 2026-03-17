@@ -2,9 +2,9 @@
 Entry point.
 
 Examples:
-    python main.py --task failure_mode --model qwen
-    python main.py --task multiview --model qwen --split train --limit 50
-    python main.py --task failure_mode --model qwen --local-data /path/to/data
+    python main.py --task failure_mode --model qwen-3b --limit 10
+    python main.py --task multiview --model qwen-7b --split train --limit 50
+    python main.py --task failure_mode --model qwen-3b --local-data /path/to/data
 """
 
 import argparse

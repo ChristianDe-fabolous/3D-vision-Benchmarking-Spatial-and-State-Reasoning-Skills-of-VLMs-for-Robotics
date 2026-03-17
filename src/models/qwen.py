@@ -34,7 +34,7 @@ class QwenVLM(BaseVLM):
         logger.info(f"Loading {self.model_id} ...")
         self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
             self.model_id,
-            torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+            torch_dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else (torch.float16 if torch.cuda.is_available() else torch.float32),
             device_map="auto",
         )
         self._model.eval()

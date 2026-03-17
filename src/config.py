@@ -13,6 +13,14 @@ INVALID_ENTRIES: set[int] = {5, 35, 37, 67, 69}
 TASK_FAILURE_MODE = "failure_mode"
 TASK_MULTIVIEW = "multiview"
 
+# Allowed question patterns per task.
+# A sample is kept if its question contains ANY of the listed substrings (case-insensitive).
+# Empty list = no filter, all questions for that task are allowed.
+ALLOWED_QUESTION_PATTERNS: dict[str, list[str]] = {
+    TASK_FAILURE_MODE: [],
+    TASK_MULTIVIEW: [],
+}
+
 # Model identifiers
 MODEL_QWEN_3B = "qwen-3b"
 MODEL_QWEN_7B = "qwen-7b"

@@ -20,7 +20,7 @@ from typing import Iterator, List, Optional
 
 from PIL import Image
 
-from config import INVALID_ENTRIES, TASK_FAILURE_MODE, TASK_MULTIVIEW
+from config import ALLOWED_QUESTION_PATTERNS, INVALID_ENTRIES, TASK_FAILURE_MODE, TASK_MULTIVIEW
 
 # Keywords used to classify samples into tasks.
 # A sample matches a task if ANY of its keywords appear in the question (case-insensitive).
@@ -74,6 +74,15 @@ def _parse_choices(raw: str) -> List[str]:
     return [str(c) for c in parsed]
 
 
+def _is_allowed_question(question: str, task: str) -> bool:
+    """Return True if the question matches the allowlist for its task (or list is empty)."""
+    patterns = ALLOWED_QUESTION_PATTERNS.get(task, [])
+    if not patterns:
+        return True
+    q = question.lower()
+    return any(p.lower() in q for p in patterns)
+
+
 def _is_invalid(entry_id: str) -> bool:
     """Check against INVALID_ENTRIES (stored as ints for numeric IDs)."""
     try:
@@ -123,6 +132,9 @@ def load_dataset(
             continue  # skip unrecognised question types
 
         if task_filter and task != task_filter:
+            continue
+
+        if not _is_allowed_question(row["question"], task):
             continue
 
         try:

@@ -29,6 +29,7 @@ def save_summary(output_dir: Path, results: List[dict]) -> None:
     with open(output_dir / "summary.json", "w") as f:
         json.dump(summary, f, indent=2)
     print(
-        f"\nResults: {summary['correct']}/{summary['total']} "
-        f"({summary['accuracy']:.1%} accuracy)"
+        f"\nResults: {summary['correct']}/{summary['total']} correct "
+        f"({summary['accuracy']:.1%}) — "
+        f"{summary['wrong']} wrong, {summary['unparseable']} unparseable"
     )
