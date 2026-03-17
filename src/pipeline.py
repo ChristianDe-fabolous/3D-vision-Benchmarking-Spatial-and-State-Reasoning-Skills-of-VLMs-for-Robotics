@@ -11,15 +11,18 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 
+from config import OUTPUT_DIR
 from evaluation.results import save_config, save_summary
 from models.base import BaseVLM
 from tasks.base import BaseTask
+from utils.cache import ResponseCache
 from utils.logging import SampleLogger, setup_logger
 
 
 def run(
     task: BaseTask,
     model: BaseVLM,
+    model_id: str,
     run_id: str,
     output_dir: Path,
     log_dir: Path,
@@ -41,17 +44,23 @@ def run(
     """
     logger = setup_logger(run_id, log_dir)
     sample_logger = SampleLogger(output_dir)
+    cache = ResponseCache(OUTPUT_DIR / "cache.jsonl")
 
     if config:
         save_config(output_dir, config)
 
-    logger.info(f"Run '{run_id}' | task={task.__class__.__name__} | model={model.__class__.__name__}")
+    logger.info(f"Run '{run_id}' | task={task.__class__.__name__} | model={model_id}")
 
     results: List[dict] = []
     i = 0
 
     for sample in task.get_samples():
         i += 1
+
+        if cache.contains(sample.id, model_id):
+            logger.debug(f"[{i}] id={sample.id}  SKIPPED (cached)")
+            continue
+
         prompt = task.build_prompt(sample)
 
         logger.debug(f"[{i}] id={sample.id}  q={sample.question[:60]}...")
@@ -70,6 +79,7 @@ def run(
 
         entry = {
             "run_id": run_id,
+            "model_id": model_id,
             "entry_id": sample.id,
             "task": sample.task,
             "question": sample.question,
@@ -83,6 +93,7 @@ def run(
             **sample.metadata,
         }
 
+        cache.write(entry)
         sample_logger.log(entry)
         results.append(entry)
 

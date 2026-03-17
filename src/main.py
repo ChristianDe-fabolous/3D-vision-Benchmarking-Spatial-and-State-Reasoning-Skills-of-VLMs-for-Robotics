@@ -95,6 +95,7 @@ def main():
     pipeline.run(
         task=task,
         model=model,
+        model_id=args.model,
         run_id=run_id,
         output_dir=OUTPUT_DIR / run_id,
         log_dir=LOG_DIR,

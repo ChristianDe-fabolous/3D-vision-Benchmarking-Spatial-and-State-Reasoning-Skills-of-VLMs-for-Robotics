@@ -1,0 +1,165 @@
+% CVPR 2024 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+\usepackage{cvpr}              % To produce the CAMERA-READY version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,citecolor=cvprblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{*****} % *** Enter the Paper ID here
+\def\confName{3DV\xspace}
+\def\confYear{2024\xspace}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{Benchmarking Spatial and State Reasoning Skills of Vision-Language Models for Robotics}
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\tt\small secondauthor@i2.org}
+}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Vision-Language Models (VLMs) are increasingly integrated into robotics perception and decision-making pipelines, yet their task-relevant spatial and state reasoning capabilities remain insufficiently characterized.
+In this project, we design and implement a lightweight benchmarking pipeline to evaluate how well VLMs reason about (i) robotic failure modes, and (ii) multi-view consistency from visual observations in robotic scenes.
+Our methodology adopts the Robo2VLM framework as a base, which we refine through a targeted curation process. We select and modify a subset of the original data to isolate specific robotic task-state identification and multi-view consistency challenges, ensuring a more rigorous assessment of VLM reasoning than a general-purpose evaluation.
+By evaluating performance across these varying contexts, we aim to identify which task types and environmental settings—such as specific camera configurations or object states—are most prone to VLM reasoning failures.
+
+OR:
+
+While Vision-Language Models (VLMs) are increasingly integrated into robotics perception and decision-making pipelines, their task-relevant spatial and state reasoning capabilities remain insufficiently characterized. This project addresses this gap by designing and implementing a lightweight benchmarking pipeline specifically engineered to evaluate VLM performance across four critical dimensions: (i) robotic failure modes, and (ii) multi-view consistency.
+
+Utilizing the Robo2VLM framework as a foundational baseline, we refine the methodology through a targeted curation process. We select and modify a subset of the original data to isolate specific task-state identification challenges, ensuring a more rigorous assessment than general-purpose evaluations. By extending this baseline with comparative analyses and scoped evaluations of varying camera configurations and object states, we aim to pinpoint the specific environmental contexts where VLM reasoning is most prone to failure. This work provides a roadmap for increasing the reliability of VLM-driven robotic systems in complex, real-world scenes.
+
+\end{abstract}
+\section{Introduction}
+VLMs provide strong semantic understanding from large-scale pretraining, but robotics requires multi-level contextual understanding: robots must infer spatial relations (e.g., in front/behind), latent task-relevant state (e.g., open/closed), and physical outcomes of interactions.
+Recent studies report that VLM performance on robotics-relevant spatial and state reasoning can be limited or inconsistent, especially under viewpoint changes and temporally extended tasks~\cite{chen2025robo2vlm,cai2025spatialbot,zitkovich2023rt2}.
+Therefore, a targeted benchmark that isolates and measures spatial and state reasoning in robotic scenes is valuable for understanding VLM suitability for downstream state estimation and control.
+
+We consider two high-level benchmarking dimensions commonly discussed for VLM-based robotics:
+\begin{enumerate}
+  \item Robotic failure modes: detecting whether a task failed or is going wrong, a critical subtask of task-state-identification. 
+  \item Multi-view consistency: consistency, spatial understanding and information extraction across multiple views. 
+\end{enumerate}
+
+\section{Technical Methodology}
+Our work utilizes the Robo2VLM~\cite{chen2025robo2vlm} dataset, which derives ground-truth answers from non-visual robot sensing signals—such as end-effector pose, gripper state, and force measurements. This enables the creation of structured multiple-choice Visual Question Answering (VQA) tasks covering critical robotics-relevant reasoning categories, including spatial relations, goal-conditioned interaction understanding, and multi-view reasoning. By building upon the baseline results reported across multiple model families in Robo2VLM, our approach provides a solid reference for (i) implementing and validating our evaluation pipeline and (ii) conducting controlled comparative analyses focused on failure modes and multi-view consistency.
+
+
+\subsection{Baseline Setup}
+To control implementation complexity and ensure reproducibility, we will begin with a constrained baseline configuration:
+\begin{itemize}
+  \item Dataset: the task setup and evaluation split provided by Robo2VLM.
+  \item Model: a single VLM evaluated under fixed inference settings.
+\end{itemize}
+We will first validate the pipeline on a small subset for rapid iteration, and then scale to the full evaluation split.
+
+\subsection{Evaluation Protocol}
+Our evaluation protocol will consist of:
+\begin{enumerate}
+  \item Inference interface.\\
+  A unified runner that formats each benchmark instance, constructs prompts, queries the model, and logs predictions with all relevant metadata.
+
+  \item Output parsing.\\
+  A robust parser for multiple-choice answers (normalization and validity checks), with explicit handling of invalid or ambiguous outputs.
+
+  \item Metrics.\\
+  Overall accuracy and category-wise accuracy, with additional breakdowns supporting our primary focus.
+\end{enumerate}
+We will keep the baseline protocol fixed for the initial evaluation and introduce refinements only after establishing a stable baseline.
+
+
+\subsection{Planned Workflow}
+To ensure technical depth while staying realistic, we propose a three-stage workflow:
+
+\textbf{Stage 1: Baseline Validation.}
+Validate that our evaluation pipeline matches the dataset’s intended protocol by reproducing reported baseline trends from the provided paper on its benchmark settings.
+If certain frontier models are not accessible or reproducible, we will validate using available open-source VLMs and settings reported in the paper, focusing on matching evaluation logic rather than exact numbers.
+
+\textbf{Stage 2: Targeted Benchmark Usage (Data).}
+We will initially use the dataset provided by Robo2VLM~\cite{chen2025robo2vlm}. This dataset includes controlled multiple-choice questions with ground-truth answers derived from non-visual robot sensing signals, and spans tasks relevant to spatial reasoning, state estimation, failure detection, and multi-view consistency.
+
+\textbf{Stage 3: Comparative Failure Analysis.}
+We will categorize failures as systemic vs. model-specific, with emphasis on:
+(i) failure modes (detecting unsuccessful outcomes or incorrect states),
+and (ii) multi-view consistency (answer stability across views).
+
+We will report quantitative breakdowns and qualitative failure cases, and we will discuss plausible factors that may contribute to observed failure patterns (e.g., temporal reasoning, viewpoint sensitivity).
+
+\section{Expected Challenges and Mitigations}
+\begin{enumerate}
+  \item Ambiguity and evaluation noise.
+Mitigation: prioritize multiple-choice evaluation, implement strict parsing, and track invalid/uncertain outputs separately.
+
+ \item Multi-view consistency definition.
+Mitigation: define explicit consistency tests (same underlying scene queried from different viewpoints) and report consistency metrics alongside accuracy.
+
+ \item Compute and reproducibility constraints.
+Mitigation: start with one model + one dataset; run a small subset first; log all configs and seeds; design experiments to be incrementally extensible.
+
+ \item Over-scoping.
+Mitigation: baseline deliverable is a complete benchmarking pipeline and analysis for one model; additional models and dataset extensions are explicitly stretch goals. 
+\end{enumerate}
+
+\section{Roadmap (12 weeks)}
+\begin{itemize}
+  \item Weeks 1-2: Summarise key paper details; set up dataset loader; implement minimal inference and logging for one VLM.
+  \item Weeks 3-4: Implement evaluation scripts (accuracy, per-category breakdowns); run subset experiments; debug pipeline end-to-end.
+  \item Weeks 5-6: Run baseline evaluation on the target split; produce initial analysis focused on failure modes and multi-view consistency.
+  \item Weeks 7-8: Refine protocol if needed (prompting/parsing robustness); add consistency-specific analyses and error taxonomy.
+  \item Weeks 9-10 (Stretch): Evaluate 1-2 additional models and/or add a small controlled extension; compare failure patterns across models.
+  \item Weeks 11-12: Finalize results, figures, report, and presentation.
+\end {itemize}
+
+\section{Planned Contributions}
+\begin{itemize}
+  \item A reproducible benchmark pipeline for evaluating VLM spatial/state reasoning on a robotics-relevant dataset.
+  \item Quantitative evaluation and qualitative error analysis, with emphasis on failure modes and multi-view consistency.
+  \item Comparative insights into which capability gaps most affect downstream robotics suitability.
+\end{itemize}
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{main}
+}
+
+
+
+
+%\input{sec/2_formatting}
+%\input{sec/3_finalcopy}
+%{
+%    \small
+%    \bibliographystyle{ieeenat_fullname}
+%    \bibliography{main}
+%}
+%\input{sec/X_suppl}
+
+\end{document}

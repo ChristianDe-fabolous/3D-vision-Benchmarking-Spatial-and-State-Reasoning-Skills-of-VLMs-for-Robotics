@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+3dvision/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Run outputs (model responses, logs, summaries)
+outputs/
+logs/
+
+# Dataset / model cache (large files)
+data/
+*.parquet
+*.arrow
+*.bin
+*.safetensors
+*.gguf
+
+# HuggingFace cache
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
