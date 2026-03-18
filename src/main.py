@@ -9,6 +9,7 @@ Examples:
 """
 
 import argparse
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -71,6 +72,12 @@ def parse_args():
         default=False,
         help="Include per-answer-category accuracy breakdown in summary.json",
     )
+    parser.add_argument(
+        "--hf-token",
+        type=str,
+        default=None,
+        help="HuggingFace token for authenticated requests (higher rate limits)",
+    )
     return parser.parse_args()
 
 
@@ -91,6 +98,12 @@ def build_model(args):
 
 def main():
     args = parse_args()
+
+    if args.hf_token:
+        os.environ["HF_TOKEN"] = args.hf_token
+    elif not os.environ.get("HF_TOKEN"):
+        print("Warning: HF_TOKEN not set — unauthenticated HF requests may be rate-limited or fail. Pass --hf-token or set HF_TOKEN env var.", flush=True)
+
     run_id = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{args.prompt}"
 
     config = {
