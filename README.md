@@ -5,7 +5,6 @@ ETH Zurich — 3D Vision Course Project, SS26
 Evaluates Vision-Language Models (VLMs) on two robotics-focused reasoning tasks using the [Robo2VLM-1](https://huggingface.co/datasets/keplerccc/Robo2VLM-1) dataset (~107 GB, streamed — never fully downloaded).
 
 ---
-
 ## Research Tasks
 
 ### 1. Failure Mode Detection

@@ -49,7 +49,7 @@ def parse_args():
     )
     parser.add_argument(
         "--split",
-        default="test",
+        default="train",
         choices=["train", "test"],
         help="Dataset split to evaluate on",
     )
