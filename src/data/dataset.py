@@ -21,7 +21,7 @@ from typing import Iterator, List, Optional
 
 from PIL import Image
 
-from config import ALLOWED_QUESTION_PATTERNS, INVALID_ENTRIES, TASK_FAILURE_MODE, TASK_MULTIVIEW
+from config import ALLOWED_QUESTION_PATTERNS, INVALID_ENTRIES, QUESTION_TYPES, TASK_FAILURE_MODE, TASK_MULTIVIEW
 
 # Keywords used to classify samples into tasks.
 # A sample matches a task if ANY of its keywords appear in the question (case-insensitive).
@@ -73,6 +73,29 @@ def _parse_choices(raw: str) -> List[str]:
     if not isinstance(parsed, list):
         raise ValueError(f"Unexpected choices format: {raw!r}")
     return [str(c) for c in parsed]
+
+
+def _classify_question_type(question: str) -> Optional[str]:
+    """Return the question type name from QUESTION_TYPES, or None if unmatched/unconfigured."""
+    if not QUESTION_TYPES:
+        return None
+    q = question.lower()
+    for type_name, patterns in QUESTION_TYPES.items():
+        if any(p.lower() in q for p in patterns):
+            return type_name
+    return None
+
+
+def _classify_question_type(question: str, task: str) -> Optional[str]:
+    """Return the question type within its task using QUESTION_TYPES, or None if unmatched/unconfigured."""
+    task_types = QUESTION_TYPES.get(task, {})
+    if not task_types:
+        return None
+    q = question.lower()
+    for type_name, patterns in task_types.items():
+        if any(p.lower() in q for p in patterns):
+            return type_name
+    return None
 
 
 def _is_allowed_question(question: str, task: str) -> bool:
@@ -150,6 +173,12 @@ def load_dataset(
             continue  # skip malformed entries
 
         scene_id = _parse_scene_id(row["id"])
+        question_type = _classify_question_type(row["question"], task)
+        metadata = {}
+        if scene_id:
+            metadata["scene_id"] = scene_id
+        if question_type is not None:
+            metadata["question_type"] = question_type
         yield Sample(
             id=row["id"],
             task=task,
@@ -157,6 +186,6 @@ def load_dataset(
             question=row["question"],
             choices=choices,
             correct_answer=int(row["correct_answer"]),
-            metadata={"scene_id": scene_id} if scene_id else {},
+            metadata=metadata,
         )
         yielded += 1

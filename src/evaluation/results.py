@@ -14,7 +14,14 @@ from pathlib import Path
 from typing import List
 
 from config import SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD
-from evaluation.metrics import accuracy_by_field, answer_category_analysis, scene_analysis, summarize
+from evaluation.metrics import (
+    accuracy_by_field,
+    answer_category_analysis,
+    cross_bucket_scene_analysis,
+    scene_analysis,
+    scene_analysis_by_question_type,
+    summarize,
+)
 
 
 def save_config(output_dir: Path, config: dict) -> None:
@@ -26,8 +33,15 @@ def save_config(output_dir: Path, config: dict) -> None:
 def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool = False) -> None:
     summary = summarize(results)
     summary["by_task"] = accuracy_by_field(results, "task")
-    summary["by_augmented"] = accuracy_by_field(results, "augmented_reverse")
     summary["scene_analysis"] = scene_analysis(results, SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD)
+
+    # Question-type breakdowns — only populated when QUESTION_TYPES is configured
+    if any(r.get("question_type") for r in results):
+        summary["by_question_type"] = accuracy_by_field(results, "question_type")
+        summary["scene_analysis_by_question_type"] = scene_analysis_by_question_type(
+            results, SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD
+        )
+        summary["cross_bucket_scene_analysis"] = cross_bucket_scene_analysis(results)
 
     if analyse_categories:
         summary["answer_category_analysis"] = answer_category_analysis(results)

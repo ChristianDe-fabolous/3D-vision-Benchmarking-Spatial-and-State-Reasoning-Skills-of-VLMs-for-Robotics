@@ -81,6 +81,33 @@ def scene_analysis(results: List[dict], min_questions: int, outlier_std: float) 
     }
 
 
+def scene_analysis_by_question_type(results: List[dict], min_questions: int, outlier_std: float) -> Dict[str, dict]:
+    """For each question type, run scene_analysis on that subset of results."""
+    by_type: Dict[str, List[dict]] = defaultdict(list)
+    for r in results:
+        qt = r.get("question_type")
+        if qt:
+            by_type[qt].append(r)
+    return {qt: scene_analysis(subset, min_questions, outlier_std) for qt, subset in by_type.items()}
+
+
+def cross_bucket_scene_analysis(results: List[dict]) -> Dict[str, Dict[str, dict]]:
+    """For each scene, accuracy broken down by question type across all buckets."""
+    data: Dict[str, Dict[str, List[bool]]] = defaultdict(lambda: defaultdict(list))
+    for r in results:
+        scene_id = r.get("scene_id")
+        qt = r.get("question_type")
+        if scene_id and qt:
+            data[scene_id][qt].append(r["correct"])
+    return {
+        scene_id: {
+            qt: {"accuracy": round(sum(v) / len(v), 3), "n": len(v)}
+            for qt, v in buckets.items()
+        }
+        for scene_id, buckets in sorted(data.items())
+    }
+
+
 def answer_category_analysis(results: List[dict]) -> List[dict]:
     """Per-answer-category accuracy (grouped by the set of choices, order-independent)."""
     buckets: Dict[Tuple, List[bool]] = defaultdict(list)

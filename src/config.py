@@ -24,6 +24,15 @@ ALLOWED_QUESTION_PATTERNS: dict[str, list[str]] = {
 # Prompt identifiers
 PROMPT_DEFAULT = "default"
 
+# Question type buckets, nested by task.
+# Maps task -> (type name -> list of substrings, case-insensitive).
+# A question is assigned the first matching type within its task.
+# Fill in after running scripts/list_questions.py.
+QUESTION_TYPES: dict[str, dict[str, list[str]]] = {
+    TASK_FAILURE_MODE: {},
+    TASK_MULTIVIEW: {},
+}
+
 # Model identifiers
 MODEL_QWEN_3B = "qwen-3b"
 MODEL_QWEN_7B = "qwen-7b"
