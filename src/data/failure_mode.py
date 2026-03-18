@@ -16,7 +16,7 @@ from data.dataset import Sample
 CHOICE_LABELS = ["A", "B", "C", "D", "E"]
 
 
-def build_prompt(sample: Sample) -> str:
+def _build_prompt_default(sample: Sample) -> str:
     choices_text = "\n".join(
         f"  {CHOICE_LABELS[i]}: {choice}"
         for i, choice in enumerate(sample.choices)
@@ -29,6 +29,18 @@ def build_prompt(sample: Sample) -> str:
         "Reply with only the letter of the correct answer "
         f"({', '.join(CHOICE_LABELS[:len(sample.choices)])})."
     )
+
+
+_PROMPT_BUILDERS = {
+    "default": _build_prompt_default,
+}
+
+
+def build_prompt(sample: Sample, prompt_id: str = "default") -> str:
+    builder = _PROMPT_BUILDERS.get(prompt_id)
+    if builder is None:
+        raise ValueError(f"Unknown prompt_id for failure_mode task: {prompt_id!r}")
+    return builder(sample)
 
 
 def response_to_index(response: str, num_choices: int) -> Optional[int]:

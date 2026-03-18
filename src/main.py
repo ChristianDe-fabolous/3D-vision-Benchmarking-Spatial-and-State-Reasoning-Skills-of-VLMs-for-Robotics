@@ -5,6 +5,7 @@ Examples:
     python main.py --task failure_mode --model qwen-3b --limit 10
     python main.py --task multiview --model qwen-7b --split train --limit 50
     python main.py --task failure_mode --model qwen-3b --local-data /path/to/data
+    python main.py --task failure_mode --model qwen-3b --prompt default
 """
 
 import argparse
@@ -19,6 +20,7 @@ from config import (
     MODEL_QWEN_3B,
     MODEL_QWEN_7B,
     OUTPUT_DIR,
+    PROMPT_DEFAULT,
     TASK_FAILURE_MODE,
     TASK_MULTIVIEW,
 )
@@ -39,6 +41,11 @@ def parse_args():
         "--model",
         default=MODEL_QWEN_3B,
         choices=[MODEL_QWEN_3B, MODEL_QWEN_7B],
+    )
+    parser.add_argument(
+        "--prompt",
+        default=PROMPT_DEFAULT,
+        help="Prompt variant to use (default: 'default')",
     )
     parser.add_argument(
         "--split",
@@ -68,7 +75,7 @@ def parse_args():
 
 
 def build_task(args):
-    kwargs = dict(split=args.split, limit=args.limit, local_path=args.local_data)
+    kwargs = dict(split=args.split, limit=args.limit, local_path=args.local_data, prompt_id=args.prompt)
     if args.task == TASK_FAILURE_MODE:
         return FailureModeTask(**kwargs)
     if args.task == TASK_MULTIVIEW:
@@ -84,12 +91,13 @@ def build_model(args):
 
 def main():
     args = parse_args()
-    run_id = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}"
+    run_id = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{args.prompt}"
 
     config = {
         "run_id": run_id,
         "task": args.task,
         "model": args.model,
+        "prompt": args.prompt,
         "split": args.split,
         "limit": args.limit,
         "local_data": args.local_data,
@@ -103,6 +111,7 @@ def main():
         task=task,
         model=model,
         model_id=args.model,
+        prompt_id=args.prompt,
         run_id=run_id,
         output_dir=OUTPUT_DIR / run_id,
         log_dir=LOG_DIR,

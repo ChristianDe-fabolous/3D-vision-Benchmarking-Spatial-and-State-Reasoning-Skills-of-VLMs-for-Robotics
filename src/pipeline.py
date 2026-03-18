@@ -23,6 +23,7 @@ def run(
     task: BaseTask,
     model: BaseVLM,
     model_id: str,
+    prompt_id: str,
     run_id: str,
     output_dir: Path,
     log_dir: Path,
@@ -35,6 +36,8 @@ def run(
     Args:
         task:       Task instance (FailureModeTask or MultiviewTask).
         model:      Already-loaded VLM instance.
+        model_id:   Model identifier string (used for cache key and logging).
+        prompt_id:  Prompt variant identifier (used for cache key and logging).
         run_id:     Unique identifier for this run (used for filenames).
         output_dir: Where to write results.jsonl and summary.json.
         log_dir:    Where to write the human-readable .log file.
@@ -50,7 +53,7 @@ def run(
     if config:
         save_config(output_dir, config)
 
-    logger.info(f"Run '{run_id}' | task={task.__class__.__name__} | model={model_id}")
+    logger.info(f"Run '{run_id}' | task={task.__class__.__name__} | model={model_id} | prompt={prompt_id}")
 
     results: List[dict] = []
     i = 0
@@ -58,7 +61,7 @@ def run(
     for sample in task.get_samples():
         i += 1
 
-        if cache.contains(sample.id, model_id):
+        if cache.contains(sample.id, model_id, prompt_id):
             logger.debug(f"[{i}] id={sample.id}  SKIPPED (cached)")
             continue
 
@@ -81,6 +84,7 @@ def run(
         entry = {
             "run_id": run_id,
             "model_id": model_id,
+            "prompt_id": prompt_id,
             "entry_id": sample.id,
             "task": sample.task,
             "question": sample.question,

@@ -5,10 +5,10 @@ All responses from all runs are appended to a single file:
   outputs/cache.jsonl
 
 Each line is a full result entry (same schema as pipeline.py's `entry` dict)
-plus a `model_id` field. The cache is keyed by (entry_id, model_id) so
-different models never collide.
+plus `model_id` and `prompt_id` fields. The cache is keyed by
+(entry_id, model_id, prompt_id) so different models and prompts never collide.
 
-On resume: already-processed (entry_id, model_id) pairs are skipped,
+On resume: already-processed (entry_id, model_id, prompt_id) tuples are skipped,
 saving both inference time and API cost.
 """
 
@@ -23,9 +23,9 @@ class ResponseCache:
     def __init__(self, cache_path: Path):
         self.path = cache_path
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self._processed: Set[Tuple[str, str]] = self._load_keys()
+        self._processed: Set[Tuple[str, str, str]] = self._load_keys()
 
-    def _load_keys(self) -> Set[Tuple[str, str]]:
+    def _load_keys(self) -> Set[Tuple[str, str, str]]:
         if not self.path.exists():
             return set()
         keys = set()
@@ -36,16 +36,24 @@ class ResponseCache:
                     continue
                 try:
                     entry = json.loads(line)
-                    keys.add((str(entry["entry_id"]), str(entry["model_id"])))
+                    keys.add((
+                        str(entry["entry_id"]),
+                        str(entry["model_id"]),
+                        str(entry.get("prompt_id", "default")),
+                    ))
                 except (json.JSONDecodeError, KeyError):
                     continue
         return keys
 
-    def contains(self, entry_id: str, model_id: str) -> bool:
-        return (str(entry_id), str(model_id)) in self._processed
+    def contains(self, entry_id: str, model_id: str, prompt_id: str) -> bool:
+        return (str(entry_id), str(model_id), str(prompt_id)) in self._processed
 
     def write(self, entry: dict) -> None:
         """Append entry to cache and mark as processed."""
         with open(self.path, "a") as f:
             f.write(json.dumps(entry) + "\n")
-        self._processed.add((str(entry["entry_id"]), str(entry["model_id"])))
+        self._processed.add((
+            str(entry["entry_id"]),
+            str(entry["model_id"]),
+            str(entry.get("prompt_id", "default")),
+        ))

@@ -78,11 +78,12 @@ def main():
         except Exception:
             continue
 
-        counts[choices] += 1
+        key = tuple(sorted(choices))
+        counts[key] += 1
 
         if not args.no_examples:
             scene_id = _parse_scene_id(row["id"]) or row["id"]
-            examples = scene_examples[choices]
+            examples = scene_examples[key]
             if len(examples) < args.examples and scene_id not in examples:
                 examples[scene_id] = row["question"]
 

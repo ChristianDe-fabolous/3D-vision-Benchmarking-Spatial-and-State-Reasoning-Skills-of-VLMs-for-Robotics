@@ -82,10 +82,10 @@ def scene_analysis(results: List[dict], min_questions: int, outlier_std: float) 
 
 
 def answer_category_analysis(results: List[dict]) -> List[dict]:
-    """Per-answer-category accuracy (grouped by the exact set of choices)."""
+    """Per-answer-category accuracy (grouped by the set of choices, order-independent)."""
     buckets: Dict[Tuple, List[bool]] = defaultdict(list)
     for r in results:
-        key = tuple(r["choices"])
+        key = tuple(sorted(r["choices"]))
         buckets[key].append(r["correct"])
 
     return sorted(

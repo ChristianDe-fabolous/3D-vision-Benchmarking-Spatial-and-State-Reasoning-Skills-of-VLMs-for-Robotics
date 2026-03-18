@@ -21,6 +21,9 @@ ALLOWED_QUESTION_PATTERNS: dict[str, list[str]] = {
     TASK_MULTIVIEW: [],
 }
 
+# Prompt identifiers
+PROMPT_DEFAULT = "default"
+
 # Model identifiers
 MODEL_QWEN_3B = "qwen-3b"
 MODEL_QWEN_7B = "qwen-7b"
