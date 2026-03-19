@@ -15,6 +15,7 @@ TASK_MULTIVIEW = "multiview"
 
 # Prompt identifiers
 PROMPT_DEFAULT = "default"
+PROMPT_TEST = "test"
 
 # Question type buckets, nested by task.
 # Maps task -> (type name -> list of substrings, case-insensitive).

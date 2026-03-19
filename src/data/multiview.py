@@ -33,8 +33,24 @@ def _build_prompt_default(sample: Sample) -> str:
     )
 
 
+def _build_prompt_test(sample: Sample) -> str:
+    """Dummy prompt for quick experiments — change freely."""
+    choices_text = "\n".join(
+        f"  {CHOICE_LABELS[i]}: {choice}"
+        for i, choice in enumerate(sample.choices)
+    )
+    return (
+        "Look at the image.\n\n"
+        f"Question: {sample.question}\n\n"
+        f"Choices:\n{choices_text}\n\n"
+        "Reply with only the letter of the correct answer "
+        f"({', '.join(CHOICE_LABELS[:len(sample.choices)])})."
+    )
+
+
 _PROMPT_BUILDERS = {
     "default": _build_prompt_default,
+    "test": _build_prompt_test,
 }
 
 
