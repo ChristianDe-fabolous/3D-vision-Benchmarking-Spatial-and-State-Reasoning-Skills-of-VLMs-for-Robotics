@@ -20,6 +20,30 @@ After task assignment, samples can be further filtered by `ALLOWED_QUESTION_PATT
 
 ---
 
+## Dataset Image Format
+
+Source: [`generation/vqa.py`](https://github.com/KeplerC/robo2VLM/blob/main/generation/vqa.py) in the robo2VLM repo.
+
+The `image` field in the HuggingFace dataset always contains exactly one image. For questions involving multiple camera views, the images are stitched into a single composite before storage — the model never receives separate images.
+
+### Single-camera questions
+
+A single annotated camera frame is used directly. For spatial questions (relative depth, relative direction) colored markers or arrows are drawn onto the frame to indicate reference points.
+
+### Multi-view questions (`vqa_multi_view_correspondence`, lines 924–1094)
+
+Two camera views are horizontally concatenated side by side into one image. The camera name (e.g. `ext1`, `ext2`) is **burned as text directly into the image pixels** using `cv2.putText()` (lines 1032–1034). The question text also explicitly names the views:
+
+> "In the left image (ext1 camera), a red dot is marked. Which point in the right image (ext2 camera) corresponds to the same 3D location?"
+
+So the model has two redundant cues: the label in the image and the label in the question text. This is also why our keyword filter (`TASK_KEYWORDS` in `data/dataset.py:28`) uses strings like `"left image"`, `"ext1"`, `"ext2"` — they come directly from these question templates.
+
+### All-camera stitched questions (`stitch_all_cameras`, lines 1471–1577)
+
+All available cameras are combined into a grid layout, padded to uniform size with black space. Each tile has the camera name burned into the top-left corner in yellow text. Used for question types like task success state, gripper state, and action understanding.
+
+---
+
 ## Exploration Scripts
 
 Before filling in `QUESTION_TYPES` or `ALLOWED_QUESTION_PATTERNS` in `config.py`, you need to know what questions and answer formats actually exist in the dataset. Two scripts exist for this.
