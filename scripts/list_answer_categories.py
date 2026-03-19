@@ -4,6 +4,13 @@ List all distinct answer categories in the dataset.
 An answer category is the exact set of choices for a question,
 e.g. ('Yes', 'No') or ('Yes', 'No', 'Cannot be determined').
 
+Note: categories do not group as cleanly as one might expect. For color-based
+questions (relative depth, relative direction) the choices are color names like
+"Red", "Blue", "Green", "Yellow", "Purple", "None of the above". Since not
+always the same set of colors appears in a given question, the same question
+type produces multiple distinct answer categories depending on which colors were
+present in that scene.
+
 For each category, shows:
   - How many questions have this category
   - Up to 100 example questions from different scenes

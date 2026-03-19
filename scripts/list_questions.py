@@ -4,6 +4,15 @@ List all distinct question templates in the dataset.
 Streams the dataset so no full download is needed. Use --limit to cap how
 many samples are scanned (more samples = more complete template list).
 
+Note: the number of distinct templates will appear much higher than the actual
+number of question types. Many questions reference a specific object from their
+scene (e.g. "the orange cube", "the blue ball", "the red cylinder") both in the
+question text and in the answer choices. Since objects differ per scene, each
+object mention produces a separate template even though the underlying question
+type is the same. Keep this in mind when deciding which keyword patterns to use
+for QUESTION_TYPES in config.py — patterns should match the shared structure of
+the question, not the object-specific parts.
+
 Usage:
     python scripts/list_questions.py
     python scripts/list_questions.py --limit 2000

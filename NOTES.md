@@ -57,7 +57,7 @@ All available cameras are combined into a grid layout, padded to uniform size wi
 
 ## Exploration Scripts
 
-Before filling in `QUESTION_TYPES` or `ALLOWED_QUESTION_PATTERNS` in `config.py`, you need to know what questions and answer formats actually exist in the dataset. Two scripts exist for this.
+Before filling in `QUESTION_TYPES` in `config.py`, you need to know what questions and answer formats actually exist in the dataset. Two scripts exist for this.
 
 ### `scripts/list_questions.py`
 
@@ -72,6 +72,8 @@ Output is saved to `outputs/question_templates.txt`.
 
 **Why this exists:** the dataset has ~107 GB of images and thousands of question variants. Before you can decide which questions to include in your evaluation (and how to classify them into types), you need to see the full vocabulary of question phrasings. This script lets you do that without downloading the full dataset.
 
+**Caveat:** the number of distinct templates will appear much higher than the actual number of question types. Many questions reference a scene-specific object (e.g. "the orange cube", "the blue ball", "the red cylinder") in both the question text and the answer choices. Since objects differ per scene, each object mention produces a separate template even though the underlying question type is the same. When defining keyword patterns for `QUESTION_TYPES`, match the shared structural part of the question, not the object-specific parts.
+
 ### `scripts/list_answer_categories.py`
 
 Streams the dataset and groups questions by their set of answer choices (e.g. `["Yes", "No"]` vs `["Yes", "No", "Cannot be determined"]`). Prints each category with a count and example questions from different scenes.
@@ -84,6 +86,8 @@ python scripts/list_answer_categories.py --no-examples   # counts only
 Output is saved to `outputs/answer_categories.txt`.
 
 **Why this exists:** the number of answer choices varies per question, which affects both prompt design and the random baseline (1/2 vs 1/3 vs 1/5). Knowing which categories exist and how many questions each has is necessary for deciding which to include and for interpreting results (a 50% accuracy on a binary question is very different from 50% on a 5-way question).
+
+**Caveat:** categories do not group as cleanly as one might expect. For color-based questions (relative depth, relative direction) the choices are color names like "Red", "Blue", "Green", "Yellow", "Purple", "None of the above". Since not always the same set of colors is present in a given scene, the same question type produces multiple distinct answer categories depending on which colors appeared.
 
 ---
 
