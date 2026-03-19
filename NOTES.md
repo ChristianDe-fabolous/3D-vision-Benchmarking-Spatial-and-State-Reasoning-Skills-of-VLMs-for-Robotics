@@ -126,6 +126,21 @@ Human-readable debug log. Console output is at INFO level (one line per sample s
 
 ---
 
+## Response Parsing
+
+The model is expected to reply with a single letter (A, B, C, D, or E). Parsing is done in `src/tasks/base.py:20` (`parse_response`):
+
+1. Strip whitespace from the response.
+2. Take the first character and uppercase it.
+3. Check whether it is a valid label for this question (e.g. only A/B/C for a 3-choice question).
+4. If valid, return the 0-based index (A→0, B→1, …). If not, return `None`.
+
+A `None` result counts as **unparseable** — not wrong, tracked separately in `summary.json`. This matters because an unparseable response could mean the model refused to answer, produced verbose output instead of a letter, or genuinely didn't know. The prompts instruct the model to reply with only the letter to minimise this.
+
+`evaluate()` (`tasks/base.py:31`) calls `parse_response` and returns `True` only if the parsed index matches `sample.correct_answer`.
+
+---
+
 ## Metrics
 
 All metrics are computed in `src/evaluation/metrics.py` and written into `summary.json`.

@@ -15,6 +15,9 @@ For each category, shows:
   - How many questions have this category
   - Up to 100 example questions from different scenes
 
+At the end of the output, shows the total occurrence count of each individual
+answer option across all questions (e.g. how many times "Yes", "No", "Red", etc. appear).
+
 Usage:
     python scripts/list_answer_categories.py
     python scripts/list_answer_categories.py --limit 5000
@@ -68,6 +71,8 @@ def main():
 
     # category -> count
     counts: dict[tuple, int] = defaultdict(int)
+    # individual answer option -> count
+    answer_counts: dict[str, int] = defaultdict(int)
     # category -> {scene_id -> example question text}
     scene_examples: dict[tuple, dict[str, str]] = defaultdict(dict)
 
@@ -87,6 +92,8 @@ def main():
 
         key = tuple(sorted(choices))
         counts[key] += 1
+        for choice in choices:
+            answer_counts[choice] += 1
 
         if not args.no_examples:
             scene_id = _parse_scene_id(row["id"]) or row["id"]
@@ -102,6 +109,11 @@ def main():
         if not args.no_examples:
             for scene_id, question in scene_examples[choices].items():
                 lines.append(f"  [scene {scene_id}] {question[:120]}")
+
+    lines.append("\n\n" + "=" * 60)
+    lines.append(f"Individual answer option counts ({len(answer_counts)} distinct options)\n")
+    for answer, count in sorted(answer_counts.items(), key=lambda x: -x[1]):
+        lines.append(f"  {count:>6}x  {answer}")
 
     output = "\n".join(lines)
     print(output)
