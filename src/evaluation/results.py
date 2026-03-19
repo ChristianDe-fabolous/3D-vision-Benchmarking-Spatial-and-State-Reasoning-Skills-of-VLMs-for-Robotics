@@ -17,9 +17,8 @@ from config import SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD
 from evaluation.metrics import (
     accuracy_by_field,
     answer_category_analysis,
-    cross_bucket_scene_analysis,
+    question_type_analysis,
     scene_analysis,
-    scene_analysis_by_question_type,
     summarize,
 )
 
@@ -38,10 +37,7 @@ def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool
     # Question-type breakdowns — only populated when QUESTION_TYPES is configured
     if any(r.get("question_type") for r in results):
         summary["by_question_type"] = accuracy_by_field(results, "question_type")
-        summary["scene_analysis_by_question_type"] = scene_analysis_by_question_type(
-            results, SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD
-        )
-        summary["cross_bucket_scene_analysis"] = cross_bucket_scene_analysis(results)
+        summary["question_type_analysis"] = question_type_analysis(results, SCENE_OUTLIER_STD)
 
     if analyse_categories:
         summary["answer_category_analysis"] = answer_category_analysis(results)

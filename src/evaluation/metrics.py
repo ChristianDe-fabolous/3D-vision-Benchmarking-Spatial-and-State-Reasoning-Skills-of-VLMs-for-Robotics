@@ -81,8 +81,45 @@ def scene_analysis(results: List[dict], min_questions: int, outlier_std: float) 
     }
 
 
+def question_type_analysis(results: List[dict], outlier_std: float) -> dict:
+    """Per-question-type accuracy with outlier flagging."""
+    buckets: Dict[str, List[bool]] = defaultdict(list)
+    for r in results:
+        qt = r.get("question_type")
+        if qt:
+            buckets[qt].append(r["correct"])
+
+    if not buckets:
+        return {"total_types": 0, "outliers_above": [], "outliers_below": []}
+
+    accs = {qt: sum(v) / len(v) for qt, v in buckets.items()}
+    mean = sum(accs.values()) / len(accs)
+    std = math.sqrt(sum((a - mean) ** 2 for a in accs.values()) / len(accs))
+
+    all_types = sorted(
+        [{"question_type": qt, "accuracy": round(a, 3), "n": len(buckets[qt])}
+         for qt, a in accs.items()],
+        key=lambda x: -x["accuracy"],
+    )
+    outliers_above = [t for t in all_types if t["accuracy"] > mean + outlier_std * std]
+    outliers_below = sorted(
+        [t for t in all_types if t["accuracy"] < mean - outlier_std * std],
+        key=lambda x: x["accuracy"],
+    )
+
+    return {
+        "total_types": len(buckets),
+        "mean_accuracy": round(mean, 3),
+        "std": round(std, 3),
+        "outlier_std_threshold": outlier_std,
+        "all_types": all_types,
+        "outliers_above": outliers_above,
+        "outliers_below": outliers_below,
+    }
+
+
 def scene_analysis_by_question_type(results: List[dict], min_questions: int, outlier_std: float) -> Dict[str, dict]:
-    """For each question type, run scene_analysis on that subset of results."""
+    """For each question type, run scene_analysis on that subset of results. Currently unused."""
     by_type: Dict[str, List[dict]] = defaultdict(list)
     for r in results:
         qt = r.get("question_type")
@@ -92,6 +129,7 @@ def scene_analysis_by_question_type(results: List[dict], min_questions: int, out
 
 
 def cross_bucket_scene_analysis(results: List[dict]) -> Dict[str, Dict[str, dict]]:
+    """Currently unused."""
     """For each scene, accuracy broken down by question type across all buckets."""
     data: Dict[str, Dict[str, List[bool]]] = defaultdict(lambda: defaultdict(list))
     for r in results:
