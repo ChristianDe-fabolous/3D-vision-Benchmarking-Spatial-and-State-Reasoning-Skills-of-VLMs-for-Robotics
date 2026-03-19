@@ -67,7 +67,6 @@ Each run writes to `outputs/<run_id>/` where `run_id` is `<timestamp>_<task>_<mo
 
 ```
 outputs/
-  cache.jsonl                     # persistent cross-run response cache
   <run_id>/
     config.json                   # exact run parameters
     results.jsonl                 # one JSON line per evaluated sample
@@ -75,10 +74,6 @@ outputs/
 logs/
   <run_id>.log                    # debug-level log of every inference
 ```
-
-### Resume / Skip Logic
-
-All responses are cached in `outputs/cache.jsonl` keyed by `(entry_id, model_id)`. Restarting a run automatically skips already-processed samples. To re-run a specific sample, delete its line from `cache.jsonl`. To re-run all samples for a model, filter out lines where `model_id` matches.
 
 ### Result Entry Schema (`results.jsonl`)
 

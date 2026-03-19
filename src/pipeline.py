@@ -11,11 +11,9 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 
-from config import OUTPUT_DIR
 from evaluation.results import save_config, save_summary
 from models.base import BaseVLM
 from tasks.base import BaseTask
-from utils.cache import ResponseCache
 from utils.logging import SampleLogger, setup_logger
 
 
@@ -36,8 +34,8 @@ def run(
     Args:
         task:       Task instance (FailureModeTask or MultiviewTask).
         model:      Already-loaded VLM instance.
-        model_id:   Model identifier string (used for cache key and logging).
-        prompt_id:  Prompt variant identifier (used for cache key and logging).
+        model_id:   Model identifier string (used for logging).
+        prompt_id:  Prompt variant identifier (used for logging).
         run_id:     Unique identifier for this run (used for filenames).
         output_dir: Where to write results.jsonl and summary.json.
         log_dir:    Where to write the human-readable .log file.
@@ -48,7 +46,6 @@ def run(
     """
     logger = setup_logger(run_id, log_dir)
     sample_logger = SampleLogger(output_dir)
-    cache = ResponseCache(OUTPUT_DIR / "cache.jsonl")
 
     if config:
         save_config(output_dir, config)
@@ -60,10 +57,6 @@ def run(
 
     for sample in task.get_samples():
         i += 1
-
-        if cache.contains(sample.id, model_id, prompt_id):
-            logger.debug(f"[{i}] id={sample.id}  SKIPPED (cached)")
-            continue
 
         prompt = task.build_prompt(sample)
 
@@ -98,7 +91,6 @@ def run(
             **sample.metadata,
         }
 
-        cache.write(entry)
         sample_logger.log(entry)
         results.append(entry)
 

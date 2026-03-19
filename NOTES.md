@@ -97,7 +97,6 @@ Every run produces outputs in two locations, both configurable via env vars (`VL
 
 ```
 outputs/
-  cache.jsonl                    # persistent cross-run response cache (all runs)
   <run_id>/
     config.json                  # exact CLI arguments for this run
     results.jsonl                # one JSON line per evaluated sample, written live
@@ -113,13 +112,13 @@ logs/
 
 Written one line at a time during the run (each write is immediately flushed). This means results are not lost if the run crashes. Each line contains the question, choices, ground truth, raw model response, parsed prediction, and whether it was correct. Metadata fields (e.g. `scene_id`, `question_type`) are included if available.
 
-### `cache.jsonl` (`src/utils/cache.py`)
-
-A single shared file across all runs. Keyed by `(entry_id, model_id, prompt_id)`. When a run starts, already-processed keys are loaded and skipped. This allows resuming interrupted runs and avoids re-running the same sample with the same model and prompt. To force a re-run of a specific sample, delete its line from `cache.jsonl`.
-
 ### `summary.json` (`src/evaluation/results.py`)
 
 Written once at the end of the run. Contains all metrics described below.
+
+### Response cache (not currently active)
+
+`src/utils/cache.py` contains a `ResponseCache` implementation that would persist all responses to `outputs/cache.jsonl` keyed by `(entry_id, model_id, prompt_id)`, allowing interrupted runs to resume without re-running already-processed samples. It is not used at the moment. Could be worth enabling once runs get long enough that resumability matters.
 
 ### `*.log` (`src/utils/logging.py:6`)
 
