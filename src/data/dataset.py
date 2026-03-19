@@ -8,8 +8,14 @@ HuggingFace schema:
   correct_answer int   — 0-indexed position in choices
   image          PIL   — single image (may be a composite for multiview questions)
 
-We assign tasks by matching question text patterns since the dataset has no
-explicit task column.
+Task and question type are assigned together by matching question text against
+QUESTION_TYPES in config.py (task -> type_name -> keyword patterns). This is
+the single source of truth for filtering: questions that match no pattern are
+skipped entirely.
+
+When QUESTION_TYPES is not yet configured (empty), TASK_KEYWORDS below is used
+as a fallback for task assignment only (no type is assigned). Once QUESTION_TYPES
+is fully populated, TASK_KEYWORDS becomes unused and can be removed.
 """
 
 from __future__ import annotations
@@ -17,14 +23,14 @@ from __future__ import annotations
 import ast
 import re
 from dataclasses import dataclass, field
-from typing import Iterator, List, Optional
+from typing import Iterator, List, Optional, Tuple
 
 from PIL import Image
 
-from config import ALLOWED_QUESTION_PATTERNS, INVALID_ENTRIES, QUESTION_TYPES, TASK_FAILURE_MODE, TASK_MULTIVIEW
+from config import INVALID_ENTRIES, QUESTION_TYPES, TASK_FAILURE_MODE, TASK_MULTIVIEW
 
-# Keywords used to classify samples into tasks.
-# A sample matches a task if ANY of its keywords appear in the question (case-insensitive).
+# Fallback used for task assignment when QUESTION_TYPES is not yet configured.
+# Once QUESTION_TYPES is filled in config.py, this is no longer needed.
 TASK_KEYWORDS = {
     TASK_FAILURE_MODE: [
         "successfully completed",
@@ -59,13 +65,29 @@ class Sample:
         return self.choices[self.correct_answer]
 
 
-def _classify_task(question: str) -> Optional[str]:
-    """Return the task name based on question content, or None if unrecognised."""
+def _classify_task_and_type(question: str) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Return (task, question_type) for a question.
+
+    Primary: match against QUESTION_TYPES (config.py) — gives both task and type
+    in one step. A question that matches no pattern is skipped (returns None, None).
+
+    Fallback: when QUESTION_TYPES is empty/unconfigured, match against TASK_KEYWORDS
+    for task assignment only (question_type will be None).
+    """
     q = question.lower()
+
+    for task, types in QUESTION_TYPES.items():
+        for type_name, patterns in types.items():
+            if any(p.lower() in q for p in patterns):
+                return task, type_name
+
+    # Fallback — remove once QUESTION_TYPES is fully configured
     for task, keywords in TASK_KEYWORDS.items():
         if any(kw in q for kw in keywords):
-            return task
-    return None
+            return task, None
+
+    return None, None
 
 
 def _parse_choices(raw: str) -> List[str]:
@@ -73,38 +95,6 @@ def _parse_choices(raw: str) -> List[str]:
     if not isinstance(parsed, list):
         raise ValueError(f"Unexpected choices format: {raw!r}")
     return [str(c) for c in parsed]
-
-
-def _classify_question_type(question: str) -> Optional[str]:
-    """Return the question type name from QUESTION_TYPES, or None if unmatched/unconfigured."""
-    if not QUESTION_TYPES:
-        return None
-    q = question.lower()
-    for type_name, patterns in QUESTION_TYPES.items():
-        if any(p.lower() in q for p in patterns):
-            return type_name
-    return None
-
-
-def _classify_question_type(question: str, task: str) -> Optional[str]:
-    """Return the question type within its task using QUESTION_TYPES, or None if unmatched/unconfigured."""
-    task_types = QUESTION_TYPES.get(task, {})
-    if not task_types:
-        return None
-    q = question.lower()
-    for type_name, patterns in task_types.items():
-        if any(p.lower() in q for p in patterns):
-            return type_name
-    return None
-
-
-def _is_allowed_question(question: str, task: str) -> bool:
-    """Return True if the question matches the allowlist for its task (or list is empty)."""
-    patterns = ALLOWED_QUESTION_PATTERNS.get(task, [])
-    if not patterns:
-        return True
-    q = question.lower()
-    return any(p.lower() in q for p in patterns)
 
 
 def _parse_scene_id(entry_id: str) -> Optional[str]:
@@ -157,14 +147,11 @@ def load_dataset(
         if _is_invalid(row["id"]):
             continue
 
-        task = _classify_task(row["question"])
+        task, question_type = _classify_task_and_type(row["question"])
         if task is None:
             continue  # skip unrecognised question types
 
         if task_filter and task != task_filter:
-            continue
-
-        if not _is_allowed_question(row["question"], task):
             continue
 
         try:
@@ -173,7 +160,6 @@ def load_dataset(
             continue  # skip malformed entries
 
         scene_id = _parse_scene_id(row["id"])
-        question_type = _classify_question_type(row["question"], task)
         metadata = {}
         if scene_id:
             metadata["scene_id"] = scene_id

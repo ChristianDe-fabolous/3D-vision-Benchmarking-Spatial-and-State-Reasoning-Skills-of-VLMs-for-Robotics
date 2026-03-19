@@ -6,17 +6,28 @@
 
 The dataset contains many question types across many robotic tasks. We do not use all of them — only the subset relevant to our two research tasks.
 
-Filtering happens in two stages, both in `src/data/dataset.py`.
+Filtering and question type assignment happen in a single step via `_classify_task_and_type()` in `src/data/dataset.py`. The function matches question text against `QUESTION_TYPES` in `config.py`, which is the single source of truth:
 
-### Stage 1 — Task assignment (keyword matching in question text)
+```python
+QUESTION_TYPES = {
+    "failure_mode": {
+        "goal_state":  ["successfully completed", "goal state"],
+        "grasp_state": ["has the robot", ...],
+    },
+    "multiview": {
+        "correspondence": ["3d location", "same 3d", "corresponding"],
+        "depth":          ["left image", "right image"],
+    },
+}
+```
 
-Each sample is assigned to a task by checking whether its question text contains any of a set of hardcoded keywords (`TASK_KEYWORDS`, `data/dataset.py:28`). For example, questions containing "successfully completed" or "goal state" are assigned to `failure_mode`; questions mentioning "left image", "ext1", or "3d location" go to `multiview`. Samples that match no keyword are silently dropped.
+A question is matched against all patterns across all tasks and types. The first match determines both the task and the question type. If nothing matches, the question is skipped. This means `QUESTION_TYPES` serves double duty: it filters the 600k questions down to only what we care about, and it assigns a type name used for per-type metric breakdowns.
 
-**This mechanism has to be changed.** Keyword matching is fragile — it can silently include irrelevant question types or miss valid ones whenever the dataset phrasing changes. The right approach is to manually inspect all question templates (use `scripts/list_questions.py`, see below), decide exactly which question phrasings belong to each task, and then either replace the keywords with more precise patterns or switch to an explicit allowlist.
+**`QUESTION_TYPES` is currently empty** — it needs to be filled in before type-level metrics appear. Use `scripts/list_questions.py` to discover all question templates first (see below).
 
-### Stage 2 — Question allowlist (within a task)
+### Fallback when QUESTION_TYPES is empty
 
-After task assignment, samples can be further filtered by `ALLOWED_QUESTION_PATTERNS` (`config.py:19`). This is a dict mapping each task to a list of substrings; a question must contain at least one of them to pass. Both lists are currently empty, meaning no additional filtering is applied beyond stage 1. Fill these in once you have decided which specific question types to include in the evaluation.
+When `QUESTION_TYPES` is not yet configured, `_classify_task_and_type()` falls back to `TASK_KEYWORDS` (hardcoded in `data/dataset.py`) for task assignment only — no question type is assigned. This preserves current filtering behaviour during development. Once `QUESTION_TYPES` is fully populated, the fallback and `TASK_KEYWORDS` can be removed.
 
 ---
 
@@ -201,7 +212,7 @@ Only computed when `--analyse-categories` is passed to `main.py`. Groups questio
 The intended workflow for setting up question type breakdowns:
 
 1. Run `scripts/list_questions.py` to see all question templates.
-2. Decide which templates belong to which task (stage 1 filter) and which question type (for hypothesis testing).
-3. Fill in `ALLOWED_QUESTION_PATTERNS` in `config.py` if you want to restrict which questions within a task are evaluated.
-4. Fill in `QUESTION_TYPES` in `config.py` to assign each template to a named type.
+2. Decide which templates belong to which task and which question type (one type per research hypothesis).
+3. Fill in `QUESTION_TYPES` in `config.py` — this simultaneously controls filtering and type assignment.
+4. Once fully configured, remove `TASK_KEYWORDS` and the fallback branch from `data/dataset.py`.
 5. Run a full evaluation — `summary.json` will now include `by_question_type`, `question_type_analysis`, and `scene_analysis`.
