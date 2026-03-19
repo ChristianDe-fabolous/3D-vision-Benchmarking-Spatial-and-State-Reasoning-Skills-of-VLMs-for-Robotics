@@ -41,7 +41,7 @@ def _build_prompt_test(sample: Sample) -> str:
         "Look at the image.\n\n"
         f"Question: {sample.question}\n\n"
         f"Choices:\n{choices_text}\n\n"
-        "Reply with only the letter of the correct answer "
+        "Descrie what is in the image and what you can read."
         f"({', '.join(CHOICE_LABELS[:len(sample.choices)])})."
     )
 
