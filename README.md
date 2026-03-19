@@ -140,6 +140,8 @@ src/
 
 ## Cluster (SLURM)
 
+> **TODO:** SLURM setup has not been tested yet. The script at `scripts/run_slurm.sh` is a starting point but needs to be adapted to the target cluster (partition names, memory/GPU requirements, paths).
+
 Output and log dirs are overridable via env vars so runs write to scratch rather than filling home quota:
 
 ```bash
@@ -148,7 +150,7 @@ export VLM_OUTPUT_DIR=/scratch/$USER/vlm_outputs
 export VLM_LOG_DIR=/scratch/$USER/vlm_logs
 ```
 
-A ready-to-use sbatch template is at `scripts/run_slurm.sh`. Customise the paths at the top, then submit with optional overrides:
+A sbatch template is at `scripts/run_slurm.sh`. Customise the paths at the top, then submit with optional overrides:
 
 ```bash
 # Defaults: failure_mode, qwen-3b, test split
@@ -160,17 +162,7 @@ TASK=multiview MODEL=qwen-7b sbatch scripts/run_slurm.sh
 
 ## Google Colab
 
-Use `qwen-3b` (fits on a free T4, ~8 GB VRAM). Mount Google Drive and set `VLM_OUTPUT_DIR` to a Drive path so the response cache survives session restarts:
-
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-
-import os
-os.environ['VLM_OUTPUT_DIR'] = '/content/drive/MyDrive/vlm_outputs'
-```
-
-Then run normally with `--model qwen-3b --limit 20` to test the pipeline.
+Use `qwen-3b` (fits on a free T4, ~8 GB VRAM). A ready-to-run notebook is available at `notebooks/run_minimal_inference.ipynb` — open it in Colab and follow the cells.
 
 ---
 
