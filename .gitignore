@@ -22,9 +22,6 @@ env/
 outputs/
 logs/
 
-# Dataset analysis outputs (listing scripts)
-analysis/
-
 # Dataset / model cache (large files)
 data/
 *.parquet

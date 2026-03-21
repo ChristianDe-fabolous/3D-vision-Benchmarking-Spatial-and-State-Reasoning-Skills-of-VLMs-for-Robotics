@@ -1,0 +1,1585 @@
+Scanned 6676 samples — 340 distinct answer categories
+
+============================================================
+
+Category: ['Blue', 'Green', 'Purple', 'Red', 'Yellow']  —  1374 questions
+  [scene 5044] The robot task is to pick up the object. Which colored arrow correctly shows the direction the robot will move next?
+  [scene 1174] The robot task is to pick up the objects and put them in the box. Which colored arrow correctly shows the direction the 
+  [scene 14259] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 5144] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 8822] The robot task is to pick up the objects from the table and put them in the plastic bag. Which colored arrow correctly s
+  [scene 5775] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 14375] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 7337] The robot task is to open the lid of the bin. Which colored arrow correctly shows the direction the robot will move next
+  [scene 2184] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 816] In the image from ext2, which colored point is FARTHEST from the camera?
+
+Category: ['Cannot be determined', 'No', 'Task was not attempted', 'Yes']  —  1051 questions
+  [scene 4454] The robot is to place blue plastic bottle into middle drawer. Has the robot successfully completed the task?
+  [scene 5769] The robot is to place blue plastic bottle into middle drawer. Has the robot successfully completed the task?
+  [scene 2239] The robot is to place blue plastic bottle into top drawer. Has the robot successfully completed the task?
+  [scene 5875] The robot is to pick brown chip bag. Has the robot successfully completed the task?
+  [scene 4071] The robot is to open bottom drawer. Has the robot successfully completed the task?
+  [scene 5512] The robot is to pick orange can. Has the robot successfully completed the task?
+  [scene 2352] The robot is to close bottom drawer. Has the robot successfully completed the task?
+  [scene 964] The robot is to pick green rice chip bag. Has the robot successfully completed the task?
+  [scene 1270] The robot is to place apple into top drawer. Has the robot successfully completed the task?
+  [scene 1880] The robot is to pick banana from white bowl. Has the robot successfully completed the task?
+
+Category: ['Configuration A', 'Configuration B', 'Configuration C', 'Configuration D', 'Configuration E']  —  676 questions
+  [scene 3101] The robot's task is to place blue plastic bottle into top drawer. Which configuration shows the goal state that the robo
+  [scene 681] The robot's task is to pick coke can from bottom drawer and place on counter. Which configuration shows the goal state t
+  [scene 191] The robot's task is to pick coke can from bottom shelf of fridge. Which configuration shows the goal state that the robo
+  [scene 4316] The robot's task is to open bottom drawer. Which configuration shows the goal state that the robot should achieve?
+  [scene 476] The robot's task is to pick orange can. Which configuration shows the goal state that the robot should achieve?
+  [scene 920] The robot's task is to pick orange can. Which configuration shows the goal state that the robot should achieve?
+  [scene 3516] The robot's task is to pick orange from bottom drawer and place on counter. Which configuration shows the goal state tha
+  [scene 4795] The robot's task is to pick green rice chip bag. Which configuration shows the goal state that the robot should achieve?
+  [scene 5829] The robot's task is to place apple into middle drawer. Which configuration shows the goal state that the robot should ac
+  [scene 1270] The robot's task is to place apple into top drawer. Which configuration shows the goal state that the robot should achie
+
+Category: ['Cannot be determined', 'No', 'Partially open', 'Yes']  —  550 questions
+  [scene 3329] Is the robot's gripper open?
+  [scene 1661] Is the robot's gripper open?
+  [scene 681] Is the robot's gripper open?
+  [scene 4176] Is the robot's gripper open?
+  [scene 4861] Is the robot's gripper open?
+  [scene 3516] Is the robot's gripper open?
+  [scene 3699] Is the robot's gripper open?
+  [scene 5204] Is the robot's gripper open?
+  [scene 5497] Is the robot's gripper open?
+  [scene 1270] Is the robot's gripper open?
+
+Category: ['Cannot be determined', 'No', 'Partially reachable', 'Yes']  —  543 questions
+  [scene 3973] Is there any obstacle blocking the robot from reaching bottle?
+  [scene 4586] Is there any obstacle blocking the robot from reaching bottle?
+  [scene 1413] Is there any obstacle blocking the robot from reaching bottle?
+  [scene 966] Is there any obstacle blocking the robot from reaching sponge?
+  [scene 64] Is there any obstacle blocking the robot from reaching chip bag?
+  [scene 707] Is there any obstacle blocking the robot from reaching brown chip bag?
+  [scene 3609] Is there any obstacle blocking the robot from reaching coke can?
+  [scene 4176] Is there any obstacle blocking the robot from reaching drawer?
+  [scene 4316] Is there any obstacle blocking the robot from reaching drawer?
+  [scene 4364] Is there any obstacle blocking the robot from reaching drawer?
+
+Category: ['Cannot be determined', 'No', 'Partially stable', 'Yes']  —  299 questions
+  [scene 1955] Is the robot's grasp of the bottle stable?
+  [scene 5260] Is the robot's grasp of the sponge stable?
+  [scene 918] Is the robot's grasp of the chip bag stable?
+  [scene 4176] Is the robot's grasp of the drawer stable?
+  [scene 4188] Is the robot's grasp of the drawer stable?
+  [scene 4441] Is the robot's grasp of the orange can stable?
+  [scene 2155] Is the robot's grasp of the drawer stable?
+  [scene 2392] Is the robot's grasp of the drawer stable?
+  [scene 706] Is the robot's grasp of the rice chip bag stable?
+  [scene 99] Is the robot's grasp of the coffee stable?
+
+Category: ['A', 'B', 'C', 'D', 'E']  —  288 questions
+  [scene 14375] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 5691] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 12737] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 14204] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 7919] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 9172] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 2942] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 1565] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 1528] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 1572] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+
+Category: ['Blue', 'Green', 'None of the above', 'Purple', 'Yellow']  —  212 questions
+  [scene 5775] The robot task is to pick up the objects from the table and put them on the plastic. Which colored arrow correctly shows
+  [scene 13286] The robot task is to pick the cloth from the table and hang it. Which colored arrow correctly shows the direction the ro
+  [scene 1522] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 11378] The robot task is to make the bottle stand upright. Which colored arrow correctly shows the direction the robot will mov
+  [scene 2942] The robot task is to pick up all the nail polish from the table and put them in the black bag. Which colored arrow corre
+  [scene 5466] The robot task is to put the orange object in the cup. Which colored arrow correctly shows the direction the robot will 
+  [scene 1448] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 15772] The robot task is to put the blue ring in the blue cup and orange ring in the white cup. Which colored arrow correctly s
+  [scene 14973] The robot task is to rotate the knob on the far right side of the machine. Which colored arrow correctly shows the direc
+  [scene 11063] The robot task is to rotate the lid on the bottle counter clockwise. Which colored arrow correctly shows the direction t
+
+Category: ['Configuration B', 'Configuration C', 'Configuration D', 'Configuration E', 'None of the above']  —  180 questions
+  [scene 3101] The robot's task is to place blue plastic bottle into top drawer. Which configuration shows the goal state that the robo
+  [scene 2027] The robot's task is to close bottom drawer. Which configuration shows the goal state that the robot should achieve?
+  [scene 404] The robot's task is to pick pepsi can from middle drawer and place on counter. Which configuration shows the goal state 
+  [scene 256] The robot's task is to insert the peg into the hole. Which configuration shows the goal state that the robot should achi
+  [scene 18] The robot's task is to move red square. Which configuration shows the goal state that the robot should achieve?
+  [scene 100] The robot's task is to place down bread. Which configuration shows the goal state that the robot should achieve?
+  [scene 2367] The robot's task is to move blue chip bag near redbull can. Which configuration shows the goal state that the robot shou
+  [scene 298] The robot's task is to move blue chip bag near rxbar chocolate. Which configuration shows the goal state that the robot 
+  [scene 807] The robot's task is to move rxbar blueberry near blue plastic bottle. Which configuration shows the goal state that the 
+  [scene 2164] The robot's task is to place blue plastic bottle upright. Which configuration shows the goal state that the robot should
+
+Category: ['Approaching the drawer with open gripper', 'Closing gripper to grasp the drawer', 'Firmly grasping the drawer', 'Moving away with open gripper after releasing the drawer', 'Releasing the drawer by opening gripper']  —  141 questions
+  [scene 4049] The robot is tasked to open bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is 
+  [scene 4110] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 4480] The robot is tasked to open bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is 
+  [scene 2381] The robot is tasked to approaching the drawer with open gripper with the drawer. After Approaching the drawer with open 
+  [scene 2463] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 4311] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 4348] The robot is tasked to open middle drawer. The robot is interacting with the drawer. Which phase of the grasp action is 
+  [scene 4708] The robot is tasked to moving away with open gripper after releasing the drawer with the drawer. After Moving away with 
+  [scene 2134] The robot is tasked to releasing the drawer by opening gripper with the drawer. After Releasing the drawer by opening gr
+  [scene 2398] The robot is tasked to open top drawer. The robot is interacting with the drawer. Which phase of the grasp action is sho
+
+Category: ['Approaching the can with open gripper', 'Closing gripper to grasp the can', 'Firmly grasping the can', 'Moving away with open gripper after releasing the can', 'Releasing the can by opening gripper']  —  104 questions
+  [scene 4167] The robot is tasked to pick orange can. The robot is interacting with the can. Which phase of the grasp action is shown 
+  [scene 4418] The robot is tasked to firmly grasping the can with the can. After Firmly grasping the can, what will be the robot's NEX
+  [scene 5129] The robot is tasked to approaching the can with open gripper with the can. After Approaching the can with open gripper, 
+  [scene 3555] The robot is tasked to closing gripper to grasp the can with the can. After Closing gripper to grasp the can, what will 
+  [scene 4117] The robot is tasked to closing gripper to grasp the can with the can. After Closing gripper to grasp the can, what will 
+  [scene 4228] The robot is tasked to move rxbar blueberry near green can. The robot is interacting with the can. Which phase of the gr
+  [scene 1167] The robot is tasked to approaching the can with open gripper with the can. After Approaching the can with open gripper, 
+  [scene 3868] The robot is tasked to moving away with open gripper after releasing the can with the can. After Moving away with open g
+  [scene 2223] The robot is tasked to closing gripper to grasp the can with the can. After Closing gripper to grasp the can, what will 
+  [scene 159] The robot is tasked to moving away with open gripper after releasing the can with the can. After Moving away with open g
+
+Category: ['Approaching the peg with open gripper', 'Closing gripper to grasp the peg', 'Firmly grasping the peg', 'Moving away with open gripper after releasing the peg', 'Releasing the peg by opening gripper']  —  62 questions
+  [scene 143] The robot is tasked to approaching the peg with open gripper with the peg. After Approaching the peg with open gripper, 
+  [scene 146] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 147] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 152] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 158] The robot is tasked to moving away with open gripper after releasing the peg with the peg. After Moving away with open g
+  [scene 16] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 267] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 268] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 278] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 169] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+
+Category: ['Green', 'None of the above', 'Purple', 'Red', 'Yellow']  —  48 questions
+  [scene 15680] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 4639] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 12480] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 3930] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 4449] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 9471] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 12034] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 9784] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 11354] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 9935] In the image from ext2, which colored point is CLOSEST to the camera?
+
+Category: ['Approaching the bottle with open gripper', 'Closing gripper to grasp the bottle', 'Firmly grasping the bottle', 'Moving away with open gripper after releasing the bottle', 'Releasing the bottle by opening gripper']  —  47 questions
+  [scene 2239] The robot is tasked to place blue plastic bottle into top drawer. The robot is interacting with the bottle. Which phase 
+  [scene 2750] The robot is tasked to releasing the bottle by opening gripper with the bottle. After Releasing the bottle by opening gr
+  [scene 70] The robot is tasked to approaching the bottle with open gripper with the bottle. After Approaching the bottle with open 
+  [scene 2598] The robot is tasked to firmly grasping the bottle with the bottle. After Firmly grasping the bottle, what will be the ro
+  [scene 2882] The robot is tasked to place blue plastic bottle upright. The robot is interacting with the bottle. Which phase of the g
+  [scene 3434] The robot is tasked to place blue plastic bottle upright. The robot is interacting with the bottle. Which phase of the g
+  [scene 3351] The robot is tasked to pick blue plastic bottle from middle drawer and place on counter. The robot is interacting with t
+  [scene 786] The robot is tasked to moving away with open gripper after releasing the bottle with the bottle. After Moving away with 
+  [scene 404] The robot is tasked to put the ranch bottle into the pot. The robot is interacting with the bottle. Which phase of the g
+  [scene 2494] The robot is tasked to moving away with open gripper after releasing the bottle with the bottle. After Moving away with 
+
+Category: ['Approaching the rxbar with open gripper', 'Closing gripper to grasp the rxbar', 'Firmly grasping the rxbar', 'Moving away with open gripper after releasing the rxbar', 'Releasing the rxbar by opening gripper']  —  36 questions
+  [scene 1973] The robot is tasked to move rxbar chocolate near apple. The robot is interacting with the rxbar. Which phase of the gras
+  [scene 2322] The robot is tasked to approaching the rxbar with open gripper with the rxbar. After Approaching the rxbar with open gri
+  [scene 4767] The robot is tasked to move rxbar chocolate near blue chip bag. The robot is interacting with the rxbar. Which phase of 
+  [scene 1804] The robot is tasked to move rxbar chocolate near blue plastic bottle. The robot is interacting with the rxbar. Which pha
+  [scene 1000] The robot is tasked to approaching the rxbar with open gripper with the rxbar. After Approaching the rxbar with open gri
+  [scene 2781] The robot is tasked to pick rxbar blueberry from bottom drawer and place on counter. The robot is interacting with the r
+  [scene 3755] The robot is tasked to pick rxbar blueberry from bottom drawer and place on counter. The robot is interacting with the r
+  [scene 1841] The robot is tasked to releasing the rxbar by opening gripper with the rxbar. After Releasing the rxbar by opening gripp
+  [scene 1487] The robot is tasked to place rxbar blueberry into middle drawer. The robot is interacting with the rxbar. Which phase of
+  [scene 455] The robot is tasked to moving away with open gripper after releasing the rxbar with the rxbar. After Moving away with op
+
+Category: ['Approaching the orange with open gripper', 'Closing gripper to grasp the orange', 'Firmly grasping the orange', 'Moving away with open gripper after releasing the orange', 'Releasing the orange by opening gripper']  —  34 questions
+  [scene 3683] The robot is tasked to approaching the orange with open gripper with the orange. After Approaching the orange with open 
+  [scene 4046] The robot is tasked to approaching the orange with open gripper with the orange. After Approaching the orange with open 
+  [scene 5087] The robot is tasked to pick orange from white bowl. The robot is interacting with the orange. Which phase of the grasp a
+  [scene 1824] The robot is tasked to pick orange. The robot is interacting with the orange. Which phase of the grasp action is shown i
+  [scene 3255] The robot is tasked to pick orange. The robot is interacting with the orange. Which phase of the grasp action is shown i
+  [scene 3356] The robot is tasked to releasing the orange by opening gripper with the orange. After Releasing the orange by opening gr
+  [scene 5236] The robot is tasked to pick orange from white bowl. The robot is interacting with the orange. Which phase of the grasp a
+  [scene 5496] The robot is tasked to approaching the orange with open gripper with the orange. After Approaching the orange with open 
+  [scene 5513] The robot is tasked to closing gripper to grasp the orange with the orange. After Closing gripper to grasp the orange, w
+  [scene 5672] The robot is tasked to pick orange from white bowl. The robot is interacting with the orange. Which phase of the grasp a
+
+Category: ['Blue', 'Green', 'None of the above', 'Red', 'Yellow']  —  34 questions
+  [scene 2604] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 4868] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 3054] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 2057] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 2062] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 7327] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 4319] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 311] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 409] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 6962] In the image from ext2, which colored point is FARTHEST from the camera?
+
+Category: ['Approaching the water bottle with open gripper', 'Closing gripper to grasp the water bottle', 'Firmly grasping the water bottle', 'Moving away with open gripper after releasing the water bottle', 'Releasing the water bottle by opening gripper']  —  33 questions
+  [scene 2324] The robot is tasked to pick water bottle. The robot is interacting with the water bottle. Which phase of the grasp actio
+  [scene 2830] The robot is tasked to moving away with open gripper after releasing the water bottle with the water bottle. After Movin
+  [scene 1688] The robot is tasked to closing gripper to grasp the water bottle with the water bottle. After Closing gripper to grasp t
+  [scene 4913] The robot is tasked to firmly grasping the water bottle with the water bottle. After Firmly grasping the water bottle, w
+  [scene 3974] The robot is tasked to move water bottle near orange can. The robot is interacting with the water bottle. Which phase of
+  [scene 4750] The robot is tasked to move water bottle near orange can. The robot is interacting with the water bottle. Which phase of
+  [scene 48] The robot is tasked to moving away with open gripper after releasing the water bottle with the water bottle. After Movin
+  [scene 4371] The robot is tasked to move water bottle near redbull can. The robot is interacting with the water bottle. Which phase o
+  [scene 3945] The robot is tasked to move water bottle near blue plastic bottle. The robot is interacting with the water bottle. Which
+  [scene 3342] The robot is tasked to moving away with open gripper after releasing the water bottle with the water bottle. After Movin
+
+Category: ['Approaching the coke can with open gripper', 'Closing gripper to grasp the coke can', 'Firmly grasping the coke can', 'Moving away with open gripper after releasing the coke can', 'Releasing the coke can by opening gripper']  —  32 questions
+  [scene 1661] The robot is tasked to approaching the coke can with open gripper with the coke can. After Approaching the coke can with
+  [scene 5226] The robot is tasked to firmly grasping the coke can with the coke can. After Firmly grasping the coke can, what will be 
+  [scene 3107] The robot is tasked to approaching the coke can with open gripper with the coke can. After Approaching the coke can with
+  [scene 1571] The robot is tasked to approaching the coke can with open gripper with the coke can. After Approaching the coke can with
+  [scene 2977] The robot is tasked to approaching the coke can with open gripper with the coke can. After Approaching the coke can with
+  [scene 5014] The robot is tasked to place coke can into bottom drawer. The robot is interacting with the coke can. Which phase of the
+  [scene 5942] The robot is tasked to place coke can into bottom drawer. The robot is interacting with the coke can. Which phase of the
+  [scene 39] The robot is tasked to closing gripper to grasp the coke can with the coke can. After Closing gripper to grasp the coke 
+  [scene 1043] The robot is tasked to pick coke can from middle shelf of fridge. The robot is interacting with the coke can. Which phas
+  [scene 2667] The robot is tasked to pick coke can from top drawer and place on counter. The robot is interacting with the coke can. W
+
+Category: ['Approaching the pepsi can with open gripper', 'Closing gripper to grasp the pepsi can', 'Firmly grasping the pepsi can', 'Moving away with open gripper after releasing the pepsi can', 'Releasing the pepsi can by opening gripper']  —  32 questions
+  [scene 404] The robot is tasked to pick pepsi can from middle drawer and place on counter. The robot is interacting with the pepsi c
+  [scene 4590] The robot is tasked to pick pepsi can from middle drawer and place on counter. The robot is interacting with the pepsi c
+  [scene 3222] The robot is tasked to pick pepsi can. The robot is interacting with the pepsi can. Which phase of the grasp action is s
+  [scene 3809] The robot is tasked to pick pepsi can. The robot is interacting with the pepsi can. Which phase of the grasp action is s
+  [scene 4117] The robot is tasked to pick pepsi can. The robot is interacting with the pepsi can. Which phase of the grasp action is s
+  [scene 4701] The robot is tasked to pick pepsi can. The robot is interacting with the pepsi can. Which phase of the grasp action is s
+  [scene 7] The robot is tasked to put down pepsi can. The robot is interacting with the pepsi can. Which phase of the grasp action 
+  [scene 2359] The robot is tasked to move pepsi can near rxbar chocolate. The robot is interacting with the pepsi can. Which phase of 
+  [scene 3556] The robot is tasked to move pepsi can near rxbar chocolate. The robot is interacting with the pepsi can. Which phase of 
+  [scene 5170] The robot is tasked to pick pepsi can. The robot is interacting with the pepsi can. Which phase of the grasp action is s
+
+Category: ['Blue', 'None of the above', 'Purple', 'Red', 'Yellow']  —  32 questions
+  [scene 9401] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 9832] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 4411] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 1077] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 12786] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 593] In the image from ext1, which colored point is FARTHEST from the camera?
+  [scene 4677] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 6255] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 2454] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 7787] In the image from ext2, which colored point is FARTHEST from the camera?
+
+Category: ['Blue', 'Green', 'None of the above', 'Purple', 'Red']  —  32 questions
+  [scene 4379] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 9582] In the image from ext2, which colored point is FARTHEST from the camera?
+  [scene 4031] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 9452] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 6772] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 10457] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 6245] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 12604] In the image from ext1, which colored point is CLOSEST to the camera?
+  [scene 1525] In the image from ext2, which colored point is CLOSEST to the camera?
+  [scene 286] In the image from ext1, which colored point is FARTHEST from the camera?
+
+Category: ['Approaching the apple with open gripper', 'Closing gripper to grasp the apple', 'Firmly grasping the apple', 'Moving away with open gripper after releasing the apple', 'Releasing the apple by opening gripper']  —  27 questions
+  [scene 3907] The robot is tasked to firmly grasping the apple with the apple. After Firmly grasping the apple, what will be the robot
+  [scene 4654] The robot is tasked to closing gripper to grasp the apple with the apple. After Closing gripper to grasp the apple, what
+  [scene 4920] The robot is tasked to pick apple from white bowl. The robot is interacting with the apple. Which phase of the grasp act
+  [scene 5239] The robot is tasked to firmly grasping the apple with the apple. After Firmly grasping the apple, what will be the robot
+  [scene 3940] The robot is tasked to pick apple. The robot is interacting with the apple. Which phase of the grasp action is shown in 
+  [scene 1032] The robot is tasked to releasing the apple by opening gripper with the apple. After Releasing the apple by opening gripp
+  [scene 2162] The robot is tasked to approaching the apple with open gripper with the apple. After Approaching the apple with open gri
+  [scene 2508] The robot is tasked to pick apple from white bowl. The robot is interacting with the apple. Which phase of the grasp act
+  [scene 3133] The robot is tasked to firmly grasping the apple with the apple. After Firmly grasping the apple, what will be the robot
+  [scene 1665] The robot is tasked to move apple near 7up can. The robot is interacting with the apple. Which phase of the grasp action
+
+Category: ['Approaching the gear with open gripper', 'Closing gripper to grasp the gear', 'Firmly grasping the gear', 'Moving away with open gripper after releasing the gear', 'Releasing the gear by opening gripper']  —  27 questions
+  [scene 170] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 175] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 186] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 192] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 194] The robot is tasked to closing gripper to grasp the gear with the gear. After Closing gripper to grasp the gear, what wi
+  [scene 2] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 215] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 222] The robot is tasked to releasing the gear by opening gripper with the gear. After Releasing the gear by opening gripper,
+  [scene 225] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 249] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+
+Category: ['Approaching the banana with open gripper', 'Closing gripper to grasp the banana', 'Firmly grasping the banana', 'Moving away with open gripper after releasing the banana', 'Releasing the banana by opening gripper']  —  26 questions
+  [scene 203] The robot is tasked to firmly grasping the banana with the banana. After Firmly grasping the banana, what will be the ro
+  [scene 2309] The robot is tasked to firmly grasping the banana with the banana. After Firmly grasping the banana, what will be the ro
+  [scene 2555] The robot is tasked to pick banana from white bowl. The robot is interacting with the banana. Which phase of the grasp a
+  [scene 5182] The robot is tasked to pick banana from white bowl. The robot is interacting with the banana. Which phase of the grasp a
+  [scene 5669] The robot is tasked to pick banana from white bowl. The robot is interacting with the banana. Which phase of the grasp a
+  [scene 5994] The robot is tasked to firmly grasping the banana with the banana. After Firmly grasping the banana, what will be the ro
+  [scene 63] The robot is tasked to closing gripper to grasp the banana with the banana. After Closing gripper to grasp the banana, w
+  [scene 701] The robot is tasked to pick banana from white bowl. The robot is interacting with the banana. Which phase of the grasp a
+  [scene 850] The robot is tasked to closing gripper to grasp the banana with the banana. After Closing gripper to grasp the banana, w
+  [scene 991] The robot is tasked to pick banana from white bowl. The robot is interacting with the banana. Which phase of the grasp a
+
+Category: ['Approaching the chip bag with open gripper', 'Closing gripper to grasp the chip bag', 'Firmly grasping the chip bag', 'Moving away with open gripper after releasing the chip bag', 'Releasing the chip bag by opening gripper']  —  25 questions
+  [scene 5930] The robot is tasked to approaching the chip bag with open gripper with the chip bag. After Approaching the chip bag with
+  [scene 2593] The robot is tasked to place green jalapeno chip bag into middle drawer. The robot is interacting with the chip bag. Whi
+  [scene 1594] The robot is tasked to pick brown chip bag from top drawer and place on counter. The robot is interacting with the chip 
+  [scene 2126] The robot is tasked to pick brown chip bag from bottom drawer and place on counter. The robot is interacting with the ch
+  [scene 180] The robot is tasked to place brown chip bag into bottom drawer. The robot is interacting with the chip bag. Which phase 
+  [scene 3226] The robot is tasked to approaching the chip bag with open gripper with the chip bag. After Approaching the chip bag with
+  [scene 4030] The robot is tasked to place brown chip bag into bottom drawer. The robot is interacting with the chip bag. Which phase 
+  [scene 4253] The robot is tasked to place brown chip bag into bottom drawer. The robot is interacting with the chip bag. Which phase 
+  [scene 2426] The robot is tasked to approaching the chip bag with open gripper with the chip bag. After Approaching the chip bag with
+  [scene 5592] The robot is tasked to place brown chip bag into middle drawer. The robot is interacting with the chip bag. Which phase 
+
+Category: ['Approaching the sponge with open gripper', 'Closing gripper to grasp the sponge', 'Firmly grasping the sponge', 'Moving away with open gripper after releasing the sponge', 'Releasing the sponge by opening gripper']  —  24 questions
+  [scene 272] The robot is tasked to move sponge near green can. The robot is interacting with the sponge. Which phase of the grasp ac
+  [scene 2832] The robot is tasked to approaching the sponge with open gripper with the sponge. After Approaching the sponge with open 
+  [scene 4668] The robot is tasked to move sponge near green can. The robot is interacting with the sponge. Which phase of the grasp ac
+  [scene 805] The robot is tasked to pick sponge from top drawer and place on counter. The robot is interacting with the sponge. Which
+  [scene 2874] The robot is tasked to pick sponge. The robot is interacting with the sponge. Which phase of the grasp action is shown i
+  [scene 3039] The robot is tasked to firmly grasping the sponge with the sponge. After Firmly grasping the sponge, what will be the ro
+  [scene 4851] The robot is tasked to move sponge near apple. The robot is interacting with the sponge. Which phase of the grasp action
+  [scene 5065] The robot is tasked to moving away with open gripper after releasing the sponge with the sponge. After Moving away with 
+  [scene 1841] The robot is tasked to approaching the sponge with open gripper with the sponge. After Approaching the sponge with open 
+  [scene 5039] The robot is tasked to move sponge near blue plastic bottle. The robot is interacting with the sponge. Which phase of th
+
+Category: ['Approaching the cup with open gripper', 'Closing gripper to grasp the cup', 'Firmly grasping the cup', 'Moving away with open gripper after releasing the cup', 'Releasing the cup by opening gripper']  —  24 questions
+  [scene 316] The robot is tasked to releasing the cup by opening gripper with the cup. After Releasing the cup by opening gripper, wh
+  [scene 147] The robot is tasked to firmly grasping the cup with the cup. After Firmly grasping the cup, what will be the robot's NEX
+  [scene 154] The robot is tasked to closing gripper to grasp the cup with the cup. After Closing gripper to grasp the cup, what will 
+  [scene 369] The robot is tasked to pick up the blue cup and put it into the brown cup.. The robot is interacting with the cup. Which
+  [scene 205] The robot is tasked to pick up the blue cup and put it into the brown cup.. The robot is interacting with the cup. Which
+  [scene 210] The robot is tasked to approaching the cup with open gripper with the cup. After Approaching the cup with open gripper, 
+  [scene 218] The robot is tasked to pick up the blue cup and put it into the brown cup.. The robot is interacting with the cup. Which
+  [scene 297] The robot is tasked to moving away with open gripper after releasing the cup with the cup. After Moving away with open g
+  [scene 421] The robot is tasked to moving away with open gripper after releasing the cup with the cup. After Moving away with open g
+  [scene 201] The robot is tasked to approaching the cup with open gripper with the cup. After Approaching the cup with open gripper, 
+
+Category: ['Approaching the block with open gripper', 'Closing gripper to grasp the block', 'Firmly grasping the block', 'Moving away with open gripper after releasing the block', 'Releasing the block by opening gripper']  —  19 questions
+  [scene 272] The robot is tasked to pick up the pink block. The robot is interacting with the block. Which phase of the grasp action 
+  [scene 178] The robot is tasked to pick up the purple block. The robot is interacting with the block. Which phase of the grasp actio
+  [scene 228] The robot is tasked to approaching the block with open gripper with the block. After Approaching the block with open gri
+  [scene 229] The robot is tasked to place the purple block on top of the drawer. The robot is interacting with the block. Which phase
+  [scene 162] The robot is tasked to firmly grasping the block with the block. After Firmly grasping the block, what will be the robot
+  [scene 271] The robot is tasked to approaching the block with open gripper with the block. After Approaching the block with open gri
+  [scene 113] The robot is tasked to put the pink block on the table. The robot is interacting with the block. Which phase of the gras
+  [scene 218] The robot is tasked to closing gripper to grasp the block with the block. After Closing gripper to grasp the block, what
+  [scene 116] The robot is tasked to reach red block. The robot is interacting with the block. Which phase of the grasp action is show
+  [scene 173] The robot is tasked to approaching the block with open gripper with the block. After Approaching the block with open gri
+
+Category: ['Approaching the bag with open gripper', 'Closing gripper to grasp the bag', 'Firmly grasping the bag', 'Moving away with open gripper after releasing the bag', 'Releasing the bag by opening gripper']  —  18 questions
+  [scene 5486] The robot is tasked to move blue chip bag near orange can. The robot is interacting with the bag. Which phase of the gra
+  [scene 2141] The robot is tasked to approaching the bag with open gripper with the bag. After Approaching the bag with open gripper, 
+  [scene 3522] The robot is tasked to place brown chip bag into bottom drawer. The robot is interacting with the bag. Which phase of th
+  [scene 5015] The robot is tasked to place brown chip bag into bottom drawer. The robot is interacting with the bag. Which phase of th
+  [scene 3732] The robot is tasked to place green rice chip bag into top drawer. The robot is interacting with the bag. Which phase of 
+  [scene 3770] The robot is tasked to pick blue chip bag from middle drawer and place on counter. The robot is interacting with the bag
+  [scene 5915] The robot is tasked to firmly grasping the bag with the bag. After Firmly grasping the bag, what will be the robot's NEX
+  [scene 1339] The robot is tasked to place green rice chip bag into middle drawer. The robot is interacting with the bag. Which phase 
+  [scene 1533] The robot is tasked to pick blue chip bag. The robot is interacting with the bag. Which phase of the grasp action is sho
+  [scene 1671] The robot is tasked to approaching the bag with open gripper with the bag. After Approaching the bag with open gripper, 
+
+Category: ['A', 'B', 'D', 'E', 'None of the above']  —  18 questions
+  [scene 6207] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 10498] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 13288] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 9278] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 388] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 10209] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 2463] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 3575] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 11901] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 7683] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+
+Category: ['Approaching the tiger with open gripper', 'Closing gripper to grasp the tiger', 'Firmly grasping the tiger', 'Moving away with open gripper after releasing the tiger', 'Releasing the tiger by opening gripper']  —  18 questions
+  [scene 189] The robot is tasked to take the tiger out of the red bowl and put it in the grey bowl. The robot is interacting with the
+  [scene 231] The robot is tasked to firmly grasping the tiger with the tiger. After Firmly grasping the tiger, what will be the robot
+  [scene 60] The robot is tasked to moving away with open gripper after releasing the tiger with the tiger. After Moving away with op
+  [scene 76] The robot is tasked to take the tiger out of the red bowl and put it in the grey bowl. The robot is interacting with the
+  [scene 494] The robot is tasked to approaching the tiger with open gripper with the tiger. After Approaching the tiger with open gri
+  [scene 514] The robot is tasked to approaching the tiger with open gripper with the tiger. After Approaching the tiger with open gri
+  [scene 269] The robot is tasked to firmly grasping the tiger with the tiger. After Firmly grasping the tiger, what will be the robot
+  [scene 433] The robot is tasked to take the tiger out of the red bowl and put it in the grey bowl. The robot is interacting with the
+  [scene 347] The robot is tasked to moving away with open gripper after releasing the tiger with the tiger. After Moving away with op
+  [scene 368] The robot is tasked to approaching the tiger with open gripper with the tiger. After Approaching the tiger with open gri
+
+Category: ['Approaching the pot with open gripper', 'Closing gripper to grasp the pot', 'Firmly grasping the pot', 'Moving away with open gripper after releasing the pot', 'Releasing the pot by opening gripper']  —  15 questions
+  [scene 27] The robot is tasked to take the lid off the pot, put the pot on the plate, and use the tool to push to pot to the front 
+  [scene 29] The robot is tasked to releasing the pot by opening gripper with the pot. After Releasing the pot by opening gripper, wh
+  [scene 3] The robot is tasked to releasing the pot by opening gripper with the pot. After Releasing the pot by opening gripper, wh
+  [scene 34] The robot is tasked to take the lid off the pot, put the pot on the plate, and use the tool to push to pot to the front 
+  [scene 35] The robot is tasked to take the lid off the pot, put the pot on the plate, and use the tool to push to pot to the front 
+  [scene 39] The robot is tasked to take the lid off the pot, put the pot on the plate, and use the tool to push to pot to the front 
+  [scene 11] The robot is tasked to releasing the pot by opening gripper with the pot. After Releasing the pot by opening gripper, wh
+  [scene 12] The robot is tasked to moving away with open gripper after releasing the pot with the pot. After Moving away with open g
+  [scene 17] The robot is tasked to take the lid off the pot, put the pot on the plate, and use the tool to push to pot to the front 
+  [scene 19] The robot is tasked to closing gripper to grasp the pot with the pot. After Closing gripper to grasp the pot, what will 
+
+Category: ['B', 'C', 'D', 'E', 'None of the above']  —  15 questions
+  [scene 3176] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 1923] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 6344] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 3963] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 14273] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 8173] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 14849] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 7247] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 5526] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 10837] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+
+Category: ['Approaching the rice chip bag with open gripper', 'Closing gripper to grasp the rice chip bag', 'Firmly grasping the rice chip bag', 'Moving away with open gripper after releasing the rice chip bag', 'Releasing the rice chip bag by opening gripper']  —  14 questions
+  [scene 3192] The robot is tasked to closing gripper to grasp the rice chip bag with the rice chip bag. After Closing gripper to grasp
+  [scene 4749] The robot is tasked to move green rice chip bag near blue chip bag. The robot is interacting with the rice chip bag. Whi
+  [scene 2915] The robot is tasked to move green rice chip bag near blue plastic bottle. The robot is interacting with the rice chip ba
+  [scene 2337] The robot is tasked to move green rice chip bag near brown chip bag. The robot is interacting with the rice chip bag. Wh
+  [scene 4344] The robot is tasked to approaching the rice chip bag with open gripper with the rice chip bag. After Approaching the ric
+  [scene 5279] The robot is tasked to move green rice chip bag near sponge. The robot is interacting with the rice chip bag. Which phas
+  [scene 5749] The robot is tasked to move green rice chip bag near water bottle. The robot is interacting with the rice chip bag. Whic
+  [scene 5898] The robot is tasked to move green rice chip bag near apple. The robot is interacting with the rice chip bag. Which phase
+  [scene 2656] The robot is tasked to pick green rice chip bag. The robot is interacting with the rice chip bag. Which phase of the gra
+  [scene 1995] The robot is tasked to moving away with open gripper after releasing the rice chip bag with the rice chip bag. After Mov
+
+Category: ['A', 'B', 'C', 'D', 'None of the above']  —  13 questions
+  [scene 8131] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 6998] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 2255] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 411] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 7368] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 2602] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 15100] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 6817] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 5533] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 14014] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+
+Category: ['A', 'B', 'C', 'E', 'None of the above']  —  12 questions
+  [scene 871] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 9457] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 4438] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 4456] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 14656] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 1252] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 2678] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 11578] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 5965] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+  [scene 1179] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+
+Category: ['Approaching the plate with open gripper', 'Closing gripper to grasp the plate', 'Firmly grasping the plate', 'Moving away with open gripper after releasing the plate', 'Releasing the plate by opening gripper']  —  12 questions
+  [scene 125] The robot is tasked to arrange plate and fork. The robot is interacting with the plate. Which phase of the grasp action 
+  [scene 128] The robot is tasked to arrange plate and fork. The robot is interacting with the plate. Which phase of the grasp action 
+  [scene 135] The robot is tasked to firmly grasping the plate with the plate. After Firmly grasping the plate, what will be the robot
+  [scene 28] The robot is tasked to closing gripper to grasp the plate with the plate. After Closing gripper to grasp the plate, what
+  [scene 41] The robot is tasked to arrange plate and fork. The robot is interacting with the plate. Which phase of the grasp action 
+  [scene 43] The robot is tasked to closing gripper to grasp the plate with the plate. After Closing gripper to grasp the plate, what
+  [scene 45] The robot is tasked to moving away with open gripper after releasing the plate with the plate. After Moving away with op
+  [scene 47] The robot is tasked to releasing the plate by opening gripper with the plate. After Releasing the plate by opening gripp
+  [scene 70] The robot is tasked to closing gripper to grasp the plate with the plate. After Closing gripper to grasp the plate, what
+  [scene 94] The robot is tasked to arrange plate and fork. The robot is interacting with the plate. Which phase of the grasp action 
+
+Category: ['Approaching the drawer with open gripper', 'Closing gripper to grasp the drawer', 'Firmly grasping the drawer', 'Moving away with open gripper after releasing the drawer', 'None of the above']  —  11 questions
+  [scene 2327] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 3700] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 2639] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 5792] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 1264] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 2647] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 4897] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 5098] The robot is tasked to close bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is
+  [scene 769] The robot is tasked to firmly grasping the drawer with the drawer. After Firmly grasping the drawer, what will be the ro
+  [scene 4221] The robot is tasked to close bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is
+
+Category: ['Closing gripper to grasp the drawer', 'Firmly grasping the drawer', 'Moving away with open gripper after releasing the drawer', 'None of the above', 'Releasing the drawer by opening gripper']  —  11 questions
+  [scene 435] The robot is tasked to open middle drawer. The robot is interacting with the drawer. Which phase of the grasp action is 
+  [scene 5503] The robot is tasked to place sponge into middle drawer. The robot is interacting with the drawer. Which phase of the gra
+  [scene 1476] The robot is tasked to open top drawer. The robot is interacting with the drawer. Which phase of the grasp action is sho
+  [scene 34] The robot is tasked to place green can into top drawer. The robot is interacting with the drawer. Which phase of the gra
+  [scene 49] The robot is tasked to close the drawer. The robot is interacting with the drawer. Which phase of the grasp action is sh
+  [scene 2199] The robot is tasked to open bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is 
+  [scene 1071] The robot is tasked to moving away with open gripper after releasing the drawer with the drawer. After Moving away with 
+  [scene 1360] The robot is tasked to moving away with open gripper after releasing the drawer with the drawer. After Moving away with 
+  [scene 793] The robot is tasked to open middle drawer. The robot is interacting with the drawer. Which phase of the grasp action is 
+  [scene 224] The robot is tasked to grasp the drawer handle, then open it. The robot is interacting with the drawer. Which phase of t
+
+Category: ['Approaching the bowl with open gripper', 'Closing gripper to grasp the bowl', 'Firmly grasping the bowl', 'Moving away with open gripper after releasing the bowl', 'Releasing the bowl by opening gripper']  —  11 questions
+  [scene 293] The robot is tasked to releasing the bowl by opening gripper with the bowl. After Releasing the bowl by opening gripper,
+  [scene 88] The robot is tasked to closing gripper to grasp the bowl with the bowl. After Closing gripper to grasp the bowl, what wi
+  [scene 114] The robot is tasked to approaching the bowl with open gripper with the bowl. After Approaching the bowl with open grippe
+  [scene 115] The robot is tasked to approaching the bowl with open gripper with the bowl. After Approaching the bowl with open grippe
+  [scene 119] The robot is tasked to pick up the bowl from the lazy susan and put bowl on the plate. The robot is interacting with the
+  [scene 134] The robot is tasked to firmly grasping the bowl with the bowl. After Firmly grasping the bowl, what will be the robot's 
+  [scene 16] The robot is tasked to pick up the bowl from the lazy susan and put bowl on the plate. The robot is interacting with the
+  [scene 59] The robot is tasked to firmly grasping the bowl with the bowl. After Firmly grasping the bowl, what will be the robot's 
+  [scene 60] The robot is tasked to firmly grasping the bowl with the bowl. After Firmly grasping the bowl, what will be the robot's 
+  [scene 61] The robot is tasked to firmly grasping the bowl with the bowl. After Firmly grasping the bowl, what will be the robot's 
+
+Category: ['Approaching the object with open gripper', 'Closing gripper to grasp the object', 'Firmly grasping the object', 'Moving away with open gripper after releasing the object', 'Releasing the object by opening gripper']  —  9 questions
+  [scene 80] The robot is tasked to releasing the object by opening gripper with the object. After Releasing the object by opening gr
+  [scene 102] The robot is tasked to approaching the object with open gripper with the object. After Approaching the object with open 
+  [scene 11] The robot is tasked to disassemble the object. The robot is interacting with the object. Which phase of the grasp action
+  [scene 111] The robot is tasked to disassemble the object. The robot is interacting with the object. Which phase of the grasp action
+  [scene 15] The robot is tasked to moving away with open gripper after releasing the object with the object. After Moving away with 
+  [scene 256] The robot is tasked to approaching the object with open gripper with the object. After Approaching the object with open 
+  [scene 88] The robot is tasked to pick up the object and place it in the box. The robot is interacting with the object. Which phase
+  [scene 157] The robot is tasked to closing gripper to grasp the object with the object. After Closing gripper to grasp the object, w
+  [scene 175] The robot is tasked to moving away with open gripper after releasing the object with the object. After Moving away with 
+
+Category: ['Approaching the drawer with open gripper', 'Closing gripper to grasp the drawer', 'Moving away with open gripper after releasing the drawer', 'None of the above', 'Releasing the drawer by opening gripper']  —  9 questions
+  [scene 1303] The robot is tasked to place sponge into middle drawer. The robot is interacting with the drawer. Which phase of the gra
+  [scene 3075] The robot is tasked to closing gripper to grasp the drawer with the drawer. After Closing gripper to grasp the drawer, w
+  [scene 1213] The robot is tasked to open top drawer. The robot is interacting with the drawer. Which phase of the grasp action is sho
+  [scene 5707] The robot is tasked to close middle drawer. The robot is interacting with the drawer. Which phase of the grasp action is
+  [scene 4684] The robot is tasked to place orange into bottom drawer. The robot is interacting with the drawer. Which phase of the gra
+  [scene 5331] The robot is tasked to closing gripper to grasp the drawer with the drawer. After Closing gripper to grasp the drawer, w
+  [scene 5424] The robot is tasked to closing gripper to grasp the drawer with the drawer. After Closing gripper to grasp the drawer, w
+  [scene 5563] The robot is tasked to closing gripper to grasp the drawer with the drawer. After Closing gripper to grasp the drawer, w
+  [scene 5040] The robot is tasked to closing gripper to grasp the drawer with the drawer. After Closing gripper to grasp the drawer, w
+
+Category: ['Approaching the cube with open gripper', 'Closing gripper to grasp the cube', 'Firmly grasping the cube', 'Moving away with open gripper after releasing the cube', 'Releasing the cube by opening gripper']  —  9 questions
+  [scene 112] The robot is tasked to approaching the cube with open gripper with the cube. After Approaching the cube with open grippe
+  [scene 15] The robot is tasked to firmly grasping the cube with the cube. After Firmly grasping the cube, what will be the robot's 
+  [scene 192] The robot is tasked to pick yellow cube. The robot is interacting with the cube. Which phase of the grasp action is show
+  [scene 199] The robot is tasked to pick yellow cube. The robot is interacting with the cube. Which phase of the grasp action is show
+  [scene 152] The robot is tasked to push wooden cube. The robot is interacting with the cube. Which phase of the grasp action is show
+  [scene 234] The robot is tasked to push the cube to the goal location represented using a cross. The robot is interacting with the c
+  [scene 124] The robot is tasked to push wooden cube. The robot is interacting with the cube. Which phase of the grasp action is show
+  [scene 273] The robot is tasked to pick yellow cube. The robot is interacting with the cube. Which phase of the grasp action is show
+
+Category: ['Approaching the kcup holder with open gripper', 'Closing gripper to grasp the kcup holder', 'Firmly grasping the kcup holder', 'Moving away with open gripper after releasing the kcup holder', 'Releasing the kcup holder by opening gripper']  —  9 questions
+  [scene 135] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 172] The robot is tasked to firmly grasping the kcup holder with the kcup holder. After Firmly grasping the kcup holder, what
+  [scene 180] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 219] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 252] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 26] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 288] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 290] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 61] The robot is tasked to moving away with open gripper after releasing the kcup holder with the kcup holder. After Moving 
+
+Category: ['Approaching the fridge with open gripper', 'Closing gripper to grasp the fridge', 'Firmly grasping the fridge', 'Moving away with open gripper after releasing the fridge', 'Releasing the fridge by opening gripper']  —  8 questions
+  [scene 206] The robot is tasked to close fridge door. The robot is interacting with the fridge. Which phase of the grasp action is s
+  [scene 899] The robot is tasked to open right fridge door. The robot is interacting with the fridge. Which phase of the grasp action
+  [scene 87] The robot is tasked to close fridge door. The robot is interacting with the fridge. Which phase of the grasp action is s
+  [scene 2204] The robot is tasked to approaching the fridge with open gripper with the fridge. After Approaching the fridge with open 
+  [scene 5045] The robot is tasked to closing gripper to grasp the fridge with the fridge. After Closing gripper to grasp the fridge, w
+  [scene 582] The robot is tasked to open left fridge door. The robot is interacting with the fridge. Which phase of the grasp action 
+  [scene 190] The robot is tasked to firmly grasping the fridge with the fridge. After Firmly grasping the fridge, what will be the ro
+  [scene 4045] The robot is tasked to approaching the fridge with open gripper with the fridge. After Approaching the fridge with open 
+
+Category: ['Approaching the coffee with open gripper', 'Closing gripper to grasp the coffee', 'Firmly grasping the coffee', 'Moving away with open gripper after releasing the coffee', 'Releasing the coffee by opening gripper']  —  7 questions
+  [scene 80] The robot is tasked to moving away with open gripper after releasing the coffee with the coffee. After Moving away with 
+  [scene 99] The robot is tasked to make coffee. The robot is interacting with the coffee. Which phase of the grasp action is shown i
+  [scene 127] The robot is tasked to firmly grasping the coffee with the coffee. After Firmly grasping the coffee, what will be the ro
+  [scene 31] The robot is tasked to approaching the coffee with open gripper with the coffee. After Approaching the coffee with open 
+  [scene 39] The robot is tasked to moving away with open gripper after releasing the coffee with the coffee. After Moving away with 
+  [scene 5] The robot is tasked to moving away with open gripper after releasing the coffee with the coffee. After Moving away with 
+  [scene 112] The robot is tasked to firmly grasping the coffee with the coffee. After Firmly grasping the coffee, what will be the ro
+
+Category: ['Approaching the peg with open gripper', 'Closing gripper to grasp the peg', 'Moving away with open gripper after releasing the peg', 'None of the above', 'Releasing the peg by opening gripper']  —  7 questions
+  [scene 149] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 3] The robot is tasked to closing gripper to grasp the peg with the peg. After Closing gripper to grasp the peg, what will 
+  [scene 30] The robot is tasked to closing gripper to grasp the peg with the peg. After Closing gripper to grasp the peg, what will 
+  [scene 226] The robot is tasked to closing gripper to grasp the peg with the peg. After Closing gripper to grasp the peg, what will 
+  [scene 24] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 10] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 122] The robot is tasked to closing gripper to grasp the peg with the peg. After Closing gripper to grasp the peg, what will 
+
+Category: ['Approaching the jalapeno chip bag with open gripper', 'Closing gripper to grasp the jalapeno chip bag', 'Firmly grasping the jalapeno chip bag', 'Moving away with open gripper after releasing the jalapeno chip bag', 'Releasing the jalapeno chip bag by opening gripper']  —  7 questions
+  [scene 3306] The robot is tasked to moving away with open gripper after releasing the jalapeno chip bag with the jalapeno chip bag. A
+  [scene 5752] The robot is tasked to pick green jalapeno chip bag from middle drawer and place on counter. The robot is interacting wi
+  [scene 4062] The robot is tasked to closing gripper to grasp the jalapeno chip bag with the jalapeno chip bag. After Closing gripper 
+  [scene 3705] The robot is tasked to move green jalapeno chip bag near water bottle. The robot is interacting with the jalapeno chip b
+  [scene 6] The robot is tasked to approaching the jalapeno chip bag with open gripper with the jalapeno chip bag. After Approaching
+  [scene 1856] The robot is tasked to moving away with open gripper after releasing the jalapeno chip bag with the jalapeno chip bag. A
+  [scene 4852] The robot is tasked to releasing the jalapeno chip bag by opening gripper with the jalapeno chip bag. After Releasing th
+
+Category: ['Approaching the drawer with open gripper', 'Firmly grasping the drawer', 'Moving away with open gripper after releasing the drawer', 'None of the above', 'Releasing the drawer by opening gripper']  —  7 questions
+  [scene 3307] The robot is tasked to approaching the drawer with open gripper with the drawer. After Approaching the drawer with open 
+  [scene 5991] The robot is tasked to approaching the drawer with open gripper with the drawer. After Approaching the drawer with open 
+  [scene 5297] The robot is tasked to close bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is
+  [scene 3146] The robot is tasked to approaching the drawer with open gripper with the drawer. After Approaching the drawer with open 
+  [scene 3644] The robot is tasked to close bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is
+  [scene 867] The robot is tasked to approaching the drawer with open gripper with the drawer. After Approaching the drawer with open 
+  [scene 1010] The robot is tasked to approaching the drawer with open gripper with the drawer. After Approaching the drawer with open 
+
+Category: ['Approaching the chocolate with open gripper', 'Closing gripper to grasp the chocolate', 'Firmly grasping the chocolate', 'Moving away with open gripper after releasing the chocolate', 'Releasing the chocolate by opening gripper']  —  7 questions
+  [scene 4389] The robot is tasked to move rxbar chocolate near blue plastic bottle. The robot is interacting with the chocolate. Which
+  [scene 2086] The robot is tasked to pick rxbar chocolate from bottom drawer and place on counter. The robot is interacting with the c
+  [scene 438] The robot is tasked to approaching the chocolate with open gripper with the chocolate. After Approaching the chocolate w
+  [scene 4824] The robot is tasked to pick rxbar chocolate from white bowl and place on counter. The robot is interacting with the choc
+  [scene 1526] The robot is tasked to moving away with open gripper after releasing the chocolate with the chocolate. After Moving away
+  [scene 4533] The robot is tasked to place rxbar chocolate into middle drawer. The robot is interacting with the chocolate. Which phas
+  [scene 3625] The robot is tasked to moving away with open gripper after releasing the chocolate with the chocolate. After Moving away
+
+Category: ['Approaching the kcup with open gripper', 'Closing gripper to grasp the kcup', 'Firmly grasping the kcup', 'Moving away with open gripper after releasing the kcup', 'Releasing the kcup by opening gripper']  —  7 questions
+  [scene 168] The robot is tasked to approaching the kcup with open gripper with the kcup. After Approaching the kcup with open grippe
+  [scene 217] The robot is tasked to firmly grasping the kcup with the kcup. After Firmly grasping the kcup, what will be the robot's 
+  [scene 223] The robot is tasked to releasing the kcup by opening gripper with the kcup. After Releasing the kcup by opening gripper,
+  [scene 262] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 263] The robot is tasked to open the kcup holder, insert the kcup into the holder, and close the kcup holder. The robot is in
+  [scene 57] The robot is tasked to firmly grasping the kcup with the kcup. After Firmly grasping the kcup, what will be the robot's 
+
+Category: ['Approaching the rice chip with open gripper', 'Closing gripper to grasp the rice chip', 'Firmly grasping the rice chip', 'Moving away with open gripper after releasing the rice chip', 'Releasing the rice chip by opening gripper']  —  6 questions
+  [scene 3192] The robot is tasked to pick green rice chip bag. The robot is interacting with the rice chip. Which phase of the grasp a
+  [scene 4761] The robot is tasked to pick green rice chip bag. The robot is interacting with the rice chip. Which phase of the grasp a
+  [scene 4344] The robot is tasked to firmly grasping the rice chip with the rice chip. After Firmly grasping the rice chip, what will 
+  [scene 1823] The robot is tasked to closing gripper to grasp the rice chip with the rice chip. After Closing gripper to grasp the ric
+  [scene 1445] The robot is tasked to moving away with open gripper after releasing the rice chip with the rice chip. After Moving away
+  [scene 4745] The robot is tasked to pick green rice chip bag from top drawer and place on counter. The robot is interacting with the 
+
+Category: ['Approaching the peg with open gripper', 'Firmly grasping the peg', 'Moving away with open gripper after releasing the peg', 'None of the above', 'Releasing the peg by opening gripper']  —  6 questions
+  [scene 140] The robot is tasked to approaching the peg with open gripper with the peg. After Approaching the peg with open gripper, 
+  [scene 270] The robot is tasked to approaching the peg with open gripper with the peg. After Approaching the peg with open gripper, 
+  [scene 5] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 85] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 9] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+  [scene 13] The robot is tasked to approaching the peg with open gripper with the peg. After Approaching the peg with open gripper, 
+
+Category: ['Approaching the chip with open gripper', 'Closing gripper to grasp the chip', 'Firmly grasping the chip', 'Moving away with open gripper after releasing the chip', 'Releasing the chip by opening gripper']  —  6 questions
+  [scene 1767] The robot is tasked to move blue chip bag near pepsi can. The robot is interacting with the chip. Which phase of the gra
+  [scene 751] The robot is tasked to move blue chip bag near apple. The robot is interacting with the chip. Which phase of the grasp a
+  [scene 2772] The robot is tasked to closing gripper to grasp the chip with the chip. After Closing gripper to grasp the chip, what wi
+  [scene 3645] The robot is tasked to place green jalapeno chip bag into middle drawer. The robot is interacting with the chip. Which p
+  [scene 4514] The robot is tasked to firmly grasping the chip with the chip. After Firmly grasping the chip, what will be the robot's 
+  [scene 1990] The robot is tasked to place green jalapeno chip bag into top drawer. The robot is interacting with the chip. Which phas
+
+Category: ['Approaching the can with open gripper', 'Closing gripper to grasp the can', 'Firmly grasping the can', 'Moving away with open gripper after releasing the can', 'None of the above']  —  6 questions
+  [scene 1846] The robot is tasked to place orange can into middle drawer. The robot is interacting with the can. Which phase of the gr
+  [scene 2689] The robot is tasked to firmly grasping the can with the can. After Firmly grasping the can, what will be the robot's NEX
+  [scene 1815] The robot is tasked to firmly grasping the can with the can. After Firmly grasping the can, what will be the robot's NEX
+  [scene 3596] The robot is tasked to firmly grasping the can with the can. After Firmly grasping the can, what will be the robot's NEX
+  [scene 2502] The robot is tasked to firmly grasping the can with the can. After Firmly grasping the can, what will be the robot's NEX
+  [scene 2633] The robot is tasked to firmly grasping the can with the can. After Firmly grasping the can, what will be the robot's NEX
+
+Category: ['Approaching the can with open gripper', 'Closing gripper to grasp the can', 'Moving away with open gripper after releasing the can', 'None of the above', 'Releasing the can by opening gripper']  —  6 questions
+  [scene 4549] The robot is tasked to closing gripper to grasp the can with the can. After Closing gripper to grasp the can, what will 
+  [scene 4460] The robot is tasked to pick redbull can. The robot is interacting with the can. Which phase of the grasp action is shown
+  [scene 4202] The robot is tasked to closing gripper to grasp the can with the can. After Closing gripper to grasp the can, what will 
+  [scene 138] The robot is tasked to place 7up can into middle drawer. The robot is interacting with the can. Which phase of the grasp
+  [scene 3694] The robot is tasked to closing gripper to grasp the can with the can. After Closing gripper to grasp the can, what will 
+  [scene 2125] The robot is tasked to pick redbull can from top drawer and place on counter. The robot is interacting with the can. Whi
+
+Category: ['Approaching the can with open gripper', 'Firmly grasping the can', 'Moving away with open gripper after releasing the can', 'None of the above', 'Releasing the can by opening gripper']  —  6 questions
+  [scene 4087] The robot is tasked to pick 7up can from middle drawer and place on counter. The robot is interacting with the can. Whic
+  [scene 4815] The robot is tasked to knock orange can over. The robot is interacting with the can. Which phase of the grasp action is 
+  [scene 5011] The robot is tasked to approaching the can with open gripper with the can. After Approaching the can with open gripper, 
+  [scene 4660] The robot is tasked to approaching the can with open gripper with the can. After Approaching the can with open gripper, 
+  [scene 857] The robot is tasked to approaching the can with open gripper with the can. After Approaching the can with open gripper, 
+  [scene 3596] The robot is tasked to approaching the can with open gripper with the can. After Approaching the can with open gripper, 
+
+Category: ['Approaching the jalapeno with open gripper', 'Closing gripper to grasp the jalapeno', 'Firmly grasping the jalapeno', 'Moving away with open gripper after releasing the jalapeno', 'Releasing the jalapeno by opening gripper']  —  6 questions
+  [scene 2304] The robot is tasked to pick green jalapeno chip bag from top drawer and place on counter. The robot is interacting with 
+  [scene 2441] The robot is tasked to firmly grasping the jalapeno with the jalapeno. After Firmly grasping the jalapeno, what will be 
+  [scene 3996] The robot is tasked to pick green jalapeno chip bag. The robot is interacting with the jalapeno. Which phase of the gras
+  [scene 3956] The robot is tasked to closing gripper to grasp the jalapeno with the jalapeno. After Closing gripper to grasp the jalap
+  [scene 1340] The robot is tasked to pick green jalapeno chip bag from bottom drawer and place on counter. The robot is interacting wi
+  [scene 1444] The robot is tasked to move green jalapeno chip bag near white bowl. The robot is interacting with the jalapeno. Which p
+
+Category: ['Closing gripper to grasp the can', 'Firmly grasping the can', 'Moving away with open gripper after releasing the can', 'None of the above', 'Releasing the can by opening gripper']  —  6 questions
+  [scene 2572] The robot is tasked to pick 7up can from bottom shelf of fridge. The robot is interacting with the can. Which phase of t
+  [scene 3500] The robot is tasked to moving away with open gripper after releasing the can with the can. After Moving away with open g
+  [scene 672] The robot is tasked to place redbull can upright. The robot is interacting with the can. Which phase of the grasp action
+  [scene 5660] The robot is tasked to moving away with open gripper after releasing the can with the can. After Moving away with open g
+  [scene 605] The robot is tasked to knock green can over. The robot is interacting with the can. Which phase of the grasp action is s
+  [scene 3630] The robot is tasked to moving away with open gripper after releasing the can with the can. After Moving away with open g
+
+Category: ['Approaching the table with open gripper', 'Closing gripper to grasp the table', 'Firmly grasping the table', 'Moving away with open gripper after releasing the table', 'Releasing the table by opening gripper']  —  5 questions
+  [scene 201] The robot is tasked to place the purple object on the table. The robot is interacting with the table. Which phase of the
+  [scene 565] The robot is tasked to approaching the table with open gripper with the table. After Approaching the table with open gri
+  [scene 566] The robot is tasked to sweep the green cloth to the left side of the table. The robot is interacting with the table. Whi
+  [scene 88] The robot is tasked to sweep the green cloth to the left side of the table. The robot is interacting with the table. Whi
+  [scene 445] The robot is tasked to sweep the green cloth to the left side of the table. The robot is interacting with the table. Whi
+
+Category: ['Approaching the drawer with open gripper', 'Closing gripper to grasp the drawer', 'Firmly grasping the drawer', 'None of the above', 'Releasing the drawer by opening gripper']  —  5 questions
+  [scene 665] The robot is tasked to open top drawer. The robot is interacting with the drawer. Which phase of the grasp action is sho
+  [scene 5249] The robot is tasked to releasing the drawer by opening gripper with the drawer. After Releasing the drawer by opening gr
+  [scene 4498] The robot is tasked to releasing the drawer by opening gripper with the drawer. After Releasing the drawer by opening gr
+  [scene 4544] The robot is tasked to releasing the drawer by opening gripper with the drawer. After Releasing the drawer by opening gr
+  [scene 1345] The robot is tasked to close bottom drawer. The robot is interacting with the drawer. Which phase of the grasp action is
+
+Category: ['Approaching the detergent with open gripper', 'Closing gripper to grasp the detergent', 'Firmly grasping the detergent', 'Moving away with open gripper after releasing the detergent', 'Releasing the detergent by opening gripper']  —  4 questions
+  [scene 265] The robot is tasked to approaching the detergent with open gripper with the detergent. After Approaching the detergent w
+  [scene 107] The robot is tasked to firmly grasping the detergent with the detergent. After Firmly grasping the detergent, what will 
+  [scene 186] The robot is tasked to pick detergent from the sink. The robot is interacting with the detergent. Which phase of the gra
+  [scene 205] The robot is tasked to pick detergent from the sink. The robot is interacting with the detergent. Which phase of the gra
+
+Category: ['Approaching the ranch bottle with open gripper', 'Closing gripper to grasp the ranch bottle', 'Firmly grasping the ranch bottle', 'Moving away with open gripper after releasing the ranch bottle', 'Releasing the ranch bottle by opening gripper']  —  4 questions
+  [scene 246] The robot is tasked to moving away with open gripper after releasing the ranch bottle with the ranch bottle. After Movin
+  [scene 259] The robot is tasked to put the ranch bottle into the pot. The robot is interacting with the ranch bottle. Which phase of
+  [scene 534] The robot is tasked to closing gripper to grasp the ranch bottle with the ranch bottle. After Closing gripper to grasp t
+  [scene 208] The robot is tasked to put the ranch bottle into the pot. The robot is interacting with the ranch bottle. Which phase of
+
+Category: ['Approaching the battery with open gripper', 'Closing gripper to grasp the battery', 'Firmly grasping the battery', 'Moving away with open gripper after releasing the battery', 'Releasing the battery by opening gripper']  —  4 questions
+  [scene 248] The robot is tasked to approaching the battery with open gripper with the battery. After Approaching the battery with op
+  [scene 252] The robot is tasked to closing gripper to grasp the battery with the battery. After Closing gripper to grasp the battery
+  [scene 250] The robot is tasked to open the drawer and place the battery in the drawer. The robot is interacting with the battery. W
+
+Category: ['Approaching the can with open gripper', 'Closing gripper to grasp the can', 'Firmly grasping the can', 'None of the above', 'Releasing the can by opening gripper']  —  4 questions
+  [scene 4478] The robot is tasked to releasing the can by opening gripper with the can. After Releasing the can by opening gripper, wh
+  [scene 1774] The robot is tasked to move orange can near rxbar chocolate. The robot is interacting with the can. Which phase of the g
+  [scene 4035] The robot is tasked to move orange can near green jalapeno chip bag. The robot is interacting with the can. Which phase 
+  [scene 5578] The robot is tasked to move green can near blue plastic bottle. The robot is interacting with the can. Which phase of th
+
+Category: ['Approaching the gear with open gripper', 'Closing gripper to grasp the gear', 'Firmly grasping the gear', 'Moving away with open gripper after releasing the gear', 'None of the above']  —  4 questions
+  [scene 244] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 56] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 131] The robot is tasked to firmly grasping the gear with the gear. After Firmly grasping the gear, what will be the robot's 
+  [scene 137] The robot is tasked to firmly grasping the gear with the gear. After Firmly grasping the gear, what will be the robot's 
+
+Category: ['Approaching the cans with open gripper', 'Closing gripper to grasp the cans', 'Firmly grasping the cans', 'Moving away with open gripper after releasing the cans', 'Releasing the cans by opening gripper']  —  3 questions
+  [scene 5537] The robot is tasked to firmly grasping the cans with the cans. After Firmly grasping the cans, what will be the robot's 
+  [scene 1878] The robot is tasked to place pepsi can into middle drawer. The robot is interacting with the cans. Which phase of the gr
+  [scene 4983] The robot is tasked to move 7up can near pepsi can. The robot is interacting with the cans. Which phase of the grasp act
+
+Category: ['Approaching the pot with open gripper', 'Closing gripper to grasp the pot', 'Moving away with open gripper after releasing the pot', 'None of the above', 'Releasing the pot by opening gripper']  —  3 questions
+  [scene 39] The robot is tasked to take the lid off the pot, put the pot on the plate, and use the tool to push to pot to the front 
+  [scene 42] The robot is tasked to closing gripper to grasp the pot with the pot. After Closing gripper to grasp the pot, what will 
+  [scene 13] The robot is tasked to closing gripper to grasp the pot with the pot. After Closing gripper to grasp the pot, what will 
+
+Category: ['Approaching the box with open gripper', 'Closing gripper to grasp the box', 'Firmly grasping the box', 'Moving away with open gripper after releasing the box', 'Releasing the box by opening gripper']  —  3 questions
+  [scene 8] The robot is tasked to releasing the box by opening gripper with the box. After Releasing the box by opening gripper, wh
+  [scene 155] The robot is tasked to closing gripper to grasp the box with the box. After Closing gripper to grasp the box, what will 
+  [scene 39] The robot is tasked to firmly grasping the box with the box. After Firmly grasping the box, what will be the robot's NEX
+
+Category: ['Closing gripper to grasp the bottle', 'Firmly grasping the bottle', 'Moving away with open gripper after releasing the bottle', 'None of the above', 'Releasing the bottle by opening gripper']  —  3 questions
+  [scene 1364] The robot is tasked to knock blue plastic bottle over. The robot is interacting with the bottle. Which phase of the gras
+  [scene 4015] The robot is tasked to moving away with open gripper after releasing the bottle with the bottle. After Moving away with 
+  [scene 4007] The robot is tasked to moving away with open gripper after releasing the bottle with the bottle. After Moving away with 
+
+Category: ['Approaching the bottle with open gripper', 'Closing gripper to grasp the bottle', 'Moving away with open gripper after releasing the bottle', 'None of the above', 'Releasing the bottle by opening gripper']  —  3 questions
+  [scene 2733] The robot is tasked to closing gripper to grasp the bottle with the bottle. After Closing gripper to grasp the bottle, w
+  [scene 2035] The robot is tasked to closing gripper to grasp the bottle with the bottle. After Closing gripper to grasp the bottle, w
+  [scene 2034] The robot is tasked to move blue plastic bottle near water bottle. The robot is interacting with the bottle. Which phase
+
+Category: ['Approaching the 7up can with open gripper', 'Closing gripper to grasp the 7up can', 'Firmly grasping the 7up can', 'Moving away with open gripper after releasing the 7up can', 'Releasing the 7up can by opening gripper']  —  3 questions
+  [scene 911] The robot is tasked to pick 7up can. The robot is interacting with the 7up can. Which phase of the grasp action is shown
+  [scene 97] The robot is tasked to moving away with open gripper after releasing the 7up can with the 7up can. After Moving away wit
+  [scene 1462] The robot is tasked to pick 7up can. The robot is interacting with the 7up can. Which phase of the grasp action is shown
+
+Category: ['Approaching the blue chip bag with open gripper', 'Closing gripper to grasp the blue chip bag', 'Firmly grasping the blue chip bag', 'Moving away with open gripper after releasing the blue chip bag', 'Releasing the blue chip bag by opening gripper']  —  3 questions
+  [scene 3212] The robot is tasked to approaching the blue chip bag with open gripper with the blue chip bag. After Approaching the blu
+  [scene 2978] The robot is tasked to move blue chip bag near water bottle. The robot is interacting with the blue chip bag. Which phas
+  [scene 2680] The robot is tasked to pick blue chip bag. The robot is interacting with the blue chip bag. Which phase of the grasp act
+
+Category: ['Approaching the orange with open gripper', 'Closing gripper to grasp the orange', 'Moving away with open gripper after releasing the orange', 'None of the above', 'Releasing the orange by opening gripper']  —  3 questions
+  [scene 1938] The robot is tasked to move orange near 7up can. The robot is interacting with the orange. Which phase of the grasp acti
+  [scene 5236] The robot is tasked to pick orange from white bowl. The robot is interacting with the orange. Which phase of the grasp a
+  [scene 3064] The robot is tasked to pick orange from white bowl. The robot is interacting with the orange. Which phase of the grasp a
+
+Category: ['Approaching the rxbar with open gripper', 'Firmly grasping the rxbar', 'Moving away with open gripper after releasing the rxbar', 'None of the above', 'Releasing the rxbar by opening gripper']  —  3 questions
+  [scene 2031] The robot is tasked to approaching the rxbar with open gripper with the rxbar. After Approaching the rxbar with open gri
+  [scene 1599] The robot is tasked to approaching the rxbar with open gripper with the rxbar. After Approaching the rxbar with open gri
+  [scene 421] The robot is tasked to approaching the rxbar with open gripper with the rxbar. After Approaching the rxbar with open gri
+
+Category: ['Approaching the jalapeno chip with open gripper', 'Closing gripper to grasp the jalapeno chip', 'Firmly grasping the jalapeno chip', 'Moving away with open gripper after releasing the jalapeno chip', 'Releasing the jalapeno chip by opening gripper']  —  3 questions
+  [scene 2948] The robot is tasked to pick green jalapeno chip bag from top drawer and place on counter. The robot is interacting with 
+  [scene 3378] The robot is tasked to move green jalapeno chip bag near redbull can. The robot is interacting with the jalapeno chip. W
+  [scene 2628] The robot is tasked to closing gripper to grasp the jalapeno chip with the jalapeno chip. After Closing gripper to grasp
+
+Category: ['Approaching the pepsi can with open gripper', 'Closing gripper to grasp the pepsi can', 'Firmly grasping the pepsi can', 'Moving away with open gripper after releasing the pepsi can', 'None of the above']  —  3 questions
+  [scene 4966] The robot is tasked to firmly grasping the pepsi can with the pepsi can. After Firmly grasping the pepsi can, what will 
+  [scene 1922] The robot is tasked to firmly grasping the pepsi can with the pepsi can. After Firmly grasping the pepsi can, what will 
+  [scene 1644] The robot is tasked to knock pepsi can over. The robot is interacting with the pepsi can. Which phase of the grasp actio
+
+Category: ['Approaching the cloth with open gripper', 'Closing gripper to grasp the cloth', 'Firmly grasping the cloth', 'Moving away with open gripper after releasing the cloth', 'Releasing the cloth by opening gripper']  —  3 questions
+  [scene 565] The robot is tasked to approaching the cloth with open gripper with the cloth. After Approaching the cloth with open gri
+  [scene 319] The robot is tasked to sweep the green cloth to the left side of the table. The robot is interacting with the cloth. Whi
+  [scene 493] The robot is tasked to approaching the cloth with open gripper with the cloth. After Approaching the cloth with open gri
+
+Category: ['A', 'C', 'D', 'E', 'None of the above']  —  3 questions
+  [scene 1778] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 9003] In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) 
+  [scene 2910] In the left image (ext2 camera), a red dot is marked. Which point is the closest point in the right image (ext1 camera) 
+
+Category: ['Approaching the gear with open gripper', 'Closing gripper to grasp the gear', 'Moving away with open gripper after releasing the gear', 'None of the above', 'Releasing the gear by opening gripper']  —  3 questions
+  [scene 227] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 76] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+  [scene 1] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+
+Category: ['Approaching the fruit with open gripper', 'Closing gripper to grasp the fruit', 'Firmly grasping the fruit', 'Moving away with open gripper after releasing the fruit', 'Releasing the fruit by opening gripper']  —  3 questions
+  [scene 293] The robot is tasked to pick fruit. The robot is interacting with the fruit. Which phase of the grasp action is shown in 
+  [scene 224] The robot is tasked to pick fruit. The robot is interacting with the fruit. Which phase of the grasp action is shown in 
+  [scene 245] The robot is tasked to pick fruit. The robot is interacting with the fruit. Which phase of the grasp action is shown in 
+
+Category: ['Approaching the orange can with open gripper', 'Closing gripper to grasp the orange can', 'Firmly grasping the orange can', 'Moving away with open gripper after releasing the orange can', 'Releasing the orange can by opening gripper']  —  3 questions
+  [scene 3969] The robot is tasked to approaching the orange can with open gripper with the orange can. After Approaching the orange ca
+  [scene 2916] The robot is tasked to pick orange can. The robot is interacting with the orange can. Which phase of the grasp action is
+  [scene 371] The robot is tasked to pick orange can from middle drawer and place on counter. The robot is interacting with the orange
+
+Category: ['Approaching the ranch with open gripper', 'Closing gripper to grasp the ranch', 'Firmly grasping the ranch', 'Moving away with open gripper after releasing the ranch', 'Releasing the ranch by opening gripper']  —  3 questions
+  [scene 121] The robot is tasked to moving away with open gripper after releasing the ranch with the ranch. After Moving away with op
+  [scene 591] The robot is tasked to moving away with open gripper after releasing the ranch with the ranch. After Moving away with op
+  [scene 462] The robot is tasked to put the ranch bottle into the pot. The robot is interacting with the ranch. Which phase of the gr
+
+Category: ['Approaching the gear with open gripper', 'Closing gripper to grasp the gear', 'Firmly grasping the gear', 'None of the above', 'Releasing the gear by opening gripper']  —  3 questions
+  [scene 116] The robot is tasked to releasing the gear by opening gripper with the gear. After Releasing the gear by opening gripper,
+  [scene 12] The robot is tasked to releasing the gear by opening gripper with the gear. After Releasing the gear by opening gripper,
+  [scene 17] The robot is tasked to releasing the gear by opening gripper with the gear. After Releasing the gear by opening gripper,
+
+Category: ['Closing gripper to grasp the sponge', 'Firmly grasping the sponge', 'Moving away with open gripper after releasing the sponge', 'None of the above', 'Releasing the sponge by opening gripper']  —  2 questions
+  [scene 3267] The robot is tasked to move sponge near brown chip bag. The robot is interacting with the sponge. Which phase of the gra
+  [scene 2557] The robot is tasked to move sponge near blue chip bag. The robot is interacting with the sponge. Which phase of the gras
+
+Category: ['Approaching the carton with open gripper', 'Closing gripper to grasp the carton', 'Firmly grasping the carton', 'Moving away with open gripper after releasing the carton', 'Releasing the carton by opening gripper']  —  2 questions
+  [scene 107] The robot is tasked to closing gripper to grasp the carton with the carton. After Closing gripper to grasp the carton, w
+
+Category: ['Approaching the bottle with open gripper', 'Closing gripper to grasp the bottle', 'Firmly grasping the bottle', 'None of the above', 'Releasing the bottle by opening gripper']  —  2 questions
+  [scene 2882] The robot is tasked to releasing the bottle by opening gripper with the bottle. After Releasing the bottle by opening gr
+  [scene 4432] The robot is tasked to place blue plastic bottle into bottom drawer. The robot is interacting with the bottle. Which pha
+
+Category: ['Approaching the chip bag with open gripper', 'Firmly grasping the chip bag', 'Moving away with open gripper after releasing the chip bag', 'None of the above', 'Releasing the chip bag by opening gripper']  —  2 questions
+  [scene 5157] The robot is tasked to approaching the chip bag with open gripper with the chip bag. After Approaching the chip bag with
+  [scene 3910] The robot is tasked to pick brown chip bag from top drawer and place on counter. The robot is interacting with the chip 
+
+Category: ['Approaching the rxbar with open gripper', 'Closing gripper to grasp the rxbar', 'Firmly grasping the rxbar', 'Moving away with open gripper after releasing the rxbar', 'None of the above']  —  2 questions
+  [scene 4183] The robot is tasked to firmly grasping the rxbar with the rxbar. After Firmly grasping the rxbar, what will be the robot
+  [scene 2911] The robot is tasked to pick rxbar blueberry from top drawer and place on counter. The robot is interacting with the rxba
+
+Category: ['Approaching the coke can with open gripper', 'Firmly grasping the coke can', 'Moving away with open gripper after releasing the coke can', 'None of the above', 'Releasing the coke can by opening gripper']  —  2 questions
+  [scene 4854] The robot is tasked to approaching the coke can with open gripper with the coke can. After Approaching the coke can with
+  [scene 1496] The robot is tasked to approaching the coke can with open gripper with the coke can. After Approaching the coke can with
+
+Category: ['Approaching the sponge with open gripper', 'Closing gripper to grasp the sponge', 'Firmly grasping the sponge', 'None of the above', 'Releasing the sponge by opening gripper']  —  2 questions
+  [scene 2517] The robot is tasked to releasing the sponge by opening gripper with the sponge. After Releasing the sponge by opening gr
+  [scene 4859] The robot is tasked to pick sponge from middle drawer and place on counter. The robot is interacting with the sponge. Wh
+
+Category: ['Approaching the bottle with open gripper', 'Firmly grasping the bottle', 'Moving away with open gripper after releasing the bottle', 'None of the above', 'Releasing the bottle by opening gripper']  —  2 questions
+  [scene 4111] The robot is tasked to knock blue plastic bottle over. The robot is interacting with the bottle. Which phase of the gras
+  [scene 4190] The robot is tasked to approaching the bottle with open gripper with the bottle. After Approaching the bottle with open 
+
+Category: ['Approaching the orange with open gripper', 'Closing gripper to grasp the orange', 'Firmly grasping the orange', 'Moving away with open gripper after releasing the orange', 'None of the above']  —  2 questions
+  [scene 4957] The robot is tasked to firmly grasping the orange with the orange. After Firmly grasping the orange, what will be the ro
+  [scene 826] The robot is tasked to pick orange from middle drawer and place on counter. The robot is interacting with the orange. Wh
+
+Category: ['Closing gripper to grasp the coke can', 'Firmly grasping the coke can', 'Moving away with open gripper after releasing the coke can', 'None of the above', 'Releasing the coke can by opening gripper']  —  2 questions
+  [scene 4856] The robot is tasked to move coke can near green rice chip bag. The robot is interacting with the coke can. Which phase o
+  [scene 4690] The robot is tasked to pick coke can from bottom shelf of fridge. The robot is interacting with the coke can. Which phas
+
+Category: ['Approaching the cup with open gripper', 'Closing gripper to grasp the cup', 'Firmly grasping the cup', 'Moving away with open gripper after releasing the cup', 'None of the above']  —  2 questions
+  [scene 356] The robot is tasked to firmly grasping the cup with the cup. After Firmly grasping the cup, what will be the robot's NEX
+  [scene 165] The robot is tasked to firmly grasping the cup with the cup. After Firmly grasping the cup, what will be the robot's NEX
+
+Category: ['Approaching the rxbar with open gripper', 'Closing gripper to grasp the rxbar', 'Firmly grasping the rxbar', 'None of the above', 'Releasing the rxbar by opening gripper']  —  2 questions
+  [scene 1869] The robot is tasked to place rxbar blueberry into middle drawer. The robot is interacting with the rxbar. Which phase of
+  [scene 4658] The robot is tasked to releasing the rxbar by opening gripper with the rxbar. After Releasing the rxbar by opening gripp
+
+Category: ['Approaching the bag with open gripper', 'Closing gripper to grasp the bag', 'Moving away with open gripper after releasing the bag', 'None of the above', 'Releasing the bag by opening gripper']  —  2 questions
+  [scene 4324] The robot is tasked to place green rice chip bag into middle drawer. The robot is interacting with the bag. Which phase 
+  [scene 507] The robot is tasked to closing gripper to grasp the bag with the bag. After Closing gripper to grasp the bag, what will 
+
+Category: ['Approaching the rice chip bag with open gripper', 'Firmly grasping the rice chip bag', 'Moving away with open gripper after releasing the rice chip bag', 'None of the above', 'Releasing the rice chip bag by opening gripper']  —  2 questions
+  [scene 2174] The robot is tasked to move green rice chip bag near coke can. The robot is interacting with the rice chip bag. Which ph
+  [scene 1129] The robot is tasked to move green rice chip bag near blue chip bag. The robot is interacting with the rice chip bag. Whi
+
+Category: ['Approaching the coffee with open gripper', 'Closing gripper to grasp the coffee', 'Firmly grasping the coffee', 'Moving away with open gripper after releasing the coffee', 'None of the above']  —  2 questions
+  [scene 44] The robot is tasked to firmly grasping the coffee with the coffee. After Firmly grasping the coffee, what will be the ro
+  [scene 69] The robot is tasked to firmly grasping the coffee with the coffee. After Firmly grasping the coffee, what will be the ro
+
+Category: ['Approaching the door with open gripper', 'Closing gripper to grasp the door', 'Firmly grasping the door', 'Moving away with open gripper after releasing the door', 'Releasing the door by opening gripper']  —  2 questions
+  [scene 173] The robot is tasked to slide the door all the way to the left. The robot is interacting with the door. Which phase of th
+  [scene 258] The robot is tasked to push the door to the left side. The robot is interacting with the door. Which phase of the grasp 
+
+Category: ['Approaching the apple with open gripper', 'Firmly grasping the apple', 'Moving away with open gripper after releasing the apple', 'None of the above', 'Releasing the apple by opening gripper']  —  2 questions
+  [scene 2560] The robot is tasked to approaching the apple with open gripper with the apple. After Approaching the apple with open gri
+  [scene 3082] The robot is tasked to place apple into top drawer. The robot is interacting with the apple. Which phase of the grasp ac
+
+Category: ['Approaching the sponge with open gripper', 'Closing gripper to grasp the sponge', 'Moving away with open gripper after releasing the sponge', 'None of the above', 'Releasing the sponge by opening gripper']  —  2 questions
+  [scene 5910] The robot is tasked to pick sponge from bottom drawer and place on counter. The robot is interacting with the sponge. Wh
+  [scene 3695] The robot is tasked to closing gripper to grasp the sponge with the sponge. After Closing gripper to grasp the sponge, w
+
+Category: ['Closing gripper to grasp the rxbar', 'Firmly grasping the rxbar', 'Moving away with open gripper after releasing the rxbar', 'None of the above', 'Releasing the rxbar by opening gripper']  —  2 questions
+  [scene 1749] The robot is tasked to move rxbar chocolate near brown chip bag. The robot is interacting with the rxbar. Which phase of
+  [scene 5199] The robot is tasked to move rxbar blueberry near apple. The robot is interacting with the rxbar. Which phase of the gras
+
+Category: ['Closing gripper to grasp the peg', 'Firmly grasping the peg', 'Moving away with open gripper after releasing the peg', 'None of the above', 'Releasing the peg by opening gripper']  —  2 questions
+  [scene 112] The robot is tasked to moving away with open gripper after releasing the peg with the peg. After Moving away with open g
+  [scene 78] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+
+Category: ['Closing gripper to grasp the fridge', 'Firmly grasping the fridge', 'Moving away with open gripper after releasing the fridge', 'None of the above', 'Releasing the fridge by opening gripper']  —  2 questions
+  [scene 250] The robot is tasked to open left fridge door. The robot is interacting with the fridge. Which phase of the grasp action 
+  [scene 1475] The robot is tasked to moving away with open gripper after releasing the fridge with the fridge. After Moving away with 
+
+Category: ['Approaching the redbull with open gripper', 'Closing gripper to grasp the redbull', 'Firmly grasping the redbull', 'Moving away with open gripper after releasing the redbull', 'Releasing the redbull by opening gripper']  —  2 questions
+  [scene 3933] The robot is tasked to move redbull can near 7up can. The robot is interacting with the redbull. Which phase of the gras
+  [scene 3745] The robot is tasked to move redbull can near rxbar blueberry. The robot is interacting with the redbull. Which phase of 
+
+Category: ['Approaching the orange can with open gripper', 'Firmly grasping the orange can', 'Moving away with open gripper after releasing the orange can', 'None of the above', 'Releasing the orange can by opening gripper']  —  2 questions
+  [scene 5594] The robot is tasked to approaching the orange can with open gripper with the orange can. After Approaching the orange ca
+  [scene 935] The robot is tasked to pick orange can from middle drawer and place on counter. The robot is interacting with the orange
+
+Category: ['Approaching the coffee with open gripper', 'Closing gripper to grasp the coffee', 'Moving away with open gripper after releasing the coffee', 'None of the above', 'Releasing the coffee by opening gripper']  —  1 questions
+  [scene 78] The robot is tasked to closing gripper to grasp the coffee with the coffee. After Closing gripper to grasp the coffee, w
+
+Category: ['Approaching the pot with open gripper', 'Closing gripper to grasp the pot', 'Firmly grasping the pot', 'None of the above', 'Releasing the pot by opening gripper']  —  1 questions
+  [scene 40] The robot is tasked to releasing the pot by opening gripper with the pot. After Releasing the pot by opening gripper, wh
+
+Category: ['Approaching the peg with open gripper', 'Closing gripper to grasp the peg', 'Firmly grasping the peg', 'None of the above', 'Releasing the peg by opening gripper']  —  1 questions
+  [scene 258] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+
+Category: ['Approaching the table with open gripper', 'Firmly grasping the table', 'Moving away with open gripper after releasing the table', 'None of the above', 'Releasing the table by opening gripper']  —  1 questions
+  [scene 230] The robot is tasked to approaching the table with open gripper with the table. After Approaching the table with open gri
+
+Category: ['Approaching the bread with open gripper', 'Closing gripper to grasp the bread', 'Firmly grasping the bread', 'None of the above', 'Releasing the bread by opening gripper']  —  1 questions
+  [scene 84] The robot is tasked to releasing the bread by opening gripper with the bread. After Releasing the bread by opening gripp
+
+Category: ['Approaching the square with open gripper', 'Closing gripper to grasp the square', 'Firmly grasping the square', 'Moving away with open gripper after releasing the square', 'Releasing the square by opening gripper']  —  1 questions
+  [scene 65] The robot is tasked to hold maroon square. The robot is interacting with the square. Which phase of the grasp action is 
+
+Category: ['Closing gripper to grasp the box', 'Firmly grasping the box', 'Moving away with open gripper after releasing the box', 'None of the above', 'Releasing the box by opening gripper']  —  1 questions
+  [scene 49] The robot is tasked to pick white box. The robot is interacting with the box. Which phase of the grasp action is shown i
+
+Category: ['Approaching the bag with open gripper', 'Firmly grasping the bag', 'Moving away with open gripper after releasing the bag', 'None of the above', 'Releasing the bag by opening gripper']  —  1 questions
+  [scene 3085] The robot is tasked to approaching the bag with open gripper with the bag. After Approaching the bag with open gripper, 
+
+Category: ['Approaching the laptop with open gripper', 'Closing gripper to grasp the laptop', 'Firmly grasping the laptop', 'Moving away with open gripper after releasing the laptop', 'Releasing the laptop by opening gripper']  —  1 questions
+  [scene 213] The robot is tasked to close the laptop. The robot is interacting with the laptop. Which phase of the grasp action is sh
+
+Category: ['Approaching the laptop with open gripper', 'Firmly grasping the laptop', 'Moving away with open gripper after releasing the laptop', 'None of the above', 'Releasing the laptop by opening gripper']  —  1 questions
+  [scene 263] The robot is tasked to approaching the laptop with open gripper with the laptop. After Approaching the laptop with open 
+
+Category: ['Align the block with the drawer', 'Align the bowl with the shelf', 'Pick up the bowl from the corner', 'Slide the block to the right', 'put the block in the bowl']  —  1 questions
+  [scene 5242] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the kettle with open gripper', 'Closing gripper to grasp the kettle', 'Firmly grasping the kettle', 'Moving away with open gripper after releasing the kettle', 'Releasing the kettle by opening gripper']  —  1 questions
+  [scene 153] The robot is tasked to approaching the kettle with open gripper with the kettle. After Approaching the kettle with open 
+
+Category: ['Lift the food container upward', 'Pick up the lid from the table', 'Pick up the lid from the tray', 'Rotate the lid clockwise', 'put the white lid on top of the food container']  —  1 questions
+  [scene 11591] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the spoon upward', 'Push the spoon towards the there are no specific locations mentioned in this instruction', 'Rotate the pot clockwise', 'Slide the table to the right', 'mix the things in the pot with the spoon and then put the spoon back on the table']  —  1 questions
+  [scene 15439] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the bowl with the center', 'Grab the pen with the gripper', 'Lift the bowl upward', 'Lift the pen upward', 'pick up the pen and put it in the bowl']  —  1 questions
+  [scene 4617] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the countertop with the gripper', 'Pick up the sink from the sink', 'Place the countertop on the sink', 'Place the sink on the sink', 'take the brown cup out of the sink and put it on thee sink countertop']  —  1 questions
+  [scene 582] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the blue object with the open drawer', 'Align the drawer with the open drawer', 'Grab the counter with the gripper', 'Rotate the blue object clockwise', 'pick up the blue object from the counter and put it in the open drawer and close it']  —  1 questions
+  [scene 3049] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the white plate with the surface', 'Drop the white plate into the shelf', 'Lift the objects upward', 'Pick up the objects from the bin', 'pick up all the objects surrounding the white plate and arrange them on the plate']  —  1 questions
+  [scene 1091] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the sink with open gripper', 'Closing gripper to grasp the sink', 'Firmly grasping the sink', 'Moving away with open gripper after releasing the sink', 'Releasing the sink by opening gripper']  —  1 questions
+  [scene 279] The robot is tasked to firmly grasping the sink with the sink. After Firmly grasping the sink, what will be the robot's 
+
+Category: ['Approaching the light switch with open gripper', 'Closing gripper to grasp the light switch', 'Firmly grasping the light switch', 'Moving away with open gripper after releasing the light switch', 'None of the above']  —  1 questions
+  [scene 204] The robot is tasked to firmly grasping the light switch with the light switch. After Firmly grasping the light switch, w
+
+Category: ['Approaching the cabinet with open gripper', 'Closing gripper to grasp the cabinet', 'Firmly grasping the cabinet', 'Moving away with open gripper after releasing the cabinet', 'Releasing the cabinet by opening gripper']  —  1 questions
+  [scene 282] The robot is tasked to closing gripper to grasp the cabinet with the cabinet. After Closing gripper to grasp the cabinet
+
+Category: ['Grab the box with the gripper', 'Pick up the box from the floor', 'Place the black object on the platform', 'Slide the box to the right', 'remove the black object from the box']  —  1 questions
+  [scene 1353] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the glass cup into the none', 'Lift the glass cup upward', 'Push the orange objects towards the none', 'Slide the blue objects to the right', 'put the orange objects in the white cup and the blue objects in the glass cup']  —  1 questions
+  [scene 12424] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the grape with the floor', 'Grab the white dish with the gripper', 'Lift the white dish upward', 'Pick up the grape from the surface', 'put the grape inside the white dish']  —  1 questions
+  [scene 9478] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the circle with the gripper', 'Place the circle on the corner', 'Push the circle towards the tray', 'Rotate the wooden object clockwise', 'put an orange circle from the wooden object']  —  1 questions
+  [scene 14869] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the apple with open gripper', 'Closing gripper to grasp the apple', 'Firmly grasping the apple', 'None of the above', 'Releasing the apple by opening gripper']  —  1 questions
+  [scene 2284] The robot is tasked to releasing the apple by opening gripper with the apple. After Releasing the apple by opening gripp
+
+Category: ['Closing gripper to grasp the apple', 'Firmly grasping the apple', 'Moving away with open gripper after releasing the apple', 'None of the above', 'Releasing the apple by opening gripper']  —  1 questions
+  [scene 5378] The robot is tasked to moving away with open gripper after releasing the apple with the apple. After Moving away with op
+
+Category: ['Approaching the orange with open gripper', 'Firmly grasping the orange', 'Moving away with open gripper after releasing the orange', 'None of the above', 'Releasing the orange by opening gripper']  —  1 questions
+  [scene 72] The robot is tasked to pick orange from white bowl. The robot is interacting with the orange. Which phase of the grasp a
+
+Category: ['Approaching the redbull can with open gripper', 'Closing gripper to grasp the redbull can', 'Firmly grasping the redbull can', 'Moving away with open gripper after releasing the redbull can', 'Releasing the redbull can by opening gripper']  —  1 questions
+  [scene 907] The robot is tasked to moving away with open gripper after releasing the redbull can with the redbull can. After Moving 
+
+Category: ['Closing gripper to grasp the brown chip bag', 'Firmly grasping the brown chip bag', 'Moving away with open gripper after releasing the brown chip bag', 'None of the above', 'Releasing the brown chip bag by opening gripper']  —  1 questions
+  [scene 1251] The robot is tasked to moving away with open gripper after releasing the brown chip bag with the brown chip bag. After M
+
+Category: ['Closing gripper to grasp the chip bag', 'Firmly grasping the chip bag', 'Moving away with open gripper after releasing the chip bag', 'None of the above', 'Releasing the chip bag by opening gripper']  —  1 questions
+  [scene 3040] The robot is tasked to moving away with open gripper after releasing the chip bag with the chip bag. After Moving away w
+
+Category: ['Approaching the peg with open gripper', 'Closing gripper to grasp the peg', 'Firmly grasping the peg', 'Moving away with open gripper after releasing the peg', 'None of the above']  —  1 questions
+  [scene 188] The robot is tasked to insert the peg into the hole. The robot is interacting with the peg. Which phase of the grasp act
+
+Category: ['Closing gripper to grasp the battery', 'Firmly grasping the battery', 'Moving away with open gripper after releasing the battery', 'None of the above', 'Releasing the battery by opening gripper']  —  1 questions
+  [scene 259] The robot is tasked to pick up the battery. The robot is interacting with the battery. Which phase of the grasp action i
+
+Category: ['Approaching the brush with open gripper', 'Closing gripper to grasp the brush', 'Moving away with open gripper after releasing the brush', 'None of the above', 'Releasing the brush by opening gripper']  —  1 questions
+  [scene 242] The robot is tasked to closing gripper to grasp the brush with the brush. After Closing gripper to grasp the brush, what
+
+Category: ['Approaching the maroon object with open gripper', 'Closing gripper to grasp the maroon object', 'Firmly grasping the maroon object', 'Moving away with open gripper after releasing the maroon object', 'Releasing the maroon object by opening gripper']  —  1 questions
+  [scene 36] The robot is tasked to raise maroon object. The robot is interacting with the maroon object. Which phase of the grasp ac
+
+Category: ['Closing gripper to grasp the water bottle', 'Firmly grasping the water bottle', 'Moving away with open gripper after releasing the water bottle', 'None of the above', 'Releasing the water bottle by opening gripper']  —  1 questions
+  [scene 4913] The robot is tasked to moving away with open gripper after releasing the water bottle with the water bottle. After Movin
+
+Category: ['Approaching the water bottle with open gripper', 'Firmly grasping the water bottle', 'Moving away with open gripper after releasing the water bottle', 'None of the above', 'Releasing the water bottle by opening gripper']  —  1 questions
+  [scene 3974] The robot is tasked to approaching the water bottle with open gripper with the water bottle. After Approaching the water
+
+Category: ['Align the white tray with the white tray', 'Align the windowsill with the white tray', 'Grab the black sock with the gripper', 'Pick up the black sock from the nightstand', 'remove the black sock from the windowsill and place it on the white tray on top of the nightstand']  —  1 questions
+  [scene 9786] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the green plushie with the right', 'Lift the orange plushie upward', 'Push the orange plushie towards the below', 'Push the orange plushie towards the beside', 'move the green plushie to the left of the orange plushie']  —  1 questions
+  [scene 1833] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the block into the no location is specified', 'Drop the toy into the no location is specified', 'Move the plate to the no location is specified', 'Rotate the cup clockwise', 'move the green sponge to the left']  —  1 questions
+  [scene 7920] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Closing gripper to grasp the jalapeno chip bag', 'Firmly grasping the jalapeno chip bag', 'Moving away with open gripper after releasing the jalapeno chip bag', 'None of the above', 'Releasing the jalapeno chip bag by opening gripper']  —  1 questions
+  [scene 5752] The robot is tasked to moving away with open gripper after releasing the jalapeno chip bag with the jalapeno chip bag. A
+
+Category: ['Approaching the bag with open gripper', 'Closing gripper to grasp the bag', 'Firmly grasping the bag', 'Moving away with open gripper after releasing the bag', 'None of the above']  —  1 questions
+  [scene 4943] The robot is tasked to firmly grasping the bag with the bag. After Firmly grasping the bag, what will be the robot's NEX
+
+Category: ['Approaching the bag with open gripper', 'Closing gripper to grasp the bag', 'Firmly grasping the bag', 'None of the above', 'Releasing the bag by opening gripper']  —  1 questions
+  [scene 1347] The robot is tasked to place green rice chip bag into top drawer. The robot is interacting with the bag. Which phase of 
+
+Category: ['Approaching the rice chip bag with open gripper', 'Closing gripper to grasp the rice chip bag', 'Firmly grasping the rice chip bag', 'None of the above', 'Releasing the rice chip bag by opening gripper']  —  1 questions
+  [scene 4091] The robot is tasked to releasing the rice chip bag by opening gripper with the rice chip bag. After Releasing the rice c
+
+Category: ['Approaching the rice chip with open gripper', 'Closing gripper to grasp the rice chip', 'Moving away with open gripper after releasing the rice chip', 'None of the above', 'Releasing the rice chip by opening gripper']  —  1 questions
+  [scene 51] The robot is tasked to move green rice chip bag near coke can. The robot is interacting with the rice chip. Which phase 
+
+Category: ['Align the marker with the tray', 'Grab the pen with the gripper', 'Lift the pen upward', 'Rotate the marker clockwise', 'put the marker into the pen']  —  1 questions
+  [scene 10885] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the blocks to the corner', 'Pick up the bowl from the table', 'Pick up the bowl from the tray', 'Push the blocks towards the corner', 'put the blocks in the bowl']  —  1 questions
+  [scene 5589] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the book into the there are no specific locations mentioned', 'Pick up the plate from the none', 'Pick up the toy from the none', 'Rotate the container clockwise', 'open the topmost drawer']  —  1 questions
+  [scene 6441] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['None of the above', 'Pick up the air fryer from the table', 'Pick up the bottle from the corner', 'Place the bottle on the table', 'Slide the bottle to the right']  —  1 questions
+  [scene 4802] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the pepsi with open gripper', 'Closing gripper to grasp the pepsi', 'Firmly grasping the pepsi', 'Moving away with open gripper after releasing the pepsi', 'Releasing the pepsi by opening gripper']  —  1 questions
+  [scene 4840] The robot is tasked to approaching the pepsi with open gripper with the pepsi. After Approaching the pepsi with open gri
+
+Category: ['Closing gripper to grasp the pepsi can', 'Firmly grasping the pepsi can', 'Moving away with open gripper after releasing the pepsi can', 'None of the above', 'Releasing the pepsi can by opening gripper']  —  1 questions
+  [scene 2359] The robot is tasked to moving away with open gripper after releasing the pepsi can with the pepsi can. After Moving away
+
+Category: ['Align the lid with the table', 'Grab the lid with the gripper', 'Rotate the lid clockwise', 'Rotate the orange cup clockwise', "remove the lid of the small pot that's near the orange cup on the table"]  —  1 questions
+  [scene 3235] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the ranch with open gripper', 'Closing gripper to grasp the ranch', 'Moving away with open gripper after releasing the ranch', 'None of the above', 'Releasing the ranch by opening gripper']  —  1 questions
+  [scene 431] The robot is tasked to put the ranch bottle into the pot. The robot is interacting with the ranch. Which phase of the gr
+
+Category: ['Approaching the brown chip bag with open gripper', 'Firmly grasping the brown chip bag', 'Moving away with open gripper after releasing the brown chip bag', 'None of the above', 'Releasing the brown chip bag by opening gripper']  —  1 questions
+  [scene 1759] The robot is tasked to pick brown chip bag. The robot is interacting with the brown chip bag. Which phase of the grasp a
+
+Category: ['Approaching the plastic bottle with open gripper', 'Closing gripper to grasp the plastic bottle', 'Firmly grasping the plastic bottle', 'Moving away with open gripper after releasing the plastic bottle', 'Releasing the plastic bottle by opening gripper']  —  1 questions
+  [scene 949] The robot is tasked to approaching the plastic bottle with open gripper with the plastic bottle. After Approaching the p
+
+Category: ['Approaching the slide with open gripper', 'Closing gripper to grasp the slide', 'Firmly grasping the slide', 'Moving away with open gripper after releasing the slide', 'Releasing the slide by opening gripper']  —  1 questions
+  [scene 278] The robot is tasked to go slide the yellow block to the left. The robot is interacting with the slide. Which phase of th
+
+Category: ['Approaching the screwdriver with open gripper', 'Closing gripper to grasp the screwdriver', 'Firmly grasping the screwdriver', 'Moving away with open gripper after releasing the screwdriver', 'Releasing the screwdriver by opening gripper']  —  1 questions
+  [scene 149] The robot is tasked to moving away with open gripper after releasing the screwdriver with the screwdriver. After Moving 
+
+Category: ['Approaching the screwdriver with open gripper', 'Closing gripper to grasp the screwdriver', 'Firmly grasping the screwdriver', 'None of the above', 'Releasing the screwdriver by opening gripper']  —  1 questions
+  [scene 62] The robot is tasked to pick up the screw driver and place it in the box. The robot is interacting with the screwdriver. 
+
+Category: ['Approaching the fridge with open gripper', 'Firmly grasping the fridge', 'Moving away with open gripper after releasing the fridge', 'None of the above', 'Releasing the fridge by opening gripper']  —  1 questions
+  [scene 226] The robot is tasked to approaching the fridge with open gripper with the fridge. After Approaching the fridge with open 
+
+Category: ['Approaching the led with open gripper', 'Closing gripper to grasp the led', 'Firmly grasping the led', 'Moving away with open gripper after releasing the led', 'Releasing the led by opening gripper']  —  1 questions
+  [scene 5] The robot is tasked to turn off the blue led light. The robot is interacting with the led. Which phase of the grasp acti
+
+Category: ['Approaching the led light with open gripper', 'Closing gripper to grasp the led light', 'Firmly grasping the led light', 'Moving away with open gripper after releasing the led light', 'Releasing the led light by opening gripper']  —  1 questions
+  [scene 292] The robot is tasked to turn off the red led light. The robot is interacting with the led light. Which phase of the grasp
+
+Category: ['Align the couch with the none', 'Pick up the towel from the none', 'Push the towel towards the there are no specific location or spatial references mentioned.', 'Slide the couch to the right', 'put the towel on the couch']  —  1 questions
+  [scene 8406] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the box to the none', 'Pick up the black from the there are no spatial references mentioned.', 'Push the box towards the none', 'Rotate the box clockwise', 'move the black box to the left']  —  1 questions
+  [scene 5310] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the box with the none', 'Lift the block upward', 'Lift the cup upward', 'Push the box towards the none', 'pick up the white and red towel then set it down again']  —  1 questions
+  [scene 10504] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the adapter with the bin', 'Grab the adapter with the gripper', 'Push the switch towards the platform', 'Slide the switch to the right', 'turn off the main switch on the adapter']  —  1 questions
+  [scene 8326] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the ball into the so there is nothing to extract.', 'Drop the bottle into the so there is nothing to extract.', 'Lift the block upward', 'Push the ball towards the there are no specific locations mentioned in this instruction', 'put the brown blocks together']  —  1 questions
+  [scene 8438] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the blue into the none', 'Grab the orange with the gripper', 'Move the blue to the this instruction does not mention any specific location or spatial reference.', 'Place the cup on the none', 'put the blue cup in the orange cup']  —  1 questions
+  [scene 8741] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the kcup with open gripper', 'Closing gripper to grasp the kcup', 'Firmly grasping the kcup', 'Moving away with open gripper after releasing the kcup', 'None of the above']  —  1 questions
+  [scene 152] The robot is tasked to firmly grasping the kcup with the kcup. After Firmly grasping the kcup, what will be the robot's 
+
+Category: ['Grab the plate with the gripper', 'Grab the toy with the gripper', 'Lift the pen upward', 'Push the ball towards the bin', 'close the cardboard box']  —  1 questions
+  [scene 15147] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the object with the platform', 'Drop the object into the bin', 'Move the object to the surface', 'Place the black piece on the bin', 'join the two black pieces of the object']  —  1 questions
+  [scene 13545] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the glass into the there are no specific locations mentioned', 'Grab the glass with the gripper', 'Lift the glass upward', 'Rotate the lid clockwise', 'put the glass lid on the pot']  —  1 questions
+  [scene 9689] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the block into the surface', 'Drop the box into the center', 'Grab the container with the gripper', 'Rotate the plate clockwise', 'move the two bowls to the right']  —  1 questions
+  [scene 5570] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the fruit with open gripper', 'Closing gripper to grasp the fruit', 'Moving away with open gripper after releasing the fruit', 'None of the above', 'Releasing the fruit by opening gripper']  —  1 questions
+  [scene 276] The robot is tasked to closing gripper to grasp the fruit with the fruit. After Closing gripper to grasp the fruit, what
+
+Category: ['Approaching the chip with open gripper', 'Closing gripper to grasp the chip', 'Firmly grasping the chip', 'None of the above', 'Releasing the chip by opening gripper']  —  1 questions
+  [scene 3595] The robot is tasked to pick blue chip bag from middle drawer and place on counter. The robot is interacting with the chi
+
+Category: ['Approaching the water bottle with open gripper', 'Closing gripper to grasp the water bottle', 'Moving away with open gripper after releasing the water bottle', 'None of the above', 'Releasing the water bottle by opening gripper']  —  1 questions
+  [scene 45] The robot is tasked to closing gripper to grasp the water bottle with the water bottle. After Closing gripper to grasp t
+
+Category: ['Closing gripper to grasp the jalapeno', 'Firmly grasping the jalapeno', 'Moving away with open gripper after releasing the jalapeno', 'None of the above', 'Releasing the jalapeno by opening gripper']  —  1 questions
+  [scene 5197] The robot is tasked to moving away with open gripper after releasing the jalapeno with the jalapeno. After Moving away w
+
+Category: ['Approaching the jalapeno chip with open gripper', 'Firmly grasping the jalapeno chip', 'Moving away with open gripper after releasing the jalapeno chip', 'None of the above', 'Releasing the jalapeno chip by opening gripper']  —  1 questions
+  [scene 6] The robot is tasked to approaching the jalapeno chip with open gripper with the jalapeno chip. After Approaching the jal
+
+Category: ['Closing gripper to grasp the jalapeno chip', 'Firmly grasping the jalapeno chip', 'Moving away with open gripper after releasing the jalapeno chip', 'None of the above', 'Releasing the jalapeno chip by opening gripper']  —  1 questions
+  [scene 1204] The robot is tasked to pick green jalapeno chip bag from middle drawer and place on counter. The robot is interacting wi
+
+Category: ['Grab the shelf with the gripper', 'Lift the doors upward', 'Place the shelf on the none', 'Place the shelf on the shelf', 'open the doors of the topmost shelf']  —  1 questions
+  [scene 12555] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the drawer to the bin', 'Pick up the table from the corner', 'Push the drawer towards the center', 'Slide the drawer to the right', 'open the drawer and remove the plush toy and put it on the table']  —  1 questions
+  [scene 4126] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the 7up with open gripper', 'Closing gripper to grasp the 7up', 'Firmly grasping the 7up', 'Moving away with open gripper after releasing the 7up', 'Releasing the 7up by opening gripper']  —  1 questions
+  [scene 1690] The robot is tasked to firmly grasping the 7up with the 7up. After Firmly grasping the 7up, what will be the robot's NEX
+
+Category: ['Approaching the cup with open gripper', 'Closing gripper to grasp the cup', 'Moving away with open gripper after releasing the cup', 'None of the above', 'Releasing the cup by opening gripper']  —  1 questions
+  [scene 586] The robot is tasked to pick up the blue cup and put it into the brown cup.. The robot is interacting with the cup. Which
+
+Category: ['Approaching the cup with open gripper', 'Closing gripper to grasp the cup', 'Firmly grasping the cup', 'None of the above', 'Releasing the cup by opening gripper']  —  1 questions
+  [scene 90] The robot is tasked to releasing the cup by opening gripper with the cup. After Releasing the cup by opening gripper, wh
+
+Category: ['Align the cup with the none', 'Drop the marker into the no specific location or spatial reference is mentioned in the given instruction.', 'Lift the cup upward', 'Slide the cup to the right', 'take the marker out of the cup']  —  1 questions
+  [scene 4645] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the mug with the mug', 'Lift the mug upward', 'Move the phone to the mug', 'Rotate the marker clockwise', 'take the marker out of the mug and place it on the phone']  —  1 questions
+  [scene 12982] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the block with open gripper', 'Closing gripper to grasp the block', 'Moving away with open gripper after releasing the block', 'None of the above', 'Releasing the block by opening gripper']  —  1 questions
+  [scene 154] The robot is tasked to put the purple block on the table. The robot is interacting with the block. Which phase of the gr
+
+Category: ['Approaching the purple object with open gripper', 'Closing gripper to grasp the purple object', 'Firmly grasping the purple object', 'Moving away with open gripper after releasing the purple object', 'Releasing the purple object by opening gripper']  —  1 questions
+  [scene 135] The robot is tasked to firmly grasping the purple object with the purple object. After Firmly grasping the purple object
+
+Category: ['Approaching the blue chip with open gripper', 'Closing gripper to grasp the blue chip', 'Firmly grasping the blue chip', 'Moving away with open gripper after releasing the blue chip', 'Releasing the blue chip by opening gripper']  —  1 questions
+  [scene 4899] The robot is tasked to firmly grasping the blue chip with the blue chip. After Firmly grasping the blue chip, what will 
+
+Category: ['Align the counter with the shelf', 'Drop the sponge into the surface', 'Move the counter to the drawer', 'Rotate the counter clockwise', 'scrub the counter using the sponge']  —  1 questions
+  [scene 9865] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the cup upward', 'Move the table to the corner', 'Move the table to the tray', 'Place the cup on the bin', 'take the cup on the plate and put it on the table']  —  1 questions
+  [scene 11725] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the cup upward', 'Place the cup on the table', 'Rotate the bowl clockwise', 'Slide the bowl to the right', 'remove the cup from the bowl']  —  1 questions
+  [scene 9455] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the drawer into the table', 'Place the screwdriver on the bin', 'Push the screwdriver towards the platform', 'Slide the drawer to the right', 'put the screwdriver in the drawer and then close the drawer']  —  1 questions
+  [scene 1379] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the cube with open gripper', 'Closing gripper to grasp the cube', 'Firmly grasping the cube', 'Moving away with open gripper after releasing the cube', 'None of the above']  —  1 questions
+  [scene 294] The robot is tasked to firmly grasping the cube with the cube. After Firmly grasping the cube, what will be the robot's 
+
+Category: ['Align the green bowl with the green bowl', 'Lift the green bowl upward', 'Move the wine glass to the wine glass', 'Place the wine glass on the green bowl', 'pour the contents in the wine glass into the green bowl']  —  1 questions
+  [scene 11314] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the block with the surface', 'Grab the cup with the gripper', 'Lift the bottle upward', 'Rotate the plate clockwise', 'move the blue object to the left side of the sink']  —  1 questions
+  [scene 7835] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the book into the corner', 'Push the pen towards the tray', 'Rotate the box clockwise', 'Rotate the plate clockwise', 'move the grey towel to the left']  —  1 questions
+  [scene 12407] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the pot into the table', 'Move the glass lid to the pot', 'Move the table to the table', 'Place the pot on the table', 'pick up the glass lid from the table and put it on the pot']  —  1 questions
+  [scene 14722] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the shaker with the platform', 'Drop the shaker into the surface', 'Lift the dish upward', 'Pick up the dish from the tray', 'put the shaker in the dish']  —  1 questions
+  [scene 14728] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the ranch bottle with open gripper', 'Closing gripper to grasp the ranch bottle', 'Firmly grasping the ranch bottle', 'None of the above', 'Releasing the ranch bottle by opening gripper']  —  1 questions
+  [scene 563] The robot is tasked to put the ranch bottle into the pot. The robot is interacting with the ranch bottle. Which phase of
+
+Category: ['Align the orange object with the as there are no explicit locations mentioned.', 'Grab the orange object with the gripper', 'Move the wooden board to the none', 'Place the wooden board on the as there are no explicit locations mentioned.', 'put the right orange object on the wooden board']  —  1 questions
+  [scene 804] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the wooden board into the shelf', 'Drop the wooden board into the surface', 'Grab the wooden board with the gripper', 'Lift the orange object upward', 'None of the above']  —  1 questions
+  [scene 804] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the rope with the center', 'Push the rope towards the drawer', 'Rotate the counter clockwise', 'Slide the counter to the right', 'put the rope on the counter']  —  1 questions
+  [scene 6886] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the bowl with the none', 'Grab the plush with the gripper', 'Move the plush to the none', 'Rotate the tiger clockwise', 'put the tiger plush in the bowl']  —  1 questions
+  [scene 13243] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the table with the bucket', 'Align the table with the table', 'Lift the plastic upward', 'Pick up the bucket from the bucket', 'remove the plastic from the bucket and put it on the table']  —  1 questions
+  [scene 8236] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the rice chip bag with open gripper', 'Closing gripper to grasp the rice chip bag', 'Firmly grasping the rice chip bag', 'Moving away with open gripper after releasing the rice chip bag', 'None of the above']  —  1 questions
+  [scene 5974] The robot is tasked to firmly grasping the rice chip bag with the rice chip bag. After Firmly grasping the rice chip bag
+
+Category: ['Align the toy with the there are no locations or spatial references mentioned in the instruction "open the door".', 'Move the block to the there are no locations or spatial references mentioned in the instruction "open the door".', 'Push the cup towards the there are no locations or spatial references mentioned in the instruction "open the door".', 'Slide the plate to the right', 'open the door']  —  1 questions
+  [scene 12844] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the white plate into the countertop', 'Pick up the countertop from the dishwasher', 'Place the countertop on the dishwasher', 'Slide the countertop to the right', 'pick up the white plate from the countertop and put it in the dishwasher']  —  1 questions
+  [scene 4292] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the chair with the there are no spatial references', 'Drop the shirt into the none', 'Move the chair to the none', 'Slide the shirt to the right', 'remove the orange shirt from the backrest of the black chair']  —  1 questions
+  [scene 2927] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the pot with the tray', 'None of the above', 'Pick up the pot from the floor', 'Push the yellow block towards the drawer', 'Slide the yellow block to the right']  —  1 questions
+  [scene 14012] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the lid with the surface', 'Move the lid to the table', 'Pick up the table from the shelf', 'Slide the table to the right', 'remove the lid from the pot and placing it on the table']  —  1 questions
+  [scene 11162] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the bottle with the gripper', 'Grab the table with the gripper', 'Grab the tray with the gripper', 'Lift the tray upward', 'pick up a bottle from the tray and put it on the table']  —  1 questions
+  [scene 10014] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the backpack to the center', 'Move the backpack to the table', 'Place the backpack on the drawer', 'Slide the toy to the right', 'place the banana toy in the black backpack']  —  1 questions
+  [scene 15070] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the paper towel to the platform', 'None of the above', 'Push the mug towards the platform', 'Push the mug towards the table', 'Slide the mug to the right']  —  1 questions
+  [scene 15256] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the purple object upward', 'None of the above', 'Place the plate on the center', 'Push the purple object towards the shelf', 'Slide the plate to the right']  —  1 questions
+  [scene 4575] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the table to the this instruction does not mention any location or spatial reference.', 'Pick up the purple plushie from the none', 'Push the purple plushie towards the none', 'Rotate the table clockwise', 'put the purple plushie on the table']  —  1 questions
+  [scene 508] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the box with the gripper', 'Push the block towards the tray', 'Push the pen towards the platform', 'Rotate the block clockwise', 'move the towel to the right']  —  1 questions
+  [scene 5117] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the apple with open gripper', 'Closing gripper to grasp the apple', 'Firmly grasping the apple', 'Moving away with open gripper after releasing the apple', 'None of the above']  —  1 questions
+  [scene 3259] The robot is tasked to firmly grasping the apple with the apple. After Firmly grasping the apple, what will be the robot
+
+Category: ['Drop the block into the floor', 'Lift the cup upward', 'Pick up the toy from the center', 'Push the book towards the bin', 'close the top right drawer partially']  —  1 questions
+  [scene 9203] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the box with the gripper', 'None of the above', 'Pick up the container from the no location is mentioned.', 'Place the box on the no location is mentioned.', 'Rotate the box clockwise']  —  1 questions
+  [scene 14813] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the pan with the platform', 'Push the pan towards the floor', 'Push the pan towards the platform', 'Rotate the pan clockwise', 'place the ketchup bottle on the pan']  —  1 questions
+  [scene 4115] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the bottle with the gripper', 'Move the container to the center', 'Slide the ball to the right', 'Slide the cup to the right', 'close the sandwich maker']  —  1 questions
+  [scene 6037] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the spoon with the tray', 'Pick up the spoon from the corner', 'Push the paper towel towards the bin', 'Slide the item to the right', 'use the spoon to put some of the items on the paper towel in the pack']  —  1 questions
+  [scene 1682] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the desk to the surface', 'Move the marker to the floor', 'Pick up the pot from the drawer', 'Slide the marker to the right', 'take the marker out of the pot and put it on the desk']  —  1 questions
+  [scene 8653] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the block with open gripper', 'Firmly grasping the block', 'Moving away with open gripper after releasing the block', 'None of the above', 'Releasing the block by opening gripper']  —  1 questions
+  [scene 116] The robot is tasked to approaching the block with open gripper with the block. After Approaching the block with open gri
+
+Category: ['Lift the blue block upward', 'Rotate the green block clockwise', 'Slide the blue block to the right', 'Slide the green block to the right', 'pick up one green block and one blue block, then place them on the plate']  —  1 questions
+  [scene 14343] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the table with the surface', 'Lift the table upward', 'Rotate the towel clockwise', 'Slide the table to the right', 'use the towel to wipe the table']  —  1 questions
+  [scene 8705] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the mug with the gripper', 'Move the mug to the there are no specific locations mentioned.', 'Rotate the spoon clockwise', 'Slide the mug to the right', 'remove the spoon from the white mug']  —  1 questions
+  [scene 8394] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the cup with the floor', 'Push the cup towards the shelf', 'Rotate the cup clockwise', 'Slide the plate to the right', 'open the container']  —  1 questions
+  [scene 11571] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the sponge with open gripper', 'Firmly grasping the sponge', 'Moving away with open gripper after releasing the sponge', 'None of the above', 'Releasing the sponge by opening gripper']  —  1 questions
+  [scene 5286] The robot is tasked to approaching the sponge with open gripper with the sponge. After Approaching the sponge with open 
+
+Category: ['Approaching the rice with open gripper', 'Closing gripper to grasp the rice', 'Firmly grasping the rice', 'Moving away with open gripper after releasing the rice', 'None of the above']  —  1 questions
+  [scene 2060] The robot is tasked to firmly grasping the rice with the rice. After Firmly grasping the rice, what will be the robot's 
+
+Category: ['Approaching the bottle with open gripper', 'Closing gripper to grasp the bottle', 'Firmly grasping the bottle', 'Moving away with open gripper after releasing the bottle', 'None of the above']  —  1 questions
+  [scene 3314] The robot is tasked to firmly grasping the bottle with the bottle. After Firmly grasping the bottle, what will be the ro
+
+Category: ['Align the bowl with the none', 'Move the bowl to the there are no spatial references mentioned in this instruction.', 'Move the marker to the none', 'Rotate the bowl clockwise', 'pick up the marker and put it in the bowl']  —  1 questions
+  [scene 5584] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the plate with the gripper', 'Pick up the bottle from the platform', 'Rotate the ball clockwise', 'Slide the plate to the right', 'move the cup slightly to the right']  —  1 questions
+  [scene 10259] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the kcup holder with open gripper', 'Firmly grasping the kcup holder', 'Moving away with open gripper after releasing the kcup holder', 'None of the above', 'Releasing the kcup holder by opening gripper']  —  1 questions
+  [scene 73] The robot is tasked to approaching the kcup holder with open gripper with the kcup holder. After Approaching the kcup ho
+
+Category: ['Closing gripper to grasp the level', 'Firmly grasping the level', 'Moving away with open gripper after releasing the level', 'None of the above', 'Releasing the level by opening gripper']  —  1 questions
+  [scene 183] The robot is tasked to pick up the level and place it on the cup. The robot is interacting with the level. Which phase o
+
+Category: ['Approaching the pot with open gripper', 'Firmly grasping the pot', 'Moving away with open gripper after releasing the pot', 'None of the above', 'Releasing the pot by opening gripper']  —  1 questions
+  [scene 14] The robot is tasked to take the lid off the pot, put the pot on the plate, and use the tool to push to pot to the front 
+
+Category: ['Approaching the coke can with open gripper', 'Closing gripper to grasp the coke can', 'Moving away with open gripper after releasing the coke can', 'None of the above', 'Releasing the coke can by opening gripper']  —  1 questions
+  [scene 3895] The robot is tasked to closing gripper to grasp the coke can with the coke can. After Closing gripper to grasp the coke 
+
+Category: ['Approaching the orange with open gripper', 'Closing gripper to grasp the orange', 'Firmly grasping the orange', 'None of the above', 'Releasing the orange by opening gripper']  —  1 questions
+  [scene 3050] The robot is tasked to move orange near brown chip bag. The robot is interacting with the orange. Which phase of the gra
+
+Category: ['Closing gripper to grasp the orange', 'Firmly grasping the orange', 'Moving away with open gripper after releasing the orange', 'None of the above', 'Releasing the orange by opening gripper']  —  1 questions
+  [scene 3898] The robot is tasked to moving away with open gripper after releasing the orange with the orange. After Moving away with 
+
+Category: ["Align the cup with the it's not specific enough to identify a distinct place.", 'Grab the cup with the gripper', 'Lift the cup upward', 'Rotate the cabinet clockwise', 'put the mug cup in the cabinet']  —  1 questions
+  [scene 15562] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the tiger with open gripper', 'Closing gripper to grasp the tiger', 'Firmly grasping the tiger', 'Moving away with open gripper after releasing the tiger', 'None of the above']  —  1 questions
+  [scene 274] The robot is tasked to take the tiger out of the red bowl and put it in the grey bowl. The robot is interacting with the
+
+Category: ['Align the marker with the there are no specific locations or spatial references mentioned.', 'Drop the orange into the none', 'Move the orange to the there are no specific locations or spatial references mentioned.', 'None of the above', 'Slide the orange to the right']  —  1 questions
+  [scene 12209] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the orange with the this statement does not contain any location or spatial reference information.', 'Align the pepper with the none', 'Grab the orange with the gripper', 'Slide the pepper to the right', 'move the orange pepper forwards']  —  1 questions
+  [scene 12662] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the rice bag with open gripper', 'Closing gripper to grasp the rice bag', 'Firmly grasping the rice bag', 'Moving away with open gripper after releasing the rice bag', 'Releasing the rice bag by opening gripper']  —  1 questions
+  [scene 1785] The robot is tasked to move green rice chip bag near green jalapeno chip bag. The robot is interacting with the rice bag
+
+Category: ['Approaching the rice chip with open gripper', 'Firmly grasping the rice chip', 'Moving away with open gripper after releasing the rice chip', 'None of the above', 'Releasing the rice chip by opening gripper']  —  1 questions
+  [scene 5843] The robot is tasked to approaching the rice chip with open gripper with the rice chip. After Approaching the rice chip w
+
+Category: ['Approaching the chip bag with open gripper', 'Closing gripper to grasp the chip bag', 'Moving away with open gripper after releasing the chip bag', 'None of the above', 'Releasing the chip bag by opening gripper']  —  1 questions
+  [scene 3492] The robot is tasked to pick brown chip bag. The robot is interacting with the chip bag. Which phase of the grasp action 
+
+Category: ['Align the bottle with the floor', 'Align the pen with the bin', 'Grab the plate with the gripper', 'None of the above', 'Pick up the ball from the shelf']  —  1 questions
+  [scene 10429] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the plate into the none', 'Grab the book with the gripper', 'Lift the book upward', 'None of the above', 'Place the pen on the only "forward" is used.']  —  1 questions
+  [scene 6062] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the basket upward', 'Lift the table upward', 'Move the basket to the none', 'Slide the shirts to the right', 'remove the shirts from the basket and put them on the table']  —  1 questions
+  [scene 14624] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the white plate into the white', 'Lift the grey object upward', 'Lift the white plate upward', 'Move the white plate to the plate', 'pick up the grey object and place it on the white plate']  —  1 questions
+  [scene 1538] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the cup with the gripper', 'Grab the pen with the gripper', 'Push the pen towards the there are no specific locations mentioned', 'Slide the bottle to the right', 'slide the curtain to the left']  —  1 questions
+  [scene 4661] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the cup with the which is "backwards" (direction). \n\nhowever if you consider "the" as a spatial reference that denotes direction or location relative to an unspecified location then it would be:\n\nbackwards', 'Lift the ball upward', 'Pick up the block from the as there is only one location/spatial reference mentioned', 'Pick up the pen from the none', 'move the tall cylindrical block backwards']  —  1 questions
+  [scene 963] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the shelves with the bottom', 'Lift the shelves upward', 'Push the cabinet towards the left', 'Rotate the shelves clockwise', 'stack the three individual paper cups together and place them in the center of the left bottom shelf of the cabinet']  —  1 questions
+  [scene 14475] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the cabinet into the cabinet', 'Rotate the cabinet clockwise', 'Slide the cabinet to the right', 'Slide the paper cups to the right', 'stack the three individual paper cups together and place them in the center of the left bottom shelf of the cabinet']  —  1 questions
+  [scene 14475] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the bottle with the drawer', 'Move the pen to the center', 'None of the above', 'Pick up the container from the tray', 'Push the book towards the shelf']  —  1 questions
+  [scene 14908] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the pen with the tray', 'Grab the book with the gripper', 'Move the cup to the floor', 'Place the box on the tray', 'turn on the the toaster']  —  1 questions
+  [scene 751] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the remote control with the armrest', 'Drop the remote control into the table', 'Lift the armrest upward', 'Push the sofa towards the table', 'pick up the remote control from the armrest of the sofa and put it on the table']  —  1 questions
+  [scene 8366] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the white tray with the right', 'Drop the spice bottle into the right', 'Slide the spice bottle to the right', 'Slide the white tray to the right', 'move the spice bottle to the right and place it on the white tray']  —  1 questions
+  [scene 11471] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the tool box with the gripper', 'Lift the tool box upward', 'Move the tool box to the center', 'None of the above', 'Rotate the black cable clockwise']  —  1 questions
+  [scene 10042] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the pen with the gripper', 'Lift the book upward', 'Move the ball to the corner', 'Place the box on the floor', 'open the microwave']  —  1 questions
+  [scene 3823] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the yellow object with the gripper', 'Move the yellow object to the surface', 'Place the yellow object on the shelf', 'Slide the bowl to the right', 'take the yellow object in the bowl and put it on the rack']  —  1 questions
+  [scene 3507] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the ball to the shelf', 'Pick up the right from the corner', 'Pick up the right from the platform', 'Place the ball on the drawer', 'move the ball to the right']  —  1 questions
+  [scene 13373] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the table into the center', 'Grab the pot with the gripper', 'Lift the table upward', 'Rotate the pot clockwise', 'uncover the pot and put the lid on the table']  —  1 questions
+  [scene 1161] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the green block with the gripper', 'Lift the black bowl upward', 'Push the green block towards the shelf', 'Slide the black bowl to the right', 'put the green block in the black bowl']  —  1 questions
+  [scene 2778] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the block to the bin', 'Pick up the block from the floor', 'Pick up the bowl from the platform', 'Place the block on the surface', 'put the green block in the bowl']  —  1 questions
+  [scene 6594] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the glass lid with the bin', 'Grab the glass lid with the gripper', 'Move the glass lid to the corner', 'Slide the glass lid to the right', 'remove the glass lid from the silver pot']  —  1 questions
+  [scene 13814] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the bowl with open gripper', 'Closing gripper to grasp the bowl', 'Firmly grasping the bowl', 'Moving away with open gripper after releasing the bowl', 'None of the above']  —  1 questions
+  [scene 93] The robot is tasked to pick up the bowl from the lazy susan and put bowl on the plate. The robot is interacting with the
+
+Category: ['Approaching the brown chip bag with open gripper', 'Closing gripper to grasp the brown chip bag', 'Firmly grasping the brown chip bag', 'Moving away with open gripper after releasing the brown chip bag', 'Releasing the brown chip bag by opening gripper']  —  1 questions
+  [scene 4665] The robot is tasked to approaching the brown chip bag with open gripper with the brown chip bag. After Approaching the b
+
+Category: ['Approaching the chip bag with open gripper', 'Closing gripper to grasp the chip bag', 'Firmly grasping the chip bag', 'Moving away with open gripper after releasing the chip bag', 'None of the above']  —  1 questions
+  [scene 4665] The robot is tasked to firmly grasping the chip bag with the chip bag. After Firmly grasping the chip bag, what will be 
+
+Category: ['Lift the spoon upward', 'Rotate the spoon clockwise', 'Slide the bowl to the right', 'Slide the spoon to the right', 'use the spoon to stir the contents of the bowl']  —  1 questions
+  [scene 2702] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Push the extension cord towards the shelf', 'Push the switch towards the surface', 'Rotate the extension cord clockwise', 'Slide the switch to the right', 'click on the middle switch on the extension cord']  —  1 questions
+  [scene 2109] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the mug with the gripper', 'Rotate the mug clockwise', 'Rotate the object clockwise', 'Slide the mug to the right', 'remove the object from the mug']  —  1 questions
+  [scene 2914] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the box with the gripper', 'Lift the box upward', 'Place the box on the box', 'Place the box on the table', 'remove the bottle from the top of the box and place it on the table']  —  1 questions
+  [scene 14905] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the box with the gripper', 'None of the above', 'Rotate the bottle clockwise', 'Rotate the box clockwise', 'Slide the bottle to the right']  —  1 questions
+  [scene 14079] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['None of the above', 'Pick up the table from the corner', 'Place the mug on the shelf', 'Rotate the mug clockwise', 'Rotate the table clockwise']  —  1 questions
+  [scene 1241] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the plastic bag with the none', 'Move the plastic bag to the there are no location or spatial references mentioned.', 'Place the black object on the there are no location or spatial references mentioned.', 'Place the plastic bag on the there are no location or spatial references mentioned.', 'pick up the black object and put it in the plastic bag']  —  1 questions
+  [scene 1458] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the box with the right', 'Grab the book with the gripper', 'None of the above', 'Rotate the bottle clockwise', 'Rotate the cup clockwise']  —  1 questions
+  [scene 13590] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the box with the table', 'Drop the box into the table', 'Move the table to the box', 'Rotate the table clockwise', 'remove the bag from the box and place it on the table']  —  1 questions
+  [scene 12939] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the tap into the left', 'Lift the tap upward', 'Push the tap towards the faucet', 'Slide the sink to the right', 'push the faucet of the sink to the left and close the tap']  —  1 questions
+  [scene 5668] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the toy with the there are no specific location or spatial reference mentions in that instruction.', 'Move the ball to the there are no specific location or spatial reference mentions in that instruction.', 'None of the above', 'Pick up the plate from the none', 'Slide the bottle to the right']  —  1 questions
+  [scene 8587] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the table with the gripper', "Place the table on the so there's nothing to extract.", 'Push the cloth towards the there are no specific locations mentioned', 'Slide the table to the right', 'put the cloth on the table']  —  1 questions
+  [scene 2488] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the door to the cabinet', 'Move the door to the right', 'Rotate the cabinet clockwise', 'Rotate the door clockwise', 'open the left door of the cabinet on the right']  —  1 questions
+  [scene 15382] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the cord with the tray', 'Push the blind towards the corner', 'Rotate the cord clockwise', 'Slide the cord to the right', 'pull the blind pull cord']  —  1 questions
+  [scene 14254] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the cup with the gripper', 'Grab the pen with the gripper', 'Lift the pen upward', 'Slide the pen to the right', 'take the pen out of the cup']  —  1 questions
+  [scene 4313] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the cup into the bin', 'Place the shelf on the platform', 'Push the cup towards the shelf', 'Push the shelf towards the floor', 'place the cup on the shelf']  —  1 questions
+  [scene 10503] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the table into the table', 'Grab the bottle with the gripper', 'Move the table to the bin', 'Rotate the table clockwise', 'put the bottle in the middle of the table']  —  1 questions
+  [scene 5045] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the carrot with the bin', 'Drop the pot into the tray', 'Move the carrot to the floor', 'Pick up the carrot from the platform', 'put the carrot plush inside the pot in the sink']  —  1 questions
+  [scene 5965] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the pan into the none', 'Drop the towel into the none', 'Place the towel on the there are no specific locations mentioned in the given sentence.', 'Push the towel towards the none', 'use the towel to wipe the pan']  —  1 questions
+  [scene 13729] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the block with the gripper', 'Place the container on the etc.)', 'Rotate the book clockwise', 'Rotate the container clockwise', 'reposition the hanger']  —  1 questions
+  [scene 1442] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the glass panel with the gripper', 'Lift the white cloth upward', 'Pick up the glass panel from the tray', 'Push the white cloth towards the center', 'hang the white cloth on the glass panel']  —  1 questions
+  [scene 8460] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the lid into the there are no specific locations or spatial references mentioned in the instruction.', 'Lift the teapot upward', 'None of the above', 'Rotate the lid clockwise', 'Slide the lid to the right']  —  1 questions
+  [scene 11791] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the striped bowl into the striped bowl', 'Lift the white plate upward', 'Move the green objects to the green objects', 'Slide the striped bowl to the right', 'stir the items in the striped bowl then take two green objects out and put them onto the white plate']  —  1 questions
+  [scene 12384] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the remote with the drawer', 'Move the table to the tray', 'Push the remote towards the corner', 'Slide the remote to the right', 'move the remote, which is on the table, closer to the other remote']  —  1 questions
+  [scene 14817] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the ball with the gripper', 'Grab the plate with the gripper', 'Lift the cup upward', 'Rotate the box clockwise', 'turn on the extension cable']  —  1 questions
+  [scene 11586] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the tower upward', 'Move the block to the shelf', 'None of the above', 'Push the tower towards the shelf', 'Rotate the tower clockwise']  —  1 questions
+  [scene 9348] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the stapler with open gripper', 'Closing gripper to grasp the stapler', 'Firmly grasping the stapler', 'Moving away with open gripper after releasing the stapler', 'Releasing the stapler by opening gripper']  —  1 questions
+  [scene 271] The robot is tasked to press the stapler. The robot is interacting with the stapler. Which phase of the grasp action is 
+
+Category: ['Approaching the detergent with open gripper', 'Firmly grasping the detergent', 'Moving away with open gripper after releasing the detergent', 'None of the above', 'Releasing the detergent by opening gripper']  —  1 questions
+  [scene 190] The robot is tasked to approaching the detergent with open gripper with the detergent. After Approaching the detergent w
+
+Category: ['Approaching the light lamp with open gripper', 'Closing gripper to grasp the light lamp', 'Firmly grasping the light lamp', 'Moving away with open gripper after releasing the light lamp', 'Releasing the light lamp by opening gripper']  —  1 questions
+  [scene 44] The robot is tasked to turn on the red light lamp. The robot is interacting with the light lamp. Which phase of the gras
+
+Category: ['Approaching the coke can with open gripper', 'Closing gripper to grasp the coke can', 'Firmly grasping the coke can', 'Moving away with open gripper after releasing the coke can', 'None of the above']  —  1 questions
+  [scene 1198] The robot is tasked to place coke can upright. The robot is interacting with the coke can. Which phase of the grasp acti
+
+Category: ['Move the object to the base table', 'Pick up the cup from the base table', 'Pick up the object from the base table', 'Slide the base table to the right', 'pick up the object from the kitchen base table and put it in the cup']  —  1 questions
+  [scene 4024] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the small block with the floor', 'Align the stack with the table', 'Grab the small block with the gripper', 'Place the stack on the shelf', 'remove the small block from the stack']  —  1 questions
+  [scene 4559] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the plate into the right', 'None of the above', 'Place the plate on the right', 'Push the block towards the stove', 'Slide the cup to the right']  —  1 questions
+  [scene 4751] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the couch with the floor', 'Lift the couch upward', 'Place the couch on the tray', 'Push the cloth towards the floor', 'use the cloth to wipe the side of the couch']  —  1 questions
+  [scene 3980] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the lid with the bin', 'Align the lid with the floor', 'Drop the lid into the floor', 'Slide the lid to the right', 'take the lid off the pot']  —  1 questions
+  [scene 14023] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the book into the table', 'Move the book to the bin', 'None of the above', 'Place the bottle on the floor', 'Slide the pen to the right']  —  1 questions
+  [scene 463] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the cabinet into the there are no specific locations or spatial references mentioned in that instruction.', 'Lift the cabinet upward', 'Place the cabinet on the there are no specific locations or spatial references mentioned in that instruction.', 'Rotate the cabinet clockwise', 'open the right cabinet door']  —  1 questions
+  [scene 548] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the paper into the open cabinet', 'Lift the cabinet upward', 'Move the cabinet to the open cabinet', 'Move the door to the bottom shelf', 'put the paper on the counter on the bottom shelf of the open cabinet and then close the cabinet door']  —  1 questions
+  [scene 14922] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the black box with the only colors (white and black).', 'Grab the black box with the gripper', 'Grab the white towel with the gripper', 'Pick up the white towel from the only colors (white and black).', 'put the white towel in the black box']  —  1 questions
+  [scene 9091] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the marker into the bin', 'Lift the counter upward', 'Place the marker on the floor', 'Push the marker towards the bin', 'pick up the marker, then place it on the counter']  —  1 questions
+  [scene 2985] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Approaching the pepsi can with open gripper', 'Firmly grasping the pepsi can', 'Moving away with open gripper after releasing the pepsi can', 'None of the above', 'Releasing the pepsi can by opening gripper']  —  1 questions
+  [scene 2267] The robot is tasked to approaching the pepsi can with open gripper with the pepsi can. After Approaching the pepsi can w
+
+Category: ['Move the lid to the drawer', 'Place the yellow object on the table', 'Push the lid towards the center', 'Rotate the yellow object clockwise', 'put the yellow object into the pot then put the lid on top']  —  1 questions
+  [scene 908] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the drawer with the there are no specific locations mentioned in this instruction.', 'Grab the screwdriver with the gripper', 'Move the drawer to the none', 'Move the screwdriver to the there are no specific locations mentioned in this instruction.', 'put the screwdriver in the open drawer and then close the drawer']  —  1 questions
+  [scene 7047] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Move the drawer to the as there are no locations specified.', 'None of the above', 'Pick up the screwdriver from the as there are no locations specified.', 'Pick up the screwdriver from the none', 'Slide the screwdriver to the right']  —  1 questions
+  [scene 3512] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the capsule upward', 'Move the capsule to the surface', 'Place the capsule on the bin', 'Slide the bin to the right', 'open the bin, put the capsule inside it and close it']  —  1 questions
+  [scene 9460] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the jug with the red bowl', 'Move the bowl to the red bowl', 'Place the spoon on the red bowl', 'Push the bowl towards the jug', 'put a spoonful of the things in the red bowl into the jug']  —  1 questions
+  [scene 14821] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the lid with the gripper', 'Lift the jug upward', 'None of the above', 'Push the lid towards the none', 'Slide the jug to the right']  —  1 questions
+  [scene 9] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the table into the shelf', 'Move the table to the drawer', 'Push the table towards the platform', 'Rotate the table clockwise', 'press the button on the white lid then take the lid and put it on the table']  —  1 questions
+  [scene 1639] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the bottle into the drawer', 'Drop the toy into the bin', 'Move the box to the floor', 'Rotate the book clockwise', 'press the on/off button']  —  1 questions
+  [scene 8395] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the pen with the corner', 'Align the pen with the platform', 'Pick up the box from the center', 'Pick up the box from the surface', 'turn the door handle to the left and then to the right']  —  1 questions
+  [scene 2305] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the black spoon upward', 'Lift the glass container upward', 'Lift the white plate upward', 'Rotate the glass container clockwise', 'use the black spoon to place some coffee beans from the glass container on the white plate on the left']  —  1 questions
+  [scene 15679] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the silver bowl with the gripper', 'Pick up the silver bowl from the silver bowl', 'Place the silver bowl on the left', 'Push the silver bowl towards the silver bowl', 'use the blue and white towel from the silver bowl to wipe the grey bowl, return the towel to the silver bowl on the left']  —  1 questions
+  [scene 8756] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the watermelon with the center', 'Grab the watermelon with the gripper', 'Move the pot to the shelf', 'Rotate the watermelon clockwise', 'put the watermelon plushie in the black pot']  —  1 questions
+  [scene 12614] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the tissue with the floor', 'None of the above', 'Place the box on the platform', 'Rotate the tissue clockwise', 'Slide the box to the right']  —  1 questions
+  [scene 202] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Lift the slot upward', 'Move the wooden object to the slot', 'Push the yellow block towards the wooden object', 'Rotate the wooden object clockwise', 'pick the yellow block in the slot on the wooden object']  —  1 questions
+  [scene 716] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Closing gripper to grasp the tiger', 'Firmly grasping the tiger', 'Moving away with open gripper after releasing the tiger', 'None of the above', 'Releasing the tiger by opening gripper']  —  1 questions
+  [scene 561] The robot is tasked to moving away with open gripper after releasing the tiger with the tiger. After Moving away with op
+
+Category: ['Approaching the gear with open gripper', 'Firmly grasping the gear', 'Moving away with open gripper after releasing the gear', 'None of the above', 'Releasing the gear by opening gripper']  —  1 questions
+  [scene 118] The robot is tasked to insert the blue gear onto the right peg, followed by the red gear. The robot is interacting with 
+
+Category: ['Closing gripper to grasp the chip', 'Firmly grasping the chip', 'Moving away with open gripper after releasing the chip', 'None of the above', 'Releasing the chip by opening gripper']  —  1 questions
+  [scene 5536] The robot is tasked to move 7up can near green jalapeno chip bag. The robot is interacting with the chip. Which phase of
+
+Category: ['Approaching the kcup holder with open gripper', 'Closing gripper to grasp the kcup holder', 'Firmly grasping the kcup holder', 'Moving away with open gripper after releasing the kcup holder', 'None of the above']  —  1 questions
+  [scene 7] The robot is tasked to firmly grasping the kcup holder with the kcup holder. After Firmly grasping the kcup holder, what
+
+Category: ['Grab the spoon with the gripper', 'Move the bowl to the next', 'Pick up the spoon from the next', 'Push the spoon towards the next', 'pick the black spoon near the red bowl and put it next to the tea towel']  —  1 questions
+  [scene 3870] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Align the kettle with the there are no location-specific references.', 'Pick up the kettle from the there are no location-specific references.', 'Place the kettle on the none', 'Rotate the kettle clockwise', 'press the switch on the kettle']  —  1 questions
+  [scene 4883] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Drop the blue machine into the the', 'Grab the yellow button with the gripper', 'Pick up the blue machine from the the', 'Push the blue machine towards the the', 'press the yellow button on top of the blue machine']  —  1 questions
+  [scene 15404] Which language instruction best describes the robot's trajectory shown in the image?
+
+Category: ['Grab the towel with the gripper', 'Pick up the base table from the base table', 'Pick up the kitchen from the kitchen', 'Place the base table on the base table', 'use the towel to clean the kitchen base table']  —  1 questions
+  [scene 4885] Which language instruction best describes the robot's trajectory shown in the image?
