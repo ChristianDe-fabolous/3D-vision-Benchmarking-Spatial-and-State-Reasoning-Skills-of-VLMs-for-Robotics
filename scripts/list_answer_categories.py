@@ -50,8 +50,10 @@ def _parse_scene_id(entry_id: str):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=5000,
-                        help="Max samples to scan (default 5000)")
+    parser.add_argument("--limit", type=int, default=None,
+                        help="Max samples to scan (default: all)")
+    parser.add_argument("--split", default="train",
+                        help="Dataset split to use (default: train)")
     parser.add_argument("--examples", type=int, default=100,
                         help="Max example questions per category from different scenes (default 100)")
     parser.add_argument("--no-examples", action="store_true",
@@ -59,15 +61,15 @@ def main():
     parser.add_argument("--local-data", default=None,
                         help="Local dataset directory (skips HuggingFace)")
     parser.add_argument("--output", default=None,
-                        help="Save output to file (default: outputs/answer_categories.txt)")
+                        help="Save output to file (default: analysis/answer_categories_<split>.txt)")
     args = parser.parse_args()
 
     from datasets import load_dataset as hf_load
 
     if args.local_data:
-        ds = hf_load("parquet", data_dir=args.local_data, split="test", streaming=True)
+        ds = hf_load("parquet", data_dir=args.local_data, split=args.split, streaming=True).select_columns(["id", "question", "choices"])
     else:
-        ds = hf_load("keplerccc/Robo2VLM-1", split="test", streaming=True)
+        ds = hf_load("keplerccc/Robo2VLM-1", split=args.split, streaming=True).select_columns(["id", "question", "choices"])
 
     # category -> count
     counts: dict[tuple, int] = defaultdict(int)
@@ -78,9 +80,12 @@ def main():
 
     scanned = 0
     for row in ds:
-        if scanned >= args.limit:
+        if args.limit is not None and scanned >= args.limit:
             break
         scanned += 1
+
+        if scanned % 1000 == 0:
+            print(f"  processed {scanned}...", flush=True)
 
         if _is_invalid(row["id"]):
             continue
@@ -118,7 +123,7 @@ def main():
     output = "\n".join(lines)
     print(output)
 
-    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "outputs" / "answer_categories.txt"
+    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "outputs" / f"answer_categories_{args.split}.txt"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(output)
     print(f"\nSaved to {out_path}")

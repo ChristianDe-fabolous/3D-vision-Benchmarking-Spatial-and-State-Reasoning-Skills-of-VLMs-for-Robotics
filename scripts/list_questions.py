@@ -42,32 +42,37 @@ def _to_template(question: str) -> str:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=5000,
-                        help="Max samples to scan (default 5000)")
+    parser.add_argument("--limit", type=int, default=None,
+                        help="Max samples to scan (default: all)")
+    parser.add_argument("--split", default="train",
+                        help="Dataset split to use (default: train)")
     parser.add_argument("--local-data", default=None,
                         help="Local dataset directory (skips HuggingFace)")
     parser.add_argument("--output", default=None,
-                        help="Save results to a file (default: outputs/question_templates.txt)")
+                        help="Save results to a file (default: analysis/question_templates.txt)")
     args = parser.parse_args()
 
     from datasets import load_dataset as hf_load
 
     if args.local_data:
-        ds = hf_load("parquet", data_dir=args.local_data, split="test", streaming=True)
+        ds = hf_load("parquet", data_dir=args.local_data, split=args.split, streaming=True).select_columns(["id", "question", "choices"])
     else:
-        ds = hf_load("keplerccc/Robo2VLM-1", split="test", streaming=True)
+        ds = hf_load("keplerccc/Robo2VLM-1", split=args.split, streaming=True).select_columns(["id", "question", "choices"])
 
     counts: dict[str, int] = defaultdict(int)
     examples: dict[str, str] = {}
 
     scanned = 0
     for row in ds:
-        if scanned >= args.limit:
+        if args.limit is not None and scanned >= args.limit:
             break
         scanned += 1
 
         if _is_invalid(row["id"]):
             continue
+
+        if scanned % 1000 == 0:
+            print(f"  processed {scanned}...", flush=True)
 
         template = _to_template(row["question"])
         counts[template] += 1
@@ -84,7 +89,7 @@ def main():
     output = "\n".join(lines)
     print(output)
 
-    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "outputs" / "question_templates.txt"
+    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "outputs" / f"question_templates_{args.split}.txt"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(output)
     print(f"\nSaved to {out_path}")
