@@ -172,8 +172,6 @@ def load_dataset(
             metadata["scene_id"] = scene_id
         if question_types:
             metadata["question_types"] = question_types
-            # Primary type for single-type analyses
-            metadata["question_type"] = question_types[0]
         yield Sample(
             id=row["id"],
             task=task,

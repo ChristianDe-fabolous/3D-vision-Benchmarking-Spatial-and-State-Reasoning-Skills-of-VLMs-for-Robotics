@@ -94,12 +94,11 @@ logs/
   "predicted_label": "No",
   "correct": true,
   "scene_id": "14346",
-  "question_types": ["task_success"],
-  "question_type": "task_success"
+  "question_types": ["task_success"]
 }
 ```
 
-`question_types` is the full list of all matched types (a question can match more than one). `question_type` is the primary type (first match) used for per-type metric breakdowns.
+`question_types` is the list of all matched types (a question can match more than one). The first entry is used as the primary type for per-type metric breakdowns.
 
 ---
 

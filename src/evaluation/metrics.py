@@ -18,7 +18,8 @@ def accuracy_by_field(results: List[dict], field: str) -> Dict[str, float]:
     """
     buckets: Dict[str, List[bool]] = defaultdict(list)
     for r in results:
-        key = str(r.get(field, "unknown"))
+        val = r.get(field, "unknown")
+        key = str(val[0] if isinstance(val, list) else val)
         buckets[key].append(r["correct"])
     return {k: sum(v) / len(v) for k, v in buckets.items()}
 
@@ -85,7 +86,7 @@ def question_type_analysis(results: List[dict], outlier_std: float) -> dict:
     """Per-question-type accuracy with outlier flagging."""
     buckets: Dict[str, List[bool]] = defaultdict(list)
     for r in results:
-        qt = r.get("question_type")
+        qt = (r.get("question_types") or [None])[0]
         if qt:
             buckets[qt].append(r["correct"])
 
@@ -122,7 +123,7 @@ def scene_analysis_by_question_type(results: List[dict], min_questions: int, out
     """For each question type, run scene_analysis on that subset of results. Currently unused."""
     by_type: Dict[str, List[dict]] = defaultdict(list)
     for r in results:
-        qt = r.get("question_type")
+        qt = (r.get("question_types") or [None])[0]
         if qt:
             by_type[qt].append(r)
     return {qt: scene_analysis(subset, min_questions, outlier_std) for qt, subset in by_type.items()}
@@ -134,7 +135,7 @@ def cross_bucket_scene_analysis(results: List[dict]) -> Dict[str, Dict[str, dict
     data: Dict[str, Dict[str, List[bool]]] = defaultdict(lambda: defaultdict(list))
     for r in results:
         scene_id = r.get("scene_id")
-        qt = r.get("question_type")
+        qt = (r.get("question_types") or [None])[0]
         if scene_id and qt:
             data[scene_id][qt].append(r["correct"])
     return {

@@ -37,7 +37,7 @@ def save_type_issues(output_dir: Path, results: List[dict]) -> None:
     2. Questions that matched no question type but were still included in the run.
     """
     multi: list[dict] = [r for r in results if len(r.get("question_types", [])) > 1]
-    untyped: list[dict] = [r for r in results if not r.get("question_type")]
+    untyped: list[dict] = [r for r in results if not r.get("question_types")]
 
     def fmt(r: dict) -> str:
         return (
@@ -76,8 +76,8 @@ def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool
     summary["scene_analysis"] = scene_analysis(results, SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD)
 
     # Question-type breakdowns — only populated when QUESTION_TYPES is configured
-    if any(r.get("question_type") for r in results):
-        summary["by_question_type"] = accuracy_by_field(results, "question_type")
+    if any(r.get("question_types") for r in results):
+        summary["by_question_type"] = accuracy_by_field(results, "question_types")
         summary["question_type_analysis"] = question_type_analysis(results, SCENE_OUTLIER_STD)
 
     summary["answer_distribution"] = answer_distribution_analysis(results)

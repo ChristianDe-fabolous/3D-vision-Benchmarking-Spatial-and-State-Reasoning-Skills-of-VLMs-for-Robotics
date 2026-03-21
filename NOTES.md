@@ -158,8 +158,7 @@ logs/
 Written one line at a time during the run (each write is immediately flushed). This means results are not lost if the run crashes. Each line contains the question, choices, ground truth, raw model response, parsed prediction, and whether it was correct. Metadata fields included if available:
 
 - `scene_id` — parsed from entry ID
-- `question_types` — list of all matched type names (can be more than one)
-- `question_type` — first matched type (primary, used for per-type metrics)
+- `question_types` — list of all matched type names (can be more than one); first entry is used as primary for per-type metrics
 
 ### `summary.json` (`src/evaluation/results.py`)
 
