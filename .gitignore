@@ -21,6 +21,10 @@ env/
 # Run outputs (model responses, logs, summaries)
 outputs/
 logs/
+analysis/
+
+# Project proposal (LaTeX, do not track)
+project-proposal/
 
 # Dataset / model cache (large files)
 data/
