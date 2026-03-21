@@ -45,6 +45,7 @@ python main.py --task <task> --model <model> [options]
 | `--split` | no | `train`, `test` | `test` | Dataset split |
 | `--limit` | no | int | None | Stop after N samples (useful for testing) |
 | `--local-data` | no | path | None | Load from a local directory instead of HuggingFace |
+| `--analyse-categories` | no | flag | off | Include per-answer-category accuracy breakdown in summary |
 
 ### Examples
 
@@ -63,7 +64,7 @@ python main.py --task multiview --model qwen-3b --local-data /path/to/data
 
 ## Outputs
 
-Each run writes to `outputs/<run_id>/` where `run_id` is `<timestamp>_<task>_<model>`:
+Each run writes to `outputs/<run_id>/` where `run_id` is `<timestamp>_<task>_<model>_<prompt>`:
 
 ```
 outputs/
@@ -71,6 +72,7 @@ outputs/
     config.json                   # exact run parameters
     results.jsonl                 # one JSON line per evaluated sample
     summary.json                  # aggregated accuracy metrics
+    question_type_issues.txt      # questions with multiple types or no type assigned
 logs/
   <run_id>.log                    # debug-level log of every inference
 ```
@@ -79,8 +81,8 @@ logs/
 
 ```json
 {
-  "run_id": "2026-03-17_10-00-00_failure_mode_qwen",
-  "model_id": "qwen",
+  "run_id": "2026-03-17_10-00-00_failure_mode_qwen-3b_default",
+  "model_id": "qwen-3b",
   "entry_id": "42",
   "task": "failure_mode",
   "question": "Has the robot successfully completed the task?",
@@ -90,9 +92,14 @@ logs/
   "response_raw": "B",
   "predicted_index": 1,
   "predicted_label": "No",
-  "correct": true
+  "correct": true,
+  "scene_id": "14346",
+  "question_types": ["task_success"],
+  "question_type": "task_success"
 }
 ```
+
+`question_types` is the full list of all matched types (a question can match more than one). `question_type` is the primary type (first match) used for per-type metric breakdowns.
 
 ---
 
@@ -102,7 +109,7 @@ logs/
 src/
   main.py               # CLI entry point
   pipeline.py           # main evaluation loop
-  config.py             # paths, model IDs, invalid entry IDs
+  config.py             # paths, model IDs, QUESTION_TYPES, invalid entry IDs
 
   data/
     dataset.py          # HuggingFace streaming loader, Sample dataclass
@@ -119,13 +126,24 @@ src/
     qwen.py             # Qwen2.5-VL-7B-Instruct wrapper
 
   evaluation/
-    metrics.py          # accuracy, accuracy_by_field, summarize
-    results.py          # save_config, save_summary
+    metrics.py          # accuracy, scene_analysis, answer_distribution, etc.
+    results.py          # save_config, save_summary, save_type_issues
 
   utils/
-    cache.py            # ResponseCache (JSONL-based skip logic)
+    cache.py            # ResponseCache (JSONL-based skip logic, not currently active)
     logging.py          # setup_logger, SampleLogger
+
+scripts/
+  list_questions.py                      # unique question templates + counts
+  list_answer_categories.py             # unique answer choice sets + counts
+  list_questions_with_answers.py        # questions with their answer sets (single pass)
+  list_questions_with_answers_chunked.py # same but with checkpointing + resume
+  merge_questions_with_answers_chunks.py # merge chunk files into final text output
+  list_question_type_overlaps.py        # questions matching multiple types or no type
+  run_slurm.sh                          # SLURM job template (TODO: adapt to cluster)
 ```
+
+All dataset analysis scripts write to `dataset_analysis/`. See NOTES.md for details.
 
 ---
 

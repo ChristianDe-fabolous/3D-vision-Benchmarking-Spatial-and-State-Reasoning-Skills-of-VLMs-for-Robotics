@@ -2,32 +2,43 @@
 
 ---
 
-## Question Filtering
+## Question Filtering and Type Assignment
 
 The dataset contains many question types across many robotic tasks. We do not use all of them — only the subset relevant to our two research tasks.
 
-Filtering and question type assignment happen in a single step via `_classify_task_and_type()` in `src/data/dataset.py`. The function matches question text against `QUESTION_TYPES` in `config.py`, which is the single source of truth:
+Filtering and question type assignment happen in a single step via `_classify_task_and_types()` in `src/data/dataset.py`. The function matches question text against `QUESTION_TYPES` in `config.py`, which is the single source of truth:
 
 ```python
 QUESTION_TYPES = {
     "failure_mode": {
-        "goal_state":  ["successfully completed", "goal state"],
-        "grasp_state": ["has the robot", ...],
+        "task_success":       ["successfully completed the task"],
+        "grasp_phase_current": ["which phase of the grasp action is shown"],
+        "grasp_phase_next":   ["what will be the robot's next action phase"],
+        "gripper_state":      ["is the robot's gripper open"],
+        "grasp_stability":    ["is the robot's grasp of the", "stable"],
+        "obstacle_detection": ["is there any obstacle blocking the robot from reaching"],
     },
     "multiview": {
-        "correspondence": ["3d location", "same 3d", "corresponding"],
-        "depth":          ["left image", "right image"],
+        "cross_view_correspondence": ["corresponding to the same 3d location", "same 3d location"],
+        "relative_depth":            ["which colored point is closest", "which colored point is farthest",
+                                      "closest to the camera", "farthest from the camera"],
     },
 }
 ```
 
-A question is matched against all patterns across all tasks and types. The first match determines both the task and the question type. If nothing matches, the question is skipped. This means `QUESTION_TYPES` serves double duty: it filters the 600k questions down to only what we care about, and it assigns a type name used for per-type metric breakdowns.
+A question is matched against all patterns within its task. **All matching type names are returned** — a question can belong to more than one type. The full list is stored as `question_types` in the result entry; `question_type` holds the first match and is used for single-type metric breakdowns. Questions that match no pattern in any task are skipped entirely.
 
-**`QUESTION_TYPES` is currently empty** — it needs to be filled in before type-level metrics appear. Use `scripts/list_questions.py` to discover all question templates first (see below).
+### Multi-type overlap and untyped questions
+
+Every run writes `question_type_issues.txt` to the run output directory with two sections:
+- **Multi-type overlap**: questions that matched more than one type, listed with their id, choices, correct answer, and which types matched.
+- **Untyped but included**: questions that matched a task via the `TASK_KEYWORDS` fallback but no `QUESTION_TYPES` pattern — they appear in runs without a type assignment.
+
+The same report can be generated for the full dataset without running inference using `scripts/list_question_type_overlaps.py`.
 
 ### Fallback when QUESTION_TYPES is empty
 
-When `QUESTION_TYPES` is not yet configured, `_classify_task_and_type()` falls back to `TASK_KEYWORDS` (hardcoded in `data/dataset.py`) for task assignment only — no question type is assigned. This preserves current filtering behaviour during development. Once `QUESTION_TYPES` is fully populated, the fallback and `TASK_KEYWORDS` can be removed.
+When `QUESTION_TYPES` is not yet configured, `_classify_task_and_types()` falls back to `TASK_KEYWORDS` (hardcoded in `data/dataset.py`) for task assignment only — no question type is assigned. Once `QUESTION_TYPES` is fully populated, the fallback and `TASK_KEYWORDS` can be removed.
 
 ---
 
@@ -55,39 +66,72 @@ All available cameras are combined into a grid layout, padded to uniform size wi
 
 ---
 
-## Exploration Scripts
+## Dataset Analysis Scripts
 
-Before filling in `QUESTION_TYPES` in `config.py`, you need to know what questions and answer formats actually exist in the dataset. Two scripts exist for this.
+All scripts write output to `dataset_analysis/` (gitignored). They all support `--split` (default: `train`), `--limit`, and `--local-data`. All stream from HuggingFace and only fetch the columns they need (no images downloaded).
+
+Progress is printed every 1000 rows.
 
 ### `scripts/list_questions.py`
 
-Streams through the dataset and extracts all distinct question templates (normalised by stripping scene-specific prefixes). Prints each template with how often it appears and an example.
+Streams through the dataset and extracts all distinct question templates (normalised by stripping scene-specific prefixes). Output saved to `dataset_analysis/question_templates_<split>.txt`.
 
 ```bash
-python scripts/list_questions.py --limit 5000
-python scripts/list_questions.py --local-data /path/to/data
+python scripts/list_questions.py
+python scripts/list_questions.py --split test --limit 5000
 ```
 
-Output is saved to `outputs/question_templates.txt`.
-
-**Why this exists:** the dataset has ~107 GB of images and thousands of question variants. Before you can decide which questions to include in your evaluation (and how to classify them into types), you need to see the full vocabulary of question phrasings. This script lets you do that without downloading the full dataset.
-
-**Caveat:** the number of distinct templates will appear much higher than the actual number of question types. Many questions reference a scene-specific object (e.g. "the orange cube", "the blue ball", "the red cylinder") in both the question text and the answer choices. Since objects differ per scene, each object mention produces a separate template even though the underlying question type is the same. When defining keyword patterns for `QUESTION_TYPES`, match the shared structural part of the question, not the object-specific parts.
+**Caveat:** the number of distinct templates will appear much higher than the actual number of question types — many questions reference scene-specific objects. When defining keyword patterns for `QUESTION_TYPES`, match the shared structural part, not the object-specific parts.
 
 ### `scripts/list_answer_categories.py`
 
-Streams the dataset and groups questions by their set of answer choices (e.g. `["Yes", "No"]` vs `["Yes", "No", "Cannot be determined"]`). Prints each category with a count and example questions from different scenes.
+Groups questions by their set of answer choices and reports counts and example questions per category. Output saved to `dataset_analysis/answer_categories_<split>.txt`.
 
 ```bash
-python scripts/list_answer_categories.py --limit 5000
-python scripts/list_answer_categories.py --no-examples   # counts only
+python scripts/list_answer_categories.py
+python scripts/list_answer_categories.py --no-examples
 ```
 
-Output is saved to `outputs/answer_categories.txt`.
+**Caveat:** color-based questions (relative depth, relative direction) produce many near-identical categories because the set of colors varies per scene.
 
-**Why this exists:** the number of answer choices varies per question, which affects both prompt design and the random baseline (1/2 vs 1/3 vs 1/5). Knowing which categories exist and how many questions each has is necessary for deciding which to include and for interpreting results (a 50% accuracy on a binary question is very different from 50% on a 5-way question).
+### `scripts/list_questions_with_answers.py`
 
-**Caveat:** categories do not group as cleanly as one might expect. For color-based questions (relative depth, relative direction) the choices are color names like "Red", "Blue", "Green", "Yellow", "Purple", "None of the above". Since not always the same set of colors is present in a given scene, the same question type produces multiple distinct answer categories depending on which colors appeared.
+Lists every unique question with occurrence count, and below it all distinct answer choice sets that appear with that question (also counted). Questions and choice sets sorted by descending count. If a question has more than 5 distinct answer sets, only the top 4 are shown and the rest collapsed into `(others)`. Output saved to `dataset_analysis/questions_with_answers_<split>.txt`.
+
+```bash
+python scripts/list_questions_with_answers.py
+```
+
+### `scripts/list_questions_with_answers_chunked.py` + `merge_questions_with_answers_chunks.py`
+
+Same as above but with checkpointing — writes a JSONL delta file every `--checkpoint` rows (default 100k) so a crash does not lose all progress. On restart it detects the state file and resumes automatically via `.skip()`.
+
+```bash
+# Run (resumes automatically if interrupted)
+python scripts/list_questions_with_answers_chunked.py --checkpoint 100000
+
+# Start fresh, ignoring existing state
+python scripts/list_questions_with_answers_chunked.py --fresh
+
+# Merge all chunks into final text output
+python scripts/merge_questions_with_answers_chunks.py
+```
+
+Chunk files: `dataset_analysis/chunks/<split>/chunk_<start>_<end>.jsonl`
+State file: `dataset_analysis/chunks/<split>/state.json`
+
+### `scripts/list_question_type_overlaps.py`
+
+Scans the dataset and reports:
+1. Questions matching more than one question type (per current `QUESTION_TYPES` config)
+2. Questions matching a task via `TASK_KEYWORDS` fallback but no question type
+
+Each entry is listed with id, question, choices, and correct answer. Output saved to `dataset_analysis/question_type_overlaps_<split>.txt`.
+
+```bash
+python scripts/list_question_type_overlaps.py
+python scripts/list_question_type_overlaps.py --split test
+```
 
 ---
 
@@ -101,6 +145,7 @@ outputs/
     config.json                  # exact CLI arguments for this run
     results.jsonl                # one JSON line per evaluated sample, written live
     summary.json                 # aggregated metrics (written at end of run)
+    question_type_issues.txt     # multi-type overlaps and untyped questions in this run
 
 logs/
   <run_id>.log                   # debug-level log of every inference step
@@ -110,11 +155,23 @@ logs/
 
 ### `results.jsonl` (`src/utils/logging.py:34`)
 
-Written one line at a time during the run (each write is immediately flushed). This means results are not lost if the run crashes. Each line contains the question, choices, ground truth, raw model response, parsed prediction, and whether it was correct. Metadata fields (e.g. `scene_id`, `question_type`) are included if available.
+Written one line at a time during the run (each write is immediately flushed). This means results are not lost if the run crashes. Each line contains the question, choices, ground truth, raw model response, parsed prediction, and whether it was correct. Metadata fields included if available:
+
+- `scene_id` — parsed from entry ID
+- `question_types` — list of all matched type names (can be more than one)
+- `question_type` — first matched type (primary, used for per-type metrics)
 
 ### `summary.json` (`src/evaluation/results.py`)
 
 Written once at the end of the run. Contains all metrics described below.
+
+### `question_type_issues.txt` (`src/evaluation/results.py`)
+
+Written once at the end of every run. Two sections:
+- Questions that matched multiple question types (with id, choices, correct answer, matched types)
+- Questions that were included in the run but matched no question type (via fallback)
+
+If both sections are empty the file still exists so you can confirm it was checked.
 
 ### Response cache (not currently active)
 
@@ -137,6 +194,8 @@ The model is expected to reply with a single letter (A, B, C, D, or E). Parsing 
 
 A `None` result counts as **unparseable** — not wrong, tracked separately in `summary.json`. This matters because an unparseable response could mean the model refused to answer, produced verbose output instead of a letter, or genuinely didn't know. The prompts instruct the model to reply with only the letter to minimise this.
 
+**Caveat:** the parser only checks the first character. A response like `"A real interesting question"` would be parsed as `A`. The full raw response is always stored in `response_raw` so re-parsing with a stricter parser is possible without re-running inference.
+
 `evaluate()` (`tasks/base.py:31`) calls `parse_response` and returns `True` only if the parsed index matches `sample.correct_answer`.
 
 ---
@@ -155,24 +214,18 @@ Also reported: number of wrong predictions, number of unparseable responses (mod
 
 ### Accuracy by question type (`by_question_type`)
 
-Questions are classified into named types via `QUESTION_TYPES` in `config.py`. This is a nested dict: `task → {type_name → [keyword patterns]}`. A question is assigned the first matching type.
-
-Each question type is intended to correspond to one research hypothesis — e.g. "does the model understand spatial depth?" maps to one type, "can it identify object state?" to another. **Note:** the mapping between types and hypotheses is not tracked in the code — it lives in the research design and should be documented separately once types are defined.
-
-`by_question_type` is a flat dict of accuracy per type:
+Questions are classified into named types via `QUESTION_TYPES` in `config.py`. A question can match multiple types — `question_type` (the first match) is used here for per-type accuracy. Only present when `QUESTION_TYPES` is populated.
 
 ```json
 "by_question_type": {
-  "state_recognition": 0.62,
-  "spatial_depth": 0.41
+  "task_success": 0.62,
+  "grasp_phase_current": 0.41
 }
 ```
 
-Both this and `question_type_analysis` (below) only appear in `summary.json` when `QUESTION_TYPES` is populated in `config.py`.
-
 ### Question type outlier analysis (`question_type_analysis`)
 
-Same outlier logic as scene analysis, but applied across question types. Reports the accuracy for every question type plus which types are statistical outliers — performing unusually well or badly compared to the mean across types.
+Same outlier logic as scene analysis, but applied across question types. Reports accuracy for every type plus which are statistical outliers. Only present when `QUESTION_TYPES` is populated.
 
 ```json
 "question_type_analysis": {
@@ -181,8 +234,8 @@ Same outlier logic as scene analysis, but applied across question types. Reports
   "std": 0.12,
   "outlier_std_threshold": 1.0,
   "all_types": [
-    {"question_type": "state_recognition", "accuracy": 0.62, "n": 80},
-    {"question_type": "spatial_depth",     "accuracy": 0.41, "n": 60}
+    {"question_type": "task_success",        "accuracy": 0.62, "n": 80},
+    {"question_type": "grasp_phase_current", "accuracy": 0.41, "n": 60}
   ],
   "outliers_above": [...],
   "outliers_below": [...]
@@ -193,7 +246,7 @@ Same outlier logic as scene analysis, but applied across question types. Reports
 
 Each dataset entry belongs to a scene (a specific robot + environment combination). The scene ID is parsed from the entry ID (`data/dataset.py:110`). Scene analysis reports accuracy for every scene and flags statistical outliers.
 
-Scenes with fewer than `SCENE_MIN_QUESTIONS` questions (default: 5, `config.py:47`) are excluded to avoid noise from very small samples. The remaining scenes are compared to the mean; scenes more than `SCENE_OUTLIER_STD` standard deviations above or below the mean are listed as outliers.
+Scenes with fewer than `SCENE_MIN_QUESTIONS` questions (default: 5, `config.py`) are excluded to avoid noise from very small samples. The remaining scenes are compared to the mean across all included scenes; scenes more than `SCENE_OUTLIER_STD` standard deviations above or below are listed as outliers.
 
 ```json
 "scene_analysis": {
@@ -204,12 +257,8 @@ Scenes with fewer than `SCENE_MIN_QUESTIONS` questions (default: 5, `config.py:4
   "mean_accuracy": 0.612,
   "std": 0.183,
   "outlier_std_threshold": 1.0,
-  "outliers_above": [
-    {"scene_id": "14346", "accuracy": 0.923, "n": 13}
-  ],
-  "outliers_below": [
-    {"scene_id": "3301", "accuracy": 0.167, "n": 6}
-  ]
+  "outliers_above": [{"scene_id": "14346", "accuracy": 0.923, "n": 13}],
+  "outliers_below": [{"scene_id": "3301",  "accuracy": 0.167, "n": 6}]
 }
 ```
 
@@ -217,7 +266,7 @@ This metric helps detect whether model failures are uniformly distributed or con
 
 ### Answer distribution (`answer_distribution`)
 
-Always present in `summary.json`. For each distinct answer label, tracks how often it appears as the ground truth, how often the model predicted it, and the model's accuracy specifically on questions where that label is the correct answer. Sorted by ground truth frequency.
+Always present. For each distinct answer label, tracks how often it appears as the ground truth, how often the model predicted it, and the model's accuracy on questions where that label is correct. Sorted by ground truth frequency.
 
 ```json
 "answer_distribution": [
@@ -229,22 +278,28 @@ Always present in `summary.json`. For each distinct answer label, tracks how oft
 
 Useful for detecting label imbalance (e.g. "No" dominating the ground truth) and whether the model is biased towards predicting certain answers regardless of the question.
 
-### Currently unused metrics
-
-`scene_analysis_by_question_type` and `cross_bucket_scene_analysis` exist in `src/evaluation/metrics.py` but are not called. They are not written to `summary.json`.
-
 ### Answer category analysis (`--analyse-categories`)
 
 Only computed when `--analyse-categories` is passed to `main.py`. Groups questions by their exact set of choices (order-independent) and reports accuracy and random baseline per group. Useful for checking whether accuracy differences between runs are driven by a shift in which question categories are included rather than genuine model improvement.
+
+### Currently unused metrics
+
+`scene_analysis_by_question_type` and `cross_bucket_scene_analysis` exist in `src/evaluation/metrics.py` but are not called. They are not written to `summary.json`.
 
 ---
 
 ## Question Type Configuration Workflow
 
-The intended workflow for setting up question type breakdowns:
+`QUESTION_TYPES` in `config.py` is now populated. The current categories are:
 
-1. Run `scripts/list_questions.py` to see all question templates.
-2. Decide which templates belong to which task and which question type (one type per research hypothesis).
-3. Fill in `QUESTION_TYPES` in `config.py` — this simultaneously controls filtering and type assignment.
-4. Once fully configured, remove `TASK_KEYWORDS` and the fallback branch from `data/dataset.py`.
-5. Run a full evaluation — `summary.json` will now include `by_question_type`, `question_type_analysis`, and `scene_analysis`.
+**failure_mode**: `task_success`, `grasp_phase_current`, `grasp_phase_next`, `gripper_state`, `grasp_stability`, `obstacle_detection`
+
+**multiview**: `cross_view_correspondence`, `relative_depth`
+
+If categories need to be revised:
+
+1. Run `scripts/list_questions_with_answers_chunked.py` + `merge_questions_with_answers_chunks.py` to get the full question/answer inventory.
+2. Run `scripts/list_question_type_overlaps.py` to check for overlapping or unmatched questions.
+3. Update patterns in `QUESTION_TYPES` in `config.py`.
+4. Re-run the overlap script to verify the result.
+5. Once fully configured with no untyped questions, remove `TASK_KEYWORDS` and the fallback branch from `data/dataset.py`.

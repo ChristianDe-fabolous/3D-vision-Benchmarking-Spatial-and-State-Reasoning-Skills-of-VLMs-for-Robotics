@@ -30,6 +30,46 @@ def save_config(output_dir: Path, config: dict) -> None:
         json.dump(config, f, indent=2)
 
 
+def save_type_issues(output_dir: Path, results: List[dict]) -> None:
+    """
+    Write a report of two problem categories to question_type_issues.txt:
+    1. Questions that matched multiple question types.
+    2. Questions that matched no question type but were still included in the run.
+    """
+    multi: list[dict] = [r for r in results if len(r.get("question_types", [])) > 1]
+    untyped: list[dict] = [r for r in results if not r.get("question_type")]
+
+    def fmt(r: dict) -> str:
+        return (
+            f"  id:      {r['entry_id']}\n"
+            f"  q:       {r['question']}\n"
+            f"  choices: {r['choices']}\n"
+            f"  answer:  [{r['ground_truth_index']}] {r['ground_truth_label']}"
+        )
+
+    lines = ["### SECTION 1: MULTI-TYPE OVERLAP\n"]
+    if multi:
+        for r in multi:
+            lines.append(f"\n  types: {r['question_types']}")
+            lines.append(fmt(r))
+    else:
+        lines.append("  (none)")
+
+    lines.append("\n\n### SECTION 2: UNTYPED BUT INCLUDED\n")
+    if untyped:
+        for r in untyped:
+            lines.append("")
+            lines.append(fmt(r))
+    else:
+        lines.append("  (none)")
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    (output_dir / "question_type_issues.txt").write_text("\n".join(lines))
+
+    if multi or untyped:
+        print(f"  Type issues: {len(multi)} multi-type, {len(untyped)} untyped — see question_type_issues.txt")
+
+
 def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool = False) -> None:
     summary = summarize(results)
     summary["by_task"] = accuracy_by_field(results, "task")
@@ -47,6 +87,8 @@ def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool
 
     with open(output_dir / "summary.json", "w") as f:
         json.dump(summary, f, indent=2)
+
+    save_type_issues(output_dir, results)
 
     print(
         f"\nResults: {summary['correct']}/{summary['total']} correct "
