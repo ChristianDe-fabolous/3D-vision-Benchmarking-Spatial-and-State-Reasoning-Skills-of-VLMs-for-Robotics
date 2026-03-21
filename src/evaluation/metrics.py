@@ -168,6 +168,37 @@ def answer_category_analysis(results: List[dict]) -> List[dict]:
     )
 
 
+def answer_distribution_analysis(results: List[dict]) -> List[dict]:
+    """
+    For each distinct answer label, show how often it is the ground truth,
+    how often the model predicted it, and the accuracy when it is the ground truth.
+    """
+    gt_counts: Dict[str, int] = defaultdict(int)
+    pred_counts: Dict[str, int] = defaultdict(int)
+    correct_when_gt: Dict[str, int] = defaultdict(int)
+
+    for r in results:
+        gt = r["ground_truth_label"]
+        pred = r.get("predicted_label")
+        gt_counts[gt] += 1
+        if pred is not None:
+            pred_counts[pred] += 1
+        if r["correct"]:
+            correct_when_gt[gt] += 1
+
+    all_labels = sorted(set(gt_counts) | set(pred_counts))
+    return [
+        {
+            "label": label,
+            "ground_truth_count": gt_counts[label],
+            "predicted_count": pred_counts[label],
+            "accuracy_when_gt": round(correct_when_gt[label] / gt_counts[label], 3)
+            if gt_counts[label] else None,
+        }
+        for label in sorted(all_labels, key=lambda l: -gt_counts[l])
+    ]
+
+
 def summarize(results: List[dict]) -> dict:
     total = len(results)
     correct = sum(r["correct"] for r in results)

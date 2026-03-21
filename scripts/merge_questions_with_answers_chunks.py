@@ -25,7 +25,7 @@ def main():
                         help="Output text file (default: analysis/questions_with_answers_<split>.txt)")
     args = parser.parse_args()
 
-    chunk_dir = Path(__file__).parent.parent / "outputs" / "chunks" / args.split
+    chunk_dir = Path(__file__).parent.parent / "dataset_analysis" / "chunks" / args.split
     if not chunk_dir.exists():
         print(f"No chunk directory found at {chunk_dir}")
         return
@@ -79,7 +79,7 @@ def main():
     output = "\n".join(lines)
     print(output)
 
-    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "outputs" / f"questions_with_answers_{args.split}.txt"
+    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "dataset_analysis" / f"questions_with_answers_{args.split}.txt"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(output)
     print(f"\nSaved to {out_path}")

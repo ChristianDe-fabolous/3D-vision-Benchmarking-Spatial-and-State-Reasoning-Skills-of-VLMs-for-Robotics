@@ -17,6 +17,7 @@ from config import SCENE_MIN_QUESTIONS, SCENE_OUTLIER_STD
 from evaluation.metrics import (
     accuracy_by_field,
     answer_category_analysis,
+    answer_distribution_analysis,
     question_type_analysis,
     scene_analysis,
     summarize,
@@ -38,6 +39,8 @@ def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool
     if any(r.get("question_type") for r in results):
         summary["by_question_type"] = accuracy_by_field(results, "question_type")
         summary["question_type_analysis"] = question_type_analysis(results, SCENE_OUTLIER_STD)
+
+    summary["answer_distribution"] = answer_distribution_analysis(results)
 
     if analyse_categories:
         summary["answer_category_analysis"] = answer_category_analysis(results)

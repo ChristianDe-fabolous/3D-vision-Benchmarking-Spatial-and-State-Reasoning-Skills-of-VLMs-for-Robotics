@@ -65,29 +65,36 @@ class Sample:
         return self.choices[self.correct_answer]
 
 
-def _classify_task_and_type(question: str) -> Tuple[Optional[str], Optional[str]]:
+def _classify_task_and_types(question: str) -> Tuple[Optional[str], List[str]]:
     """
-    Return (task, question_type) for a question.
+    Return (task, [question_types]) for a question.
 
-    Primary: match against QUESTION_TYPES (config.py) — gives both task and type
-    in one step. A question that matches no pattern is skipped (returns None, None).
+    A question may match multiple type patterns within its task — all matching
+    type names are returned. If a question matches types in more than one task,
+    only the first matching task is used (cross-task matches are not expected).
 
+    Primary: match against QUESTION_TYPES (config.py).
     Fallback: when QUESTION_TYPES is empty/unconfigured, match against TASK_KEYWORDS
-    for task assignment only (question_type will be None).
+    for task assignment only (question_types will be []).
+    Returns (None, []) if no match is found — question is skipped.
     """
     q = question.lower()
 
     for task, types in QUESTION_TYPES.items():
-        for type_name, patterns in types.items():
-            if any(p.lower() in q for p in patterns):
-                return task, type_name
+        matched_types = [
+            type_name
+            for type_name, patterns in types.items()
+            if any(p.lower() in q for p in patterns)
+        ]
+        if matched_types:
+            return task, matched_types
 
     # Fallback — remove once QUESTION_TYPES is fully configured
     for task, keywords in TASK_KEYWORDS.items():
         if any(kw in q for kw in keywords):
-            return task, None
+            return task, []
 
-    return None, None
+    return None, []
 
 
 def _parse_choices(raw: str) -> List[str]:
@@ -147,7 +154,7 @@ def load_dataset(
         if _is_invalid(row["id"]):
             continue
 
-        task, question_type = _classify_task_and_type(row["question"])
+        task, question_types = _classify_task_and_types(row["question"])
         if task is None:
             continue  # skip unrecognised question types
 
@@ -163,8 +170,10 @@ def load_dataset(
         metadata = {}
         if scene_id:
             metadata["scene_id"] = scene_id
-        if question_type is not None:
-            metadata["question_type"] = question_type
+        if question_types:
+            metadata["question_types"] = question_types
+            # Primary type for single-type analyses
+            metadata["question_type"] = question_types[0]
         yield Sample(
             id=row["id"],
             task=task,

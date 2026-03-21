@@ -91,7 +91,7 @@ def main():
     output = "\n".join(lines)
     print(output)
 
-    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "outputs" / f"questions_with_answers_{args.split}.txt"
+    out_path = Path(args.output) if args.output else Path(__file__).parent.parent / "dataset_analysis" / f"questions_with_answers_{args.split}.txt"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(output)
     print(f"\nSaved to {out_path}")

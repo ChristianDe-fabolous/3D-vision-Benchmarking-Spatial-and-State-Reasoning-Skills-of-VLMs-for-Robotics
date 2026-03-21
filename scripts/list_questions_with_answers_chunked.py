@@ -62,7 +62,7 @@ def main():
                         help="Ignore existing state and start from scratch")
     args = parser.parse_args()
 
-    chunk_dir = Path(__file__).parent.parent / "outputs" / "chunks" / args.split
+    chunk_dir = Path(__file__).parent.parent / "dataset_analysis" / "chunks" / args.split
     chunk_dir.mkdir(parents=True, exist_ok=True)
     state_path = chunk_dir / "state.json"
 

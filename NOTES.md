@@ -215,6 +215,20 @@ Scenes with fewer than `SCENE_MIN_QUESTIONS` questions (default: 5, `config.py:4
 
 This metric helps detect whether model failures are uniformly distributed or concentrated in specific scenes — which would suggest scene-specific visual properties (lighting, clutter, viewpoint) driving errors rather than the question type.
 
+### Answer distribution (`answer_distribution`)
+
+Always present in `summary.json`. For each distinct answer label, tracks how often it appears as the ground truth, how often the model predicted it, and the model's accuracy specifically on questions where that label is the correct answer. Sorted by ground truth frequency.
+
+```json
+"answer_distribution": [
+  {"label": "No",  "ground_truth_count": 412, "predicted_count": 380, "accuracy_when_gt": 0.871},
+  {"label": "Yes", "ground_truth_count": 201, "predicted_count": 230, "accuracy_when_gt": 0.791},
+  {"label": "Cannot be determined", "ground_truth_count": 38, "predicted_count": 12, "accuracy_when_gt": 0.421}
+]
+```
+
+Useful for detecting label imbalance (e.g. "No" dominating the ground truth) and whether the model is biased towards predicting certain answers regardless of the question.
+
 ### Currently unused metrics
 
 `scene_analysis_by_question_type` and `cross_bucket_scene_analysis` exist in `src/evaluation/metrics.py` but are not called. They are not written to `summary.json`.
