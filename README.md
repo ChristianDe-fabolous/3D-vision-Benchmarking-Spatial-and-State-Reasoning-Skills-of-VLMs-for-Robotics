@@ -153,6 +153,27 @@ All dataset analysis scripts write to `dataset_analysis/`. See NOTES.md for deta
 - **Failure mode augmentation**: some samples have images in reverse order — the model should still identify the correct state
 - **Multiview images**: the `image` field is a pre-composed side-by-side composite of both camera views
 
+### Dataset ID Format
+
+Each entry ID has the form:
+
+```
+{episode_dir}_q{question_index}
+```
+
+Where `episode_dir` is the name of the intermediate extraction directory created during dataset generation:
+
+- **DROID entries**: `droid_{sanitized_language_instruction}_{loop_index}` — e.g. `droid_pick_up_the_block_3_q1`
+- **OXE entries**: `{dataset_name}_{sanitized_language_instruction}_{loop_index}` — e.g. `fractal20220817_data_move_object_5_q2`
+
+The `loop_index` is the processing order counter, **not** a stable episode identifier from the source dataset. The `scene_id` extracted by `_parse_scene_id()` in `data/dataset.py` is this same loop index (the number before `_q{n}`).
+
+**Source traceability:**
+- **DROID (~50% of data)**: traceable back to raw GCS data *only if* the intermediate `extracted_data/` directory from generation time is available. That directory contains a `metadata.json` with the real `episode_id` (a UUID-like folder name), from which the GCS path `gs://gresearch/robotics/droid_raw/1.0.1/.../{episode_id}/` can be reconstructed. See `scripts/fetch_droid_raw.py`.
+- **OXE datasets (~50% of data)**: not reliably traceable. The `episode_id` was never stored (bug: `TFDSTrajectory.get_episode_id()` always returns `""`), and the loop index doesn't correspond to any TFDS shard or episode index. The code that would have used the real episode ID as the trajectory ID was commented out in `robo2vlm-original/scripts/create_huggingface_dataset.py:50–55`.
+
+The `trajectory_id` and `source_file` columns were computed during generation but stripped before the final HuggingFace parquet export — only `id, question, choices, correct_answer, image` are published.
+
 ---
 
 ## Cluster (SLURM)

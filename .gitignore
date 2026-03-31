@@ -25,6 +25,9 @@ logs/
 # Project proposal (LaTeX, do not track)
 project-proposal/
 
+# Robo2VLM paper repo
+robo2vlm-original/
+
 # Dataset / model cache (large files)
 data/
 *.parquet

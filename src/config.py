@@ -45,6 +45,45 @@ QUESTION_TYPES: dict[str, dict[str, list[str]]] = {
     },
 }
 
+# Regex-based question type templates derived directly from the robo2vlm vqa.py
+# generator functions. Variable slots (object names, camera names, step indices,
+# language instructions) are replaced with regex wildcards. Use re.search with
+# re.IGNORECASE. This is an alternative to the substring-based QUESTION_TYPES
+# above — see _classify_task_and_types_template in data/dataset.py.
+QUESTION_TYPE_TEMPLATES: dict[str, dict[str, list[str]]] = {
+    TASK_FAILURE_MODE: {
+        # S1 — vqa_robot_gripper_open
+        "gripper_state":            [r"is the robot's gripper open\?"],
+        # S3 — vqa_object_reachable
+        "obstacle_detection":       [r"is there any obstacle blocking the robot from reaching .+\?"],
+        # S4 — vqa_relative_direction
+        "relative_direction":       [r"in the image from .+ at step \d+, which direction is the .+ relative to the robot's end effector\?"],
+        # I1 — vqa_task_success_state
+        "task_success":             [r"the robot is to .+\. has the robot successfully completed the task\?"],
+        # I2 — is_stable_grasp
+        "grasp_stability":          [r"is the robot's grasp of the .+ stable\?"],
+        # I3 — vqa_goal_configuration
+        "goal_configuration":       [r"the robot's task is to .+\. which configuration shows the goal state that the robot should achieve\?"],
+        # I4 — vqa_action_understanding (grasp phase current)
+        "grasp_phase_current":      [r"the robot is tasked to .+\. the robot is interacting with the .+\. which phase of the grasp action is shown in the image\?"],
+        # I4 — vqa_next_action (grasp phase next)
+        "grasp_phase_next":         [r"the robot is tasked to .+\. after .+, what will be the robot's next action phase\?"],
+        # S6/I6 — vqa_trajectory_understanding
+        "trajectory_understanding": [r"which language instruction best describes the robot's trajectory shown in the image\?"],
+        # S6 — vqa_action_direction_selection
+        "action_direction":         [r"the robot task is to .+\. which colored arrow correctly shows the direction the robot will move next\?"],
+        # I5 — vqa_temporal_sequence
+        "temporal_sequence":        [r"for the task '.+', what is the correct sequence of action phases shown in the images from left to right\?",
+                                     r"what task is the robot performing in this sequence of images\?"],
+    },
+    TASK_MULTIVIEW: {
+        # S8 — vqa_multi_view_correspondence
+        "cross_view_correspondence": [r"in the left image \(.+ camera\), a red dot is marked\. which point is the closest point in the right image \(.+ camera\) corresponding to the same 3d location\?"],
+        # S6 — vqa_relative_depth
+        "relative_depth":            [r"in the image from .+, which colored point is (closest|farthest) to the camera\?"],
+    },
+}
+
 # Model identifiers
 MODEL_QWEN_3B = "qwen-3b"
 MODEL_QWEN_7B = "qwen-7b"

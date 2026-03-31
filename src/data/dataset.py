@@ -27,7 +27,7 @@ from typing import Iterator, List, Optional, Tuple
 
 from PIL import Image
 
-from config import INVALID_ENTRIES, QUESTION_TYPES, TASK_FAILURE_MODE, TASK_MULTIVIEW
+from config import INVALID_ENTRIES, QUESTION_TYPE_TEMPLATES, QUESTION_TYPES, TASK_FAILURE_MODE, TASK_MULTIVIEW
 
 # Fallback used for task assignment when QUESTION_TYPES is not yet configured.
 # Once QUESTION_TYPES is filled in config.py, this is no longer needed.
@@ -94,6 +94,27 @@ def _classify_task_and_types(question: str) -> Tuple[Optional[str], List[str]]:
         if any(kw in q for kw in keywords):
             return task, []
 
+    return None, []
+
+
+def _classify_task_and_types_template(question: str) -> Tuple[Optional[str], List[str]]:
+    """
+    Alternative to _classify_task_and_types using regex patterns that reproduce
+    the exact question templates from robo2vlm's vqa.py generator functions.
+    Variable slots (object names, camera names, step indices, language instructions)
+    are matched with regex wildcards — see QUESTION_TYPE_TEMPLATES in config.py.
+
+    Advantages over substring matching: more precise, no false positives from
+    shared keywords, and directly traceable to the original generator function.
+    """
+    for task, types in QUESTION_TYPE_TEMPLATES.items():
+        matched = [
+            type_name
+            for type_name, patterns in types.items()
+            if any(re.search(p, question, re.IGNORECASE) for p in patterns)
+        ]
+        if matched:
+            return task, matched
     return None, []
 
 
