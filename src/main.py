@@ -23,6 +23,7 @@ from config import (
     MODEL_QWEN3_2B,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
+    PROMPT_PAPER,
     PROMPT_TEST,
     TASK_FAILURE_MODE,
     TASK_MULTIVIEW,
@@ -48,7 +49,7 @@ def parse_args():
     parser.add_argument(
         "--prompt",
         default=PROMPT_DEFAULT,
-        choices=[PROMPT_DEFAULT, PROMPT_TEST],
+        choices=[PROMPT_DEFAULT, PROMPT_PAPER, PROMPT_TEST],
         help="Prompt variant to use (default: 'default')",
     )
     parser.add_argument(

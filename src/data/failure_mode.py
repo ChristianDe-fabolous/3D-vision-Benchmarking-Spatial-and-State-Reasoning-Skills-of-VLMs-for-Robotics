@@ -31,6 +31,21 @@ def _build_prompt_default(sample: Sample) -> str:
     )
 
 
+def _build_prompt_paper(sample: Sample) -> str:
+    """Replicates the exact prompt format from the Robo2VLM-1 paper evaluation."""
+    choice_labels = ["A", "B", "C", "D", "E"]
+    inline_choices = "".join(
+        f" {choice_labels[i]}. {choice}"
+        for i, choice in enumerate(sample.choices)
+    )
+    formatted_question = f"{sample.question}{inline_choices}"
+    return (
+        f"Answer the following multiple choice question by selecting the letter "
+        f"(A, B, C, D, or E). ONLY output the correct option letter, i.e., A, B, C, D, E. "
+        f"{formatted_question}"
+    )
+
+
 def _build_prompt_test(sample: Sample) -> str:
     """Dummy prompt for quick experiments — change freely."""
     choices_text = "\n".join(
@@ -49,6 +64,7 @@ def _build_prompt_test(sample: Sample) -> str:
 
 _PROMPT_BUILDERS = {
     "default": _build_prompt_default,
+    "paper": _build_prompt_paper,
     "test": _build_prompt_test,
 }
 

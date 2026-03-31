@@ -8,14 +8,12 @@ HuggingFace schema:
   correct_answer int   — 0-indexed position in choices
   image          PIL   — single image (may be a composite for multiview questions)
 
-Task and question type are assigned together by matching question text against
-QUESTION_TYPES in config.py (task -> type_name -> keyword patterns). This is
-the single source of truth for filtering: questions that match no pattern are
-skipped entirely.
-
-When QUESTION_TYPES is not yet configured (empty), TASK_KEYWORDS below is used
-as a fallback for task assignment only (no type is assigned). Once QUESTION_TYPES
-is fully populated, TASK_KEYWORDS becomes unused and can be removed.
+Task, question type, and question group are assigned by matching question text
+against QUESTION_TYPE_TEMPLATES in config.py. This is the single source of
+truth for filtering: questions that match no pattern are skipped entirely.
+Types use the format <descriptive_name>_<paper_abbrev> (e.g. gripper_state_RS).
+Groups correspond to the three paper categories: spatial_reasoning,
+goal_reasoning, interaction_reasoning.
 """
 
 from __future__ import annotations
@@ -27,27 +25,7 @@ from typing import Iterator, List, Optional, Tuple
 
 from PIL import Image
 
-from config import INVALID_ENTRIES, QUESTION_TYPE_TEMPLATES, QUESTION_TYPES, TASK_FAILURE_MODE, TASK_MULTIVIEW
-
-# Fallback used for task assignment when QUESTION_TYPES is not yet configured.
-# Once QUESTION_TYPES is filled in config.py, this is no longer needed.
-TASK_KEYWORDS = {
-    TASK_FAILURE_MODE: [
-        "successfully completed",
-        "goal state",
-        "task was",
-        "has the robot",
-    ],
-    TASK_MULTIVIEW: [
-        "left image",
-        "right image",
-        "ext1",
-        "ext2",
-        "3d location",
-        "same 3d",
-        "corresponding",
-    ],
-}
+from config import INVALID_ENTRIES, QUESTION_TYPE_GROUPS, QUESTION_TYPE_TEMPLATES, TASK_FAILURE_MODE, TASK_MULTIVIEW
 
 
 @dataclass
@@ -63,38 +41,6 @@ class Sample:
     @property
     def correct_choice(self) -> str:
         return self.choices[self.correct_answer]
-
-
-def _classify_task_and_types(question: str) -> Tuple[Optional[str], List[str]]:
-    """
-    Return (task, [question_types]) for a question.
-
-    A question may match multiple type patterns within its task — all matching
-    type names are returned. If a question matches types in more than one task,
-    only the first matching task is used (cross-task matches are not expected).
-
-    Primary: match against QUESTION_TYPES (config.py).
-    Fallback: when QUESTION_TYPES is empty/unconfigured, match against TASK_KEYWORDS
-    for task assignment only (question_types will be []).
-    Returns (None, []) if no match is found — question is skipped.
-    """
-    q = question.lower()
-
-    for task, types in QUESTION_TYPES.items():
-        matched_types = [
-            type_name
-            for type_name, patterns in types.items()
-            if any(p.lower() in q for p in patterns)
-        ]
-        if matched_types:
-            return task, matched_types
-
-    # Fallback — remove once QUESTION_TYPES is fully configured
-    for task, keywords in TASK_KEYWORDS.items():
-        if any(kw in q for kw in keywords):
-            return task, []
-
-    return None, []
 
 
 def _classify_task_and_types_template(question: str) -> Tuple[Optional[str], List[str]]:
@@ -193,6 +139,7 @@ def load_dataset(
             metadata["scene_id"] = scene_id
         if question_types:
             metadata["question_types"] = question_types
+            metadata["question_group"] = QUESTION_TYPE_GROUPS.get(question_types[0])
         yield Sample(
             id=row["id"],
             task=task,
