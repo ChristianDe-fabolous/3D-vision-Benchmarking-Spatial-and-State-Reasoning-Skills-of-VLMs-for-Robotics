@@ -20,6 +20,7 @@ from config import (
     LOG_DIR,
     MODEL_QWEN_3B,
     MODEL_QWEN_7B,
+    MODEL_QWEN3_2B,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
     PROMPT_TEST,
@@ -42,7 +43,7 @@ def parse_args():
     parser.add_argument(
         "--model",
         default=MODEL_QWEN_3B,
-        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B],
+        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN3_2B],
     )
     parser.add_argument(
         "--prompt",
@@ -52,7 +53,7 @@ def parse_args():
     )
     parser.add_argument(
         "--split",
-        default="train",
+        default="test",
         choices=["train", "test"],
         help="Dataset split to evaluate on",
     )
@@ -93,7 +94,7 @@ def build_task(args):
 
 
 def build_model(args):
-    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B):
+    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN3_2B):
         return QwenVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
 

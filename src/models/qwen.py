@@ -1,5 +1,5 @@
 """
-Qwen2.5-VL model wrapper.
+Qwen2.5-VL / Qwen3-VL model wrapper.
 
 Install:
     pip install transformers torch accelerate qwen-vl-utils
@@ -11,12 +11,14 @@ import logging
 
 import torch
 from PIL import Image
-from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
+from transformers import AutoModelForImageTextToText, AutoProcessor, Qwen2_5_VLForConditionalGeneration
 
-from config import QWEN_MAX_NEW_TOKENS, QWEN_MODEL_IDS, MODEL_QWEN_3B
+from config import QWEN_MAX_NEW_TOKENS, QWEN_MODEL_IDS, MODEL_QWEN_3B, MODEL_QWEN3_2B
 from models.base import BaseVLM
 
 logger = logging.getLogger("vlm_bench")
+
+_QWEN3_KEYS = {MODEL_QWEN3_2B}
 
 
 class QwenVLM(BaseVLM):
@@ -26,17 +28,27 @@ class QwenVLM(BaseVLM):
         max_new_tokens: int = QWEN_MAX_NEW_TOKENS,
     ):
         self.model_id = QWEN_MODEL_IDS[model_key]
+        self._is_qwen3 = model_key in _QWEN3_KEYS
         self.max_new_tokens = max_new_tokens
         self._model = None
         self._processor = None
 
     def load(self) -> None:
         logger.info(f"Loading {self.model_id} ...")
-        self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-            self.model_id,
-            torch_dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else (torch.float16 if torch.cuda.is_available() else torch.float32),
-            device_map="auto",
-        )
+        dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else (torch.float16 if torch.cuda.is_available() else torch.float32)
+        if self._is_qwen3:
+            self._model = AutoModelForImageTextToText.from_pretrained(
+                self.model_id,
+                torch_dtype=dtype,
+                device_map="auto",
+                trust_remote_code=True,
+            )
+        else:
+            self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+                self.model_id,
+                torch_dtype=dtype,
+                device_map="auto",
+            )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id)
         logger.info("Model loaded.")

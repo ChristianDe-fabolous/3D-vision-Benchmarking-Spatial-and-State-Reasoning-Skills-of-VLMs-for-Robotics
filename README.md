@@ -215,3 +215,15 @@ Use `qwen-3b` (fits on a free T4, ~8 GB VRAM). A ready-to-run notebook is availa
 ## Google Drive (data / shared files)
 
 https://drive.google.com/drive/folders/1gMF-vDXdjZAspC9u8j9JzT4NB8wk7aGd
+
+---
+
+## Notes on further steps
+
+Reproduce on Qwen 2.5 VL-7B Some questions for our usecase
+Check for correct pipeline: write pipeline down
+
+
+small notes: 
+detect hallucaination by replacing correct answer with "None of the Above"
+They have evaluated it on what the hwole train or just the test set?

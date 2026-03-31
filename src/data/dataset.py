@@ -175,7 +175,7 @@ def load_dataset(
         if _is_invalid(row["id"]):
             continue
 
-        task, question_types = _classify_task_and_types(row["question"])
+        task, question_types = _classify_task_and_types_template(row["question"])
         if task is None:
             continue  # skip unrecognised question types
 

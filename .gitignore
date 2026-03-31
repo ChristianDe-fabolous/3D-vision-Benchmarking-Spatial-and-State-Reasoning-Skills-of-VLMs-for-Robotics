@@ -13,6 +13,7 @@ build/
 venv/
 env/
 3dvision/
+droid_index_env/
 
 # Jupyter
 .ipynb_checkpoints/
