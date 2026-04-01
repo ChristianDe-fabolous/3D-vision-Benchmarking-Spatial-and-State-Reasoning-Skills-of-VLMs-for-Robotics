@@ -91,6 +91,7 @@ def load_dataset(
     task_filter: Optional[str] = None,
     limit: Optional[int] = None,
     local_path: Optional[str] = None,
+    skip: int = 0,
 ) -> Iterator[Sample]:
     """
     Load samples from Robo2VLM-1, lazily via a generator to avoid
@@ -102,6 +103,8 @@ def load_dataset(
         task_filter: If set, yield only samples matching this task.
         limit:       Stop after this many yielded samples.
         local_path:  If given, load from a local directory instead of HF.
+        skip:        Skip this many rows at the parquet level before iterating
+                     (fast-forward for resume; avoids decoding skipped images).
 
     Yields:
         Sample objects.
@@ -112,6 +115,9 @@ def load_dataset(
         ds = hf_load("parquet", data_dir=local_path, split=split, streaming=True)
     else:
         ds = hf_load(source, split=split, streaming=True)
+
+    if skip > 0:
+        ds = ds.skip(skip)
 
     yielded = 0
     for row in ds:

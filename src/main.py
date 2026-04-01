@@ -20,6 +20,7 @@ from config import (
     LOG_DIR,
     MODEL_QWEN_3B,
     MODEL_QWEN_7B,
+    MODEL_QWEN_7B_INT8,
     MODEL_QWEN3_2B,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
@@ -44,7 +45,7 @@ def parse_args():
     parser.add_argument(
         "--model",
         default=MODEL_QWEN_3B,
-        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN3_2B],
+        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B],
     )
     parser.add_argument(
         "--prompt",
@@ -82,6 +83,18 @@ def parse_args():
         default=None,
         help="HuggingFace token for authenticated requests (higher rate limits)",
     )
+    parser.add_argument(
+        "--run-id",
+        type=str,
+        default=None,
+        help="Fixed run ID to use (overrides auto-generated timestamp ID). Required for --resume.",
+    )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        default=False,
+        help="Skip samples already present in results.jsonl (use with --run-id to continue a previous run).",
+    )
     return parser.parse_args()
 
 
@@ -95,7 +108,7 @@ def build_task(args):
 
 
 def build_model(args):
-    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN3_2B):
+    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B):
         return QwenVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
 
@@ -108,7 +121,7 @@ def main():
     elif not os.environ.get("HF_TOKEN"):
         print("Warning: HF_TOKEN not set — unauthenticated HF requests may be rate-limited or fail. Pass --hf-token or set HF_TOKEN env var.", flush=True)
 
-    run_id = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{args.prompt}"
+    run_id = args.run_id or f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{args.prompt}"
 
     config = {
         "run_id": run_id,
@@ -134,6 +147,7 @@ def main():
         log_dir=LOG_DIR,
         config=config,
         analyse_categories=args.analyse_categories,
+        resume=args.resume,
     )
 
 

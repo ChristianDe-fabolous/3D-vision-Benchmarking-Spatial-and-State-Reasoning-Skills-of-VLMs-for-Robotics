@@ -21,12 +21,13 @@ class MultiviewTask(BaseTask):
         self.local_path = local_path
         self.prompt_id = prompt_id
 
-    def get_samples(self) -> Iterator[Sample]:
+    def get_samples(self, skip: int = 0) -> Iterator[Sample]:
         return load_dataset(
             split=self.split,
             task_filter=TASK_MULTIVIEW,
             limit=self.limit,
             local_path=self.local_path,
+            skip=skip,
         )
 
     def build_prompt(self, sample: Sample) -> str:

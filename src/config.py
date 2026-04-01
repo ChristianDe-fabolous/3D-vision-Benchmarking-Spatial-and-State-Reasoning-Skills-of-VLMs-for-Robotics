@@ -114,15 +114,20 @@ QUESTION_TYPE_TEMPLATES: dict[str, dict[str, list[str]]] = {
 }
 
 # Model identifiers
-MODEL_QWEN_3B = "qwen-3b"
-MODEL_QWEN_7B = "qwen-7b"
-MODEL_QWEN3_2B = "qwen3-2b"
+MODEL_QWEN_3B     = "qwen-3b"
+MODEL_QWEN_7B     = "qwen-7b"
+MODEL_QWEN_7B_INT8 = "qwen-7b-int8"
+MODEL_QWEN3_2B    = "qwen3-2b"
 
 QWEN_MODEL_IDS = {
-    MODEL_QWEN_3B: "Qwen/Qwen2.5-VL-3B-Instruct",
-    MODEL_QWEN_7B: "Qwen/Qwen2.5-VL-7B-Instruct",
-    MODEL_QWEN3_2B: "Qwen/Qwen3-VL-2B-Instruct",
+    MODEL_QWEN_3B:      "Qwen/Qwen2.5-VL-3B-Instruct",
+    MODEL_QWEN_7B:      "Qwen/Qwen2.5-VL-7B-Instruct",
+    MODEL_QWEN_7B_INT8: "Qwen/Qwen2.5-VL-7B-Instruct",  # same weights, loaded in 8-bit
+    MODEL_QWEN3_2B:     "Qwen/Qwen3-VL-2B-Instruct",
 }
+
+# Models that should be loaded with 8-bit quantization (requires bitsandbytes)
+QWEN_INT8_KEYS = {MODEL_QWEN_7B_INT8}
 QWEN_MAX_NEW_TOKENS = 512
 
 # Scene analysis settings

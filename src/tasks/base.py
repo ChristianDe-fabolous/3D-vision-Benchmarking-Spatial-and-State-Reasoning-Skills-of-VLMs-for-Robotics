@@ -10,7 +10,7 @@ class BaseTask(ABC):
     """Abstract interface for evaluation tasks."""
 
     @abstractmethod
-    def get_samples(self) -> Iterator[Sample]:
+    def get_samples(self, skip: int = 0) -> Iterator[Sample]:
         """Yield prepared Sample objects for this task."""
 
     @abstractmethod

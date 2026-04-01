@@ -1,6 +1,7 @@
 torch>=2.2.0
 transformers>=4.45.0
 accelerate
+bitsandbytes
 qwen-vl-utils
 datasets
 Pillow>=10.0.0
