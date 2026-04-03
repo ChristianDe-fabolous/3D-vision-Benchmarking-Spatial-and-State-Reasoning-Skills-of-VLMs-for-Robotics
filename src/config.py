@@ -18,6 +18,7 @@ TASK_MULTIVIEW = "multiview"
 PROMPT_DEFAULT = "default"
 PROMPT_TEST = "test"
 PROMPT_PAPER = "paper"
+PROMPT_PAPER_COT = "paper_cot"
 
 # Question type buckets, nested by task.
 # Maps task -> (type name -> list of substrings, case-insensitive).

@@ -21,9 +21,20 @@ class BaseTask(ABC):
         """
         Parse the model's letter response to a 0-based index.
         Returns None if the response cannot be parsed.
+
+        For CoT prompts the answer is expected on the last non-empty line;
+        for all other prompts the first character of the response is used.
         """
-        letter = response.strip().upper()[:1]
         labels = CHOICE_LABELS[: len(sample.choices)]
+        prompt_id = getattr(self, "prompt_id", "default")
+        if prompt_id == "paper_cot":
+            # Scan lines from the bottom to find the first lone letter
+            for line in reversed(response.strip().splitlines()):
+                letter = line.strip().upper()[:1]
+                if letter in labels:
+                    return labels.index(letter)
+            return None
+        letter = response.strip().upper()[:1]
         if letter in labels:
             return labels.index(letter)
         return None

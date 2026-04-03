@@ -64,9 +64,26 @@ def _build_prompt_test(sample: Sample) -> str:
     )
 
 
+def _build_prompt_paper_cot(sample: Sample) -> str:
+    """Paper prompt with Chain-of-Thought reasoning before the final answer."""
+    choice_labels = ["A", "B", "C", "D", "E"]
+    inline_choices = "".join(
+        f" {choice_labels[i]}. {choice}"
+        for i, choice in enumerate(sample.choices)
+    )
+    formatted_question = f"{sample.question}{inline_choices}"
+    return (
+        f"Answer the following multiple choice question. "
+        f"Think step by step, then output your final answer as a single letter "
+        f"(A, B, C, D, or E) on the last line. "
+        f"{formatted_question}"
+    )
+
+
 _PROMPT_BUILDERS = {
     "default": _build_prompt_default,
     "paper": _build_prompt_paper,
+    "paper_cot": _build_prompt_paper_cot,
     "test": _build_prompt_test,
 }
 

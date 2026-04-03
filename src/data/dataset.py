@@ -111,10 +111,12 @@ def load_dataset(
     """
     from datasets import load_dataset as hf_load
 
+    streaming = split != "test"
+
     if local_path:
-        ds = hf_load("parquet", data_dir=local_path, split=split, streaming=True)
+        ds = hf_load("parquet", data_dir=local_path, split=split, streaming=streaming)
     else:
-        ds = hf_load(source, split=split, streaming=True)
+        ds = hf_load(source, split=split, streaming=streaming)
 
     if skip > 0:
         ds = ds.skip(skip)
