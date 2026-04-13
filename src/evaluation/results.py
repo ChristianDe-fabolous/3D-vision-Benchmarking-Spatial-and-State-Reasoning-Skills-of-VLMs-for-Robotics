@@ -21,6 +21,7 @@ from evaluation.metrics import (
     question_type_analysis,
     scene_analysis,
     summarize,
+    yes_no_random_baseline_analysis,
 )
 
 
@@ -81,6 +82,7 @@ def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool
         summary["question_type_analysis"] = question_type_analysis(results, SCENE_OUTLIER_STD)
 
     summary["answer_distribution"] = answer_distribution_analysis(results)
+    summary["yes_no_random_baseline"] = yes_no_random_baseline_analysis(results)
 
     if analyse_categories:
         summary["answer_category_analysis"] = answer_category_analysis(results)

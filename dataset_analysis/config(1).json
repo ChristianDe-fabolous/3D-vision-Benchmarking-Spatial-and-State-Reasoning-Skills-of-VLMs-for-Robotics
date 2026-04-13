@@ -1,0 +1,9 @@
+{
+  "run_id": "failure_mode_qwen-7b_paper",
+  "task": "failure_mode",
+  "model": "qwen-7b",
+  "prompt": "paper",
+  "split": "test",
+  "limit": null,
+  "local_data": null
+}

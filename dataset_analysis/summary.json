@@ -1,0 +1,3447 @@
+{
+  "total": 3435,
+  "correct": 1310,
+  "wrong": 2125,
+  "unparseable": 0,
+  "accuracy": 0.3813682678311499,
+  "random_baseline": 0.22387190684134461,
+  "by_task": {
+    "failure_mode": 0.3813682678311499
+  },
+  "scene_analysis": {
+    "total_scenes": 2297,
+    "excluded_scenes": 2242,
+    "excluded_questions": 3110,
+    "included_scenes": 55,
+    "mean_accuracy": 0.404,
+    "std": 0.183,
+    "outlier_std_threshold": 1.0,
+    "outliers_above": [
+      {
+        "scene_id": "150",
+        "accuracy": 0.8,
+        "n": 5
+      },
+      {
+        "scene_id": "121",
+        "accuracy": 0.8,
+        "n": 5
+      },
+      {
+        "scene_id": "36",
+        "accuracy": 0.8,
+        "n": 5
+      },
+      {
+        "scene_id": "60",
+        "accuracy": 0.714,
+        "n": 7
+      },
+      {
+        "scene_id": "29",
+        "accuracy": 0.6,
+        "n": 5
+      },
+      {
+        "scene_id": "3",
+        "accuracy": 0.6,
+        "n": 5
+      },
+      {
+        "scene_id": "256",
+        "accuracy": 0.6,
+        "n": 10
+      },
+      {
+        "scene_id": "107",
+        "accuracy": 0.6,
+        "n": 5
+      },
+      {
+        "scene_id": "72",
+        "accuracy": 0.6,
+        "n": 5
+      },
+      {
+        "scene_id": "81",
+        "accuracy": 0.6,
+        "n": 5
+      },
+      {
+        "scene_id": "455",
+        "accuracy": 0.6,
+        "n": 5
+      },
+      {
+        "scene_id": "122",
+        "accuracy": 0.6,
+        "n": 5
+      },
+      {
+        "scene_id": "165",
+        "accuracy": 0.6,
+        "n": 5
+      }
+    ],
+    "outliers_below": [
+      {
+        "scene_id": "217",
+        "accuracy": 0.0,
+        "n": 5
+      },
+      {
+        "scene_id": "16",
+        "accuracy": 0.167,
+        "n": 6
+      },
+      {
+        "scene_id": "18",
+        "accuracy": 0.167,
+        "n": 6
+      },
+      {
+        "scene_id": "24",
+        "accuracy": 0.167,
+        "n": 6
+      },
+      {
+        "scene_id": "269",
+        "accuracy": 0.167,
+        "n": 6
+      },
+      {
+        "scene_id": "64",
+        "accuracy": 0.2,
+        "n": 5
+      },
+      {
+        "scene_id": "78",
+        "accuracy": 0.2,
+        "n": 5
+      },
+      {
+        "scene_id": "34",
+        "accuracy": 0.2,
+        "n": 5
+      },
+      {
+        "scene_id": "37",
+        "accuracy": 0.2,
+        "n": 5
+      },
+      {
+        "scene_id": "40",
+        "accuracy": 0.2,
+        "n": 5
+      },
+      {
+        "scene_id": "233",
+        "accuracy": 0.2,
+        "n": 5
+      },
+      {
+        "scene_id": "204",
+        "accuracy": 0.2,
+        "n": 5
+      },
+      {
+        "scene_id": "225",
+        "accuracy": 0.2,
+        "n": 5
+      }
+    ]
+  },
+  "by_question_type": {
+    "obstacle_detection_OS": 0.6618004866180048,
+    "task_success_TS-S": 0.4818897637795276,
+    "grasp_stability_TS-G": 0.3364485981308411,
+    "grasp_phase_current_AU": 0.30656934306569344,
+    "grasp_phase_next_IP": 0.5909090909090909,
+    "goal_configuration_TS-GL": 0.06715063520871144,
+    "gripper_state_RS": 0.44473684210526315,
+    "action_direction_IP": 0.19346049046321526,
+    "trajectory_understanding_TU": 0.32857142857142857
+  },
+  "question_type_analysis": {
+    "total_types": 9,
+    "mean_accuracy": 0.379,
+    "std": 0.177,
+    "outlier_std_threshold": 1.0,
+    "all_types": [
+      {
+        "question_type": "obstacle_detection_OS",
+        "accuracy": 0.662,
+        "n": 411
+      },
+      {
+        "question_type": "grasp_phase_next_IP",
+        "accuracy": 0.591,
+        "n": 396
+      },
+      {
+        "question_type": "task_success_TS-S",
+        "accuracy": 0.482,
+        "n": 635
+      },
+      {
+        "question_type": "gripper_state_RS",
+        "accuracy": 0.445,
+        "n": 380
+      },
+      {
+        "question_type": "grasp_stability_TS-G",
+        "accuracy": 0.336,
+        "n": 214
+      },
+      {
+        "question_type": "trajectory_understanding_TU",
+        "accuracy": 0.329,
+        "n": 70
+      },
+      {
+        "question_type": "grasp_phase_current_AU",
+        "accuracy": 0.307,
+        "n": 411
+      },
+      {
+        "question_type": "action_direction_IP",
+        "accuracy": 0.193,
+        "n": 367
+      },
+      {
+        "question_type": "goal_configuration_TS-GL",
+        "accuracy": 0.067,
+        "n": 551
+      }
+    ],
+    "outliers_above": [
+      {
+        "question_type": "obstacle_detection_OS",
+        "accuracy": 0.662,
+        "n": 411
+      },
+      {
+        "question_type": "grasp_phase_next_IP",
+        "accuracy": 0.591,
+        "n": 396
+      }
+    ],
+    "outliers_below": [
+      {
+        "question_type": "goal_configuration_TS-GL",
+        "accuracy": 0.067,
+        "n": 551
+      },
+      {
+        "question_type": "action_direction_IP",
+        "accuracy": 0.193,
+        "n": 367
+      }
+    ]
+  },
+  "answer_distribution": [
+    {
+      "label": "No",
+      "ground_truth_count": 1150,
+      "predicted_count": 873,
+      "accuracy_when_gt": 0.55
+    },
+    {
+      "label": "Yes",
+      "ground_truth_count": 490,
+      "predicted_count": 519,
+      "accuracy_when_gt": 0.382
+    },
+    {
+      "label": "Configuration A",
+      "ground_truth_count": 435,
+      "predicted_count": 25,
+      "accuracy_when_gt": 0.057
+    },
+    {
+      "label": "None of the above",
+      "ground_truth_count": 363,
+      "predicted_count": 24,
+      "accuracy_when_gt": 0.066
+    },
+    {
+      "label": "Red",
+      "ground_truth_count": 287,
+      "predicted_count": 69,
+      "accuracy_when_gt": 0.24
+    },
+    {
+      "label": "Approaching the drawer with open gripper",
+      "ground_truth_count": 29,
+      "predicted_count": 31,
+      "accuracy_when_gt": 0.552
+    },
+    {
+      "label": "Approaching the can with open gripper",
+      "ground_truth_count": 24,
+      "predicted_count": 18,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Closing gripper to grasp the drawer",
+      "ground_truth_count": 23,
+      "predicted_count": 33,
+      "accuracy_when_gt": 0.478
+    },
+    {
+      "label": "Closing gripper to grasp the can",
+      "ground_truth_count": 18,
+      "predicted_count": 32,
+      "accuracy_when_gt": 0.833
+    },
+    {
+      "label": "Closing gripper to grasp the peg",
+      "ground_truth_count": 17,
+      "predicted_count": 28,
+      "accuracy_when_gt": 0.706
+    },
+    {
+      "label": "Moving away with open gripper after releasing the drawer",
+      "ground_truth_count": 13,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.462
+    },
+    {
+      "label": "Firmly grasping the drawer",
+      "ground_truth_count": 12,
+      "predicted_count": 42,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Approaching the water bottle with open gripper",
+      "ground_truth_count": 11,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.636
+    },
+    {
+      "label": "Firmly grasping the can",
+      "ground_truth_count": 11,
+      "predicted_count": 26,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the drawer by opening gripper",
+      "ground_truth_count": 11,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.182
+    },
+    {
+      "label": "Closing gripper to grasp the orange",
+      "ground_truth_count": 10,
+      "predicted_count": 13,
+      "accuracy_when_gt": 0.7
+    },
+    {
+      "label": "Firmly grasping the peg",
+      "ground_truth_count": 10,
+      "predicted_count": 12,
+      "accuracy_when_gt": 0.6
+    },
+    {
+      "label": "Moving away with open gripper after releasing the peg",
+      "ground_truth_count": 10,
+      "predicted_count": 6,
+      "accuracy_when_gt": 0.6
+    },
+    {
+      "label": "Approaching the bottle with open gripper",
+      "ground_truth_count": 9,
+      "predicted_count": 12,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Approaching the pepsi can with open gripper",
+      "ground_truth_count": 9,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.556
+    },
+    {
+      "label": "Moving away with open gripper after releasing the bottle",
+      "ground_truth_count": 9,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Releasing the can by opening gripper",
+      "ground_truth_count": 9,
+      "predicted_count": 5,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Approaching the peg with open gripper",
+      "ground_truth_count": 8,
+      "predicted_count": 16,
+      "accuracy_when_gt": 0.375
+    },
+    {
+      "label": "Closing gripper to grasp the rxbar",
+      "ground_truth_count": 8,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.25
+    },
+    {
+      "label": "Closing gripper to grasp the sponge",
+      "ground_truth_count": 8,
+      "predicted_count": 11,
+      "accuracy_when_gt": 0.875
+    },
+    {
+      "label": "Moving away with open gripper after releasing the can",
+      "ground_truth_count": 8,
+      "predicted_count": 5,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Moving away with open gripper after releasing the gear",
+      "ground_truth_count": 8,
+      "predicted_count": 5,
+      "accuracy_when_gt": 0.625
+    },
+    {
+      "label": "Firmly grasping the bottle",
+      "ground_truth_count": 7,
+      "predicted_count": 13,
+      "accuracy_when_gt": 0.857
+    },
+    {
+      "label": "Firmly grasping the rxbar",
+      "ground_truth_count": 7,
+      "predicted_count": 14,
+      "accuracy_when_gt": 0.714
+    },
+    {
+      "label": "Moving away with open gripper after releasing the rxbar",
+      "ground_truth_count": 7,
+      "predicted_count": 6,
+      "accuracy_when_gt": 0.571
+    },
+    {
+      "label": "Releasing the peg by opening gripper",
+      "ground_truth_count": 7,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the orange with open gripper",
+      "ground_truth_count": 6,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Closing gripper to grasp the chip bag",
+      "ground_truth_count": 6,
+      "predicted_count": 4,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Closing gripper to grasp the coke can",
+      "ground_truth_count": 6,
+      "predicted_count": 7,
+      "accuracy_when_gt": 0.833
+    },
+    {
+      "label": "Firmly grasping the pepsi can",
+      "ground_truth_count": 6,
+      "predicted_count": 12,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Approaching the cup with open gripper",
+      "ground_truth_count": 5,
+      "predicted_count": 4,
+      "accuracy_when_gt": 0.4
+    },
+    {
+      "label": "Approaching the rxbar with open gripper",
+      "ground_truth_count": 5,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.6
+    },
+    {
+      "label": "Approaching the sponge with open gripper",
+      "ground_truth_count": 5,
+      "predicted_count": 7,
+      "accuracy_when_gt": 0.8
+    },
+    {
+      "label": "Closing gripper to grasp the bottle",
+      "ground_truth_count": 5,
+      "predicted_count": 13,
+      "accuracy_when_gt": 0.8
+    },
+    {
+      "label": "Closing gripper to grasp the pepsi can",
+      "ground_truth_count": 5,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.4
+    },
+    {
+      "label": "Firmly grasping the apple",
+      "ground_truth_count": 5,
+      "predicted_count": 6,
+      "accuracy_when_gt": 0.8
+    },
+    {
+      "label": "Firmly grasping the coke can",
+      "ground_truth_count": 5,
+      "predicted_count": 12,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the gear",
+      "ground_truth_count": 5,
+      "predicted_count": 7,
+      "accuracy_when_gt": 0.6
+    },
+    {
+      "label": "Firmly grasping the orange",
+      "ground_truth_count": 5,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.8
+    },
+    {
+      "label": "Firmly grasping the water bottle",
+      "ground_truth_count": 5,
+      "predicted_count": 9,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the apple by opening gripper",
+      "ground_truth_count": 5,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.6
+    },
+    {
+      "label": "Releasing the bottle by opening gripper",
+      "ground_truth_count": 5,
+      "predicted_count": 4,
+      "accuracy_when_gt": 0.6
+    },
+    {
+      "label": "Approaching the banana with open gripper",
+      "ground_truth_count": 4,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.75
+    },
+    {
+      "label": "Closing gripper to grasp the block",
+      "ground_truth_count": 4,
+      "predicted_count": 5,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the plate",
+      "ground_truth_count": 4,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.75
+    },
+    {
+      "label": "Moving away with open gripper after releasing the chip bag",
+      "ground_truth_count": 4,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.25
+    },
+    {
+      "label": "Moving away with open gripper after releasing the coke can",
+      "ground_truth_count": 4,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the pot",
+      "ground_truth_count": 4,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.75
+    },
+    {
+      "label": "Releasing the cup by opening gripper",
+      "ground_truth_count": 4,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Releasing the gear by opening gripper",
+      "ground_truth_count": 4,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the rxbar by opening gripper",
+      "ground_truth_count": 4,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.25
+    },
+    {
+      "label": "Releasing the sponge by opening gripper",
+      "ground_truth_count": 4,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Releasing the water bottle by opening gripper",
+      "ground_truth_count": 4,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Approaching the apple with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 6,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Approaching the block with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 6,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Approaching the chip bag with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Approaching the coffee with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Approaching the coke can with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Approaching the fridge with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the gear with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 7,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Approaching the pot with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the ranch with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the rice chip bag with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Approaching the table with open gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Closing gripper to grasp the apple",
+      "ground_truth_count": 3,
+      "predicted_count": 4,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Closing gripper to grasp the bag",
+      "ground_truth_count": 3,
+      "predicted_count": 5,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Closing gripper to grasp the tiger",
+      "ground_truth_count": 3,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Closing gripper to grasp the water bottle",
+      "ground_truth_count": 3,
+      "predicted_count": 8,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Firmly grasping the banana",
+      "ground_truth_count": 3,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Firmly grasping the cup",
+      "ground_truth_count": 3,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Firmly grasping the jalapeno",
+      "ground_truth_count": 3,
+      "predicted_count": 4,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the rice chip",
+      "ground_truth_count": 3,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Firmly grasping the rice chip bag",
+      "ground_truth_count": 3,
+      "predicted_count": 6,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the bag",
+      "ground_truth_count": 3,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the cup",
+      "ground_truth_count": 3,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.667
+    },
+    {
+      "label": "Moving away with open gripper after releasing the orange",
+      "ground_truth_count": 3,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Moving away with open gripper after releasing the pepsi can",
+      "ground_truth_count": 3,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the banana by opening gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the orange by opening gripper",
+      "ground_truth_count": 3,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.333
+    },
+    {
+      "label": "Approaching the cans with open gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Approaching the chocolate with open gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Approaching the cube with open gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 4,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the jalapeno chip bag with open gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the object with open gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Approaching the plate with open gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Approaching the tiger with open gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Closing gripper to grasp the 7up can",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the chocolate",
+      "ground_truth_count": 2,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the cube",
+      "ground_truth_count": 2,
+      "predicted_count": 3,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Closing gripper to grasp the cup",
+      "ground_truth_count": 2,
+      "predicted_count": 9,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the fridge",
+      "ground_truth_count": 2,
+      "predicted_count": 4,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Closing gripper to grasp the gear",
+      "ground_truth_count": 2,
+      "predicted_count": 6,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Closing gripper to grasp the object",
+      "ground_truth_count": 2,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the bag",
+      "ground_truth_count": 2,
+      "predicted_count": 6,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Firmly grasping the battery",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the block",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the cube",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the jalapeno chip bag",
+      "ground_truth_count": 2,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Firmly grasping the pot",
+      "ground_truth_count": 2,
+      "predicted_count": 7,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the ranch bottle",
+      "ground_truth_count": 2,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the sponge",
+      "ground_truth_count": 2,
+      "predicted_count": 6,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the block",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the plate",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Moving away with open gripper after releasing the rice chip bag",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the water bottle",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Releasing the chip bag by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the coffee by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the coke can by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Releasing the jalapeno by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Releasing the kcup holder by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Releasing the pepsi can by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the plate by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the tiger by opening gripper",
+      "ground_truth_count": 2,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.5
+    },
+    {
+      "label": "Approaching the 7up can with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the chip with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Approaching the door with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the fruit with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the jalapeno chip with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Approaching the jalapeno with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the laptop with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the led light with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Approaching the maroon object with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Approaching the ranch bottle with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the redbull can with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Approaching the screwdriver with open gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the banana",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the battery",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the blue chip bag",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the chip",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the cloth",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the coffee",
+      "ground_truth_count": 1,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the detergent",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the fruit",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the jalapeno chip bag",
+      "ground_truth_count": 1,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the kcup",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the kettle",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the orange can",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the pepsi",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Closing gripper to grasp the plastic bottle",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the pot",
+      "ground_truth_count": 1,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the rice chip bag",
+      "ground_truth_count": 1,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Closing gripper to grasp the table",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the blue chip bag",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the box",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the cabinet",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the carton",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the chip",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the coffee",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the fridge",
+      "ground_truth_count": 1,
+      "predicted_count": 4,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the fruit",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the jalapeno chip",
+      "ground_truth_count": 1,
+      "predicted_count": 3,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Firmly grasping the led",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Firmly grasping the square",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the apple",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the blue chip bag",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the box",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the chocolate",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the jalapeno chip",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the kcup",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the kcup holder",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the object",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the redbull",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the slide",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Moving away with open gripper after releasing the sponge",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the 7up by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the bag by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the block by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the blue chip by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the box by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the cans by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the carton by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the chocolate by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the cube by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the detergent by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the jalapeno chip bag by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the kcup by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the object by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the pot by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 2,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the purple object by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Releasing the rice chip by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "Releasing the sink by opening gripper",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "close the cardboard box",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "close the sandwich maker",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "close the top right drawer partially",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "join the two black pieces of the object",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "mix the things in the pot with the spoon and then put the spoon back on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "move the black box to the left",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "move the blue object to the left side of the sink",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "move the cup slightly to the right",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "move the green plushie to the left of the orange plushie",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "move the green sponge to the left",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "move the grey towel to the left",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "move the towel to the right",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "move the two bowls to the right",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "open the container",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "open the door",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "open the doors of the topmost shelf",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "open the drawer and remove the plush toy and put it on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "open the topmost drawer",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pick up a bottle from the tray and put it on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "pick up all the objects surrounding the white plate and arrange them on the plate",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pick up one green block and one blue block, then place them on the plate",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "pick up the blue object from the counter and put it in the open drawer and close it",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pick up the glass lid from the table and put it on the pot",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pick up the marker and put it in the bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pick up the pen and put it in the bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pick up the white and red towel then set it down again",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pick up the white plate from the countertop and put it in the dishwasher",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "place the banana toy in the black backpack",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "place the ketchup bottle on the pan",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "pour the contents in the wine glass into the green bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put an orange circle from the wooden object",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the block in the bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "put the blocks in the bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the blue cup in the orange cup",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "put the brown blocks together",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the glass lid on the pot",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the grape inside the white dish",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "put the marker into the pen",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the orange objects in the white cup and the blue objects in the glass cup",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the purple plushie on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the right orange object on the wooden board",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "put the rope on the counter",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the screwdriver in the drawer and then close the drawer",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "put the shaker in the dish",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the tiger plush in the bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "put the towel on the couch",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "put the white lid on top of the food container",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "remove the black object from the box",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "remove the black sock from the windowsill and place it on the white tray on top of the nightstand",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "remove the cup from the bowl",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "remove the lid from the pot and placing it on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "remove the lid of the small pot that's near the orange cup on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "remove the orange shirt from the backrest of the black chair",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "remove the plastic from the bucket and put it on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "remove the spoon from the white mug",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "scrub the counter using the sponge",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "take the brown cup out of the sink and put it on thee sink countertop",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "take the cup on the plate and put it on the table",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "take the marker out of the cup",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "take the marker out of the mug and place it on the phone",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "take the marker out of the pot and put it on the desk",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "turn off the main switch on the adapter",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "use the spoon to put some of the items on the paper towel in the pack",
+      "ground_truth_count": 1,
+      "predicted_count": 1,
+      "accuracy_when_gt": 1.0
+    },
+    {
+      "label": "use the towel to wipe the table",
+      "ground_truth_count": 1,
+      "predicted_count": 0,
+      "accuracy_when_gt": 0.0
+    },
+    {
+      "label": "Align the adapter with the bin",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Align the blue object with the open drawer",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Align the cup with the floor",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Align the rope with the center",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Align the toy with the there are no locations or spatial references mentioned in the instruction \"open the door\".",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Approaching the bag with open gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Approaching the battery with open gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Approaching the blue chip bag with open gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Approaching the brush with open gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Approaching the kcup holder with open gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Approaching the led with open gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Approaching the purple object with open gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Blue",
+      "ground_truth_count": 0,
+      "predicted_count": 74,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Cannot be determined",
+      "ground_truth_count": 0,
+      "predicted_count": 211,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the blue chip",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the bowl",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the bread",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the brown chip bag",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the jalapeno",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the jalapeno chip",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the laptop",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the level",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the plate",
+      "ground_truth_count": 0,
+      "predicted_count": 4,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the ranch",
+      "ground_truth_count": 0,
+      "predicted_count": 3,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the ranch bottle",
+      "ground_truth_count": 0,
+      "predicted_count": 3,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the redbull",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the rice",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the rice chip",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Closing gripper to grasp the screwdriver",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Configuration B",
+      "ground_truth_count": 0,
+      "predicted_count": 25,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Configuration C",
+      "ground_truth_count": 0,
+      "predicted_count": 198,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Configuration D",
+      "ground_truth_count": 0,
+      "predicted_count": 50,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Configuration E",
+      "ground_truth_count": 0,
+      "predicted_count": 241,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Drop the block into the no location is specified",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Drop the book into the there are no specific locations mentioned",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the 7up can",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the brown chip bag",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the chip bag",
+      "ground_truth_count": 0,
+      "predicted_count": 9,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the chocolate",
+      "ground_truth_count": 0,
+      "predicted_count": 3,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the detergent",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the door",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the kcup",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the kcup holder",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the laptop",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the object",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the orange can",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the pepsi",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the ranch",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the slide",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Firmly grasping the tiger",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the black sock with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the box with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the circle with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the container with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the countertop with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the glass with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the lid with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the mug with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the pen with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the plush with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Grab the wooden board with the gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Green",
+      "ground_truth_count": 0,
+      "predicted_count": 76,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Lift the cup upward",
+      "ground_truth_count": 0,
+      "predicted_count": 5,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Lift the dish upward",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Lift the mug upward",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Lift the objects upward",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Lift the purple object upward",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the backpack to the center",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the blocks to the corner",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the box to the none",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the glass lid to the pot",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the lid to the table",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the marker to the none",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the object to the surface",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Move the wine glass to the wine glass",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Moving away with open gripper after releasing the coffee",
+      "ground_truth_count": 0,
+      "predicted_count": 2,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Moving away with open gripper after releasing the jalapeno",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Moving away with open gripper after releasing the jalapeno chip bag",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Moving away with open gripper after releasing the light switch",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Moving away with open gripper after releasing the redbull can",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Partially reachable",
+      "ground_truth_count": 0,
+      "predicted_count": 3,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Partially stable",
+      "ground_truth_count": 0,
+      "predicted_count": 4,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Pick up the lid from the tray",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Pick up the purple plushie from the none",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Purple",
+      "ground_truth_count": 0,
+      "predicted_count": 43,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Push the ball towards the there are no specific locations mentioned in this instruction",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Push the mug towards the platform",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Push the orange plushie towards the beside",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Push the pan towards the platform",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Releasing the battery by opening gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Releasing the cabinet by opening gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Releasing the fruit by opening gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Releasing the table by opening gripper",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Rotate the towel clockwise",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Slide the blue objects to the right",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Slide the bottle to the right",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Slide the drawer to the right",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Slide the yellow block to the right",
+      "ground_truth_count": 0,
+      "predicted_count": 1,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Task was not attempted",
+      "ground_truth_count": 0,
+      "predicted_count": 30,
+      "accuracy_when_gt": null
+    },
+    {
+      "label": "Yellow",
+      "ground_truth_count": 0,
+      "predicted_count": 103,
+      "accuracy_when_gt": null
+    }
+  ],
+  "yes_no_random_baseline": {
+    "total_yn_questions": 1640,
+    "gt_yes": 490,
+    "gt_no": 1150,
+    "gt_other": 0,
+    "yn_random_baseline": 0.5
+  },
+  "answer_category_analysis": [
+    {
+      "choices": [
+        "Approaching the <object> with open gripper",
+        "Closing gripper to grasp the <object>",
+        "Firmly grasping the <object>",
+        "Moving away with open gripper after releasing the <object>",
+        "Releasing the <object> by opening gripper"
+      ],
+      "total": 646,
+      "correct": 351,
+      "accuracy": 0.543,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Cannot be determined",
+        "No",
+        "Task was not attempted",
+        "Yes"
+      ],
+      "total": 635,
+      "correct": 306,
+      "accuracy": 0.482,
+      "random_baseline": 0.25
+    },
+    {
+      "choices": [
+        "Configuration A",
+        "Configuration B",
+        "Configuration C",
+        "Configuration D",
+        "Configuration E"
+      ],
+      "total": 435,
+      "correct": 25,
+      "accuracy": 0.057,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Cannot be determined",
+        "No",
+        "Partially reachable",
+        "Yes"
+      ],
+      "total": 411,
+      "correct": 272,
+      "accuracy": 0.662,
+      "random_baseline": 0.25
+    },
+    {
+      "choices": [
+        "Cannot be determined",
+        "No",
+        "Partially open",
+        "Yes"
+      ],
+      "total": 380,
+      "correct": 169,
+      "accuracy": 0.445,
+      "random_baseline": 0.25
+    },
+    {
+      "choices": [
+        "Blue",
+        "Green",
+        "Purple",
+        "Red",
+        "Yellow"
+      ],
+      "total": 287,
+      "correct": 69,
+      "accuracy": 0.24,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Cannot be determined",
+        "No",
+        "Partially stable",
+        "Yes"
+      ],
+      "total": 214,
+      "correct": 72,
+      "accuracy": 0.336,
+      "random_baseline": 0.25
+    },
+    {
+      "choices": [
+        "Configuration B",
+        "Configuration C",
+        "Configuration D",
+        "Configuration E",
+        "None of the above"
+      ],
+      "total": 116,
+      "correct": 12,
+      "accuracy": 0.103,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Blue",
+        "Green",
+        "None of the above",
+        "Purple",
+        "Yellow"
+      ],
+      "total": 80,
+      "correct": 2,
+      "accuracy": 0.025,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Approaching the <object> with open gripper",
+        "Closing gripper to grasp the <object>",
+        "Moving away with open gripper after releasing the <object>",
+        "None of the above",
+        "Releasing the <object> by opening gripper"
+      ],
+      "total": 39,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Approaching the <object> with open gripper",
+        "Firmly grasping the <object>",
+        "Moving away with open gripper after releasing the <object>",
+        "None of the above",
+        "Releasing the <object> by opening gripper"
+      ],
+      "total": 35,
+      "correct": 1,
+      "accuracy": 0.029,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Closing gripper to grasp the <object>",
+        "Firmly grasping the <object>",
+        "Moving away with open gripper after releasing the <object>",
+        "None of the above",
+        "Releasing the <object> by opening gripper"
+      ],
+      "total": 33,
+      "correct": 7,
+      "accuracy": 0.212,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Approaching the <object> with open gripper",
+        "Closing gripper to grasp the <object>",
+        "Firmly grasping the <object>",
+        "Moving away with open gripper after releasing the <object>",
+        "None of the above"
+      ],
+      "total": 32,
+      "correct": 1,
+      "accuracy": 0.031,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Approaching the <object> with open gripper",
+        "Closing gripper to grasp the <object>",
+        "Firmly grasping the <object>",
+        "None of the above",
+        "Releasing the <object> by opening gripper"
+      ],
+      "total": 22,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the block with the drawer",
+        "Align the bowl with the shelf",
+        "Pick up the bowl from the corner",
+        "Slide the block to the right",
+        "put the block in the bowl"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Lift the food container upward",
+        "Pick up the lid from the table",
+        "Pick up the lid from the tray",
+        "Rotate the lid clockwise",
+        "put the white lid on top of the food container"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Lift the spoon upward",
+        "Push the spoon towards the there are no specific locations mentioned in this instruction",
+        "Rotate the pot clockwise",
+        "Slide the table to the right",
+        "mix the things in the pot with the spoon and then put the spoon back on the table"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the bowl with the center",
+        "Grab the pen with the gripper",
+        "Lift the bowl upward",
+        "Lift the pen upward",
+        "pick up the pen and put it in the bowl"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the countertop with the gripper",
+        "Pick up the sink from the sink",
+        "Place the countertop on the sink",
+        "Place the sink on the sink",
+        "take the brown cup out of the sink and put it on thee sink countertop"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the blue object with the open drawer",
+        "Align the drawer with the open drawer",
+        "Grab the counter with the gripper",
+        "Rotate the blue object clockwise",
+        "pick up the blue object from the counter and put it in the open drawer and close it"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the white plate with the surface",
+        "Drop the white plate into the shelf",
+        "Lift the objects upward",
+        "Pick up the objects from the bin",
+        "pick up all the objects surrounding the white plate and arrange them on the plate"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the box with the gripper",
+        "Pick up the box from the floor",
+        "Place the black object on the platform",
+        "Slide the box to the right",
+        "remove the black object from the box"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the glass cup into the none",
+        "Lift the glass cup upward",
+        "Push the orange objects towards the none",
+        "Slide the blue objects to the right",
+        "put the orange objects in the white cup and the blue objects in the glass cup"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the grape with the floor",
+        "Grab the white dish with the gripper",
+        "Lift the white dish upward",
+        "Pick up the grape from the surface",
+        "put the grape inside the white dish"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the circle with the gripper",
+        "Place the circle on the corner",
+        "Push the circle towards the tray",
+        "Rotate the wooden object clockwise",
+        "put an orange circle from the wooden object"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the white tray with the white tray",
+        "Align the windowsill with the white tray",
+        "Grab the black sock with the gripper",
+        "Pick up the black sock from the nightstand",
+        "remove the black sock from the windowsill and place it on the white tray on top of the nightstand"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the green plushie with the right",
+        "Lift the orange plushie upward",
+        "Push the orange plushie towards the below",
+        "Push the orange plushie towards the beside",
+        "move the green plushie to the left of the orange plushie"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the block into the no location is specified",
+        "Drop the toy into the no location is specified",
+        "Move the plate to the no location is specified",
+        "Rotate the cup clockwise",
+        "move the green sponge to the left"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the marker with the tray",
+        "Grab the pen with the gripper",
+        "Lift the pen upward",
+        "Rotate the marker clockwise",
+        "put the marker into the pen"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Move the blocks to the corner",
+        "Pick up the bowl from the table",
+        "Pick up the bowl from the tray",
+        "Push the blocks towards the corner",
+        "put the blocks in the bowl"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the book into the there are no specific locations mentioned",
+        "Pick up the plate from the none",
+        "Pick up the toy from the none",
+        "Rotate the container clockwise",
+        "open the topmost drawer"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "None of the above",
+        "Pick up the air fryer from the table",
+        "Pick up the bottle from the corner",
+        "Place the bottle on the table",
+        "Slide the bottle to the right"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the lid with the table",
+        "Grab the lid with the gripper",
+        "Rotate the lid clockwise",
+        "Rotate the orange cup clockwise",
+        "remove the lid of the small pot that's near the orange cup on the table"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the couch with the none",
+        "Pick up the towel from the none",
+        "Push the towel towards the there are no specific location or spatial references mentioned.",
+        "Slide the couch to the right",
+        "put the towel on the couch"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Move the box to the none",
+        "Pick up the black from the there are no spatial references mentioned.",
+        "Push the box towards the none",
+        "Rotate the box clockwise",
+        "move the black box to the left"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the box with the none",
+        "Lift the block upward",
+        "Lift the cup upward",
+        "Push the box towards the none",
+        "pick up the white and red towel then set it down again"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the adapter with the bin",
+        "Grab the adapter with the gripper",
+        "Push the switch towards the platform",
+        "Slide the switch to the right",
+        "turn off the main switch on the adapter"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the ball into the so there is nothing to extract.",
+        "Drop the bottle into the so there is nothing to extract.",
+        "Lift the block upward",
+        "Push the ball towards the there are no specific locations mentioned in this instruction",
+        "put the brown blocks together"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the blue into the none",
+        "Grab the orange with the gripper",
+        "Move the blue to the this instruction does not mention any specific location or spatial reference.",
+        "Place the cup on the none",
+        "put the blue cup in the orange cup"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the plate with the gripper",
+        "Grab the toy with the gripper",
+        "Lift the pen upward",
+        "Push the ball towards the bin",
+        "close the cardboard box"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the object with the platform",
+        "Drop the object into the bin",
+        "Move the object to the surface",
+        "Place the black piece on the bin",
+        "join the two black pieces of the object"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the glass into the there are no specific locations mentioned",
+        "Grab the glass with the gripper",
+        "Lift the glass upward",
+        "Rotate the lid clockwise",
+        "put the glass lid on the pot"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the block into the surface",
+        "Drop the box into the center",
+        "Grab the container with the gripper",
+        "Rotate the plate clockwise",
+        "move the two bowls to the right"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the shelf with the gripper",
+        "Lift the doors upward",
+        "Place the shelf on the none",
+        "Place the shelf on the shelf",
+        "open the doors of the topmost shelf"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Move the drawer to the bin",
+        "Pick up the table from the corner",
+        "Push the drawer towards the center",
+        "Slide the drawer to the right",
+        "open the drawer and remove the plush toy and put it on the table"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the cup with the none",
+        "Drop the marker into the no specific location or spatial reference is mentioned in the given instruction.",
+        "Lift the cup upward",
+        "Slide the cup to the right",
+        "take the marker out of the cup"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the mug with the mug",
+        "Lift the mug upward",
+        "Move the phone to the mug",
+        "Rotate the marker clockwise",
+        "take the marker out of the mug and place it on the phone"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the counter with the shelf",
+        "Drop the sponge into the surface",
+        "Move the counter to the drawer",
+        "Rotate the counter clockwise",
+        "scrub the counter using the sponge"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Lift the cup upward",
+        "Move the table to the corner",
+        "Move the table to the tray",
+        "Place the cup on the bin",
+        "take the cup on the plate and put it on the table"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Lift the cup upward",
+        "Place the cup on the table",
+        "Rotate the bowl clockwise",
+        "Slide the bowl to the right",
+        "remove the cup from the bowl"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the drawer into the table",
+        "Place the screwdriver on the bin",
+        "Push the screwdriver towards the platform",
+        "Slide the drawer to the right",
+        "put the screwdriver in the drawer and then close the drawer"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the green bowl with the green bowl",
+        "Lift the green bowl upward",
+        "Move the wine glass to the wine glass",
+        "Place the wine glass on the green bowl",
+        "pour the contents in the wine glass into the green bowl"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the block with the surface",
+        "Grab the cup with the gripper",
+        "Lift the bottle upward",
+        "Rotate the plate clockwise",
+        "move the blue object to the left side of the sink"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the book into the corner",
+        "Push the pen towards the tray",
+        "Rotate the box clockwise",
+        "Rotate the plate clockwise",
+        "move the grey towel to the left"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the pot into the table",
+        "Move the glass lid to the pot",
+        "Move the table to the table",
+        "Place the pot on the table",
+        "pick up the glass lid from the table and put it on the pot"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the shaker with the platform",
+        "Drop the shaker into the surface",
+        "Lift the dish upward",
+        "Pick up the dish from the tray",
+        "put the shaker in the dish"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the orange object with the as there are no explicit locations mentioned.",
+        "Grab the orange object with the gripper",
+        "Move the wooden board to the none",
+        "Place the wooden board on the as there are no explicit locations mentioned.",
+        "put the right orange object on the wooden board"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the wooden board into the shelf",
+        "Drop the wooden board into the surface",
+        "Grab the wooden board with the gripper",
+        "Lift the orange object upward",
+        "None of the above"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the rope with the center",
+        "Push the rope towards the drawer",
+        "Rotate the counter clockwise",
+        "Slide the counter to the right",
+        "put the rope on the counter"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the bowl with the none",
+        "Grab the plush with the gripper",
+        "Move the plush to the none",
+        "Rotate the tiger clockwise",
+        "put the tiger plush in the bowl"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the table with the bucket",
+        "Align the table with the table",
+        "Lift the plastic upward",
+        "Pick up the bucket from the bucket",
+        "remove the plastic from the bucket and put it on the table"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the toy with the there are no locations or spatial references mentioned in the instruction \"open the door\".",
+        "Move the block to the there are no locations or spatial references mentioned in the instruction \"open the door\".",
+        "Push the cup towards the there are no locations or spatial references mentioned in the instruction \"open the door\".",
+        "Slide the plate to the right",
+        "open the door"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the white plate into the countertop",
+        "Pick up the countertop from the dishwasher",
+        "Place the countertop on the dishwasher",
+        "Slide the countertop to the right",
+        "pick up the white plate from the countertop and put it in the dishwasher"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the chair with the there are no spatial references",
+        "Drop the shirt into the none",
+        "Move the chair to the none",
+        "Slide the shirt to the right",
+        "remove the orange shirt from the backrest of the black chair"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the pot with the tray",
+        "None of the above",
+        "Pick up the pot from the floor",
+        "Push the yellow block towards the drawer",
+        "Slide the yellow block to the right"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the lid with the surface",
+        "Move the lid to the table",
+        "Pick up the table from the shelf",
+        "Slide the table to the right",
+        "remove the lid from the pot and placing it on the table"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the bottle with the gripper",
+        "Grab the table with the gripper",
+        "Grab the tray with the gripper",
+        "Lift the tray upward",
+        "pick up a bottle from the tray and put it on the table"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Move the backpack to the center",
+        "Move the backpack to the table",
+        "Place the backpack on the drawer",
+        "Slide the toy to the right",
+        "place the banana toy in the black backpack"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Move the paper towel to the platform",
+        "None of the above",
+        "Push the mug towards the platform",
+        "Push the mug towards the table",
+        "Slide the mug to the right"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Lift the purple object upward",
+        "None of the above",
+        "Place the plate on the center",
+        "Push the purple object towards the shelf",
+        "Slide the plate to the right"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Move the table to the this instruction does not mention any location or spatial reference.",
+        "Pick up the purple plushie from the none",
+        "Push the purple plushie towards the none",
+        "Rotate the table clockwise",
+        "put the purple plushie on the table"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the box with the gripper",
+        "Push the block towards the tray",
+        "Push the pen towards the platform",
+        "Rotate the block clockwise",
+        "move the towel to the right"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Drop the block into the floor",
+        "Lift the cup upward",
+        "Pick up the toy from the center",
+        "Push the book towards the bin",
+        "close the top right drawer partially"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the box with the gripper",
+        "None of the above",
+        "Pick up the container from the no location is mentioned.",
+        "Place the box on the no location is mentioned.",
+        "Rotate the box clockwise"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the pan with the platform",
+        "Push the pan towards the floor",
+        "Push the pan towards the platform",
+        "Rotate the pan clockwise",
+        "place the ketchup bottle on the pan"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the bottle with the gripper",
+        "Move the container to the center",
+        "Slide the ball to the right",
+        "Slide the cup to the right",
+        "close the sandwich maker"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the spoon with the tray",
+        "Pick up the spoon from the corner",
+        "Push the paper towel towards the bin",
+        "Slide the item to the right",
+        "use the spoon to put some of the items on the paper towel in the pack"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Move the desk to the surface",
+        "Move the marker to the floor",
+        "Pick up the pot from the drawer",
+        "Slide the marker to the right",
+        "take the marker out of the pot and put it on the desk"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Lift the blue block upward",
+        "Rotate the green block clockwise",
+        "Slide the blue block to the right",
+        "Slide the green block to the right",
+        "pick up one green block and one blue block, then place them on the plate"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the table with the surface",
+        "Lift the table upward",
+        "Rotate the towel clockwise",
+        "Slide the table to the right",
+        "use the towel to wipe the table"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the mug with the gripper",
+        "Move the mug to the there are no specific locations mentioned.",
+        "Rotate the spoon clockwise",
+        "Slide the mug to the right",
+        "remove the spoon from the white mug"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the cup with the floor",
+        "Push the cup towards the shelf",
+        "Rotate the cup clockwise",
+        "Slide the plate to the right",
+        "open the container"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Align the bowl with the none",
+        "Move the bowl to the there are no spatial references mentioned in this instruction.",
+        "Move the marker to the none",
+        "Rotate the bowl clockwise",
+        "pick up the marker and put it in the bowl"
+      ],
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "random_baseline": 0.2
+    },
+    {
+      "choices": [
+        "Grab the plate with the gripper",
+        "Pick up the bottle from the platform",
+        "Rotate the ball clockwise",
+        "Slide the plate to the right",
+        "move the cup slightly to the right"
+      ],
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "random_baseline": 0.2
+    }
+  ]
+}

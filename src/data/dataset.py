@@ -111,6 +111,10 @@ def load_dataset(
     """
     from datasets import load_dataset as hf_load
 
+    # test split: download parquet files — ds.skip() is an efficient seek.
+    # train split: stream row-by-row — ds.skip() iterates through rows (O(n)),
+    # so for large resume offsets on train, fall back to completed_ids filtering
+    # in the pipeline rather than relying on skip for speed.
     streaming = split != "test"
 
     if local_path:
@@ -118,11 +122,17 @@ def load_dataset(
     else:
         ds = hf_load(source, split=split, streaming=streaming)
 
-    if skip > 0:
+    # Only use ds.skip() when it's efficient (non-streaming / parquet seek).
+    # For streaming datasets skip() is O(n); the pipeline's completed_ids check
+    # handles deduplication instead.
+    if skip > 0 and not streaming:
         ds = ds.skip(skip)
+        raw_offset = skip
+    else:
+        raw_offset = 0
 
     yielded = 0
-    for row in ds:
+    for raw_idx, row in enumerate(ds):
         if limit is not None and yielded >= limit:
             break
 
@@ -142,7 +152,9 @@ def load_dataset(
             continue  # skip malformed entries
 
         scene_id = _parse_scene_id(row["id"])
-        metadata = {}
+        metadata = {
+            "raw_row": raw_offset + raw_idx,  # absolute raw parquet row index
+        }
         if scene_id:
             metadata["scene_id"] = scene_id
         if question_types:

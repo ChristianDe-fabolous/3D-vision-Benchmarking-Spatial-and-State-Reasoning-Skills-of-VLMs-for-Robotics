@@ -90,14 +90,14 @@ def run(
 
     results: List[dict] = list(completed_results)
     i = 0
-    row_index = skip_rows  # absolute position in the raw dataset stream
 
     for sample in task.get_samples(skip=skip_rows):
         i += 1
-        row_index += 1
 
         if sample.id in completed_ids:
-            # Safety net: skip anything that slipped through (shouldn't happen)
+            # Safety net: skip anything that slipped through (shouldn't happen
+            # for non-streaming splits; expected for streaming splits where
+            # ds.skip() is not used and already-processed rows re-appear).
             logger.debug(f"[{i}] skip (already done)  id={sample.id}")
             continue
 
@@ -117,12 +117,15 @@ def run(
             sample.choices[predicted_idx] if predicted_idx is not None else None
         )
 
+        # Exclude internal tracking keys from metadata before unpacking to
+        # avoid silently overwriting entry fields (bug #9).
+        meta = {k: v for k, v in sample.metadata.items() if k != "raw_row"}
         entry = {
             "run_id": run_id,
             "model_id": model_id,
             "prompt_id": prompt_id,
             "entry_id": sample.id,
-            "dataset_row": row_index,
+            "dataset_row": sample.metadata.get("raw_row", 0),  # true raw parquet index
             "task": sample.task,
             "question": sample.question,
             "choices": sample.choices,
@@ -132,7 +135,7 @@ def run(
             "predicted_index": predicted_idx,
             "predicted_label": predicted_label,
             "correct": correct,
-            **sample.metadata,
+            **meta,
         }
 
         sample_logger.log(entry)

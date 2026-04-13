@@ -22,6 +22,7 @@ from config import (
     MODEL_QWEN_7B,
     MODEL_QWEN_7B_INT8,
     MODEL_QWEN3_2B,
+    MODEL_QWEN_32B_INT8,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
     PROMPT_PAPER,
@@ -46,7 +47,7 @@ def parse_args():
     parser.add_argument(
         "--model",
         default=MODEL_QWEN_3B,
-        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B],
+        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8],
     )
     parser.add_argument(
         "--prompt",
@@ -109,7 +110,7 @@ def build_task(args):
 
 
 def build_model(args):
-    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B):
+    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8):
         return QwenVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
 

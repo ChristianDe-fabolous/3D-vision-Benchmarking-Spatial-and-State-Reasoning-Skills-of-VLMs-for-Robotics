@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+import re
 from collections import defaultdict
 from typing import Dict, List, Tuple
 
@@ -147,17 +148,50 @@ def cross_bucket_scene_analysis(results: List[dict]) -> Dict[str, Dict[str, dict
     }
 
 
+_GRASP_PHASE_PATTERNS: list[Tuple[re.Pattern, str]] = [
+    (re.compile(r"^Approaching the .+ with open gripper$", re.IGNORECASE),
+     "Approaching the <object> with open gripper"),
+    (re.compile(r"^Closing gripper to grasp the .+$", re.IGNORECASE),
+     "Closing gripper to grasp the <object>"),
+    (re.compile(r"^Firmly grasping the .+$", re.IGNORECASE),
+     "Firmly grasping the <object>"),
+    (re.compile(r"^Moving away with open gripper after releasing the .+$", re.IGNORECASE),
+     "Moving away with open gripper after releasing the <object>"),
+    (re.compile(r"^Releasing the .+ by opening gripper$", re.IGNORECASE),
+     "Releasing the <object> by opening gripper"),
+]
+
+
+def _normalize_choice(choice: str) -> str:
+    """Replace object-specific substrings so structurally identical choice sets merge."""
+    for pattern, replacement in _GRASP_PHASE_PATTERNS:
+        if pattern.match(choice):
+            return replacement
+    return choice
+
+
 def answer_category_analysis(results: List[dict]) -> List[dict]:
-    """Per-answer-category accuracy (grouped by the set of choices, order-independent)."""
+    """
+    Per-answer-category accuracy grouped by the *normalized* set of choices.
+
+    Choices that differ only in the object name (e.g. grasp phase questions for
+    'drawer' vs 'can') are merged into a single category using <object> placeholders.
+    Each category also reports the random baseline (1 / n_choices).
+    """
     buckets: Dict[Tuple, List[bool]] = defaultdict(list)
+    # Map normalized key → one representative (human-readable) choice list
+    representative: Dict[Tuple, list] = {}
+
     for r in results:
-        key = tuple(sorted(r["choices"]))
-        buckets[key].append(r["correct"])
+        norm_key = tuple(sorted(_normalize_choice(c) for c in r["choices"]))
+        buckets[norm_key].append(r["correct"])
+        if norm_key not in representative:
+            representative[norm_key] = sorted(_normalize_choice(c) for c in r["choices"])
 
     return sorted(
         [
             {
-                "choices": list(key),
+                "choices": representative[key],
                 "total": len(vals),
                 "correct": sum(vals),
                 "accuracy": round(sum(vals) / len(vals), 3),
@@ -198,6 +232,40 @@ def answer_distribution_analysis(results: List[dict]) -> List[dict]:
         }
         for label in sorted(all_labels, key=lambda l: -gt_counts[l])
     ]
+
+
+def yes_no_random_baseline_analysis(results: List[dict]) -> dict:
+    """
+    For all questions where both 'Yes' and 'No' appear among the choices,
+    compute the random baseline of a strategy that randomly picks Yes or No
+    (ignoring all other options).
+
+    P(correct) = (n_gt_yes + n_gt_no) / (2 * n_yn_questions)
+    because:
+      - if ground truth is Yes or No  → P(correct) = 1/2
+      - if ground truth is anything else → P(correct) = 0
+    """
+    yn_results = [
+        r for r in results
+        if "Yes" in r["choices"] and "No" in r["choices"]
+    ]
+    if not yn_results:
+        return {"total": 0, "baseline": None}
+
+    n_gt_yes_or_no = sum(r["ground_truth_label"] in ("Yes", "No") for r in yn_results)
+    baseline = n_gt_yes_or_no / (2 * len(yn_results))
+
+    gt_counts: Dict[str, int] = defaultdict(int)
+    for r in yn_results:
+        gt_counts[r["ground_truth_label"]] += 1
+
+    return {
+        "total_yn_questions": len(yn_results),
+        "gt_yes": gt_counts.get("Yes", 0),
+        "gt_no": gt_counts.get("No", 0),
+        "gt_other": len(yn_results) - gt_counts.get("Yes", 0) - gt_counts.get("No", 0),
+        "yn_random_baseline": round(baseline, 4),
+    }
 
 
 def summarize(results: List[dict]) -> dict:

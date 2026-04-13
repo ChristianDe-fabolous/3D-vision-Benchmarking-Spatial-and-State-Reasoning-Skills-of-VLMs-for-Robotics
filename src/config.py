@@ -74,6 +74,19 @@ QUESTION_TYPE_GROUPS: dict[str, str] = {
     "trajectory_understanding_TU":   GROUP_INTERACTION,
 }
 
+# -----------------------------------------------------------------------------------------------------------------------------------------
+
+# From paper:
+# Category Abbreviations: Spatial Reasoning: RS: Robot State (gripper/arm position estimation), OS: Object State (object reachability/manipula-
+# bility), SR: Spatial Relationship (relative positioning between robot and objects), SU: Scene Understanding (spatial layout comprehension),
+# MV: Multiple View (cross-view correspondence). Goal-Conditioned Reasoning: TS-G: Task State-grasp (grasp stability assessment), TS-S:
+# Task State-success (task completion status), TS-GL: Task State-goal (goal configuration understanding), Interaction Reasoning: AU: Action
+# Understanding (robot’s current action phase), IP: Interaction Phase (prediction of next robot action), TU: Trajectory Understanding (overall task
+# interpretation)
+
+# -----------------------------------------------------------------------------------------------------------------------------------------
+
+
 # Regex-based question type templates derived directly from the robo2vlm vqa.py
 # generator functions. Variable slots (object names, camera names, step indices,
 # language instructions) are replaced with regex wildcards. Use re.search with
@@ -115,20 +128,22 @@ QUESTION_TYPE_TEMPLATES: dict[str, dict[str, list[str]]] = {
 }
 
 # Model identifiers
-MODEL_QWEN_3B     = "qwen-3b"
-MODEL_QWEN_7B     = "qwen-7b"
+MODEL_QWEN_3B      = "qwen-3b"
+MODEL_QWEN_7B      = "qwen-7b"
 MODEL_QWEN_7B_INT8 = "qwen-7b-int8"
-MODEL_QWEN3_2B    = "qwen3-2b"
+MODEL_QWEN3_2B     = "qwen3-2b"
+MODEL_QWEN_32B_INT8 = "qwen-32b-int8"  # Qwen2.5-VL-32B, int8 ~32GB VRAM — requires gb10 node
 
 QWEN_MODEL_IDS = {
-    MODEL_QWEN_3B:      "Qwen/Qwen2.5-VL-3B-Instruct",
-    MODEL_QWEN_7B:      "Qwen/Qwen2.5-VL-7B-Instruct",
-    MODEL_QWEN_7B_INT8: "Qwen/Qwen2.5-VL-7B-Instruct",  # same weights, loaded in 8-bit
-    MODEL_QWEN3_2B:     "Qwen/Qwen3-VL-2B-Instruct",
+    MODEL_QWEN_3B:       "Qwen/Qwen2.5-VL-3B-Instruct",
+    MODEL_QWEN_7B:       "Qwen/Qwen2.5-VL-7B-Instruct",
+    MODEL_QWEN_7B_INT8:  "Qwen/Qwen2.5-VL-7B-Instruct",   # same weights, loaded in 8-bit
+    MODEL_QWEN3_2B:      "Qwen/Qwen3-VL-2B-Instruct",
+    MODEL_QWEN_32B_INT8: "Qwen/Qwen2.5-VL-32B-Instruct",  # same weights, loaded in 8-bit
 }
 
 # Models that should be loaded with 8-bit quantization (requires bitsandbytes)
-QWEN_INT8_KEYS = {MODEL_QWEN_7B_INT8}
+QWEN_INT8_KEYS = {MODEL_QWEN_7B_INT8, MODEL_QWEN_32B_INT8}
 QWEN_MAX_NEW_TOKENS = 512
 
 # Scene analysis settings
