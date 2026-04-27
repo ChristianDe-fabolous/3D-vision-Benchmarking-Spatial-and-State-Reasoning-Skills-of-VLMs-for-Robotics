@@ -7,7 +7,8 @@ Per question annotates:
   - Action phase description (shared across same-step group)
   - Safe to proceed to next phase: Yes / No / Unsure (shared)
   - Task completed at this step: checkbox (shared)
-  - View understandable: per-tile-position checkbox
+  - End goal understandable: per-tile-position checkbox (can you tell if overall task done?)
+  - Action phase understandable: per-tile-position checkbox (can you tell if current phase done?)
   - Two question modifications (text shared scene-wide) with individual "solved here" checkboxes
     (solved cascade: checking step N auto-checks all later steps)
 
@@ -104,7 +105,8 @@ class TileAnnotator:
         self._completed_vars: dict[str, tk.BooleanVar]            = {}
         self._mod1_solved:    dict[str, tk.BooleanVar]            = {}
         self._mod2_solved:    dict[str, tk.BooleanVar]            = {}
-        self._view_vars:      dict[str, dict[str, tk.BooleanVar]] = {}
+        self._goal_vars:      dict[str, dict[str, tk.BooleanVar]] = {}
+        self._phase_und_vars: dict[str, dict[str, tk.BooleanVar]] = {}
         self._photo_refs:     list[ImageTk.PhotoImage]            = []
 
         # Scene-level shared vars (one value for all questions in scene)
@@ -177,7 +179,8 @@ class TileAnnotator:
             w.destroy()
         for d in (self._step_vars, self._phase_vars, self._phase_entries,
                   self._proceed_vars, self._completed_vars,
-                  self._mod1_solved, self._mod2_solved, self._view_vars):
+                  self._mod1_solved, self._mod2_solved,
+                  self._goal_vars, self._phase_und_vars):
             d.clear()
         self._photo_refs.clear()
 
@@ -195,6 +198,15 @@ class TileAnnotator:
                 mod2_text = a.get("mod2", "").strip()
             if mod1_text and mod2_text:
                 break
+        # Default to task description (question minus trailing completion sentence)
+        if not mod1_text and scene["questions"]:
+            first_q = scene["questions"][0]
+            raw = first_q["tiles"][0].get("question", "") if first_q["tiles"] else ""
+            mod1_text = raw.split("Has the robot successfully completed")[0].strip().rstrip(".")
+        if not mod2_text and scene["questions"]:
+            first_q = scene["questions"][0]
+            raw = first_q["tiles"][0].get("question", "") if first_q["tiles"] else ""
+            mod2_text = raw.split("Has the robot successfully completed")[0].strip().rstrip(".")
         self._mod1_text_var = tk.StringVar(value=mod1_text)
         self._mod2_text_var = tk.StringVar(value=mod2_text)
 
@@ -244,20 +256,29 @@ class TileAnnotator:
             self._photo_refs.append(photo)
             tk.Label(col, image=photo, bg=BG2).pack()
 
-        # ── view understandable checkboxes ───────────────────────────────────
-        view_row = tk.Frame(self.inner, bg=BG)
-        view_row.pack(padx=12, pady=(2, 4), anchor="w")
-        tk.Label(view_row, text="Understandable:", bg=BG, fg=FG_DIM, font=FONT_SM).pack(side="left", padx=(0, 8))
-        saved_views = ann.get("view_understandable", {})
-        view_pos_vars: dict[str, tk.BooleanVar] = {}
-        for tile in tiles:
-            pos = tile["tile_position"]
-            var = tk.BooleanVar(value=saved_views.get(pos, False))
-            tk.Checkbutton(view_row, text=pos, variable=var,
-                           bg=BG, fg=FG_DIM, selectcolor=SURFACE, activebackground=BG,
-                           font=FONT_SM).pack(side="left", padx=(0, 12))
-            view_pos_vars[pos] = var
-        self._view_vars[oid] = view_pos_vars
+        # ── per-tile understandability checkboxes ────────────────────────────
+        saved_goal  = ann.get("goal_understandable", {})
+        saved_phase = ann.get("phase_understandable", {})
+        goal_pos_vars:  dict[str, tk.BooleanVar] = {}
+        phase_pos_vars: dict[str, tk.BooleanVar] = {}
+
+        for label, saved, pos_vars in [
+            ("End goal done:", saved_goal, goal_pos_vars),
+            ("Phase done:",    saved_phase, phase_pos_vars),
+        ]:
+            row = tk.Frame(self.inner, bg=BG)
+            row.pack(padx=12, pady=(1, 1), anchor="w")
+            tk.Label(row, text=label, bg=BG, fg=FG_DIM, font=FONT_SM, width=15, anchor="w").pack(side="left", padx=(0, 4))
+            for tile in tiles:
+                pos = tile["tile_position"]
+                var = tk.BooleanVar(value=saved.get(pos, False))
+                tk.Checkbutton(row, text=pos, variable=var,
+                               bg=BG, fg=FG_DIM, selectcolor=SURFACE, activebackground=BG,
+                               font=FONT_SM).pack(side="left", padx=(0, 12))
+                pos_vars[pos] = var
+
+        self._goal_vars[oid]      = goal_pos_vars
+        self._phase_und_vars[oid] = phase_pos_vars
 
         # ── annotation grid ──────────────────────────────────────────────────
         grid = tk.Frame(self.inner, bg=BG)
@@ -412,20 +433,22 @@ class TileAnnotator:
         mod2_text = self._mod2_text_var.get().strip() if self._mod2_text_var else ""
 
         for oid in scene_oids:
-            step_raw = self._step_vars[oid].get().strip()
-            view_und = {pos: var.get() for pos, var in self._view_vars.get(oid, {}).items()}
+            step_raw   = self._step_vars[oid].get().strip()
+            goal_und   = {pos: var.get() for pos, var in self._goal_vars.get(oid, {}).items()}
+            phase_und  = {pos: var.get() for pos, var in self._phase_und_vars.get(oid, {}).items()}
             self.annotations[oid] = {
-                "original_id":         oid,
-                "scene_id":            self.scenes[self.idx]["scene_id"],
-                "step":                int(step_raw) if step_raw.isdigit() else step_raw,
-                "action_phase":        shared_phase.get(oid, self._phase_vars[oid].get().strip()),
-                "safe_to_proceed":     self._proceed_vars[oid].get(),
-                "task_completed":      self._completed_vars[oid].get(),
-                "view_understandable": view_und,
-                "mod1":                mod1_text,
-                "mod1_solved":         self._mod1_solved[oid].get(),
-                "mod2":                mod2_text,
-                "mod2_solved":         self._mod2_solved[oid].get(),
+                "original_id":          oid,
+                "scene_id":             self.scenes[self.idx]["scene_id"],
+                "step":                 int(step_raw) if step_raw.isdigit() else step_raw,
+                "action_phase":         shared_phase.get(oid, self._phase_vars[oid].get().strip()),
+                "safe_to_proceed":      self._proceed_vars[oid].get(),
+                "task_completed":       self._completed_vars[oid].get(),
+                "goal_understandable":  goal_und,
+                "phase_understandable": phase_und,
+                "mod1":                 mod1_text,
+                "mod1_solved":          self._mod1_solved[oid].get(),
+                "mod2":                 mod2_text,
+                "mod2_solved":          self._mod2_solved[oid].get(),
             }
 
     # ------------------------------------------------------------------ nav

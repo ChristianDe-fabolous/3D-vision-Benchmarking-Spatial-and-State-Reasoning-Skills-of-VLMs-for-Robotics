@@ -70,14 +70,14 @@ Annotations are saved to `data/annotations.jsonl` automatically. You can stop an
 
 ## Step 2 — Annotate action phases and ordering
 
-First, run the auto-annotation to detect multiview images and create tiles:
+First, run the auto-annotation to detect multiview images and create tiles (ALSO DONE ALREADY):
 
 ```bash
 python scripts/auto_annotate_multiview.py --scenes-file scenes.txt
 python scripts/tile_multiview.py
 ```
 
-Then open the tile annotation viewer:
+Then open the tile annotation viewer (HERE THE WORK BEGINS):
 
 ```bash
 python scripts/annotate_tiles.py
@@ -88,14 +88,23 @@ This shows all "has the robot successfully completed the task" questions for one
 **What to do for each question row:**
 
 - **Step**: Enter a number (1, 2, 3, ...) indicating where this question falls in the temporal sequence of the scene. Two questions at the same moment get the same step number — their description field will be shared automatically.
-- **Action phase**: Describe what is visually happening in the image. Write the observable state, not the action label. Example: *"gripper closed around the red cup, cup lifted above table"* not *"picking up cup"*.
-- **Safe to proceed**: Is the scene in a valid state to move to the next action phase?
-  - `Yes` — previous step completed correctly, ready to proceed
+Only the order of the numbers matter: 1, 2, 3 = 100, 123, 10000314. After that restart the script **annotate_tiles.py**. The sets will now appear in order.
+- **Action phase**: Name the discrete robot action happening at this step. Use action-phase labels like *"approach object with open gripper"*, *"close gripper around object"*, *"transport object to target"*, *"place object and release"*. These are the same answer choices the VLM will see — write them in a form that is unambiguous and could stand alone.
+- **Safe to proceed**: Was this action phase fully and correctly completed, such that the robot could immediately start the next phase?
+  - `Yes` — phase completed correctly, safe to continue
   - `No` — something went wrong, should not proceed
   - `Unsure` — ambiguous, cannot tell from image alone
-- **Task completed**: Check this box on the step where the overall task is finished.
+- **Task completed**: Check this box on the step where the overall end goal is achieved.
 - **Mod 1 / Mod 2**: Optional question modifications. Write a slightly altered version of the task goal that would change the correct answer. Leave empty if nothing comes to mind.
+Example: Trivially true: remove x 
   - Check **Solved here** if the modified task would be considered complete at this step.
+
+**Per-tile understandability** — for each tile (top-left, top-right, bottom-left), check two boxes:
+
+- **End goal done**: Can you determine from this tile alone whether the robot has successfully completed the overall end goal task?
+- **Phase done**: Can you determine from this tile alone whether the robot has successfully completed the *current action phase* (as you labelled it above)?
+
+Check the box only if the answer is clearly readable from that tile. If the view is occluded, blurry, or ambiguous — leave it unchecked.
 
 **Controls:**
 
@@ -105,8 +114,43 @@ This shows all "has the robot successfully completed the task" questions for one
 | `←` | Go to previous scene |
 | Save button | Save current scene |
 | Mouse wheel | Scroll through questions |
+| Top Right Box | Use to jump to scene index |
+
 
 Annotations are saved to `data/multiview_tiles/tile_annotations.jsonl`.
+
+
+## Examples instructions
+Type 1: Pick and Place / Removal
+
+Used for: Removing objects from containers, bags, or racks.
+
+    Locate Target: Identify the specific object and its container.
+
+    Approach: Move the end-effector to the object's position.
+
+    Grasp: Secure the object.
+
+    Extract: Lift/pull the object out of the container.
+
+    Transport: Move the object to the target destination (if specified).
+
+    Release: Place the object down and retract.
+
+Type 2: Tool Use (Wiping/Capping)
+
+Used for: Removing a lid, using an eraser, or spraying.
+
+    Pre-Grasp: Align with the handle or lid.
+
+    Engage: Attach to the component (e.g., grip the lid).
+
+    Detach/Apply: Perform the primary action (e.g., lift lid or press eraser to board).
+
+    Manipulate: Execute the secondary motion (e.g., wiping stroke).
+
+    Re-home: Return the tool/lid to its original or new location.
+
 
 ---
 
