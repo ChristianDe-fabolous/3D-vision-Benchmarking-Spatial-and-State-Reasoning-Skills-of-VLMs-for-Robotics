@@ -52,12 +52,22 @@ TILE_MAX_W = 280
 
 
 def load_entries(path: Path) -> list[dict]:
+    project_root = Path(__file__).parent.parent
     entries = []
     with open(path, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line:
-                entries.append(json.loads(line))
+                entry = json.loads(line)
+                # Rebase image_path to this machine's project root if it doesn't exist
+                img = entry.get("image_path", "")
+                if img and not Path(img).exists():
+                    # strip everything up to and including "data/" and re-root it
+                    marker = "data/"
+                    idx = img.find(marker)
+                    if idx != -1:
+                        entry["image_path"] = str(project_root / img[idx:])
+                entries.append(entry)
     return entries
 
 

@@ -9,7 +9,7 @@ We are annotating DROID robot manipulation scenes to build a benchmark for evalu
 Make sure all dependencies are installed and the scenes are fetched:
 
 ```bash
-pip install datasets pillow matplotlib tkinter numpy
+pip install datasets pillow matplotlib numpy
 ```
 
 If we want to get new scenes then we can run, however the hand selected ones are already in this repo, so NO NEED:
