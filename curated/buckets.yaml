@@ -1,0 +1,102 @@
+# Bucket configuration for curate.py
+# Edit freely — no code changes needed. Restart the viewer to pick up changes.
+#
+# Fields per bucket:
+#   id:    unique ID, used as the output filename  (required)
+#   name:  label shown in the UI                  (required)
+#   key:   single-character keyboard shortcut      (optional)
+#   color: hex button color                        (optional)
+#
+# Workflow:
+#   Toggle buckets with their key or by clicking.
+#   Press Enter/Space to confirm + advance.
+#   Escape clears the current selection without advancing.
+#   Backspace/Left undoes the last confirmed action.
+
+buckets:
+
+  # ── General quality ────────────────────────────────────────────────────────
+  - id: sub_task_success
+    name: sub_task_sucess
+    description: "The overall task is... Whether the sub-task was sucessfully completed and the beginning of the next sub-task can be begun."
+    key: "b"
+    color: "#f38ba8"
+
+  - id: sub_task_sequence_control
+    name: sub_task_sequence_control
+    descpription: "The overall task is... The current sub-tas is ... Whether the sub-task is correct"
+    key: "b"
+    color: "#f38ba8"
+
+  - id: outcome_change
+    name: outcome_change
+    descrption: "The overall task is ... (change sligthly) The current Whether the outcome is correct"
+    key: "b"
+    color: "#f38ba8"
+
+  - id: detail_change
+    name: detail_change
+    description: "The overall task is ... (change sligthly) The current sub-task, but basically the same as outcome change
+    key: "b"
+    color: "#f38ba8"
+
+  - id: multiview_consistency
+    name: multiview_consistency
+    description: "The model gets same the same question across different views. Whether the model is consistent across views."
+    key: "b"
+    color: "#f38ba8"
+
+
+  # ── Failure mode question types ────────────────────────────────────────────
+  - id: task_success_TS-S
+    name: Task Success (TS-S)
+    color: "#89b4fa"
+
+  - id: grasp_stability_TS-G
+    name: Grasp Stable (TS-G)
+    color: "#b4befe"
+
+  - id: goal_configuration_TS-GL
+    name: Goal Config (TS-GL)
+    color: "#cba6f7"
+
+  - id: gripper_state_RS
+    name: Gripper State (RS)
+    color: "#94e2d5"
+
+  - id: obstacle_detection_OS
+    name: Obstacle (OS)
+    color: "#89dceb"
+
+  - id: relative_direction_SR
+    name: Rel. Direction (SR)
+    color: "#fab387"
+
+  - id: grasp_phase_current_AU
+    name: Grasp Phase (AU)
+    color: "#f9e2af"
+
+  - id: temporal_sequence_AU
+    name: Temporal Seq (AU)
+    color: "#f5c2e7"
+
+  - id: grasp_phase_next_IP
+    name: Next Phase (IP)
+    color: "#fab387"
+
+  - id: action_direction_IP
+    name: Action Dir (IP)
+    color: "#f38ba8"
+
+  - id: trajectory_understanding_TU
+    name: Trajectory (TU)
+    color: "#cdd6f4"
+
+  # ── Multiview question types ───────────────────────────────────────────────
+  - id: cross_view_correspondence_MV
+    name: Cross-view (MV)
+    color: "#89b4fa"
+
+  - id: relative_depth_SU
+    name: Rel. Depth (SU)
+    color: "#94e2d5"

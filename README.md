@@ -226,4 +226,109 @@ Check for correct pipeline: write pipeline down
 
 small notes: 
 detect hallucaination by replacing correct answer with "None of the Above"
-They have evaluated it on what the hwole train or just the test set?
+hey have evaluated it on what the hwole train or just the test set?
+
+The failure modesfo robotic tasks
+
+Pick and place, is robot gripper open or closed?
+Is there anz obstacle blocking the robot from reaching xy
+The robot is to ... has the robot sucessfully completed the task
+Is the robots graps of the ... stable
+the robot task is to ... which colored arrow correctly shows the direction the robot will move next (actually not a failure mode)
+
+Is the robot closer to ... or ...
+
+Does the robots gripper curently grasp the correct object
+If the robot now graps, it will get hold of the object?
+If the robot move for the speed difference between those two images further then it is ... or has ...
+The robot is to place the objet it is holding in the upper object
+Is the given task possible to complete? e.g. place x behind y 
+The robot should palce the object at (x,y). 
+The robot should place object x, y, move toward z, drop object, move toward, target, none of the above
+
+
+the robots gripper open
+Did the robot sucessfully finish the task?
+
+
+is the robots anwer the same for multiview consistency? 
+Given the two consecutive images: if the boto would continue moving into this direction, would it come closer to achieving the goal?
+The model is in between the objects a and b?
+Or spatially close to xy 
+The model's arm is clsoe to the 
+Has the robo grapsed the corrrect obejct?
+Is the robot close to its overall target?
+Check for other tasks than pick and place. 
+
+If the robot would move to the lcostset obejct, then it would get clsoer to the succesfulss of the task?
+
+How about questions that would include a non definite failure mode such as move, such as givig a task that is not meant for this secen
+
+Is the model ready for the next task. Find the state taht would succeed this state. Maybe not complelty the failure mode thing but a complment to it.
+
+How good can the model evaluale open questions such as . put x in y. Pu
+
+
+
+As a different question to the "Did the last step fail?" Les ambigous. One step might be only solbavel if the last step has been executed in a certain way. 
+Compare between them. 
+
+
+Has the robot grasped the correct object?
+
+
+We can also ask alterantives ways of the same quesiton to check if the molde has more or less 
+
+
+And of course how does the model behave if it is not in anyway consistent with the data
+
+
+
+okay questions we want are: 
+the robot is to .+\. has the robot successfully completed the task\?
+
+the robot's task is to .+\. which configuration shows the goal state that the robot should achieve\?
+
+the robot is tasked to .+\. the robot is interacting with the .+\. which phase of the grasp action is shown in the image\?
+
+for the task '.+', what is the correct sequence of action phases shown in the images from left to right\?
+
+the robot is tasked to .+\. after .+, what will be the robot's next action phase\?"
+
+which language instruction best describes the robot's trajectory shown in the image\?
+
+
+
+The robot is tasked to +, but already started +, what should it do?  
+
+the robot is tasked to .+\. after .+, its next action phase will be ..., is it safe to begin this action phase?"
+
+the robot is tasked to .+\. after .+, its next action phase will be ..., did the last step or the entire task fail?"
+
+*We can change the task goal sligthly to change the outcome*
+
+*We can add minor details to the tasks that make it specific based on the images
+
+
+
+1. State identification (pure visual grounding)                               
+  "Which best describes the current state of the scene?"
+  → Tests: can it read the image at all, independent of task knowledge          
+                                                                                
+  2. Success verification (visual + task)
+  "The robot just attempted [Y]. Did it succeed?"                               
+  → Tests: can it map visual state to action outcome        
+
+  3. Precondition check (visual + task)                                         
+  "The robot is about to [Z]. Is the current state ready to proceed?"
+  → Tests: precondition verification from image                                 
+                                                            
+  4. Failure detection (visual + task + reasoning)
+  "The robot is tasked with [X] and is at step [t]. Is the task on track?"
+  → Tests: holistic failure detection                                           
+  
+  5. Next action under failure (your Q4 idea — but used cleverly)               
+  Same question on nominal image AND failure image. Nominal → VLM says step N+1.
+   Failure → does it still blindly say N+1, or does it say "redo N"?            
+  → The gap between conditions measures whether it actually uses the visual
+  evidence                                              

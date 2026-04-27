@@ -30,8 +30,9 @@ project-proposal/
 # Robo2VLM paper repo
 robo2vlm-original/
 
-# Dataset / model cache (large files)
-data/
+# Dataset / model cache (large files, but keep multiview tiles)
+data/*
+!data/multiview_tiles
 *.parquet
 *.arrow
 *.bin

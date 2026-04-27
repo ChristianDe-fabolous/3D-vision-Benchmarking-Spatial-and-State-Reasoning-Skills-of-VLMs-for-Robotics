@@ -99,12 +99,8 @@ QUESTION_TYPE_TEMPLATES: dict[str, dict[str, list[str]]] = {
         "gripper_state_RS":            [r"is the robot's gripper open\?"],
         # S3 — vqa_object_reachable — Spatial / Object State
         "obstacle_detection_OS":       [r"is there any obstacle blocking the robot from reaching .+\?"],
-        # S4 — vqa_relative_direction — Spatial / Spatial Relationship
-        "relative_direction_SR":       [r"in the image from .+ at step \d+, which direction is the .+ relative to the robot's end effector\?"],
         # I1 — vqa_task_success_state — Goal / Task State-success
         "task_success_TS-S":           [r"the robot is to .+\. has the robot successfully completed the task\?"],
-        # I2 — is_stable_grasp — Goal / Task State-grasp
-        "grasp_stability_TS-G":        [r"is the robot's grasp of the .+ stable\?"],
         # I3 — vqa_goal_configuration — Goal / Task State-goal
         "goal_configuration_TS-GL":    [r"the robot's task is to .+\. which configuration shows the goal state that the robot should achieve\?"],
         # I4 — vqa_action_understanding — Interaction / Action Understanding
@@ -114,17 +110,40 @@ QUESTION_TYPE_TEMPLATES: dict[str, dict[str, list[str]]] = {
                                         r"what task is the robot performing in this sequence of images\?"],
         # I4 — vqa_next_action — Interaction / Interaction Phase
         "grasp_phase_next_IP":         [r"the robot is tasked to .+\. after .+, what will be the robot's next action phase\?"],
-        # S6 — vqa_action_direction_selection — Interaction / Interaction Phase
-        "action_direction_IP":         [r"the robot task is to .+\. which colored arrow correctly shows the direction the robot will move next\?"],
         # I6 — vqa_trajectory_understanding — Interaction / Trajectory Understanding
         "trajectory_understanding_TU": [r"which language instruction best describes the robot's trajectory shown in the image\?"],
+        # S2 — vqa_relative_direction — Spatial / Spatial Relationship
+        "relative_direction_SR":       [r"which direction is the .+ relative to the robot's end effector\?"],
+        # I2 — vqa_grasp_stability — Goal / Task State-grasp
+        "grasp_stability_TS-G":        [r"is the robot's grasp of the .+ stable\?"],
+        # I4 — vqa_action_direction — Interaction / Interaction Phase
+        "action_direction_IP":         [r"which colored arrow correctly shows the direction the robot will move next\?"],
     },
     TASK_MULTIVIEW: {
         # S8 — vqa_multi_view_correspondence — Spatial / Multiple View
         "cross_view_correspondence_MV": [r"in the left image \(.+ camera\), a red dot is marked\. which point is the closest point in the right image \(.+ camera\) corresponding to the same 3d location\?"],
         # S6 — vqa_relative_depth — Spatial / Scene Understanding
-        "relative_depth_SU":            [r"in the image from .+, which colored point is (closest|farthest) to the camera\?"],
+        "relative_depth_SU":            [r"in the image from .+, which colored point is (closest|farthest) (to|from) the camera\?"],
     },
+}
+
+# Named-group extraction patterns — same slots as QUESTION_TYPE_TEMPLATES but
+# with (?P<name>...) groups so variable parts can be pulled out of each question.
+# Keys match QUESTION_TYPE_TEMPLATES. Only types with meaningful variables are listed.
+QUESTION_TYPE_EXTRACT: dict[str, list[str]] = {
+    # failure_mode
+    "obstacle_detection_OS":       [r"is there any obstacle blocking the robot from reaching (?P<object>.+)\?"],
+    "relative_direction_SR":       [r"in the image from (?P<camera>.+) at step (?P<step>\d+), which direction is the (?P<object>.+) relative to the robot's end effector\?"],
+    "task_success_TS-S":           [r"the robot is to (?P<task>.+)\. has the robot successfully completed the task\?"],
+    "grasp_stability_TS-G":        [r"is the robot's grasp of the (?P<object>.+) stable\?"],
+    "goal_configuration_TS-GL":    [r"the robot's task is to (?P<task>.+)\. which configuration shows the goal state that the robot should achieve\?"],
+    "grasp_phase_current_AU":      [r"the robot is tasked to (?P<task>.+)\. the robot is interacting with the (?P<object>.+)\. which phase of the grasp action is shown in the image\?"],
+    "temporal_sequence_AU":        [r"for the task '(?P<task>.+)', what is the correct sequence of action phases shown in the images from left to right\?"],
+    "grasp_phase_next_IP":         [r"the robot is tasked to (?P<task>.+)\. after (?P<current_phase>.+), what will be the robot's next action phase\?"],
+    "action_direction_IP":         [r"the robot task is to (?P<task>.+)\. which colored arrow correctly shows the direction the robot will move next\?"],
+    # multiview
+    "cross_view_correspondence_MV": [r"in the left image \((?P<left_camera>.+) camera\), a red dot is marked\. which point is the closest point in the right image \((?P<right_camera>.+) camera\) corresponding to the same 3d location\?"],
+    "relative_depth_SU":            [r"in the image from (?P<camera>.+), which colored point is (?P<direction>closest|farthest) (?:to|from) the camera\?"],
 }
 
 # Model identifiers

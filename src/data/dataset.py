@@ -25,7 +25,7 @@ from typing import Iterator, List, Optional, Tuple
 
 from PIL import Image
 
-from config import INVALID_ENTRIES, QUESTION_TYPE_GROUPS, QUESTION_TYPE_TEMPLATES, TASK_FAILURE_MODE, TASK_MULTIVIEW
+from config import INVALID_ENTRIES, QUESTION_TYPE_EXTRACT, QUESTION_TYPE_GROUPS, QUESTION_TYPE_TEMPLATES, TASK_FAILURE_MODE, TASK_MULTIVIEW
 
 
 @dataclass
@@ -72,9 +72,21 @@ def _parse_choices(raw: str) -> List[str]:
 
 
 def _parse_scene_id(entry_id: str) -> Optional[str]:
-    """Extract scene ID from entry ID, e.g. '14346' from 'droid_..._14346_q9'."""
-    m = re.search(r'_(\d+)_q\d+$', entry_id)
+    """Extract scene ID (full prefix) from entry ID, e.g. 'droid_..._14346' from 'droid_..._14346_q9'."""
+    m = re.match(r'^(.+)_q\d+$', entry_id)
     return m.group(1) if m else None
+
+
+def _extract_question_parts(question: str, question_types: List[str]) -> dict:
+    """Extract named variable slots from a question using QUESTION_TYPE_EXTRACT patterns."""
+    parts = {}
+    for type_key in question_types:
+        for pat in QUESTION_TYPE_EXTRACT.get(type_key, []):
+            m = re.search(pat, question, re.IGNORECASE)
+            if m:
+                parts.update(m.groupdict())
+                break
+    return parts
 
 
 def _is_invalid(entry_id: str) -> bool:
@@ -160,6 +172,9 @@ def load_dataset(
         if question_types:
             metadata["question_types"] = question_types
             metadata["question_group"] = QUESTION_TYPE_GROUPS.get(question_types[0])
+            parts = _extract_question_parts(row["question"], question_types)
+            if parts:
+                metadata["question_parts"] = parts
         yield Sample(
             id=row["id"],
             task=task,
