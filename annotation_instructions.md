@@ -160,6 +160,8 @@ Used for: Removing a lid, using an eraser, or spraying.
 - If two questions have the same step number, they happened at the same time — only fill in the description once.
 - When in doubt about **Safe to proceed**, use `Unsure`.
 - Mark **Task completed** only once per scene, on the step where the final goal is achieved.
+- Aim for scenes where not too few tile sets exists (less than 3) can be skipped. More than 10 could be a pain.
+- Few scenes contain tasks that are independent of each other, so nobody could know if another task has already been done. Skip these scenes as well.
 
 ---
 
