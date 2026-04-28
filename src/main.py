@@ -6,6 +6,11 @@ Examples:
     python main.py --task multiview --model qwen-7b --split train --limit 50
     python main.py --task failure_mode --model qwen-3b --local-data /path/to/data
     python main.py --task failure_mode --model qwen-3b --prompt default
+    python main.py --task action_phase --model qwen-7b \
+        --action-phase-data data/action_phase_dataset_capped.jsonl
+    python main.py --task action_phase --model qwen-7b \
+        --action-phase-data data/action_phase_dataset_capped.jsonl \
+        --action-phase-type action_phase_id
 """
 
 import argparse
@@ -30,8 +35,10 @@ from config import (
     PROMPT_TEST,
     TASK_FAILURE_MODE,
     TASK_MULTIVIEW,
+    TASK_ACTION_PHASE,
 )
 from models.qwen import QwenVLM
+from tasks.action_phase import ActionPhaseTask
 from tasks.failure_mode import FailureModeTask
 from tasks.multiview import MultiviewTask
 import pipeline
@@ -42,7 +49,26 @@ def parse_args():
     parser.add_argument(
         "--task",
         required=True,
-        choices=[TASK_FAILURE_MODE, TASK_MULTIVIEW],
+        choices=[TASK_FAILURE_MODE, TASK_MULTIVIEW, TASK_ACTION_PHASE],
+    )
+    parser.add_argument(
+        "--action-phase-data",
+        type=str,
+        default="data/action_phase_dataset_capped.jsonl",
+        help="Path to action_phase dataset JSONL (used when --task action_phase)",
+    )
+    parser.add_argument(
+        "--action-phase-type",
+        type=str,
+        default=None,
+        choices=["action_phase_id", "progress", "next_action", "phase_success"],
+        help="Filter to one question type within the action_phase task",
+    )
+    parser.add_argument(
+        "--image-root",
+        type=str,
+        default=None,
+        help="Root directory for resolving relative image paths in action_phase dataset",
     )
     parser.add_argument(
         "--model",
@@ -101,6 +127,14 @@ def parse_args():
 
 
 def build_task(args):
+    if args.task == TASK_ACTION_PHASE:
+        return ActionPhaseTask(
+            dataset_path=args.action_phase_data,
+            question_type=args.action_phase_type,
+            limit=args.limit,
+            prompt_id=args.prompt,
+            image_root=args.image_root,
+        )
     kwargs = dict(split=args.split, limit=args.limit, local_path=args.local_data, prompt_id=args.prompt)
     if args.task == TASK_FAILURE_MODE:
         return FailureModeTask(**kwargs)

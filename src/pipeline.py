@@ -106,7 +106,7 @@ def run(
         logger.debug(f"[{i}] id={sample.id}  q={sample.question[:60]}...")
 
         try:
-            response = model.infer(sample.image, prompt)
+            response = model.infer(sample.all_images, prompt)
         except Exception as e:
             logger.error(f"Inference failed for {sample.id}: {e}")
             response = ""

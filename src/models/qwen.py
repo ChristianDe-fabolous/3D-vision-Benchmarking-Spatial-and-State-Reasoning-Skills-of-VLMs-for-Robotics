@@ -54,19 +54,15 @@ class QwenVLM(BaseVLM):
         self._processor = AutoProcessor.from_pretrained(self.model_id)
         logger.info("Model loaded.")
 
-    def infer(self, image: Image.Image, prompt: str) -> str:
+    def infer(self, image: Image.Image | list[Image.Image], prompt: str) -> str:
         if self._model is None or self._processor is None:
             raise RuntimeError("Call load() before infer().")
 
-        messages = [
-            {
-                "role": "user",
-                "content": [
-                    {"type": "image", "image": image},
-                    {"type": "text", "text": prompt},
-                ],
-            }
-        ]
+        images = image if isinstance(image, list) else [image]
+        content = [{"type": "image", "image": img} for img in images]
+        content.append({"type": "text", "text": prompt})
+
+        messages = [{"role": "user", "content": content}]
 
         text = self._processor.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True

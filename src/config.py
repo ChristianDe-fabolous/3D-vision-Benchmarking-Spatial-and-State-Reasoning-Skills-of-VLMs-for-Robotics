@@ -11,8 +11,9 @@ LOG_DIR = Path(os.environ.get("VLM_LOG_DIR", ROOT_DIR / "logs"))
 INVALID_ENTRIES: set[int] = {}
 
 # Task identifiers
-TASK_FAILURE_MODE = "failure_mode"
-TASK_MULTIVIEW = "multiview"
+TASK_FAILURE_MODE  = "failure_mode"
+TASK_MULTIVIEW     = "multiview"
+TASK_ACTION_PHASE  = "action_phase"
 
 # Prompt identifiers
 PROMPT_DEFAULT = "default"
