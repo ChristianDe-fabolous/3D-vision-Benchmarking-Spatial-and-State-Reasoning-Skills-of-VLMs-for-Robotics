@@ -762,27 +762,18 @@ def make_q5(scene_id: str, task: str, steps: list[dict]) -> list[dict]:
     if not steps:
         return []
     entries  = []
-    base     = ["Yes", "No", CANNOT]
-    f, l     = steps[0], steps[-1]
     seq_text = "\n".join(f"{i+1}. {s['action_phase']}" for i, s in enumerate(steps))
 
-    for step_i in steps:
-        idx_i  = next(i for i, s in enumerate(steps) if s["step"] == step_i["step"])
-        before = steps[:idx_i]
-        after  = steps[idx_i + 1:]
-
-        candidates = [step_i]
-        if f["step"] != step_i["step"]:
-            candidates.append(f)
-        if l["step"] != step_i["step"]:
-            candidates.append(l)
-        if before:
-            candidates.append(random.choice(before))
-        if after:
-            candidates.append(random.choice(after))
+    for idx_i, step_i in enumerate(steps):
+        # sliding window ±2 around current step
+        window_indices = sorted({
+            j for offset in (-2, -1, 0, 1, 2)
+            if 0 <= (j := idx_i + offset) < len(steps)
+        })
+        candidates = _dedup_steps([steps[j] for j in window_indices])
 
         oid_i = step_i.get("original_id")
-        for claimed in _dedup_steps(candidates):
+        for claimed in candidates:
             if step_i["step"] > claimed["step"]:
                 correct = "Yes"
             elif step_i["step"] == claimed["step"]:
@@ -985,7 +976,7 @@ def main():
         scene_entries = (
             make_q1(scene_id, task, steps, rng_tiles)
             + make_q2(scene_id, task, steps, rng_tiles)
-            + make_q3(scene_id, task, steps, black_tile, rng_tiles)
+            # make_q3 (next_action) deactivated — keep function, skip for now
             + make_q5(scene_id, task, steps)
             + make_q6(scene_id, task, steps, merged_anns, rng_tiles)
         )
