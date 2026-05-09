@@ -46,8 +46,6 @@ DATASET=${DATASET:-data/action_phase_dataset.jsonl}
 
 module load cuda/13.0
 
-source /work/courses/3dv/team29/conda_env/bin/activate    
-
 export HF_HOME=$SCRATCH/hf_cache
 export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
 export VLM_OUTPUT_DIR=$REPO/outputs
