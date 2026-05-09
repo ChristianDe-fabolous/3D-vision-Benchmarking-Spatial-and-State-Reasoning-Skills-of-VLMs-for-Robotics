@@ -37,7 +37,7 @@ SCRATCH=/work/scratch/$USER
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 CONDA_ENV=/work/courses/3dv/team29/conda_env
 
-MODEL=${MODEL:-qwen-7b}
+MODEL=${MODEL:-qwen-7b-int8}
 DATASET=${DATASET:-data/action_phase_dataset.jsonl}
 # ACTION_PHASE_TYPE: action_phase_id | progress | phase_success | task_success (unset = all)
 # ─────────────────────────────────────────────────────────────────────────────
@@ -64,6 +64,7 @@ if [ ! -d "$CONDA_ENV" ]; then
 fi
 
 PYTHON=$CONDA_ENV/bin/python
+export PYTHONNOUSERSITE=1
 
 # ── Job info ──────────────────────────────────────────────────────────────────
 echo "========================================"
