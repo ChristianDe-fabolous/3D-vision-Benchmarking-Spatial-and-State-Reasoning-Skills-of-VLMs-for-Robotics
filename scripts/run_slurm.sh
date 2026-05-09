@@ -53,14 +53,6 @@ export VLM_LOG_DIR=$REPO/logs
 
 mkdir -p $HF_HOME $HF_DATASETS_CACHE $VLM_OUTPUT_DIR $VLM_LOG_DIR
 
-if [ ! -d "$CONDA_ENV" ]; then
-    echo "Conda env not found — creating at $CONDA_ENV ..."
-    conda create --prefix $CONDA_ENV python=3.11 -y -q
-    $CONDA_ENV/bin/pip install --upgrade pip -q
-    $CONDA_ENV/bin/pip install -r $REPO/requirements.txt -q
-    echo "Conda env ready."
-fi
-
 PYTHON=$CONDA_ENV/bin/python
 export PYTHONNOUSERSITE=1
 
