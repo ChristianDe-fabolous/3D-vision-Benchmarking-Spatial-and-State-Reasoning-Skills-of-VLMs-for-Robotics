@@ -1,44 +1,35 @@
 #!/bin/bash
-# ── ETH ISG Student Cluster — VLM Benchmark Job ───────────────────────────────
+# ── ETH ISG Student Cluster — Action Phase VLM Benchmark ─────────────────────
 #
 # Usage:
 #   sbatch scripts/run_slurm.sh
 #
 # Override defaults via env vars:
-#   TASK=failure_mode MODEL=qwen-7b-int8 GPU=2080ti sbatch scripts/run_slurm.sh
+#   MODEL=qwen-7b-int8 GPU=2080ti sbatch scripts/run_slurm.sh
+#   DATASET=data/action_phase_dataset_singleview.jsonl sbatch scripts/run_slurm.sh
 #
-# Resume a previous run (same RUN_ID picks up where it left off):
+# Resume a previous run:
 #   RUN_ID=my_run RESUME=1 sbatch scripts/run_slurm.sh
-# ──────────────────────────────────────────────────────────────────────────────
+#
+# Smoke test (first 10 questions with description):
+#   SMOKE=1 sbatch scripts/run_slurm.sh
+# ─────────────────────────────────────────────────────────────────────────────
 
 # ── SLURM directives ──────────────────────────────────────────────────────────
 #SBATCH --job-name=vlm-bench
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=3dvision          # ← your course/project tag here
-#SBATCH --time=24:00:00             # HH:MM:SS — max 7 days (168:00:00); gb10 max is 24:00:00
-#SBATCH --gpus=2080ti:1             # 11GB VRAM — fits qwen-7b-int8 / qwen-3b
-#SBATCH --cpus-per-task=4           # 2080ti: max 4 cores
-#SBATCH --mem=36G                   # 2080ti: max 36GB RAM
+#SBATCH --account=3dvision
+#SBATCH --time=12:00:00
+#SBATCH --gpus=5060ti:1
+#SBATCH --cpus-per-task=3
+#SBATCH --mem=24G
 
-# ── GPU / model combinations ──────────────────────────────────────────────────
-# qwen-3b          → 1080ti  (~6GB VRAM, bf16)   2 cores, 24GB RAM, max 7 days
-# qwen-7b-int8     → 2080ti  (~8GB VRAM, int8)   4 cores, 36GB RAM, max 7 days
-# qwen-7b          → 5060ti  (~14GB VRAM, bf16)  3 cores, 24GB RAM, max 7 days
-# qwen-32b-int8    → gb10    (~32GB VRAM, int8)  20 cores, 116GB RAM, max 24h
-#
-# Uncomment the block matching your model and comment out the lines above:
-##SBATCH --gpus=1080ti:1            # qwen-3b
-##SBATCH --cpus-per-task=2
-##SBATCH --mem=24G
-#
-##SBATCH --gpus=5060ti:1            # qwen-7b full precision
-##SBATCH --cpus-per-task=3
-##SBATCH --mem=24G
-#
-##SBATCH --gpus=gb10:1              # qwen-32b-int8 — 128GB shared VRAM, max 24:00:00
-##SBATCH --cpus-per-task=20
-##SBATCH --mem=116G
+# ── GPU / model reference ─────────────────────────────────────────────────────
+# qwen-3b        → 1080ti  (~6GB VRAM)   --cpus-per-task=2  --mem=24G
+# qwen-7b-int8   → 2080ti  (~8GB VRAM)   --cpus-per-task=4  --mem=36G
+# qwen-7b        → 5060ti  (~14GB VRAM)  --cpus-per-task=3  --mem=24G  ← default
+# qwen-32b-int8  → gb10    (~32GB VRAM)  --cpus-per-task=20 --mem=116G --time=24:00:00
 # ─────────────────────────────────────────────────────────────────────────────
 
 # ── User config ───────────────────────────────────────────────────────────────
@@ -46,75 +37,113 @@ SCRATCH=/work/scratch/$USER
 REPO=$HOME/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 VENV=$REPO/3dvision
 
-# Job parameters (override via env vars)
-TASK=${TASK:-failure_mode}          # failure_mode | multiview | action_phase
-MODEL=${MODEL:-qwen-7b-int8}        # qwen-3b | qwen-7b | qwen-7b-int8 | qwen3-2b | qwen-32b-int8
-PROMPT=${PROMPT:-paper}             # default | paper | paper_cot | test
-SPLIT=${SPLIT:-test}
-# action_phase-specific (only used when TASK=action_phase)
-ACTION_PHASE_DATA=${ACTION_PHASE_DATA:-data/action_phase_dataset_capped.jsonl}
-# ACTION_PHASE_TYPE: action_phase_id | progress | next_action | phase_success (leave unset = all)
-# IMAGE_ROOT: root dir for resolving relative image paths in action_phase dataset
+MODEL=${MODEL:-qwen-7b}
+DATASET=${DATASET:-data/action_phase_dataset.jsonl}
+# ACTION_PHASE_TYPE: action_phase_id | progress | phase_success | task_success (unset = all)
 # ─────────────────────────────────────────────────────────────────────────────
 
-# ── Environment setup ─────────────────────────────────────────────────────────
+# ── Environment ───────────────────────────────────────────────────────────────
 . /etc/profile.d/modules.sh
 module add cuda/12.9
 
-# HF cache → scratch (keeps large downloads off the 20GB home quota)
-# WARNING: scratch retention depends on usage size:
-#   <10GB → 7 days | 10-50GB → 2 days | >50GB → 1 day
-# Model + dataset will likely exceed 50GB → 1-day retention.
-# Re-download happens automatically on next job if cache is gone.
 export HF_HOME=$SCRATCH/hf_cache
 export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
-
-# Outputs → persistent scratch (copy to /work/users or home when done)
 export VLM_OUTPUT_DIR=$SCRATCH/vlm_outputs
 export VLM_LOG_DIR=$SCRATCH/vlm_logs
 
 mkdir -p $HF_HOME $HF_DATASETS_CACHE $VLM_OUTPUT_DIR $VLM_LOG_DIR
 
-# ── Activate venv ─────────────────────────────────────────────────────────────
 source $VENV/bin/activate
 
-# ── Print job info ────────────────────────────────────────────────────────────
-echo "Job ID:    $SLURM_JOB_ID"
-echo "Node:      $SLURM_NODELIST"
-echo "Task:      $TASK | Model: $MODEL | Prompt: $PROMPT"
-echo "Scratch:   $SCRATCH"
+# ── Job info ──────────────────────────────────────────────────────────────────
+echo "========================================"
+echo "Job ID  : $SLURM_JOB_ID"
+echo "Node    : $SLURM_NODELIST"
+echo "Model   : $MODEL"
+echo "Dataset : $DATASET"
+echo "Output  : $VLM_OUTPUT_DIR"
+echo "========================================"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
-# ── Build python command ──────────────────────────────────────────────────────
-CMD="python src/main.py \
-    --task $TASK \
-    --model $MODEL \
-    --prompt $PROMPT \
-    --split $SPLIT"
+cd $REPO
 
-# action_phase extras
-if [ "$TASK" = "action_phase" ]; then
-    CMD="$CMD --action-phase-data $ACTION_PHASE_DATA"
-    [ -n "$ACTION_PHASE_TYPE" ] && CMD="$CMD --action-phase-type $ACTION_PHASE_TYPE"
-    [ -n "$IMAGE_ROOT" ]        && CMD="$CMD --image-root $IMAGE_ROOT"
+# ── Smoke test ────────────────────────────────────────────────────────────────
+if [ -n "$SMOKE" ]; then
+    SMOKE_RUN_ID=${RUN_ID:-action_phase_${MODEL}_v1}_smoke
+    echo "Running smoke test (10 questions) -> $SMOKE_RUN_ID"
+    python src/main.py \
+        --task action_phase \
+        --model $MODEL \
+        --action-phase-data $DATASET \
+        --image-root $REPO \
+        --limit 10 \
+        --describe \
+        --run-id $SMOKE_RUN_ID \
+        --resume
+    echo "Smoke done. Check $VLM_OUTPUT_DIR/$SMOKE_RUN_ID/results.jsonl"
+    exit 0
 fi
 
-# Optional limit (e.g. LIMIT=100 sbatch ...)
-[ -n "$LIMIT" ] && CMD="$CMD --limit $LIMIT"
+# ── Build command ─────────────────────────────────────────────────────────────
+RUN_ID=${RUN_ID:-action_phase_${MODEL}_v1}
 
-# Per-category accuracy breakdown in summary.json (ANALYSE_CATEGORIES=1 sbatch ...)
-[ -n "$ANALYSE_CATEGORIES" ] && CMD="$CMD --analyse-categories"
+CMD="python src/main.py \
+    --task action_phase \
+    --model $MODEL \
+    --action-phase-data $DATASET \
+    --image-root $REPO \
+    --run-id $RUN_ID \
+    --resume"
 
-# Resume: pass RUN_ID + RESUME=1 to continue a previous run
-[ -n "$RUN_ID" ] && CMD="$CMD --run-id $RUN_ID"
-[ -n "$RESUME" ] && CMD="$CMD --resume"
-
-# HF token (set in env or hardcode here)
-[ -n "$HF_TOKEN" ] && CMD="$CMD --hf-token $HF_TOKEN"
+[ -n "$ACTION_PHASE_TYPE" ] && CMD="$CMD --action-phase-type $ACTION_PHASE_TYPE"
+[ -n "$LIMIT" ]             && CMD="$CMD --limit $LIMIT"
+[ -n "$HF_TOKEN" ]          && CMD="$CMD --hf-token $HF_TOKEN"
 
 # ── Run ───────────────────────────────────────────────────────────────────────
-cd $REPO
 echo "Running: $CMD"
 eval $CMD
 
-echo "Done. Outputs in $VLM_OUTPUT_DIR"
+# ── Results summary ───────────────────────────────────────────────────────────
+RESULTS=$VLM_OUTPUT_DIR/$RUN_ID/results.jsonl
+if [ -f "$RESULTS" ]; then
+    echo ""
+    echo "========================================"
+    echo "Results summary"
+    echo "========================================"
+    python3 - "$RESULTS" << 'PYEOF'
+import json, sys
+from collections import Counter
+
+results = [json.loads(l) for l in open(sys.argv[1]) if l.strip()]
+print(f"Total answered: {len(results)}")
+
+by_type = {}
+for r in results:
+    by_type.setdefault(r["question_type"], []).append(r)
+
+print("\nAccuracy by question type:")
+for qt, rows in sorted(by_type.items()):
+    acc = sum(r["correct"] for r in rows) / len(rows)
+    print(f"  {qt:25s}  {acc:.1%}  (n={len(rows)})")
+
+print("\nAccuracy by (type, variant):")
+by_tv = {}
+for r in results:
+    key = (r["question_type"], r.get("variant", "?"))
+    by_tv.setdefault(key, []).append(r)
+for (qt, v), rows in sorted(by_tv.items()):
+    acc = sum(r["correct"] for r in rows) / len(rows)
+    print(f"  {qt:25s}/{v}  {acc:.1%}  (n={len(rows)})")
+
+print("\nAnswer distribution:")
+for qt, rows in sorted(by_type.items()):
+    pred = Counter(r["predicted_label"] for r in rows)
+    gt   = Counter(r["ground_truth_label"] for r in rows)
+    print(f"  {qt}")
+    print(f"    GT  : {dict(gt)}")
+    print(f"    Pred: {dict(pred)}")
+PYEOF
+fi
+
+echo ""
+echo "Done. Outputs in $VLM_OUTPUT_DIR/$RUN_ID"
