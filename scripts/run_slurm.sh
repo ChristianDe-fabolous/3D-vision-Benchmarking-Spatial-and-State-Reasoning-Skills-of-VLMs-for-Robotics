@@ -5,11 +5,11 @@
 #   sbatch scripts/run_slurm.sh
 #
 # Override defaults via env vars:
-#   MODEL=qwen-7b-int8 GPU=2080ti sbatch scripts/run_slurm.sh
+#   MODEL=qwen-7b-int8 sbatch scripts/run_slurm.sh
 #   DATASET=data/action_phase_dataset_singleview.jsonl sbatch scripts/run_slurm.sh
 #
 # Resume a previous run:
-#   RUN_ID=my_run RESUME=1 sbatch scripts/run_slurm.sh
+#   RUN_ID=my_run sbatch scripts/run_slurm.sh
 #
 # Smoke test (first 10 questions with description):
 #   SMOKE=1 sbatch scripts/run_slurm.sh
@@ -35,7 +35,7 @@
 # ── User config ───────────────────────────────────────────────────────────────
 SCRATCH=/work/scratch/$USER
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
-VENV=$REPO/3dvision
+CONDA_ENV=/work/courses/3dv/team29/conda_env
 
 MODEL=${MODEL:-qwen-7b}
 DATASET=${DATASET:-data/action_phase_dataset.jsonl}
@@ -43,8 +43,17 @@ DATASET=${DATASET:-data/action_phase_dataset.jsonl}
 # ─────────────────────────────────────────────────────────────────────────────
 
 # ── Environment ───────────────────────────────────────────────────────────────
-. /etc/profile.d/modules.sh
-module add cuda/12.9
+__conda_setup="$('/cluster/courses/cil/envs/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+elif [ -f "/cluster/courses/cil/envs/etc/profile.d/conda.sh" ]; then
+    . "/cluster/courses/cil/envs/etc/profile.d/conda.sh"
+else
+    export PATH="/cluster/courses/cil/envs/bin:$PATH"
+fi
+unset __conda_setup
+
+module load cuda/12.6.0
 
 export HF_HOME=$SCRATCH/hf_cache
 export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
@@ -53,15 +62,15 @@ export VLM_LOG_DIR=$REPO/logs
 
 mkdir -p $HF_HOME $HF_DATASETS_CACHE $VLM_OUTPUT_DIR $VLM_LOG_DIR
 
-if [ ! -f "$VENV/bin/activate" ]; then
-    echo "Venv not found — creating and installing requirements..."
-    python3 -m venv $VENV
-    source $VENV/bin/activate
+if [ ! -d "$CONDA_ENV" ]; then
+    echo "Conda env not found — creating at $CONDA_ENV ..."
+    conda create --prefix $CONDA_ENV python=3.11 -y -q
+    conda activate $CONDA_ENV
     pip install --upgrade pip -q
     pip install -r $REPO/requirements.txt -q
-    echo "Venv ready."
+    echo "Conda env ready."
 else
-    source $VENV/bin/activate
+    conda activate $CONDA_ENV
 fi
 
 # ── Job info ──────────────────────────────────────────────────────────────────
