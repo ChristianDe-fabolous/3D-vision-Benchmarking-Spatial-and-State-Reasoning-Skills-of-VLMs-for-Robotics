@@ -194,8 +194,6 @@ def is_goal_done(ann: dict) -> bool:
 
 _POSITIONS = ("top_left", "top_right", "bottom_left")
 
-_CROP_BOXES: dict[str, tuple[int, int, int, int]] | None = None
-
 def _crop_box(pos: str, img_size: tuple[int, int]) -> tuple[int, int, int, int]:
     w, h = img_size
     hw, hh = w // 2, h // 2
@@ -206,16 +204,24 @@ def _crop_box(pos: str, img_size: tuple[int, int]) -> tuple[int, int, int, int]:
     }[pos]
 
 
-def crop_single_view(tile_rel: str, pos: str, tile_out: Path) -> str:
+def extract_single_view(tile_rel: str, pos: str, tile_out: Path, src_imgs: Path) -> str:
     stem     = Path(tile_rel).stem
     out_path = tile_out / f"{stem}_{pos}.jpg"
     rel_path = f"{TILES_SUBDIR}/{stem}_{pos}.jpg"
-    if not out_path.exists():
-        src = tile_out / f"{stem}.jpg"
-        if not src.exists():
-            return tile_rel
-        img = Image.open(src).convert("RGB")
-        img.crop(_crop_box(pos, img.size)).save(out_path, quality=90)
+    if out_path.exists():
+        return rel_path
+    # prefer original source image — no double compression
+    orig = src_imgs / f"{stem}_{pos}.jpg"
+    if orig.exists():
+        import shutil
+        shutil.copy2(orig, out_path)
+        return rel_path
+    # fallback: crop from stitched tile (one extra compression step)
+    src = tile_out / f"{stem}.jpg"
+    if not src.exists():
+        return tile_rel
+    img = Image.open(src).convert("RGB")
+    img.crop(_crop_box(pos, img.size)).save(out_path, quality=95)
     return rel_path
 
 
@@ -246,6 +252,7 @@ def expand_with_single_views(
     entries: list[dict],
     merged_anns: dict[str, dict],
     tile_out: Path,
+    src_imgs: Path,
 ) -> list[dict]:
     result = []
     for entry in entries:
@@ -257,11 +264,11 @@ def expand_with_single_views(
             e["view"] = pos
             if entry["question_type"] == "progress":
                 e["images"] = [
-                    crop_single_view(entry["images"][0], pos, tile_out),
-                    crop_single_view(entry["images"][1], pos, tile_out),
+                    extract_single_view(entry["images"][0], pos, tile_out, src_imgs),
+                    extract_single_view(entry["images"][1], pos, tile_out, src_imgs),
                 ]
             else:
-                e["images"] = [crop_single_view(entry["images"][0], pos, tile_out)]
+                e["images"] = [extract_single_view(entry["images"][0], pos, tile_out, src_imgs)]
             result.append(e)
     return result
 
@@ -1015,7 +1022,7 @@ def main():
 
     # ── single-view expansion ─────────────────────────────────────────────────
     print(f"\nExpanding single-view variants -> {sv_out_path}")
-    sv_dataset = expand_with_single_views(dataset, merged_anns, tile_out)
+    sv_dataset = expand_with_single_views(dataset, merged_anns, tile_out, src_imgs)
     sv_id_offset = max((e.get("id", -1) for e in existing), default=-1) + 1
     for i, entry in enumerate(sv_dataset):
         entry["id"] = sv_id_offset + i
