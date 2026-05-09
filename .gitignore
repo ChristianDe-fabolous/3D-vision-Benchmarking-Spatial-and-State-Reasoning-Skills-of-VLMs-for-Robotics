@@ -19,6 +19,7 @@ droid_index_env/
 # Jupyter
 .ipynb_checkpoints/
 *.ipynb
+!Run_minimal_inference_in_colab.ipynb
 
 # Run outputs (model responses, logs, summaries)
 outputs/

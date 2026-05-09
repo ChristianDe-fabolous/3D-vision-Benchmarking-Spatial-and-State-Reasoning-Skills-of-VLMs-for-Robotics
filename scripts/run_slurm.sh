@@ -16,7 +16,7 @@
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=3dvision          # ← your course/project tag here
-#SBATCH --time=24:00                # HH:MM — max 7 days (168:00); gb10 max is 24:00
+#SBATCH --time=24:00:00             # HH:MM:SS — max 7 days (168:00:00); gb10 max is 24:00:00
 #SBATCH --gpus=2080ti:1             # 11GB VRAM — fits qwen-7b-int8 / qwen-3b
 #SBATCH --cpus-per-task=4           # 2080ti: max 4 cores
 #SBATCH --mem=36G                   # 2080ti: max 36GB RAM
@@ -36,7 +36,7 @@
 ##SBATCH --cpus-per-task=3
 ##SBATCH --mem=24G
 #
-##SBATCH --gpus=gb10:1              # qwen-32b-int8 — 128GB shared VRAM, max 24:00
+##SBATCH --gpus=gb10:1              # qwen-32b-int8 — 128GB shared VRAM, max 24:00:00
 ##SBATCH --cpus-per-task=20
 ##SBATCH --mem=116G
 # ─────────────────────────────────────────────────────────────────────────────
@@ -47,10 +47,14 @@ REPO=$HOME/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for
 VENV=$REPO/3dvision
 
 # Job parameters (override via env vars)
-TASK=${TASK:-failure_mode}          # failure_mode | multiview
-MODEL=${MODEL:-qwen-7b-int8}        # qwen-3b | qwen-7b | qwen-7b-int8 | qwen3-2b
+TASK=${TASK:-failure_mode}          # failure_mode | multiview | action_phase
+MODEL=${MODEL:-qwen-7b-int8}        # qwen-3b | qwen-7b | qwen-7b-int8 | qwen3-2b | qwen-32b-int8
 PROMPT=${PROMPT:-paper}             # default | paper | paper_cot | test
 SPLIT=${SPLIT:-test}
+# action_phase-specific (only used when TASK=action_phase)
+ACTION_PHASE_DATA=${ACTION_PHASE_DATA:-data/action_phase_dataset_capped.jsonl}
+# ACTION_PHASE_TYPE: action_phase_id | progress | next_action | phase_success (leave unset = all)
+# IMAGE_ROOT: root dir for resolving relative image paths in action_phase dataset
 # ─────────────────────────────────────────────────────────────────────────────
 
 # ── Environment setup ─────────────────────────────────────────────────────────
@@ -88,8 +92,18 @@ CMD="python src/main.py \
     --prompt $PROMPT \
     --split $SPLIT"
 
+# action_phase extras
+if [ "$TASK" = "action_phase" ]; then
+    CMD="$CMD --action-phase-data $ACTION_PHASE_DATA"
+    [ -n "$ACTION_PHASE_TYPE" ] && CMD="$CMD --action-phase-type $ACTION_PHASE_TYPE"
+    [ -n "$IMAGE_ROOT" ]        && CMD="$CMD --image-root $IMAGE_ROOT"
+fi
+
 # Optional limit (e.g. LIMIT=100 sbatch ...)
 [ -n "$LIMIT" ] && CMD="$CMD --limit $LIMIT"
+
+# Per-category accuracy breakdown in summary.json (ANALYSE_CATEGORIES=1 sbatch ...)
+[ -n "$ANALYSE_CATEGORIES" ] && CMD="$CMD --analyse-categories"
 
 # Resume: pass RUN_ID + RESUME=1 to continue a previous run
 [ -n "$RUN_ID" ] && CMD="$CMD --run-id $RUN_ID"

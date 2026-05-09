@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """
-Viewer for action_phase_dataset.jsonl.
+Viewer for action_phase_dataset.jsonl / action_phase_dataset_singleview.jsonl.
 
 Shows each entry's image(s), question, choices, and correct answer.
 
 Usage:
   python scripts/view_dataset.py
-  python scripts/view_dataset.py --dataset data/action_phase_dataset.jsonl
+  python scripts/view_dataset.py --dataset data/action_phase_dataset_singleview.jsonl
   python scripts/view_dataset.py --type action_phase_id
 
 Controls:
-  Right / n   next entry
-  Left  / p   previous entry
-  1-9         filter by question type (shown in status bar)
-  0           clear filter
+  Right / n      next entry
+  Left  / p      previous entry
+  1-5            filter by question type
+  0              clear type filter
+  a / b / c / v  filter by variant (v = all)
+  t              cycle view filter (all → combined → top_left → top_right → bottom_left → all)
 """
 from __future__ import annotations
 
@@ -48,7 +50,11 @@ QTYPES = [
     "progress",
     "next_action",
     "phase_success",
+    "task_success",
 ]
+
+VARIANTS  = ["A", "B", "C"]
+VIEWS     = ["combined", "top_left", "top_right", "bottom_left"]
 
 
 def load_jsonl(path: Path) -> list[dict]:
@@ -66,13 +72,15 @@ class DatasetViewer:
         self.root    = root
         self.all     = entries
         self.filter  = None   # None = show all, else question_type string
+        self.variant = None   # None = show all variants
+        self.view    = None   # None = show all views
         self.entries = entries
         self.idx     = 0
         self._photo_refs: list[ImageTk.PhotoImage] = []
 
         root.title("Dataset Viewer")
         root.configure(bg=BG)
-        root.geometry("1000x820")
+        root.geometry("1000x860")
         root.bind("<Right>",  lambda _: self._next())
         root.bind("<Left>",   lambda _: self._prev())
         root.bind("n",        lambda _: self._next())
@@ -80,6 +88,11 @@ class DatasetViewer:
         root.bind("0",        lambda _: self._set_filter(None))
         for i, qt in enumerate(QTYPES, 1):
             root.bind(str(i), lambda _, q=qt: self._set_filter(q))
+        root.bind("a", lambda _: self._set_variant("A"))
+        root.bind("b", lambda _: self._set_variant("B"))
+        root.bind("c", lambda _: self._set_variant("C"))
+        root.bind("v", lambda _: self._set_variant(None))
+        root.bind("t", lambda _: self._cycle_view())
 
         self._build_chrome()
         self._render()
@@ -108,16 +121,38 @@ class DatasetViewer:
         je.pack(side="right", padx=(0, 4))
         je.bind("<Return>", lambda _: self._jump())
 
-        # Filter buttons
+        # Filter buttons — question type
         filter_frame = tk.Frame(self.root, bg=BG)
-        filter_frame.pack(fill="x", padx=10, pady=(0, 4))
-        tk.Label(filter_frame, text="Filter:", bg=BG, fg=FG_OFF, font=FONT_SM).pack(side="left", padx=(0, 6))
+        filter_frame.pack(fill="x", padx=10, pady=(0, 2))
+        tk.Label(filter_frame, text="Type:", bg=BG, fg=FG_OFF, font=FONT_SM).pack(side="left", padx=(0, 6))
         tk.Button(filter_frame, text="All [0]", command=lambda: self._set_filter(None),
                   bg=SURFACE, fg=FG, relief="flat", font=FONT_SM, padx=6).pack(side="left", padx=2)
         for i, qt in enumerate(QTYPES, 1):
             short = qt.replace("_", " ")
             tk.Button(filter_frame, text=f"{short} [{i}]",
                       command=lambda q=qt: self._set_filter(q),
+                      bg=SURFACE, fg=FG_DIM, relief="flat", font=FONT_SM, padx=6).pack(side="left", padx=2)
+
+        # Filter buttons — variant
+        var_frame = tk.Frame(self.root, bg=BG)
+        var_frame.pack(fill="x", padx=10, pady=(0, 2))
+        tk.Label(var_frame, text="Variant:", bg=BG, fg=FG_OFF, font=FONT_SM).pack(side="left", padx=(0, 6))
+        tk.Button(var_frame, text="All [v]", command=lambda: self._set_variant(None),
+                  bg=SURFACE, fg=FG, relief="flat", font=FONT_SM, padx=6).pack(side="left", padx=2)
+        for v in VARIANTS:
+            tk.Button(var_frame, text=f"{v} [{v.lower()}]",
+                      command=lambda vv=v: self._set_variant(vv),
+                      bg=SURFACE, fg=FG_DIM, relief="flat", font=FONT_SM, padx=6).pack(side="left", padx=2)
+
+        # Filter buttons — view
+        view_frame = tk.Frame(self.root, bg=BG)
+        view_frame.pack(fill="x", padx=10, pady=(0, 4))
+        tk.Label(view_frame, text="View [t]:", bg=BG, fg=FG_OFF, font=FONT_SM).pack(side="left", padx=(0, 6))
+        tk.Button(view_frame, text="All", command=lambda: self._set_view(None),
+                  bg=SURFACE, fg=FG, relief="flat", font=FONT_SM, padx=6).pack(side="left", padx=2)
+        for vw in VIEWS:
+            tk.Button(view_frame, text=vw.replace("_", " "),
+                      command=lambda v=vw: self._set_view(v),
                       bg=SURFACE, fg=FG_DIM, relief="flat", font=FONT_SM, padx=6).pack(side="left", padx=2)
 
         # Scrollable body
@@ -162,20 +197,33 @@ class DatasetViewer:
         sid = e.get("scene_id", "")
 
         self.title_lbl.configure(text=f"{qt}  |  {sid[:60]}")
+        active = []
+        if self.filter:  active.append(self.filter)
+        if self.variant: active.append(f"variant={self.variant}")
+        if self.view:    active.append(f"view={self.view}")
+        suffix = f"  [{', '.join(active)}]" if active else ""
         self.counter_lbl.configure(
-            text=f"{self.idx + 1} / {len(self.entries)}"
-                 + (f"  (filtered: {qt})" if self.filter else "")
+            text=f"{self.idx + 1} / {len(self.entries)}{suffix}"
         )
 
         # ── metadata strip ───────────────────────────────────────────────────
         meta_frame = tk.Frame(self.inner, bg=BG2)
         meta_frame.pack(fill="x", padx=8, pady=(6, 0))
+        def _m(val, fallback="—"):
+            v = val if val is not None else fallback
+            return str(v)
+        has_ctx = "The action phases in order are:" in e.get("question", "")
+        view_val = e.get("view", "—")
         meta_items = [
-            ("id",    str(e.get("id", ""))),
-            ("type",  qt),
-            ("step",  str(e.get("image_step", e.get("step_a", "—")))),
-            ("phase", e.get("image_phase", e.get("phase_a", "—"))),
+            ("id",      _m(e.get("id"))),
+            ("type",    qt + (f"/{e['variant']}" if e.get("variant") else "")),
+            ("view",    view_val),
+            ("ctx",     "yes" if has_ctx else "no"),
+            ("step",    _m(e.get("image_step", e.get("step_a")))),
+            ("phase",   _m(e.get("image_phase", e.get("phase_a")))),
         ]
+        if qt == "phase_success":
+            meta_items.append(("label", _m(e.get("label_phase"))))
         if e.get("special_image"):
             meta_items.append(("image", e["special_image"]))
         for k, v in meta_items:
@@ -186,11 +234,16 @@ class DatasetViewer:
         images = e.get("images", [])
         img_row = tk.Frame(self.inner, bg=BG)
         img_row.pack(padx=8, pady=8, anchor="w")
+        is_multiimg = len(images) > 1
+        view_tag    = e.get("view", "combined")
         for i, img_path in enumerate(images):
             col = tk.Frame(img_row, bg=BG)
             col.pack(side="left", padx=(0, 8))
-            label = "Image 1 (earlier)" if i == 0 and len(images) > 1 else \
-                    "Image 2 (later)"   if i == 1 else f"Image {i+1}"
+            if is_multiimg:
+                label = ("Image 1 (earlier)" if i == 0 else "Image 2 (later)") + \
+                        (f"  [{view_tag}]" if view_tag != "combined" else "")
+            else:
+                label = view_tag.replace("_", " ") if view_tag != "combined" else "Image"
             tk.Label(col, text=label, bg=BG, fg=FG_DIM, font=FONT_SM).pack()
             try:
                 img = Image.open(img_path).convert("RGB")
@@ -209,9 +262,14 @@ class DatasetViewer:
 
         # ── question ─────────────────────────────────────────────────────────
         tk.Frame(self.inner, bg=SURFACE, height=1).pack(fill="x", padx=8, pady=(4, 0))
-        tk.Label(self.inner, text=e.get("question", ""), bg=BG, fg=FG,
-                 font=FONT, anchor="w", justify="left", wraplength=940
-                 ).pack(fill="x", padx=12, pady=(8, 4))
+        q_text = e.get("question", "")
+        q_lines = q_text.count("\n") + 1
+        q_widget = tk.Text(self.inner, bg=BG, fg=FG, font=FONT,
+                           relief="flat", wrap="word",
+                           height=min(q_lines, 20), width=100)
+        q_widget.insert("1.0", q_text)
+        q_widget.configure(state="disabled")
+        q_widget.pack(fill="x", padx=12, pady=(8, 4))
 
         # ── choices ──────────────────────────────────────────────────────────
         tk.Frame(self.inner, bg=SURFACE, height=1).pack(fill="x", padx=8, pady=(4, 0))
@@ -261,9 +319,31 @@ class DatasetViewer:
         self._jump_var.set("")
 
     def _set_filter(self, qt: str | None):
-        self.filter  = qt
-        self.entries = [e for e in self.all if qt is None or e.get("question_type") == qt]
-        self.idx     = 0
+        self.filter = qt
+        self._apply_filters()
+
+    def _set_variant(self, v: str | None):
+        self.variant = v
+        self._apply_filters()
+
+    def _set_view(self, v: str | None):
+        self.view = v
+        self._apply_filters()
+
+    def _cycle_view(self):
+        options = [None] + VIEWS
+        current = options.index(self.view) if self.view in options else 0
+        self.view = options[(current + 1) % len(options)]
+        self._apply_filters()
+
+    def _apply_filters(self):
+        self.entries = [
+            e for e in self.all
+            if (self.filter  is None or e.get("question_type") == self.filter)
+            and (self.variant is None or e.get("variant", "") == self.variant)
+            and (self.view    is None or e.get("view", "combined") == self.view)
+        ]
+        self.idx = 0
         self._render()
 
 

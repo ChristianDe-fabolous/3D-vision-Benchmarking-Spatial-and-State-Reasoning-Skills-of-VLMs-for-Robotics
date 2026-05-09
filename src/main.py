@@ -54,14 +54,14 @@ def parse_args():
     parser.add_argument(
         "--action-phase-data",
         type=str,
-        default="data/action_phase_dataset_capped.jsonl",
+        default="data/action_phase_dataset.jsonl",
         help="Path to action_phase dataset JSONL (used when --task action_phase)",
     )
     parser.add_argument(
         "--action-phase-type",
         type=str,
         default=None,
-        choices=["action_phase_id", "progress", "next_action", "phase_success"],
+        choices=["action_phase_id", "progress", "next_action", "phase_success", "task_success"],
         help="Filter to one question type within the action_phase task",
     )
     parser.add_argument(
@@ -123,6 +123,12 @@ def parse_args():
         default=False,
         help="Skip samples already present in results.jsonl (use with --run-id to continue a previous run).",
     )
+    parser.add_argument(
+        "--describe",
+        action="store_true",
+        default=False,
+        help="Ask the model to describe what it sees before answering (smoke test / qualitative analysis).",
+    )
     return parser.parse_args()
 
 
@@ -134,6 +140,7 @@ def build_task(args):
             limit=args.limit,
             prompt_id=args.prompt,
             image_root=args.image_root,
+            describe=args.describe,
         )
     kwargs = dict(split=args.split, limit=args.limit, local_path=args.local_data, prompt_id=args.prompt)
     if args.task == TASK_FAILURE_MODE:
