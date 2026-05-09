@@ -42,18 +42,11 @@ DATASET=${DATASET:-data/action_phase_dataset.jsonl}
 # ACTION_PHASE_TYPE: action_phase_id | progress | phase_success | task_success (unset = all)
 # ─────────────────────────────────────────────────────────────────────────────
 
-# ── Environment ───────────────────────────────────────────────────────────────
-__conda_setup="$('/cluster/courses/cil/envs/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-elif [ -f "/cluster/courses/cil/envs/etc/profile.d/conda.sh" ]; then
-    . "/cluster/courses/cil/envs/etc/profile.d/conda.sh"
-else
-    export PATH="/cluster/courses/cil/envs/bin:$PATH"
-fi
-unset __conda_setup
 
-module load cuda/12.6.0
+
+module load cuda/13.0
+
+source /work/courses/3dv/team29/conda_env/bin/activate    
 
 export HF_HOME=$SCRATCH/hf_cache
 export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
@@ -65,13 +58,12 @@ mkdir -p $HF_HOME $HF_DATASETS_CACHE $VLM_OUTPUT_DIR $VLM_LOG_DIR
 if [ ! -d "$CONDA_ENV" ]; then
     echo "Conda env not found — creating at $CONDA_ENV ..."
     conda create --prefix $CONDA_ENV python=3.11 -y -q
-    conda activate $CONDA_ENV
-    pip install --upgrade pip -q
-    pip install -r $REPO/requirements.txt -q
+    $CONDA_ENV/bin/pip install --upgrade pip -q
+    $CONDA_ENV/bin/pip install -r $REPO/requirements.txt -q
     echo "Conda env ready."
-else
-    conda activate $CONDA_ENV
 fi
+
+PYTHON=$CONDA_ENV/bin/python
 
 # ── Job info ──────────────────────────────────────────────────────────────────
 echo "========================================"
@@ -91,7 +83,7 @@ GPU_FLAG="--gpus=${GPU:-5060ti}:1"
 if [ -n "$SMOKE" ]; then
     SMOKE_RUN_ID=${RUN_ID:-action_phase_${MODEL}_v1}_smoke
     echo "Running smoke test (10 questions) -> $SMOKE_RUN_ID"
-    srun $GPU_FLAG python src/main.py \
+    srun $GPU_FLAG $PYTHON src/main.py \
         --task action_phase \
         --model $MODEL \
         --action-phase-data $DATASET \
@@ -107,7 +99,7 @@ fi
 # ── Build command ─────────────────────────────────────────────────────────────
 RUN_ID=${RUN_ID:-action_phase_${MODEL}_v1}
 
-CMD="python src/main.py \
+CMD="$PYTHON src/main.py \
     --task action_phase \
     --model $MODEL \
     --action-phase-data $DATASET \
