@@ -21,7 +21,7 @@
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=3dv
 #SBATCH --time=12:00:00
-#SBATCH --gpus=5060ti:1
+#SBATCH --gres=gpu:5060ti:1
 #SBATCH --cpus-per-task=3
 #SBATCH --mem=24G
 
