@@ -21,7 +21,6 @@
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=3dv
 #SBATCH --time=12:00:00
-#SBATCH --constraint=5060ti
 #SBATCH --cpus-per-task=3
 #SBATCH --mem=24G
 
@@ -86,10 +85,12 @@ nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 cd $REPO
 
 # ── Smoke test ────────────────────────────────────────────────────────────────
+GPU_FLAG="--gpus=${GPU:-5060ti}:1"
+
 if [ -n "$SMOKE" ]; then
     SMOKE_RUN_ID=${RUN_ID:-action_phase_${MODEL}_v1}_smoke
     echo "Running smoke test (10 questions) -> $SMOKE_RUN_ID"
-    python src/main.py \
+    srun $GPU_FLAG python src/main.py \
         --task action_phase \
         --model $MODEL \
         --action-phase-data $DATASET \
@@ -118,8 +119,8 @@ CMD="python src/main.py \
 [ -n "$HF_TOKEN" ]          && CMD="$CMD --hf-token $HF_TOKEN"
 
 # ── Run ───────────────────────────────────────────────────────────────────────
-echo "Running: $CMD"
-eval $CMD
+echo "Running: srun $GPU_FLAG $CMD"
+eval srun $GPU_FLAG $CMD
 
 # ── Results summary ───────────────────────────────────────────────────────────
 RESULTS=$VLM_OUTPUT_DIR/$RUN_ID/results.jsonl
