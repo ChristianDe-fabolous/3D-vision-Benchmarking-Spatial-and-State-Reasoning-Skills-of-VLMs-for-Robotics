@@ -20,9 +20,10 @@
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=3dv
+#SBATCH --gpus=5060ti:1
 #SBATCH --time=12:00:00
-#SBATCH --cpus-per-task=3
-#SBATCH --mem=24G
+#SBATCH --mail-user=cdeubel@ethz.ch
+#SBATCH --mail-type=END,ALL
 
 # ── GPU / model reference ─────────────────────────────────────────────────────
 # qwen-3b        → 1080ti  (~6GB VRAM)   --cpus-per-task=2  --mem=24G
