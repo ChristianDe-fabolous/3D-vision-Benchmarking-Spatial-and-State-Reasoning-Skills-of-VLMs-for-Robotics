@@ -53,7 +53,16 @@ export VLM_LOG_DIR=$REPO/logs
 
 mkdir -p $HF_HOME $HF_DATASETS_CACHE $VLM_OUTPUT_DIR $VLM_LOG_DIR
 
-source $VENV/bin/activate
+if [ ! -f "$VENV/bin/activate" ]; then
+    echo "Venv not found — creating and installing requirements..."
+    python3 -m venv $VENV
+    source $VENV/bin/activate
+    pip install --upgrade pip -q
+    pip install -r $REPO/requirements.txt -q
+    echo "Venv ready."
+else
+    source $VENV/bin/activate
+fi
 
 # ── Job info ──────────────────────────────────────────────────────────────────
 echo "========================================"
