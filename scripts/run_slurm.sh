@@ -19,7 +19,7 @@
 #SBATCH --job-name=vlm-bench
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=3dvision
+#SBATCH --account=3dv
 #SBATCH --time=12:00:00
 #SBATCH --gpus=5060ti:1
 #SBATCH --cpus-per-task=3
