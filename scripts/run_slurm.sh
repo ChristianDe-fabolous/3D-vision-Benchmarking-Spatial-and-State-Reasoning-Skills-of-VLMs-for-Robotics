@@ -34,7 +34,7 @@
 
 # ── User config ───────────────────────────────────────────────────────────────
 SCRATCH=/work/scratch/$USER
-REPO=$HOME/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
+REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 VENV=$REPO/3dvision
 
 MODEL=${MODEL:-qwen-7b}
@@ -48,8 +48,8 @@ module add cuda/12.9
 
 export HF_HOME=$SCRATCH/hf_cache
 export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
-export VLM_OUTPUT_DIR=$SCRATCH/vlm_outputs
-export VLM_LOG_DIR=$SCRATCH/vlm_logs
+export VLM_OUTPUT_DIR=$REPO/outputs
+export VLM_LOG_DIR=$REPO/logs
 
 mkdir -p $HF_HOME $HF_DATASETS_CACHE $VLM_OUTPUT_DIR $VLM_LOG_DIR
 
