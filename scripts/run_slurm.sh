@@ -51,10 +51,12 @@ export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
 export VLM_OUTPUT_DIR=$REPO/outputs
 export VLM_LOG_DIR=$REPO/logs
 
+
+PYTHON_BIN=/home/$USER/.conda/envs/
+
 mkdir -p $HF_HOME $HF_DATASETS_CACHE $VLM_OUTPUT_DIR $VLM_LOG_DIR
 
-PYTHON=$CONDA_ENV/bin/python
-export PYTHONNOUSERSITE=1
+source ~/.bashrc
 
 # ── Job info ──────────────────────────────────────────────────────────────────
 echo "========================================"
