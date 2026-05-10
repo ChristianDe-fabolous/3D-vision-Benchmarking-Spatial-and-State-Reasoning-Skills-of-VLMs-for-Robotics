@@ -55,6 +55,18 @@ class QwenVLM(BaseVLM):
         self._processor.tokenizer.padding_side = "left"
         logger.info("Model loaded.")
 
+    def _answer_token_ids(self, labels: list[str]) -> dict[str, int]:
+        """Return {label: token_id} for each answer letter, trying plain and space-prefixed forms."""
+        tok = self._processor.tokenizer
+        result = {}
+        for label in labels:
+            for form in (label, f" {label}"):
+                ids = tok.encode(form, add_special_tokens=False)
+                if len(ids) == 1:
+                    result[label] = ids[0]
+                    break
+        return result
+
     def _build_messages(self, images: list[Image.Image], prompt: str) -> list[dict]:
         content = [{"type": "image", "image": img} for img in images]
         content.append({"type": "text", "text": prompt})
@@ -97,3 +109,57 @@ class QwenVLM(BaseVLM):
             self._processor.decode(out[prompt_len:], skip_special_tokens=True).strip()
             for out in output_ids
         ]
+
+    def infer_batch_logprobs(
+        self,
+        batch: list[tuple[list[Image.Image], str]],
+        choice_labels: list[list[str]],
+    ) -> list[tuple[str, dict]]:
+        if self._model is None or self._processor is None:
+            raise RuntimeError("Call load() before infer().")
+
+        from qwen_vl_utils import process_vision_info
+
+        all_messages = [self._build_messages(imgs, prompt) for imgs, prompt in batch]
+        texts = [
+            self._processor.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+            for msgs in all_messages
+        ]
+        image_inputs = []
+        for msgs in all_messages:
+            imgs, _ = process_vision_info(msgs)
+            image_inputs.extend(imgs or [])
+
+        inputs = self._processor(
+            text=texts,
+            images=image_inputs if image_inputs else None,
+            padding=True,
+            return_tensors="pt",
+        ).to(next(self._model.parameters()).device)
+
+        with torch.no_grad():
+            out = self._model.generate(
+                **inputs,
+                max_new_tokens=1,
+                output_scores=True,
+                return_dict_in_generate=True,
+            )
+
+        # out.scores[0]: (batch, vocab_size) — logits at first generated token
+        first_logits = out.scores[0]  # (batch, vocab)
+
+        results = []
+        for i, labels in enumerate(choice_labels):
+            token_ids = self._answer_token_ids(labels)
+            if not token_ids:
+                results.append(("", {}))
+                continue
+            ids = [token_ids[l] for l in labels if l in token_ids]
+            label_keys = [l for l in labels if l in token_ids]
+            logits_for_choices = first_logits[i, ids]
+            probs = torch.softmax(logits_for_choices, dim=-1).tolist()
+            prob_dict = dict(zip(label_keys, probs))
+            predicted = max(prob_dict, key=prob_dict.__getitem__)
+            results.append((predicted, prob_dict))
+
+        return results

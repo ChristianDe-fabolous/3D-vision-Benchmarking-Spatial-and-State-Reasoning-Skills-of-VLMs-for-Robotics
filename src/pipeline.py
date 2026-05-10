@@ -16,7 +16,7 @@ from typing import List, Optional, Set
 
 from evaluation.results import save_config, save_summary
 from models.base import BaseVLM
-from tasks.base import BaseTask
+from tasks.base import BaseTask, CHOICE_LABELS
 from utils.logging import SampleLogger, setup_logger
 
 
@@ -60,6 +60,7 @@ def run(
     resume: bool = False,
     batch_size: int = 1,
     verbose_response: bool = False,
+    logprobs: bool = False,
 ) -> List[dict]:
     """
     Stream and evaluate all samples from `task` using `model`.
@@ -99,13 +100,21 @@ def run(
     def _flush(buf):
         nonlocal i
         batch_input = [(s.all_images, p) for s, p in buf]
+        choice_labels = [CHOICE_LABELS[:len(s.choices)] for s, _ in buf]
         try:
-            responses = model.infer_batch(batch_input)
+            if logprobs:
+                lp_results = model.infer_batch_logprobs(batch_input, choice_labels)
+                responses = [r for r, _ in lp_results]
+                prob_dicts = [d for _, d in lp_results]
+            else:
+                responses = model.infer_batch(batch_input)
+                prob_dicts = [{}] * len(buf)
         except Exception as e:
             logger.error(f"Batch inference failed: {e}")
             responses = [""] * len(buf)
+            prob_dicts = [{}] * len(buf)
 
-        for (sample, prompt), response in zip(buf, responses):
+        for (sample, prompt), response, probs in zip(buf, responses, prob_dicts):
             i += 1
             correct = task.evaluate(response, sample)
             predicted_idx = task.parse_response(response, sample)
@@ -130,6 +139,8 @@ def run(
                 "correct": correct,
                 **meta,
             }
+            if probs:
+                entry["choice_probs"] = probs
             sample_logger.log(entry)
             results.append(entry)
             status = "✓" if correct else "✗"
@@ -140,6 +151,13 @@ def run(
                 f"[{i}] {status}  idx={sample.id}  {qtype}  {scene}  "
                 f"pred='{pred}'  gt='{sample.correct_choice}'"
             )
+            if probs:
+                label_to_text = {CHOICE_LABELS[j]: c for j, c in enumerate(sample.choices)}
+                decoded = "  ".join(
+                    f"{label_to_text.get(l, l)} {p*100:.1f}%"
+                    for l, p in sorted(probs.items(), key=lambda x: -x[1])
+                )
+                logger.info(f"    probs: {decoded}")
             if verbose_response:
                 print(f"\n--- [{i}] {sample.id} ---\n{response}\n---", flush=True)
 

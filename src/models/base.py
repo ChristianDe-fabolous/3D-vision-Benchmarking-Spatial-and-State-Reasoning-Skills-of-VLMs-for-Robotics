@@ -30,3 +30,16 @@ class BaseVLM(ABC):
         Default: loop over infer(). Override for true batched GPU inference.
         """
         return [self.infer(images, prompt) for images, prompt in batch]
+
+    def infer_batch_logprobs(
+        self,
+        batch: List[Tuple[List[Image.Image], str]],
+        choice_labels: List[List[str]],
+    ) -> List[Tuple[str, dict]]:
+        """
+        Return (predicted_letter, {label: prob}) for each sample.
+        prob is normalised over the given choice labels only.
+        Default: falls back to infer_batch with None probs.
+        """
+        responses = self.infer_batch(batch)
+        return [(r, {}) for r in responses]

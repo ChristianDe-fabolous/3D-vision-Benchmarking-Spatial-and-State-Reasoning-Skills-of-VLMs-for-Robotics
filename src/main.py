@@ -142,6 +142,12 @@ def parse_args():
         help="Ask the model to reason step by step before giving its final answer letter.",
     )
     parser.add_argument(
+        "--logprobs",
+        action="store_true",
+        default=False,
+        help="Score answer choices by logprob instead of generation. Faster; stores per-choice probs in results.",
+    )
+    parser.add_argument(
         "--test-pipeline",
         action="store_true",
         default=False,
@@ -212,6 +218,7 @@ def main():
         resume=args.resume,
         batch_size=args.batch_size,
         verbose_response=args.test_pipeline,
+        logprobs=args.logprobs,
     )
 
 
