@@ -351,6 +351,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--dataset", default="data/action_phase_dataset.jsonl")
     p.add_argument("--type",    default=None, help="Filter by question type on startup")
+    p.add_argument("--id",      default=None, help="Jump directly to entry with this id")
     args = p.parse_args()
 
     root_dir = Path(__file__).parent.parent
@@ -367,6 +368,13 @@ def main():
     viewer = DatasetViewer(root, entries)
     if args.type:
         viewer._set_filter(args.type)
+    if args.id:
+        ids = [e.get("id") for e in viewer.entries]
+        if args.id in ids:
+            viewer.idx = ids.index(args.id)
+            viewer._render()
+        else:
+            print(f"Warning: id '{args.id}' not found in dataset")
     root.mainloop()
 
 

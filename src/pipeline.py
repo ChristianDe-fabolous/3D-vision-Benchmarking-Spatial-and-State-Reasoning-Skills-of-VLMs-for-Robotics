@@ -131,7 +131,7 @@ def run(
             results.append(entry)
             status = "✓" if correct else "✗"
             logger.info(
-                f"[{i}] {status}  response='{response}'  "
+                f"[{i}] {status}  id={sample.id}  response='{response}'  "
                 f"gt='{sample.correct_choice}'"
             )
 
