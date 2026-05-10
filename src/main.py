@@ -48,7 +48,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="VLM Robotics Benchmark")
     parser.add_argument(
         "--task",
-        required=True,
+        default=TASK_ACTION_PHASE,
         choices=[TASK_FAILURE_MODE, TASK_MULTIVIEW, TASK_ACTION_PHASE],
     )
     parser.add_argument(
