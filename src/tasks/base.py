@@ -27,8 +27,8 @@ class BaseTask(ABC):
         """
         labels = CHOICE_LABELS[: len(sample.choices)]
         prompt_id = getattr(self, "prompt_id", "default")
-        if prompt_id == "paper_cot":
-            # Scan lines from the bottom to find the first lone letter
+        cot = getattr(self, "cot", False) or prompt_id == "paper_cot"
+        if cot:
             for line in reversed(response.strip().splitlines()):
                 letter = line.strip().upper()[:1]
                 if letter in labels:

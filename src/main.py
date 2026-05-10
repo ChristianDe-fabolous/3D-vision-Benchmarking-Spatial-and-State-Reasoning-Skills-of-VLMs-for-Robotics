@@ -135,6 +135,18 @@ def parse_args():
         default=False,
         help="Ask the model to describe what it sees before answering (smoke test / qualitative analysis).",
     )
+    parser.add_argument(
+        "--cot",
+        action="store_true",
+        default=False,
+        help="Ask the model to reason step by step before giving its final answer letter.",
+    )
+    parser.add_argument(
+        "--test-pipeline",
+        action="store_true",
+        default=False,
+        help="Enable describe prompt and print full model response to stdout for inspection.",
+    )
     return parser.parse_args()
 
 
@@ -146,7 +158,8 @@ def build_task(args):
             limit=args.limit,
             prompt_id=args.prompt,
             image_root=args.image_root,
-            describe=args.describe,
+            describe=args.describe or args.test_pipeline,
+            cot=args.cot,
         )
     kwargs = dict(split=args.split, limit=args.limit, local_path=args.local_data, prompt_id=args.prompt)
     if args.task == TASK_FAILURE_MODE:
@@ -198,6 +211,7 @@ def main():
         analyse_categories=args.analyse_categories,
         resume=args.resume,
         batch_size=args.batch_size,
+        verbose_response=args.test_pipeline,
     )
 
 

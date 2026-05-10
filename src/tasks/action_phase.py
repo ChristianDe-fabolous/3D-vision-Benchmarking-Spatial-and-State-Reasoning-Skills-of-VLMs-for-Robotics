@@ -26,12 +26,14 @@ class ActionPhaseTask(BaseTask):
         prompt_id: str = "default",
         image_root: Optional[str] = None,
         describe: bool = False,
+        cot: bool = False,
     ):
         self.dataset_path  = Path(dataset_path)
         self.question_type = question_type
         self.limit         = limit
         self.prompt_id     = prompt_id
         self.describe      = describe
+        self.cot           = cot
         # Root for resolving relative image paths.
         # Defaults to the project root (two levels above this file).
         self.image_root = Path(image_root) if image_root else Path(__file__).parent.parent.parent
@@ -117,7 +119,9 @@ class ActionPhaseTask(BaseTask):
         lines = [sample.question, ""]
         for i, choice in enumerate(sample.choices):
             lines.append(f"{CHOICE_LABELS[i]}. {choice}")
-        if self.describe:
+        if self.cot:
+            lines += ["", "Think step by step about the image(s) and the question. Then on the last line write only the letter of the correct choice."]
+        elif self.describe:
             lines += ["", "First briefly describe what you observe in the image(s). Then answer with the letter of the correct choice only."]
         else:
             lines += ["", "Answer with the letter of the correct choice only."]

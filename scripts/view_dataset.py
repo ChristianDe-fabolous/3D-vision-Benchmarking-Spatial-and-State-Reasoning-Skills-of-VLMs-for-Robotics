@@ -369,12 +369,24 @@ def main():
     if args.type:
         viewer._set_filter(args.type)
     if args.id:
-        ids = [e.get("id") for e in viewer.entries]
-        if args.id in ids:
-            viewer.idx = ids.index(args.id)
+        # match by integer index (id field) or by scene_id prefix
+        target = None
+        if args.id.isdigit():
+            int_id = int(args.id)
+            for k, e in enumerate(viewer.entries):
+                if e.get("id") == int_id:
+                    target = k
+                    break
+        if target is None:
+            for k, e in enumerate(viewer.entries):
+                if e.get("scene_id", "") == args.id:
+                    target = k
+                    break
+        if target is not None:
+            viewer.idx = target
             viewer._render()
         else:
-            print(f"Warning: id '{args.id}' not found in dataset")
+            print(f"Warning: '{args.id}' not found (tried id and scene_id)")
     root.mainloop()
 
 

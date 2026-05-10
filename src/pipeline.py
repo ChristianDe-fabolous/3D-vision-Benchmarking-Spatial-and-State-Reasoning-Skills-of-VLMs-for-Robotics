@@ -59,6 +59,7 @@ def run(
     analyse_categories: bool = False,
     resume: bool = False,
     batch_size: int = 1,
+    verbose_response: bool = False,
 ) -> List[dict]:
     """
     Stream and evaluate all samples from `task` using `model`.
@@ -88,6 +89,8 @@ def run(
         logger.info(f"Resuming — {len(completed_ids)} already done, fast-forwarding {skip_rows} dataset rows.")
 
     logger.info(f"Run '{run_id}' | task={task.__class__.__name__} | model={model_id} | prompt={prompt_id}")
+    print(f"Results  → {output_dir / 'results.jsonl'}", flush=True)
+    print(f"Log      → {log_dir / f'{run_id}.log'}", flush=True)
 
     results: List[dict] = list(completed_results)
     i = 0
@@ -130,10 +133,15 @@ def run(
             sample_logger.log(entry)
             results.append(entry)
             status = "✓" if correct else "✗"
+            scene = sample.metadata.get("scene_id", "")
+            qtype = sample.metadata.get("question_type", sample.task)
+            pred = predicted_label or response
             logger.info(
-                f"[{i}] {status}  id={sample.id}  response='{response}'  "
-                f"gt='{sample.correct_choice}'"
+                f"[{i}] {status}  idx={sample.id}  {qtype}  {scene}  "
+                f"pred='{pred}'  gt='{sample.correct_choice}'"
             )
+            if verbose_response:
+                print(f"\n--- [{i}] {sample.id} ---\n{response}\n---", flush=True)
 
     for sample in task.get_samples(skip=skip_rows):
         if sample.id in completed_ids:
