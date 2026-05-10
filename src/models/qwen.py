@@ -52,28 +52,37 @@ class QwenVLM(BaseVLM):
             )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id)
+        self._processor.tokenizer.padding_side = "left"
         logger.info("Model loaded.")
 
+    def _build_messages(self, images: list[Image.Image], prompt: str) -> list[dict]:
+        content = [{"type": "image", "image": img} for img in images]
+        content.append({"type": "text", "text": prompt})
+        return [{"role": "user", "content": content}]
+
     def infer(self, image: Image.Image | list[Image.Image], prompt: str) -> str:
+        return self.infer_batch([(image if isinstance(image, list) else [image], prompt)])[0]
+
+    def infer_batch(self, batch: list[tuple[list[Image.Image], str]]) -> list[str]:
         if self._model is None or self._processor is None:
             raise RuntimeError("Call load() before infer().")
 
-        images = image if isinstance(image, list) else [image]
-        content = [{"type": "image", "image": img} for img in images]
-        content.append({"type": "text", "text": prompt})
-
-        messages = [{"role": "user", "content": content}]
-
-        text = self._processor.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
-
         from qwen_vl_utils import process_vision_info
-        image_inputs, _ = process_vision_info(messages)
+
+        all_messages = [self._build_messages(imgs, prompt) for imgs, prompt in batch]
+
+        texts = [
+            self._processor.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+            for msgs in all_messages
+        ]
+        image_inputs = []
+        for msgs in all_messages:
+            imgs, _ = process_vision_info(msgs)
+            image_inputs.extend(imgs or [])
 
         inputs = self._processor(
-            text=[text],
-            images=image_inputs,
+            text=texts,
+            images=image_inputs if image_inputs else None,
             padding=True,
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)
@@ -83,5 +92,8 @@ class QwenVLM(BaseVLM):
                 **inputs, max_new_tokens=self.max_new_tokens
             )
 
-        generated = output_ids[0][inputs.input_ids.shape[1]:]
-        return self._processor.decode(generated, skip_special_tokens=True).strip()
+        prompt_len = inputs.input_ids.shape[1]
+        return [
+            self._processor.decode(out[prompt_len:], skip_special_tokens=True).strip()
+            for out in output_ids
+        ]

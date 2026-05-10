@@ -58,6 +58,7 @@ def run(
     config: Optional[dict] = None,
     analyse_categories: bool = False,
     resume: bool = False,
+    batch_size: int = 1,
 ) -> List[dict]:
     """
     Stream and evaluate all samples from `task` using `model`.
@@ -90,62 +91,64 @@ def run(
 
     results: List[dict] = list(completed_results)
     i = 0
+    pending = []  # buffer of (sample, prompt) up to batch_size
+
+    def _flush(buf):
+        nonlocal i
+        batch_input = [(s.all_images, p) for s, p in buf]
+        try:
+            responses = model.infer_batch(batch_input)
+        except Exception as e:
+            logger.error(f"Batch inference failed: {e}")
+            responses = [""] * len(buf)
+
+        for (sample, prompt), response in zip(buf, responses):
+            i += 1
+            correct = task.evaluate(response, sample)
+            predicted_idx = task.parse_response(response, sample)
+            predicted_label = (
+                sample.choices[predicted_idx] if predicted_idx is not None else None
+            )
+            meta = {k: v for k, v in sample.metadata.items() if k != "raw_row"}
+            entry = {
+                "run_id": run_id,
+                "model_id": model_id,
+                "prompt_id": prompt_id,
+                "entry_id": sample.id,
+                "dataset_row": sample.metadata.get("raw_row", 0),
+                "task": sample.task,
+                "question": sample.question,
+                "choices": sample.choices,
+                "ground_truth_index": sample.correct_answer,
+                "ground_truth_label": sample.correct_choice,
+                "response_raw": response,
+                "predicted_index": predicted_idx,
+                "predicted_label": predicted_label,
+                "correct": correct,
+                **meta,
+            }
+            sample_logger.log(entry)
+            results.append(entry)
+            status = "✓" if correct else "✗"
+            logger.info(
+                f"[{i}] {status}  response='{response}'  "
+                f"gt='{sample.correct_choice}'"
+            )
 
     for sample in task.get_samples(skip=skip_rows):
-        i += 1
-
         if sample.id in completed_ids:
-            # Safety net: skip anything that slipped through (shouldn't happen
-            # for non-streaming splits; expected for streaming splits where
-            # ds.skip() is not used and already-processed rows re-appear).
-            logger.debug(f"[{i}] skip (already done)  id={sample.id}")
+            logger.debug(f"skip (already done)  id={sample.id}")
             continue
 
-        prompt = task.build_prompt(sample)
+        logger.debug(f"id={sample.id}  q={sample.question[:60]}...")
+        pending.append((sample, task.build_prompt(sample)))
 
-        logger.debug(f"[{i}] id={sample.id}  q={sample.question[:60]}...")
+        if len(pending) >= batch_size:
+            _flush(pending)
+            pending = []
 
-        try:
-            response = model.infer(sample.all_images, prompt)
-        except Exception as e:
-            logger.error(f"Inference failed for {sample.id}: {e}")
-            response = ""
-
-        correct = task.evaluate(response, sample)
-        predicted_idx = task.parse_response(response, sample)
-        predicted_label = (
-            sample.choices[predicted_idx] if predicted_idx is not None else None
-        )
-
-        # Exclude internal tracking keys from metadata before unpacking to
-        # avoid silently overwriting entry fields (bug #9).
-        meta = {k: v for k, v in sample.metadata.items() if k != "raw_row"}
-        entry = {
-            "run_id": run_id,
-            "model_id": model_id,
-            "prompt_id": prompt_id,
-            "entry_id": sample.id,
-            "dataset_row": sample.metadata.get("raw_row", 0),  # true raw parquet index
-            "task": sample.task,
-            "question": sample.question,
-            "choices": sample.choices,
-            "ground_truth_index": sample.correct_answer,
-            "ground_truth_label": sample.correct_choice,
-            "response_raw": response,
-            "predicted_index": predicted_idx,
-            "predicted_label": predicted_label,
-            "correct": correct,
-            **meta,
-        }
-
-        sample_logger.log(entry)
-        results.append(entry)
-
-        status = "✓" if correct else "✗"
-        logger.info(
-            f"[{i}] {status}  response='{response}'  "
-            f"gt='{sample.correct_choice}'"
-        )
+    if pending:
+        _flush(pending)
 
     save_summary(output_dir, results, analyse_categories=analyse_categories)
     logger.info(f"Done. Results saved to {output_dir}")

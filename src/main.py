@@ -124,6 +124,12 @@ def parse_args():
         help="Skip samples already present in results.jsonl (use with --run-id to continue a previous run).",
     )
     parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=1,
+        help="Number of samples per inference batch (default: 1).",
+    )
+    parser.add_argument(
         "--describe",
         action="store_true",
         default=False,
@@ -191,6 +197,7 @@ def main():
         config=config,
         analyse_categories=args.analyse_categories,
         resume=args.resume,
+        batch_size=args.batch_size,
     )
 
 
