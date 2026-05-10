@@ -116,13 +116,14 @@ class ActionPhaseTask(BaseTask):
                 yielded += 1
 
     def build_prompt(self, sample: Sample) -> str:
-        lines = [sample.question, ""]
+        if self.cot:
+            instruction = "Think step by step about the image(s) and the question. Then on the last line write only the letter of the correct choice."
+        elif self.describe:
+            instruction = "Describe what you see in the image(s) in 1-2 sentences. Then answer with the letter of the correct choice."
+        else:
+            instruction = "Answer with the letter of the correct choice only."
+
+        lines = [instruction, "", sample.question, ""]
         for i, choice in enumerate(sample.choices):
             lines.append(f"{CHOICE_LABELS[i]}. {choice}")
-        if self.cot:
-            lines += ["", "Think step by step about the image(s) and the question. Then on the last line write only the letter of the correct choice."]
-        elif self.describe:
-            lines += ["", "First briefly describe what you observe in the image(s). Then answer with the letter of the correct choice only."]
-        else:
-            lines += ["", "Answer with the letter of the correct choice only."]
         return "\n".join(lines)
