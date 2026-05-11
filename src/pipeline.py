@@ -159,6 +159,7 @@ def run(
                 "dataset_row": sample.metadata.get("raw_row", 0),
                 "task": sample.task,
                 "question": sample.question,
+                "prompt": prompt,
                 "choices": sample.choices,
                 "ground_truth_index": sample.correct_answer,
                 "ground_truth_label": sample.correct_choice,

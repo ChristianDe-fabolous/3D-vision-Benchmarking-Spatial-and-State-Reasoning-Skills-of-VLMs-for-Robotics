@@ -116,14 +116,34 @@ class ActionPhaseTask(BaseTask):
                 yielded += 1
 
     def build_prompt(self, sample: Sample) -> str:
-        if self.cot:
-            instruction = "Think step by step about the image(s) and the question. Then on the last line write only the letter of the correct choice."
-        elif self.describe:
-            instruction = "Describe what you see in the image(s) in 1-2 sentences. Then answer with the letter of the correct choice."
-        else:
-            instruction = "Answer with the letter of the correct choice only."
+        labels = CHOICE_LABELS[: len(sample.choices)]
+        inline_choices = "".join(
+            f" {labels[i]}. {choice}" for i, choice in enumerate(sample.choices)
+        )
+        q = f"{sample.question}{inline_choices}"
 
-        lines = [instruction, "", sample.question, ""]
-        for i, choice in enumerate(sample.choices):
-            lines.append(f"{CHOICE_LABELS[i]}. {choice}")
-        return "\n".join(lines)
+        label_list = ", ".join(labels[:-1]) + f", or {labels[-1]}"
+        label_eg   = ", ".join(labels)
+
+        if self.cot:
+            instruction = (
+                f"Answer the following multiple choice question by selecting the letter "
+                f"({label_list}). Reason step by step about the answer, and show your "
+                f"work, for each step. Only after that, proceed to the final answer. Please "
+                f"answer the question and provide the correct option letter, e.g., {label_eg}, "
+                f"at the end."
+            )
+        elif self.describe:
+            instruction = (
+                f"Answer the following multiple choice question by selecting the letter "
+                f"({label_list}). First describe what you see in the image(s) in 1-2 "
+                f"sentences, then provide the correct option letter, e.g., {label_eg}, "
+                f"at the end."
+            )
+        else:
+            instruction = (
+                f"Answer the following multiple choice question by selecting the letter "
+                f"({label_list}). ONLY output the correct option letter, i.e., {label_eg}."
+            )
+
+        return f"{instruction} {q}"

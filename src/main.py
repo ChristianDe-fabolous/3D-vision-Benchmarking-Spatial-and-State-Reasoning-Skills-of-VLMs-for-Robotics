@@ -201,6 +201,9 @@ def main():
         "local_data": args.local_data,
     }
 
+    if args.logprobs and (args.cot or args.prompt == PROMPT_PAPER_COT):
+        print("Warning: --logprobs incompatible with CoT — first generated token is reasoning, not answer. Scores will be meaningless.", flush=True)
+
     task = build_task(args)
     model = build_model(args)
     model.load()
