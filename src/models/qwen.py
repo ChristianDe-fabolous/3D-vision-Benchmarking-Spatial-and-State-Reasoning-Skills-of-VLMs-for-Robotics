@@ -11,7 +11,7 @@ import logging
 
 import torch
 from PIL import Image
-from transformers import AutoModelForImageTextToText, AutoProcessor, Qwen2_5_VLForConditionalGeneration
+from transformers import AutoModelForImageTextToText, AutoProcessor, BitsAndBytesConfig, Qwen2_5_VLForConditionalGeneration
 
 from config import QWEN_INT8_KEYS, QWEN_MAX_NEW_TOKENS, QWEN_MODEL_IDS, MODEL_QWEN_3B, MODEL_QWEN3_2B
 from models.base import BaseVLM
@@ -40,7 +40,7 @@ class QwenVLM(BaseVLM):
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else (torch.float16 if torch.cuda.is_available() else torch.float32)
         kwargs = dict(device_map="auto")
         if self._int8:
-            kwargs["load_in_8bit"] = True
+            kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
         else:
             kwargs["torch_dtype"] = dtype
         if self._is_qwen3:
