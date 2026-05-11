@@ -37,10 +37,15 @@ class Sample:
     choices: List[str]          # parsed list, e.g. ["Yes", "No", "Cannot be determined"]
     correct_answer: int         # 0-indexed
     metadata: dict = field(default_factory=dict)
+    images: Optional[List[Image.Image]] = None  # multi-image override; falls back to [image]
 
     @property
     def correct_choice(self) -> str:
         return self.choices[self.correct_answer]
+
+    @property
+    def all_images(self) -> List[Image.Image]:
+        return self.images if self.images is not None else [self.image]
 
 
 def _classify_task_and_types_template(question: str) -> Tuple[Optional[str], List[str]]:

@@ -1,7 +1,0 @@
-{
-  "12714": {
-    "gcs_raw_path": "gs://xembodiment_data/r2d2/r2d2-data-full/ILIAD/success/2023-07-19/Wed_Jul_19_19:48:24_2023/",
-    "file_path": "gs://xembodiment_data/r2d2/r2d2-data-full/ILIAD/success/2023-07-19/Wed_Jul_19_19:48:24_2023/trajectory.h5",
-    "language_instruction": "Open the faucet"
-  }
-}

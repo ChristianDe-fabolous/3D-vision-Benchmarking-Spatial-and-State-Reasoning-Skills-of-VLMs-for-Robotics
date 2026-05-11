@@ -302,3 +302,11 @@ If categories need to be revised:
 3. Update patterns in `QUESTION_TYPES` in `config.py`.
 4. Re-run the overlap script to verify the result.
 5. Once fully configured with no untyped questions, remove `TASK_KEYWORDS` and the fallback branch from `data/dataset.py`.
+
+
+
+Next experiments:
+run for action phase id: easy
+progress easy 
+next action: give one will all phases and one with not all phases and one without 
+phase success  check specific case where step(image) = step(phase)

@@ -1,8 +1,0 @@
-### SECTION 1: MULTI-TYPE OVERLAP
-
-  (none)
-
-
-### SECTION 2: UNTYPED BUT INCLUDED
-
-  (none)

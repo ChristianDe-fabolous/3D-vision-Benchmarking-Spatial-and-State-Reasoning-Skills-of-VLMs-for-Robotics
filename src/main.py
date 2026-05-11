@@ -6,6 +6,11 @@ Examples:
     python main.py --task multiview --model qwen-7b --split train --limit 50
     python main.py --task failure_mode --model qwen-3b --local-data /path/to/data
     python main.py --task failure_mode --model qwen-3b --prompt default
+    python main.py --task action_phase --model qwen-7b \
+        --action-phase-data data/action_phase_dataset_capped.jsonl
+    python main.py --task action_phase --model qwen-7b \
+        --action-phase-data data/action_phase_dataset_capped.jsonl \
+        --action-phase-type action_phase_id
 """
 
 import argparse
@@ -23,6 +28,9 @@ from config import (
     MODEL_QWEN_7B_INT8,
     MODEL_QWEN3_2B,
     MODEL_QWEN_32B_INT8,
+    MODEL_GEMMA_4B,
+    MODEL_GEMMA_4B_INT8,
+    MODEL_GEMMA_12B_INT8,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
     PROMPT_PAPER,
@@ -30,8 +38,11 @@ from config import (
     PROMPT_TEST,
     TASK_FAILURE_MODE,
     TASK_MULTIVIEW,
+    TASK_ACTION_PHASE,
 )
 from models.qwen import QwenVLM
+from models.gemma import GemmaVLM
+from tasks.action_phase import ActionPhaseTask
 from tasks.failure_mode import FailureModeTask
 from tasks.multiview import MultiviewTask
 import pipeline
@@ -41,13 +52,35 @@ def parse_args():
     parser = argparse.ArgumentParser(description="VLM Robotics Benchmark")
     parser.add_argument(
         "--task",
-        required=True,
-        choices=[TASK_FAILURE_MODE, TASK_MULTIVIEW],
+        default=TASK_ACTION_PHASE,
+        choices=[TASK_FAILURE_MODE, TASK_MULTIVIEW, TASK_ACTION_PHASE],
+    )
+    parser.add_argument(
+        "--action-phase-data",
+        type=str,
+        default="data/action_phase_dataset.jsonl",
+        help="Path to action_phase dataset JSONL (used when --task action_phase)",
+    )
+    parser.add_argument(
+        "--action-phase-type",
+        type=str,
+        default=None,
+        choices=["action_phase_id", "progress", "next_action", "phase_success", "task_success"],
+        help="Filter to one question type within the action_phase task",
+    )
+    parser.add_argument(
+        "--image-root",
+        type=str,
+        default=None,
+        help="Root directory for resolving relative image paths in action_phase dataset",
     )
     parser.add_argument(
         "--model",
         default=MODEL_QWEN_3B,
-        choices=[MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8],
+        choices=[
+            MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8,
+            MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8,
+        ],
     )
     parser.add_argument(
         "--prompt",
@@ -97,10 +130,50 @@ def parse_args():
         default=False,
         help="Skip samples already present in results.jsonl (use with --run-id to continue a previous run).",
     )
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=1,
+        help="Number of samples per inference batch (default: 1).",
+    )
+    parser.add_argument(
+        "--describe",
+        action="store_true",
+        default=False,
+        help="Ask the model to describe what it sees before answering (smoke test / qualitative analysis).",
+    )
+    parser.add_argument(
+        "--cot",
+        action="store_true",
+        default=False,
+        help="Ask the model to reason step by step before giving its final answer letter.",
+    )
+    parser.add_argument(
+        "--logprobs",
+        action="store_true",
+        default=False,
+        help="Score answer choices by logprob instead of generation. Faster; stores per-choice probs in results.",
+    )
+    parser.add_argument(
+        "--test-pipeline",
+        action="store_true",
+        default=False,
+        help="Enable describe prompt and print full model response to stdout for inspection.",
+    )
     return parser.parse_args()
 
 
 def build_task(args):
+    if args.task == TASK_ACTION_PHASE:
+        return ActionPhaseTask(
+            dataset_path=args.action_phase_data,
+            question_type=args.action_phase_type,
+            limit=args.limit,
+            prompt_id=args.prompt,
+            image_root=args.image_root,
+            describe=args.describe or args.test_pipeline,
+            cot=args.cot,
+        )
     kwargs = dict(split=args.split, limit=args.limit, local_path=args.local_data, prompt_id=args.prompt)
     if args.task == TASK_FAILURE_MODE:
         return FailureModeTask(**kwargs)
@@ -112,6 +185,8 @@ def build_task(args):
 def build_model(args):
     if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8):
         return QwenVLM(model_key=args.model)
+    if args.model in (MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8):
+        return GemmaVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
 
 
@@ -130,14 +205,23 @@ def main():
         "task": args.task,
         "model": args.model,
         "prompt": args.prompt,
+        "cot": args.cot,
+        "describe": args.describe,
+        "logprobs": args.logprobs,
+        "batch_size": args.batch_size,
         "split": args.split,
         "limit": args.limit,
         "local_data": args.local_data,
     }
 
+    if args.logprobs and (args.cot or args.prompt == PROMPT_PAPER_COT):
+        print("Warning: --logprobs incompatible with CoT — first generated token is reasoning, not answer. Scores will be meaningless.", flush=True)
+
     task = build_task(args)
     model = build_model(args)
     model.load()
+    if args.test_pipeline:
+        model.system_prompt = "You are a visual analysis assistant. When answering, you MUST first describe what you observe in the image in 1-2 sentences, then give your answer."
 
     pipeline.run(
         task=task,
@@ -150,6 +234,9 @@ def main():
         config=config,
         analyse_categories=args.analyse_categories,
         resume=args.resume,
+        batch_size=args.batch_size,
+        verbose_response=args.test_pipeline,
+        logprobs=args.logprobs,
     )
 
 

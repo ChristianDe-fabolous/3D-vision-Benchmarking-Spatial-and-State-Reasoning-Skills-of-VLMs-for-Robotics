@@ -34,14 +34,17 @@ def setup_logger(run_id: str, log_dir: Path) -> logging.Logger:
 class SampleLogger:
     """
     Writes one JSON line per evaluated sample to results.jsonl.
-    Safe to use mid-run — each write is flushed immediately so a crash
-    does not lose previously logged entries.
+    Also writes a human-readable pretty-printed version to details.jsonl.
+    Safe to use mid-run — each write is flushed immediately.
     """
 
     def __init__(self, output_dir: Path):
         output_dir.mkdir(parents=True, exist_ok=True)
-        self.path = output_dir / "results.jsonl"
+        self.path         = output_dir / "results.jsonl"
+        self.details_path = output_dir / "details.jsonl"
 
     def log(self, entry: dict) -> None:
         with open(self.path, "a") as f:
             f.write(json.dumps(entry) + "\n")
+        with open(self.details_path, "a") as f:
+            f.write(json.dumps(entry, indent=2) + "\n")

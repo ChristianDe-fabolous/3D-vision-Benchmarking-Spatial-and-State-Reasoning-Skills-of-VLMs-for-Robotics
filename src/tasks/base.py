@@ -1,9 +1,10 @@
+import re
 from abc import ABC, abstractmethod
 from typing import Iterator, Optional
 
 from data.dataset import Sample
 
-CHOICE_LABELS = ["A", "B", "C", "D", "E"]
+CHOICE_LABELS = ["A", "B", "C", "D", "E", "F"]
 
 
 class BaseTask(ABC):
@@ -27,8 +28,15 @@ class BaseTask(ABC):
         """
         labels = CHOICE_LABELS[: len(sample.choices)]
         prompt_id = getattr(self, "prompt_id", "default")
-        if prompt_id == "paper_cot":
-            # Scan lines from the bottom to find the first lone letter
+        cot = getattr(self, "cot", False) or prompt_id == "paper_cot"
+        if cot:
+            # Match "Answer: B", "**Answer: B**", "answer is B", etc. — take last occurrence.
+            matches = re.findall(r'(?i)answer[:\s]+\*{0,2}([A-F])\b', response)
+            if matches:
+                letter = matches[-1].upper()
+                if letter in labels:
+                    return labels.index(letter)
+            # Fallback: last non-empty line whose first char is a valid label.
             for line in reversed(response.strip().splitlines()):
                 letter = line.strip().upper()[:1]
                 if letter in labels:
