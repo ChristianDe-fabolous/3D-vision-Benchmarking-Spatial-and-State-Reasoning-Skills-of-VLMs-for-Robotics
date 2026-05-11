@@ -1,0 +1,16 @@
+[project]
+name = "3d-vision-benchmarking-spatial-and-state-reasoning-skills-of-vlms-for-robotics"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.2.0",
+    "torchvision>=0.17.0",
+    "torchaudio>=2.2.0",
+    "transformers>=4.45.0",
+    "accelerate",
+    "bitsandbytes",
+    "qwen-vl-utils",
+    "datasets",
+    "Pillow>=10.0.0",
+]

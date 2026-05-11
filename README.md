@@ -19,10 +19,39 @@ Questions involve two camera perspectives (ext1/ext2) presented as a single comp
 
 ## Setup
 
+Previous
 ```bash
 python -m venv 3dvision
 source 3dvision/bin/activate
 pip install -r requirements.txt
+```
+
+
+GH10
+```bash
+# Start interractive session to set everything up
+srun --gpus gb10:1 --pty -A 3dv -t 120 bash --login
+
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env
+uv --version
+
+# Setup venv
+uv venv --python 3.12
+source .venv/bin/activate
+uv sync
+
+# Setup bashrc
+cat >> ~/.bashrc <<'EOF'
+export HF_HOME=/work/scratch/$USER/hf-cache
+export HF_HUB_ENABLE_HF_TRANSFER=1
+EOF
+source ~/.bashrc
+
+# Login to hf
+git config --global credential.helper store
+uv run hf auth login
 ```
 
 Requires a GPU with sufficient VRAM for Qwen2.5-VL-7B (~16 GB in bfloat16).
