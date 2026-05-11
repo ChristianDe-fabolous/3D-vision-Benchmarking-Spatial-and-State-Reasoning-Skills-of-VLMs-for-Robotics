@@ -65,12 +65,14 @@ class ActionPhaseTask(BaseTask):
 
                 # Load images — resolve relative paths from image_root
                 images = []
+                image_paths = []
                 for img_path in e.get("images", []):
                     p = Path(img_path)
                     if not p.is_absolute():
                         p = self.image_root / p
                     try:
                         images.append(Image.open(p).convert("RGB"))
+                        image_paths.append(str(p))
                     except Exception:
                         pass
                 if not images:
@@ -86,6 +88,7 @@ class ActionPhaseTask(BaseTask):
                     correct_answer=correct_idx,
                     metadata={
                         "raw_row":       raw_idx,
+                        "image_paths":   image_paths,
                         # identity
                         "scene_id":      e.get("scene_id", ""),
                         "question_type": e.get("question_type", ""),
@@ -94,6 +97,7 @@ class ActionPhaseTask(BaseTask):
                         # ground truth
                         "answer_text":   e.get("answer_text", ""),
                         # image provenance
+                        "view":          e.get("view", "combined"),
                         "image_step":    e.get("image_step"),
                         "image_phase":   e.get("image_phase"),
                         "tile_ids":      e.get("tile_ids"),
@@ -146,4 +150,20 @@ class ActionPhaseTask(BaseTask):
                 f"({label_list}). ONLY output the correct option letter, i.e., {label_eg}."
             )
 
-        return f"{instruction} {q}"
+        view = sample.metadata.get("view", "combined")
+        n_images = len(sample.all_images)
+        is_combined = (view == "combined")
+        if n_images > 1:
+            if is_combined:
+                image_ctx = (
+                    f"You are given {n_images} merged tile images, each showing multiple "
+                    f"camera views of the robot workspace. The images were taken at different timesteps."
+                )
+            else:
+                image_ctx = f"You are given {n_images} images taken at different timesteps."
+        elif is_combined:
+            image_ctx = "The image is a merged tile showing multiple camera views of the robot workspace at the same timestep."
+        else:
+            image_ctx = "The image shows a single camera view of the robot workspace."
+
+        return f"{image_ctx} {instruction} {q}"

@@ -174,11 +174,12 @@ def run(
             sample_logger.log(entry)
             results.append(entry)
             status = "✓" if correct else "✗"
-            scene = sample.metadata.get("scene_id", "")
-            qtype = sample.metadata.get("question_type", sample.task)
-            pred = predicted_label or response
+            scene   = sample.metadata.get("scene_id", "")
+            qtype   = sample.metadata.get("question_type", sample.task)
+            variant = sample.metadata.get("variant") or ""
+            pred    = predicted_label or response
             logger.info(
-                f"[{i}] {status}  idx={sample.id}  {qtype}  {scene}  "
+                f"[{i}] {status}  idx={sample.id}  {qtype}  var={variant}  {scene}  "
                 f"pred='{pred}'  gt='{sample.correct_choice}'"
             )
             if probs:
