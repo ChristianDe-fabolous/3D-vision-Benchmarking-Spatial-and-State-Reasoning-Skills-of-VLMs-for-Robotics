@@ -156,13 +156,13 @@ class ActionPhaseTask(BaseTask):
         if n_images > 1:
             if is_combined:
                 image_ctx = (
-                    f"You are given {n_images} merged tile images, each showing multiple "
-                    f"camera views of the robot workspace. The images were taken at different timesteps."
+                    f"You are given {n_images} images, each showing multiple "
+                    f"camera views. The images were taken at different timesteps."
                 )
             else:
                 image_ctx = f"You are given {n_images} images taken at different timesteps."
         elif is_combined:
-            image_ctx = "The image is a merged tile showing multiple camera views of the robot workspace at the same timestep."
+            image_ctx = "The image shows multiple camera views at the same timestep."
         else:
             image_ctx = "The image shows a single camera view of the robot workspace."
 
