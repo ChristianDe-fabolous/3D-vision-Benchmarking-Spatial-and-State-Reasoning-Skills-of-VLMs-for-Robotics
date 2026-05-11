@@ -36,7 +36,7 @@
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
 # ── Defaults (override via env vars at sbatch time) ───────────────────────────
-MODEL="${MODEL:-qwen-7b-int8}"
+MODEL="${MODEL:-qwen-32b-int8}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
 BATCH_SIZE="${BATCH_SIZE:-8}"
 
