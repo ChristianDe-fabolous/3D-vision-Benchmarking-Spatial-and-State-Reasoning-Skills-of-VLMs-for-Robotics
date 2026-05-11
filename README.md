@@ -332,3 +332,16 @@ the robot is tasked to .+\. after .+, its next action phase will be ..., did the
    Failure → does it still blindly say N+1, or does it say "redo N"?            
   → The gap between conditions measures whether it actually uses the visual
   evidence                                              
+
+
+
+
+  * First issue would definitely be the quality. It is sourced from different datasets that do not have to be necessarily different and under the lens of the kind of paper would be unnecessary. (We can't require them to collect perfect diverse data to account for the fact that this data does robot specific data even exist before hand.) For what its worth they build and partially succeeded to build a pipeline to convert robotic datasets into a VLM dataset and for the higher quality datasets (where DROID is the most significant) they succeeded to a certain degree.
+
+
+
+  * the numbers of the tested models show certain question types get basically 
+  * the tested results without training show what the dataset tries to solve. Good performance in object recognition recognition and location. But under the requirements of abstraction (the annotations) necessary for this dataset the evaluated models mostly show random guessing.  
+
+
+  * The questions unfortunatly break a certain paradigm: test in distribution. Under the assumption that models are still terrible at generalization, we want the models to train on the same data distribution where they will be tested on. But how can we know that the visual But through the visual annotaitons, we already have the inherent issue that when we train on the data, two things could break the real world applicaiton of such a model 

@@ -31,6 +31,7 @@ class QwenVLM(BaseVLM):
         self._is_qwen3 = model_key in _QWEN3_KEYS
         self._int8 = model_key in QWEN_INT8_KEYS
         self.max_new_tokens = max_new_tokens
+        self.system_prompt: str | None = None
         self._model = None
         self._processor = None
 
@@ -68,9 +69,13 @@ class QwenVLM(BaseVLM):
         return result
 
     def _build_messages(self, images: list[Image.Image], prompt: str) -> list[dict]:
+        messages = []
+        if self.system_prompt:
+            messages.append({"role": "system", "content": self.system_prompt})
         content = [{"type": "image", "image": img} for img in images]
         content.append({"type": "text", "text": prompt})
-        return [{"role": "user", "content": content}]
+        messages.append({"role": "user", "content": content})
+        return messages
 
     def infer(self, image: Image.Image | list[Image.Image], prompt: str) -> str:
         return self.infer_batch([(image if isinstance(image, list) else [image], prompt)])[0]

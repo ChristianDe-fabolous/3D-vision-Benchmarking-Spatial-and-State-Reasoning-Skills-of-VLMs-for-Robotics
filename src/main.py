@@ -204,6 +204,8 @@ def main():
     task = build_task(args)
     model = build_model(args)
     model.load()
+    if args.test_pipeline:
+        model.system_prompt = "You are a visual analysis assistant. When answering, you MUST first describe what you observe in the image in 1-2 sentences, then give your answer."
 
     pipeline.run(
         task=task,

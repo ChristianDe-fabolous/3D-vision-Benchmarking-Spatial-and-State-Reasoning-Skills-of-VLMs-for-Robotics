@@ -14,6 +14,8 @@ import logging
 from pathlib import Path
 from typing import List, Optional, Set
 
+import torch
+
 from evaluation.results import save_config, save_summary
 from models.base import BaseVLM
 from tasks.base import BaseTask, CHOICE_LABELS
@@ -109,10 +111,37 @@ def run(
             else:
                 responses = model.infer_batch(batch_input)
                 prob_dicts = [{}] * len(buf)
+        except torch.cuda.OutOfMemoryError as e:
+            logger.error(f"Batch inference OOM (batch_size={len(buf)}): {e}")
+            torch.cuda.empty_cache()
+            if len(buf) == 1:
+                logger.error("OOM on single sample — skipping.")
+                responses = [""]
+                prob_dicts = [{}]
+            else:
+                logger.warning("Retrying one-by-one...")
+                responses, prob_dicts = [], []
+                for single_input, single_labels in zip(batch_input, choice_labels):
+                    try:
+                        if logprobs:
+                            r, d = model.infer_batch_logprobs([single_input], [single_labels])[0]
+                            responses.append(r)
+                            prob_dicts.append(d)
+                        else:
+                            responses.append(model.infer_batch([single_input])[0])
+                            prob_dicts.append({})
+                    except torch.cuda.OutOfMemoryError as e2:
+                        logger.error(f"OOM on single sample — skipping: {e2}")
+                        responses.append("")
+                        prob_dicts.append({})
+                    finally:
+                        torch.cuda.empty_cache()
         except Exception as e:
             logger.error(f"Batch inference failed: {e}")
             responses = [""] * len(buf)
             prob_dicts = [{}] * len(buf)
+        finally:
+            torch.cuda.empty_cache()
 
         for (sample, prompt), response, probs in zip(buf, responses, prob_dicts):
             i += 1
