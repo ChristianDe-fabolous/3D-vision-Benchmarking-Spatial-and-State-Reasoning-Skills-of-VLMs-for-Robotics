@@ -147,11 +147,11 @@ QUESTION_TYPE_EXTRACT: dict[str, list[str]] = {
     "relative_depth_SU":            [r"in the image from (?P<camera>.+), which colored point is (?P<direction>closest|farthest) (?:to|from) the camera\?"],
 }
 
-# Model identifiers
-MODEL_QWEN_3B      = "qwen-3b"
-MODEL_QWEN_7B      = "qwen-7b"
-MODEL_QWEN_7B_INT8 = "qwen-7b-int8"
-MODEL_QWEN3_2B     = "qwen3-2b"
+# Model identifiers — Qwen
+MODEL_QWEN_3B       = "qwen-3b"
+MODEL_QWEN_7B       = "qwen-7b"
+MODEL_QWEN_7B_INT8  = "qwen-7b-int8"
+MODEL_QWEN3_2B      = "qwen3-2b"
 MODEL_QWEN_32B_INT8 = "qwen-32b-int8"  # Qwen2.5-VL-32B, int8 ~32GB VRAM — requires gb10 node
 
 QWEN_MODEL_IDS = {
@@ -162,9 +162,22 @@ QWEN_MODEL_IDS = {
     MODEL_QWEN_32B_INT8: "Qwen/Qwen2.5-VL-32B-Instruct",  # same weights, loaded in 8-bit
 }
 
-# Models that should be loaded with 8-bit quantization (requires bitsandbytes)
-QWEN_INT8_KEYS = {MODEL_QWEN_7B_INT8, MODEL_QWEN_32B_INT8}
+QWEN_INT8_KEYS      = {MODEL_QWEN_7B_INT8, MODEL_QWEN_32B_INT8}
 QWEN_MAX_NEW_TOKENS = 512
+
+# Model identifiers — Gemma
+MODEL_GEMMA_4B      = "gemma-4b"       # ~8GB VRAM bfloat16 — 2080ti
+MODEL_GEMMA_4B_INT8 = "gemma-4b-int8"  # ~4GB VRAM int8    — 1080ti
+MODEL_GEMMA_12B_INT8 = "gemma-12b-int8" # ~12GB VRAM int8   — 5060ti
+
+GEMMA_MODEL_IDS = {
+    MODEL_GEMMA_4B:       "google/gemma-3-4b-it",
+    MODEL_GEMMA_4B_INT8:  "google/gemma-3-4b-it",   # same weights, loaded in 8-bit
+    MODEL_GEMMA_12B_INT8: "google/gemma-3-12b-it",  # same weights, loaded in 8-bit
+}
+
+GEMMA_INT8_KEYS      = {MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8}
+GEMMA_MAX_NEW_TOKENS = 512
 
 # Scene analysis settings
 SCENE_MIN_QUESTIONS = 5       # scenes with fewer questions are excluded from analysis
