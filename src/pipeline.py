@@ -155,6 +155,8 @@ def run(
                 "run_id": run_id,
                 "model_id": model_id,
                 "prompt_id": prompt_id,
+                "cot": config.get("cot", False) if config else False,
+                "describe": config.get("describe", False) if config else False,
                 "entry_id": sample.id,
                 "dataset_row": sample.metadata.get("raw_row", 0),
                 "task": sample.task,
