@@ -130,12 +130,20 @@ class ActionPhaseTask(BaseTask):
         label_eg   = ", ".join(labels)
 
         if self.cot:
+            qtype = sample.metadata.get("question_type", "")
+            if qtype in ("action_phase_id", "phase_success"):
+                task_hint = (
+                    f"Focus on the robot and scene to judge which action phase best describes this moment. "
+                )
+            else:
+                task_hint = ""
             instruction = (
                 f"Answer the following multiple choice question by selecting the letter "
-                f"({label_list}). Reason step by step about the answer, and show your "
-                f"work, for each step. Only after that, proceed to the final answer. Please "
-                f"answer the question and provide the correct option letter, e.g., {label_eg}, "
-                f"at the end."
+                f"({label_list}). "
+                f"The image(s) are static snapshots from a robot task execution. "
+                f"{task_hint}"
+                f"Reason step by step about what you observe and how it relates to the question. "
+                f"Then provide the correct option letter, e.g., {label_eg}, at the end."
             )
         elif self.describe:
             instruction = (
