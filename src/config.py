@@ -179,6 +179,33 @@ GEMMA_MODEL_IDS = {
 GEMMA_INT8_KEYS      = {MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8}
 GEMMA_MAX_NEW_TOKENS = 512
 
+# Model identifiers — Phi (Microsoft)
+MODEL_PHI35_VISION      = "phi-3.5-vision"       # ~4GB bf16 — 1080ti
+MODEL_PHI35_VISION_INT8 = "phi-3.5-vision-int8"  # ~2GB int8 — any GPU
+MODEL_PHI4_VISION       = "phi-4-vision"          # ~10GB bf16 — 5060ti
+
+PHI_MODEL_IDS = {
+    MODEL_PHI35_VISION:      "microsoft/Phi-3.5-vision-instruct",
+    MODEL_PHI35_VISION_INT8: "microsoft/Phi-3.5-vision-instruct",   # same weights, 8-bit
+    MODEL_PHI4_VISION:       "microsoft/Phi-4-multimodal-instruct",
+}
+
+PHI_INT8_KEYS      = {MODEL_PHI35_VISION_INT8}
+PHI_MAX_NEW_TOKENS = 512
+
+# Model identifiers — NVIDIA Nemotron VL
+# TODO: verify HF model ID matches the release on huggingface.co/nvidia
+MODEL_NVLM_12B      = "nvlm-12b"       # nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16 — bf16 ~24GB — gb10
+MODEL_NVLM_12B_INT8 = "nvlm-12b-int8"  # same weights, int8 — ~12GB — 5060ti
+
+NVLM_MODEL_IDS = {
+    MODEL_NVLM_12B:      "nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16",
+    MODEL_NVLM_12B_INT8: "nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16",  # same weights, 8-bit
+}
+
+NVLM_INT8_KEYS      = {MODEL_NVLM_12B_INT8}
+NVLM_MAX_NEW_TOKENS = 512
+
 # Scene analysis settings
 SCENE_MIN_QUESTIONS = 5       # scenes with fewer questions are excluded from analysis
 SCENE_OUTLIER_STD = 1.0       # std deviations from mean to flag a scene as outlier

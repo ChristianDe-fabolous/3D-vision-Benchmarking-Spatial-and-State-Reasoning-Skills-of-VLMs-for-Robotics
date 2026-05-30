@@ -36,6 +36,7 @@ data/*
 !data/multiview_tiles
 !data/action_phase_images
 !data/action_phase_dataset.jsonl
+!data/action_phase_dataset_singleview.jsonl
 !data/action_phase_dataset_capped.jsonl
 *.parquet
 *.arrow

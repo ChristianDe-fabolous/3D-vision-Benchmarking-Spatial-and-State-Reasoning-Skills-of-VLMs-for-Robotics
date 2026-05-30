@@ -1,0 +1,130 @@
+{
+  "total": 6224,
+  "correct": 2099,
+  "wrong": 4125,
+  "unparseable": 0,
+  "accuracy": 0.33724293059125965,
+  "random_baseline": 0.2979595115681083,
+  "by_task": {
+    "action_phase_id": 0.36380145278450365,
+    "progress": 0.4336206896551724,
+    "phase_success": 0.277441332323997,
+    "task_success": 0.34025974025974026
+  },
+  "scene_analysis": {
+    "total_scenes": 47,
+    "excluded_scenes": 0,
+    "excluded_questions": 0,
+    "included_scenes": 47,
+    "mean_accuracy": 0.343,
+    "std": 0.051,
+    "outlier_std_threshold": 1.0,
+    "outliers_above": [
+      {
+        "scene_id": "droid_put_the_green_marker_in_the_white_bowl_15148",
+        "accuracy": 0.486,
+        "n": 111
+      },
+      {
+        "scene_id": "droid_pick_the_object_on_the_stove_and_put_it_in_the_pot_in_the_sink_7533",
+        "accuracy": 0.426,
+        "n": 94
+      },
+      {
+        "scene_id": "droid_move_the_peach_shirt_to_the_right__move_the_radish_plush_toy_to_the_right__move_the_white_rope_to_the_right_12426",
+        "accuracy": 0.419,
+        "n": 74
+      },
+      {
+        "scene_id": "droid_pick_the_orange_ball_and_put_it_in_the_pot_on_the_stove_2529",
+        "accuracy": 0.416,
+        "n": 101
+      },
+      {
+        "scene_id": "droid_remove_the_black_marker_from_the_black_cup_1683",
+        "accuracy": 0.407,
+        "n": 118
+      },
+      {
+        "scene_id": "droid_plug_the_charger_head_in_the_middle_of_the_adapter_6389",
+        "accuracy": 0.397,
+        "n": 136
+      },
+      {
+        "scene_id": "droid_put_the_blue_ring_in_the_blue_cup_and_orange_ring_in_the_white_cup_15772",
+        "accuracy": 0.397,
+        "n": 237
+      }
+    ],
+    "outliers_below": [
+      {
+        "scene_id": "droid_pick_the_object_on_the_table_and_place_it_on_the_brown_object_15252",
+        "accuracy": 0.227,
+        "n": 211
+      },
+      {
+        "scene_id": "droid_organize_all_the_containers_on_the_white_plate_5464",
+        "accuracy": 0.237,
+        "n": 169
+      },
+      {
+        "scene_id": "droid_slide_the_black_discs_to_the_right_and_then_move_the_storage_bin_slightly_to_the_right_2154",
+        "accuracy": 0.252,
+        "n": 238
+      },
+      {
+        "scene_id": "droid_fold_the_towel_on_the_table_9017",
+        "accuracy": 0.264,
+        "n": 144
+      },
+      {
+        "scene_id": "droid_straighten_up_the_paper_towel_on_the_table_6472",
+        "accuracy": 0.28,
+        "n": 118
+      },
+      {
+        "scene_id": "droid_closed_the_lid_of_the_kettle_14373",
+        "accuracy": 0.287,
+        "n": 87
+      },
+      {
+        "scene_id": "droid_close_the_tap_and_then_remove_the_shaving_stick_from_the_metal_cup_and_put_it_on_the_right_side_of_the_sink_counter_2069",
+        "accuracy": 0.287,
+        "n": 101
+      }
+    ]
+  },
+  "answer_distribution": [
+    {
+      "label": "No",
+      "ground_truth_count": 2668,
+      "predicted_count": 2090,
+      "accuracy_when_gt": 0.351
+    },
+    {
+      "label": "Yes",
+      "ground_truth_count": 2256,
+      "predicted_count": 1725,
+      "accuracy_when_gt": 0.34
+    },
+    {
+      "label": "Cannot be determined",
+      "ground_truth_count": 674,
+      "predicted_count": 1773,
+      "accuracy_when_gt": 0.366
+    },
+    {
+      "label": "Is currently performing it",
+      "ground_truth_count": 626,
+      "predicted_count": 636,
+      "accuracy_when_gt": 0.236
+    }
+  ],
+  "yes_no_random_baseline": {
+    "total_yn_questions": 6224,
+    "gt_yes": 2256,
+    "gt_no": 2668,
+    "gt_other": 1300,
+    "yn_random_baseline": 0.3956
+  }
+}

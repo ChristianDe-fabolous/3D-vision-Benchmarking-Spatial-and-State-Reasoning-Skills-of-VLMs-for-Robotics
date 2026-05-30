@@ -27,10 +27,17 @@
 #SBATCH --mail-type=END,FAIL
 
 # ── GPU / model reference ─────────────────────────────────────────────────────
-# qwen-3b        → 1080ti  (~6GB VRAM)   --gpus=1080ti:1
-# qwen-7b-int8   → 2080ti  (~8GB VRAM)   --gpus=2080ti:1
-# qwen-7b        → 5060ti  (~14GB VRAM)  --gpus=5060ti:1  ← default
-# qwen-32b-int8  → gb10    (~32GB VRAM)  --gpus=gb10:1    --time=24:00:00
+# qwen-3b              → 1080ti  (~6GB VRAM)    --gpus=1080ti:1
+# phi-3.5-vision       → 1080ti  (~4GB VRAM)    --gpus=1080ti:1
+# phi-3.5-vision-int8  → 1080ti  (~2GB VRAM)    --gpus=1080ti:1
+# qwen-7b-int8         → 2080ti  (~8GB VRAM)    --gpus=2080ti:1
+# gemma-4b             → 2080ti  (~8GB VRAM)    --gpus=2080ti:1
+# qwen-7b              → 5060ti  (~14GB VRAM)   --gpus=5060ti:1  ← default
+# gemma-12b-int8       → 5060ti  (~12GB VRAM)   --gpus=5060ti:1
+# nvlm-12b-int8        → 5060ti  (~12GB VRAM)   --gpus=5060ti:1
+# phi-4-vision         → 5060ti  (~10GB VRAM)   --gpus=5060ti:1
+# qwen-32b-int8        → gb10    (~32GB VRAM)   --gpus=gb10:1    --time=24:00:00
+# nvlm-12b             → gb10    (~24GB VRAM)   --gpus=gb10:1
 # ─────────────────────────────────────────────────────────────────────────────
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
@@ -68,7 +75,7 @@ CMD="python src/main.py \
 [ -n "$RUN_ID" ]            && CMD="$CMD --run-id $RUN_ID --resume"
 [ -n "$LIMIT" ]             && CMD="$CMD --limit $LIMIT"
 [ "${COT:-0}"   = "1" ]     && CMD="$CMD --cot"
-[ "${SMOKE:-0}" = "1" ]     && CMD="$CMD --limit 10 --describe"
+[ "${SMOKE:-0}" = "1" ]     && CMD="$CMD --smoke"
 
 echo "CMD: $CMD"
 eval $CMD

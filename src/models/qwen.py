@@ -56,18 +56,6 @@ class QwenVLM(BaseVLM):
         self._processor.tokenizer.padding_side = "left"
         logger.info("Model loaded.")
 
-    def _answer_token_ids(self, labels: list[str]) -> dict[str, int]:
-        """Return {label: token_id} for each answer letter, trying plain and space-prefixed forms."""
-        tok = self._processor.tokenizer
-        result = {}
-        for label in labels:
-            for form in (label, f" {label}"):
-                ids = tok.encode(form, add_special_tokens=False)
-                if len(ids) == 1:
-                    result[label] = ids[0]
-                    break
-        return result
-
     def _build_messages(self, images: list[Image.Image], prompt: str) -> list[dict]:
         messages = []
         if self.system_prompt:
@@ -110,10 +98,7 @@ class QwenVLM(BaseVLM):
             )
 
         prompt_len = inputs.input_ids.shape[1]
-        return [
-            self._processor.decode(out[prompt_len:], skip_special_tokens=True).strip()
-            for out in output_ids
-        ]
+        return self._decode_outputs(output_ids, prompt_len, self._processor)
 
     def infer_batch_logprobs(
         self,
@@ -150,21 +135,4 @@ class QwenVLM(BaseVLM):
                 return_dict_in_generate=True,
             )
 
-        # out.scores[0]: (batch, vocab_size) — logits at first generated token
-        first_logits = out.scores[0]  # (batch, vocab)
-
-        results = []
-        for i, labels in enumerate(choice_labels):
-            token_ids = self._answer_token_ids(labels)
-            if not token_ids:
-                results.append(("", {}))
-                continue
-            ids = [token_ids[l] for l in labels if l in token_ids]
-            label_keys = [l for l in labels if l in token_ids]
-            logits_for_choices = first_logits[i, ids]
-            probs = torch.softmax(logits_for_choices, dim=-1).tolist()
-            prob_dict = dict(zip(label_keys, probs))
-            predicted = max(prob_dict, key=prob_dict.__getitem__)
-            results.append((predicted, prob_dict))
-
-        return results
+        return self._logprobs_from_first_token(out.scores[0], choice_labels, self._processor.tokenizer)

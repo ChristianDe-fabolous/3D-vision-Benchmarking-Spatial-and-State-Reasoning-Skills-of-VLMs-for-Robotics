@@ -1,0 +1,13 @@
+{
+  "run_id": "2026-05-12_01-29-05_action_phase_qwen-7b-int8_default",
+  "task": "action_phase",
+  "model": "qwen-7b-int8",
+  "prompt": "default",
+  "cot": false,
+  "describe": false,
+  "logprobs": false,
+  "batch_size": 8,
+  "split": "test",
+  "limit": null,
+  "local_data": null
+}

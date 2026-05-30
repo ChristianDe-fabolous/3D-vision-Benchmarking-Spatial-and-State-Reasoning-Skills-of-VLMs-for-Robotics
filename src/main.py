@@ -31,6 +31,11 @@ from config import (
     MODEL_GEMMA_4B,
     MODEL_GEMMA_4B_INT8,
     MODEL_GEMMA_12B_INT8,
+    MODEL_PHI35_VISION,
+    MODEL_PHI35_VISION_INT8,
+    MODEL_PHI4_VISION,
+    MODEL_NVLM_12B,
+    MODEL_NVLM_12B_INT8,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
     PROMPT_PAPER,
@@ -42,6 +47,8 @@ from config import (
 )
 from models.qwen import QwenVLM
 from models.gemma import GemmaVLM
+from models.phi import PhiVLM
+from models.nvlm import NemotronVLM
 from tasks.action_phase import ActionPhaseTask
 from tasks.failure_mode import FailureModeTask
 from tasks.multiview import MultiviewTask
@@ -78,8 +85,14 @@ def parse_args():
         "--model",
         default=MODEL_QWEN_3B,
         choices=[
+            # Qwen
             MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8,
+            # Gemma
             MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8,
+            # Phi
+            MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION,
+            # NVIDIA Nemotron VL
+            MODEL_NVLM_12B, MODEL_NVLM_12B_INT8,
         ],
     )
     parser.add_argument(
@@ -160,6 +173,12 @@ def parse_args():
         default=False,
         help="Enable describe prompt and print full model response to stdout for inspection.",
     )
+    parser.add_argument(
+        "--smoke",
+        action="store_true",
+        default=False,
+        help="Smoke test: run 5 samples with describe + verbose output. Shorthand for --limit 5 --describe --test-pipeline.",
+    )
     return parser.parse_args()
 
 
@@ -187,11 +206,28 @@ def build_model(args):
         return QwenVLM(model_key=args.model)
     if args.model in (MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8):
         return GemmaVLM(model_key=args.model)
+    if args.model in (MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION):
+        return PhiVLM(model_key=args.model)
+    if args.model in (MODEL_NVLM_12B, MODEL_NVLM_12B_INT8):
+        return NemotronVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
+
+
+SMOKE_SYSTEM_PROMPT = (
+    "You are a robot vision assistant. "
+    "Before answering, describe in 1-2 sentences what you observe in the image. "
+    "Then give your answer as a single letter."
+)
 
 
 def main():
     args = parse_args()
+
+    # --smoke is a shorthand for --limit 5 --describe --test-pipeline
+    if args.smoke:
+        args.limit = args.limit or 5
+        args.describe = True
+        args.test_pipeline = True
 
     if args.hf_token:
         os.environ["HF_TOKEN"] = args.hf_token
@@ -220,8 +256,8 @@ def main():
     task = build_task(args)
     model = build_model(args)
     model.load()
-    if args.test_pipeline:
-        model.system_prompt = "You are a visual analysis assistant. When answering, you MUST first describe what you observe in the image in 1-2 sentences, then give your answer."
+    if args.test_pipeline or args.smoke:
+        model.system_prompt = SMOKE_SYSTEM_PROMPT
 
     pipeline.run(
         task=task,
