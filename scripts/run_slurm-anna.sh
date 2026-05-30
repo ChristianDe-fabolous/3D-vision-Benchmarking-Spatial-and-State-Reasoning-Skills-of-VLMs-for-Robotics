@@ -36,7 +36,7 @@
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
 # ── Defaults (override via env vars at sbatch time) ───────────────────────────
-MODEL="${MODEL:-qwen-7b-int8}"
+MODEL="${MODEL:-qwen3-8b}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
 BATCH_SIZE="${BATCH_SIZE:-8}"
 
@@ -68,7 +68,7 @@ CMD="python src/main.py \
 [ -n "$ACTION_PHASE_TYPE" ] && CMD="$CMD --action-phase-type $ACTION_PHASE_TYPE"
 [ -n "$RUN_ID" ]            && CMD="$CMD --run-id $RUN_ID --resume"
 [ -n "$LIMIT" ]             && CMD="$CMD --limit $LIMIT"
-[ "${SMOKE:-0}" = "1" ]     && CMD="$CMD --limit 10 --describe"
+[ "${SMOKE:-0}" = "1" ]     && CMD="$CMD --smoke""
 
 echo "CMD: $CMD"
 eval $CMD

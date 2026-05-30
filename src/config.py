@@ -147,39 +147,47 @@ QUESTION_TYPE_EXTRACT: dict[str, list[str]] = {
     "relative_depth_SU":            [r"in the image from (?P<camera>.+), which colored point is (?P<direction>closest|farthest) (?:to|from) the camera\?"],
 }
 
-# Model identifiers — Qwen
-MODEL_QWEN_3B       = "qwen-3b"
-MODEL_QWEN_7B       = "qwen-7b"
-MODEL_QWEN_7B_INT8  = "qwen-7b-int8"
-MODEL_QWEN3_2B      = "qwen3-2b"
-MODEL_QWEN_32B_INT8 = "qwen-32b-int8"  # Qwen2.5-VL-32B, int8 ~32GB VRAM — requires gb10 node
+# Model identifiers — Qwen3-VL
+MODEL_QWEN3_4B          = "qwen3-4b"          # ~8GB bfloat16   — 2080ti      (4B)
+MODEL_QWEN3_8B          = "qwen3-8b"          # ~16GB bfloat16  — 5060ti      (8B instruct)
+MODEL_QWEN3_8B_THINKING = "qwen3-8b-thinking" # ~16GB bfloat16  — 5060ti      (8B thinking)
+MODEL_QWEN3_30B         = "qwen3-30b"         # ~60GB bfloat16  — gb10        (30B MoE, 3B active)
+MODEL_QWEN3_30B_THINKING= "qwen3-30b-thinking"# ~60GB bfloat16  — gb10        (30B MoE thinking)
 
 QWEN_MODEL_IDS = {
-    MODEL_QWEN_3B:       "Qwen/Qwen2.5-VL-3B-Instruct",
-    MODEL_QWEN_7B:       "Qwen/Qwen2.5-VL-7B-Instruct",
-    MODEL_QWEN_7B_INT8:  "Qwen/Qwen2.5-VL-7B-Instruct",   # same weights, loaded in 8-bit
-    MODEL_QWEN3_2B:      "Qwen/Qwen3-VL-2B-Instruct",
-    MODEL_QWEN_32B_INT8: "Qwen/Qwen2.5-VL-32B-Instruct",  # same weights, loaded in 8-bit
+    MODEL_QWEN3_4B:          "Qwen/Qwen3-VL-4B-Thinking",
+    MODEL_QWEN3_8B:          "Qwen/Qwen3-VL-8B-Instruct",
+    MODEL_QWEN3_8B_THINKING: "Qwen/Qwen3-VL-8B-Thinking",
+    MODEL_QWEN3_30B:         "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    MODEL_QWEN3_30B_THINKING:"Qwen/Qwen3-VL-30B-A3B-Thinking",
 }
 
-QWEN_INT8_KEYS      = {MODEL_QWEN_7B_INT8, MODEL_QWEN_32B_INT8}
+QWEN_INT8_KEYS: set[str] = set()  # Qwen3-VL runs natively in bfloat16; use FP8 variants if needed
 QWEN_MAX_NEW_TOKENS = 512
 
-# Model identifiers — Gemma
-MODEL_GEMMA_4B       = "gemma-4b"        # ~8GB VRAM bfloat16  — 2080ti
-MODEL_GEMMA_4B_INT8  = "gemma-4b-int8"   # ~4GB VRAM int8     — 1080ti
-MODEL_GEMMA_12B      = "gemma-12b"       # ~24GB VRAM bfloat16 — gb10
-MODEL_GEMMA_12B_INT8 = "gemma-12b-int8"  # ~12GB VRAM int8    — 5060ti
+# Model identifiers — Gemma 4 (Google)
+MODEL_GEMMA4_E2B      = "gemma4-e2b"       # ~10GB VRAM bfloat16 — 5060ti   (5B)
+MODEL_GEMMA4_E2B_INT8 = "gemma4-e2b-int8"  # ~5GB  VRAM int8    — 1080ti
+MODEL_GEMMA4_E4B      = "gemma4-e4b"       # ~16GB VRAM bfloat16 — 5060ti   (8B)
+MODEL_GEMMA4_E4B_INT8 = "gemma4-e4b-int8"  # ~8GB  VRAM int8    — 2080ti
+MODEL_GEMMA4_26B      = "gemma4-26b"       # ~54GB VRAM bfloat16 — gb10     (27B MoE, 4B active)
+MODEL_GEMMA4_26B_INT8 = "gemma4-26b-int8"  # ~27GB VRAM int8    — gb10
+MODEL_GEMMA4_31B      = "gemma4-31b"       # ~62GB VRAM bfloat16 — gb10     (33B dense)
+MODEL_GEMMA4_31B_INT8 = "gemma4-31b-int8"  # ~31GB VRAM int8    — gb10
 
-GEMMA_MODEL_IDS = {
-    MODEL_GEMMA_4B:       "google/gemma-3-4b-it",
-    MODEL_GEMMA_4B_INT8:  "google/gemma-3-4b-it",   # same weights, loaded in 8-bit
-    MODEL_GEMMA_12B:      "google/gemma-3-12b-it",
-    MODEL_GEMMA_12B_INT8: "google/gemma-3-12b-it",  # same weights, loaded in 8-bit
+GEMMA4_MODEL_IDS = {
+    MODEL_GEMMA4_E2B:      "google/gemma-4-E2B-it",
+    MODEL_GEMMA4_E2B_INT8: "google/gemma-4-E2B-it",   # same weights, loaded in 8-bit
+    MODEL_GEMMA4_E4B:      "google/gemma-4-E4B-it",
+    MODEL_GEMMA4_E4B_INT8: "google/gemma-4-E4B-it",   # same weights, loaded in 8-bit
+    MODEL_GEMMA4_26B:      "google/gemma-4-26B-A4B-it",
+    MODEL_GEMMA4_26B_INT8: "google/gemma-4-26B-A4B-it",  # same weights, loaded in 8-bit
+    MODEL_GEMMA4_31B:      "google/gemma-4-31B-it",
+    MODEL_GEMMA4_31B_INT8: "google/gemma-4-31B-it",   # same weights, loaded in 8-bit
 }
 
-GEMMA_INT8_KEYS      = {MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8}
-GEMMA_MAX_NEW_TOKENS = 512
+GEMMA4_INT8_KEYS      = {MODEL_GEMMA4_E2B_INT8, MODEL_GEMMA4_E4B_INT8, MODEL_GEMMA4_26B_INT8, MODEL_GEMMA4_31B_INT8}
+GEMMA4_MAX_NEW_TOKENS = 512
 
 # Model identifiers — Phi (Microsoft)
 MODEL_PHI35_VISION      = "phi-3.5-vision"       # ~4GB bf16 — 1080ti

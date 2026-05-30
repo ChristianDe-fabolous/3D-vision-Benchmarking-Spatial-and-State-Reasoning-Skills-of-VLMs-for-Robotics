@@ -27,26 +27,32 @@
 #SBATCH --mail-type=END,FAIL
 
 # ── GPU / model reference ─────────────────────────────────────────────────────
-# qwen-3b              → 1080ti  (~6GB VRAM)    --gpus=1080ti:1
-# phi-3.5-vision       → 1080ti  (~4GB VRAM)    --gpus=1080ti:1
 # phi-3.5-vision-int8  → 1080ti  (~2GB VRAM)    --gpus=1080ti:1
-# qwen-7b-int8         → 2080ti  (~8GB VRAM)    --gpus=2080ti:1
-# gemma-4b             → 2080ti  (~8GB VRAM)    --gpus=2080ti:1
-# qwen-7b              → 5060ti  (~14GB VRAM)   --gpus=5060ti:1  ← default
-# gemma-12b-int8       → 5060ti  (~12GB VRAM)   --gpus=5060ti:1
+# phi-3.5-vision       → 1080ti  (~4GB VRAM)    --gpus=1080ti:1
+# gemma4-e2b-int8      → 1080ti  (~5GB VRAM)    --gpus=1080ti:1
+# qwen3-4b             → 2080ti  (~8GB VRAM)    --gpus=2080ti:1
+# gemma4-e4b-int8      → 2080ti  (~8GB VRAM)    --gpus=2080ti:1
+# qwen3-8b             → 5060ti  (~16GB VRAM)   --gpus=5060ti:1  ← default
+# qwen3-8b-thinking    → 5060ti  (~16GB VRAM)   --gpus=5060ti:1
+# gemma4-e2b           → 5060ti  (~10GB VRAM)   --gpus=5060ti:1
+# gemma4-e4b           → 5060ti  (~16GB VRAM)   --gpus=5060ti:1
 # nvlm-12b-int8        → 5060ti  (~12GB VRAM)   --gpus=5060ti:1
 # phi-4-vision         → 5060ti  (~10GB VRAM)   --gpus=5060ti:1
-# qwen-32b-int8        → gb10    (~32GB VRAM)   --gpus=gb10:1    --time=24:00:00
 # nvlm-12b             → gb10    (~24GB VRAM)   --gpus=gb10:1
-# gemma-12b            → gb10    (~24GB VRAM)   --gpus=gb10:1
+# gemma4-26b-int8      → gb10    (~27GB VRAM)   --gpus=gb10:1
+# gemma4-31b-int8      → gb10    (~31GB VRAM)   --gpus=gb10:1
+# qwen3-30b            → gb10    (~60GB VRAM)   --gpus=gb10:1
+# qwen3-30b-thinking   → gb10    (~60GB VRAM)   --gpus=gb10:1
+# gemma4-26b           → gb10    (~54GB VRAM)   --gpus=gb10:1
+# gemma4-31b           → gb10    (~62GB VRAM)   --gpus=gb10:1
 # ─────────────────────────────────────────────────────────────────────────────
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
 # ── Defaults (override via env vars at sbatch time) ───────────────────────────
-MODEL="${MODEL:-qwen-7b-int8}"
+MODEL="${MODEL:-qwen3-8b}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-8}"
+BATCH_SIZE="${BATCH_SIZE:-4}"
 
 # ── Environment ───────────────────────────────────────────────────────────────
 module load cuda/13.0

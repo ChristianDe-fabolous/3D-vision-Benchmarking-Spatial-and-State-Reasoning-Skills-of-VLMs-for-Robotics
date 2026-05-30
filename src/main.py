@@ -26,15 +26,19 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from config import (
     LOG_DIR,
-    MODEL_QWEN_3B,
-    MODEL_QWEN_7B,
-    MODEL_QWEN_7B_INT8,
-    MODEL_QWEN3_2B,
-    MODEL_QWEN_32B_INT8,
-    MODEL_GEMMA_4B,
-    MODEL_GEMMA_4B_INT8,
-    MODEL_GEMMA_12B,
-    MODEL_GEMMA_12B_INT8,
+    MODEL_QWEN3_4B,
+    MODEL_QWEN3_8B,
+    MODEL_QWEN3_8B_THINKING,
+    MODEL_QWEN3_30B,
+    MODEL_QWEN3_30B_THINKING,
+    MODEL_GEMMA4_E2B,
+    MODEL_GEMMA4_E2B_INT8,
+    MODEL_GEMMA4_E4B,
+    MODEL_GEMMA4_E4B_INT8,
+    MODEL_GEMMA4_26B,
+    MODEL_GEMMA4_26B_INT8,
+    MODEL_GEMMA4_31B,
+    MODEL_GEMMA4_31B_INT8,
     MODEL_PHI35_VISION,
     MODEL_PHI35_VISION_INT8,
     MODEL_PHI4_VISION,
@@ -50,7 +54,7 @@ from config import (
     TASK_ACTION_PHASE,
 )
 from models.qwen import QwenVLM
-from models.gemma import GemmaVLM
+from models.gemma4 import Gemma4VLM
 from models.phi import PhiVLM
 from models.nvlm import NemotronVLM
 from tasks.action_phase import ActionPhaseTask
@@ -87,12 +91,16 @@ def parse_args():
     )
     parser.add_argument(
         "--model",
-        default=MODEL_QWEN_3B,
+        default=MODEL_QWEN3_4B,
         choices=[
-            # Qwen
-            MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8,
-            # Gemma
-            MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B, MODEL_GEMMA_12B_INT8,
+            # Qwen3-VL
+            MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
+            MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING,
+            # Gemma 4
+            MODEL_GEMMA4_E2B, MODEL_GEMMA4_E2B_INT8,
+            MODEL_GEMMA4_E4B, MODEL_GEMMA4_E4B_INT8,
+            MODEL_GEMMA4_26B, MODEL_GEMMA4_26B_INT8,
+            MODEL_GEMMA4_31B, MODEL_GEMMA4_31B_INT8,
             # Phi
             MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION,
             # NVIDIA Nemotron VL
@@ -206,10 +214,12 @@ def build_task(args):
 
 
 def build_model(args):
-    if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8):
+    if args.model in (MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
+                      MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING):
         return QwenVLM(model_key=args.model)
-    if args.model in (MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B, MODEL_GEMMA_12B_INT8):
-        return GemmaVLM(model_key=args.model)
+    if args.model in (MODEL_GEMMA4_E2B, MODEL_GEMMA4_E2B_INT8, MODEL_GEMMA4_E4B, MODEL_GEMMA4_E4B_INT8,
+                      MODEL_GEMMA4_26B, MODEL_GEMMA4_26B_INT8, MODEL_GEMMA4_31B, MODEL_GEMMA4_31B_INT8):
+        return Gemma4VLM(model_key=args.model)
     if args.model in (MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION):
         return PhiVLM(model_key=args.model)
     if args.model in (MODEL_NVLM_12B, MODEL_NVLM_12B_INT8):

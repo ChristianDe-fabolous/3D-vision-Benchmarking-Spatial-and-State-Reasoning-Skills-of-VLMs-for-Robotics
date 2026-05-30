@@ -1,5 +1,5 @@
 """
-Qwen2.5-VL / Qwen3-VL model wrapper.
+Qwen3-VL model wrapper (Qwen/Qwen3-VL-*).
 
 Install:
     pip install transformers torch accelerate qwen-vl-utils
@@ -11,46 +11,32 @@ import logging
 
 import torch
 from PIL import Image
-from transformers import AutoModelForImageTextToText, AutoProcessor, BitsAndBytesConfig, Qwen2_5_VLForConditionalGeneration
+from transformers import AutoModelForImageTextToText, AutoProcessor
 
-from config import QWEN_INT8_KEYS, QWEN_MAX_NEW_TOKENS, QWEN_MODEL_IDS, MODEL_QWEN_3B, MODEL_QWEN3_2B
+from config import MODEL_QWEN3_4B, QWEN_MAX_NEW_TOKENS, QWEN_MODEL_IDS
 from models.base import BaseVLM
 
 logger = logging.getLogger("vlm_bench")
-
-_QWEN3_KEYS = {MODEL_QWEN3_2B}
 
 
 class QwenVLM(BaseVLM):
     def __init__(
         self,
-        model_key: str = MODEL_QWEN_3B,
+        model_key: str = MODEL_QWEN3_4B,
         max_new_tokens: int = QWEN_MAX_NEW_TOKENS,
     ):
         self.model_id = QWEN_MODEL_IDS[model_key]
-        self._is_qwen3 = model_key in _QWEN3_KEYS
-        self._int8 = model_key in QWEN_INT8_KEYS
         self.max_new_tokens = max_new_tokens
         self.system_prompt: str | None = None
         self._model = None
         self._processor = None
 
     def load(self) -> None:
-        logger.info(f"Loading {self.model_id} {'(int8)' if self._int8 else ''} ...")
-        dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else (torch.float16 if torch.cuda.is_available() else torch.float32)
-        kwargs = dict(device_map="auto")
-        if self._int8:
-            kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
-        else:
-            kwargs["torch_dtype"] = dtype
-        if self._is_qwen3:
-            self._model = AutoModelForImageTextToText.from_pretrained(
-                self.model_id, trust_remote_code=True, **kwargs
-            )
-        else:
-            self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-                self.model_id, **kwargs
-            )
+        logger.info(f"Loading {self.model_id} ...")
+        dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        self._model = AutoModelForImageTextToText.from_pretrained(
+            self.model_id, torch_dtype=dtype, device_map="auto", trust_remote_code=True
+        )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id)
         self._processor.tokenizer.padding_side = "left"
@@ -75,7 +61,6 @@ class QwenVLM(BaseVLM):
         from qwen_vl_utils import process_vision_info
 
         all_messages = [self._build_messages(imgs, prompt) for imgs, prompt in batch]
-
         texts = [
             self._processor.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
             for msgs in all_messages
@@ -93,12 +78,9 @@ class QwenVLM(BaseVLM):
         ).to(next(self._model.parameters()).device)
 
         with torch.no_grad():
-            output_ids = self._model.generate(
-                **inputs, max_new_tokens=self.max_new_tokens
-            )
+            output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
 
-        prompt_len = inputs.input_ids.shape[1]
-        return self._decode_outputs(output_ids, prompt_len, self._processor)
+        return self._decode_outputs(output_ids, inputs.input_ids.shape[1], self._processor)
 
     def infer_batch_logprobs(
         self,
