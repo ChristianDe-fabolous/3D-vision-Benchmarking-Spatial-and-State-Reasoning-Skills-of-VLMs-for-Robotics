@@ -33,6 +33,7 @@ from config import (
     MODEL_QWEN_32B_INT8,
     MODEL_GEMMA_4B,
     MODEL_GEMMA_4B_INT8,
+    MODEL_GEMMA_12B,
     MODEL_GEMMA_12B_INT8,
     MODEL_PHI35_VISION,
     MODEL_PHI35_VISION_INT8,
@@ -91,7 +92,7 @@ def parse_args():
             # Qwen
             MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8,
             # Gemma
-            MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8,
+            MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B, MODEL_GEMMA_12B_INT8,
             # Phi
             MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION,
             # NVIDIA Nemotron VL
@@ -207,7 +208,7 @@ def build_task(args):
 def build_model(args):
     if args.model in (MODEL_QWEN_3B, MODEL_QWEN_7B, MODEL_QWEN_7B_INT8, MODEL_QWEN3_2B, MODEL_QWEN_32B_INT8):
         return QwenVLM(model_key=args.model)
-    if args.model in (MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B_INT8):
+    if args.model in (MODEL_GEMMA_4B, MODEL_GEMMA_4B_INT8, MODEL_GEMMA_12B, MODEL_GEMMA_12B_INT8):
         return GemmaVLM(model_key=args.model)
     if args.model in (MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION):
         return PhiVLM(model_key=args.model)

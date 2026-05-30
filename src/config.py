@@ -166,13 +166,15 @@ QWEN_INT8_KEYS      = {MODEL_QWEN_7B_INT8, MODEL_QWEN_32B_INT8}
 QWEN_MAX_NEW_TOKENS = 512
 
 # Model identifiers — Gemma
-MODEL_GEMMA_4B      = "gemma-4b"       # ~8GB VRAM bfloat16 — 2080ti
-MODEL_GEMMA_4B_INT8 = "gemma-4b-int8"  # ~4GB VRAM int8    — 1080ti
-MODEL_GEMMA_12B_INT8 = "gemma-12b-int8" # ~12GB VRAM int8   — 5060ti
+MODEL_GEMMA_4B       = "gemma-4b"        # ~8GB VRAM bfloat16  — 2080ti
+MODEL_GEMMA_4B_INT8  = "gemma-4b-int8"   # ~4GB VRAM int8     — 1080ti
+MODEL_GEMMA_12B      = "gemma-12b"       # ~24GB VRAM bfloat16 — gb10
+MODEL_GEMMA_12B_INT8 = "gemma-12b-int8"  # ~12GB VRAM int8    — 5060ti
 
 GEMMA_MODEL_IDS = {
     MODEL_GEMMA_4B:       "google/gemma-3-4b-it",
     MODEL_GEMMA_4B_INT8:  "google/gemma-3-4b-it",   # same weights, loaded in 8-bit
+    MODEL_GEMMA_12B:      "google/gemma-3-12b-it",
     MODEL_GEMMA_12B_INT8: "google/gemma-3-12b-it",  # same weights, loaded in 8-bit
 }
 

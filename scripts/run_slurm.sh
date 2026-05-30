@@ -38,6 +38,7 @@
 # phi-4-vision         → 5060ti  (~10GB VRAM)   --gpus=5060ti:1
 # qwen-32b-int8        → gb10    (~32GB VRAM)   --gpus=gb10:1    --time=24:00:00
 # nvlm-12b             → gb10    (~24GB VRAM)   --gpus=gb10:1
+# gemma-12b            → gb10    (~24GB VRAM)   --gpus=gb10:1
 # ─────────────────────────────────────────────────────────────────────────────
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
