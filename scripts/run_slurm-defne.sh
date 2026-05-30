@@ -42,7 +42,12 @@ BATCH_SIZE="${BATCH_SIZE:-8}"
 
 # ── Environment ───────────────────────────────────────────────────────────────
 module load cuda/13.0
-source ~/.bashrc   # activates conda env + sets HF_HOME, TRANSFORMERS_CACHE, etc.
+source ~/.bashrc   # sets HF_HOME, TRANSFORMERS_CACHE, etc.
+if [ "$(uname -m)" = "aarch64" ]; then
+    source "$REPO/.venv-arm64/bin/activate"
+else
+    source "$REPO/.venv/bin/activate"
+fi
 
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
@@ -69,7 +74,7 @@ CMD="python src/main.py \
 [ -n "$ACTION_PHASE_TYPE" ] && CMD="$CMD --action-phase-type $ACTION_PHASE_TYPE"
 [ -n "$RUN_ID" ]            && CMD="$CMD --run-id $RUN_ID --resume"
 [ -n "$LIMIT" ]             && CMD="$CMD --limit $LIMIT"
-[ "${SMOKE:-0}" = "1" ]     && CMD="$CMD --smoke""
+[ "${SMOKE:-0}" = "1" ]     && CMD="$CMD --smoke"
 
 echo "CMD: $CMD"
 eval $CMD

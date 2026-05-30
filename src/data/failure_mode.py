@@ -8,9 +8,20 @@ Relevant question types from Robo2VLM-1:
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
+
+from PIL import Image
 
 from data.dataset import Sample
+
+
+def split_tiled_image(img: Image.Image) -> List[Image.Image]:
+    """Split a side-by-side composite into [left, right] if aspect ratio >= 1.5, else return [img]."""
+    w, h = img.size
+    if w >= 1.5 * h:
+        mid = w // 2
+        return [img.crop((0, 0, mid, h)), img.crop((mid, 0, w, h))]
+    return [img]
 
 # Letters used to label choices in prompts (dataset has up to 5 options)
 CHOICE_LABELS = ["A", "B", "C", "D", "E"]

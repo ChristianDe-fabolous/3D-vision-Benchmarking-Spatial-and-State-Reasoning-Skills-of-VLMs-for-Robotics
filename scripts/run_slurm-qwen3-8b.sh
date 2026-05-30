@@ -16,7 +16,12 @@ DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
 BATCH_SIZE="${BATCH_SIZE:-4}"
 
 module load cuda/13.0
-source ~/.bashrc
+source ~/.bashrc   # sets HF_HOME, TRANSFORMERS_CACHE, etc.
+if [ "$(uname -m)" = "aarch64" ]; then
+    source "$REPO/.venv-arm64/bin/activate"
+else
+    source "$REPO/.venv/bin/activate"
+fi
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 echo "========================================"
