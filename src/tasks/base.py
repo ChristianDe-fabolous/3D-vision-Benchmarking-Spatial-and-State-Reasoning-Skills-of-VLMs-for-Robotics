@@ -57,14 +57,34 @@ class BaseTask(ABC):
         """Strip markdown, punctuation, and parentheses from a line."""
         return line.strip().strip("*_ .!?,;:()[]{}\"'")
 
+    def _last_label_in_line(self, line: str, labels: List[str], choices: List[str]) -> Optional[int]:
+        """
+        Scan line for label occurrences and return the index of the last one found.
+        Handles decorated letters (*C*, **C**, C., C; etc.) and choice text (Yes, No, ...).
+        Last occurrence wins — CoT models state their answer at the end.
+        """
+        best_pos = -1
+        best_idx = None
+        # Letter labels: A/B/C not surrounded by other letters (handles *C*, C., C; etc.)
+        for i, label in enumerate(labels):
+            for m in re.finditer(r'(?<![A-Za-z])' + re.escape(label) + r'(?![A-Za-z])', line, re.IGNORECASE):
+                if m.start() > best_pos:
+                    best_pos, best_idx = m.start(), i
+        # Choice text labels: word-boundary match (handles Yes, No, Cannot be determined)
+        for i, c in enumerate(choices):
+            for m in re.finditer(r'\b' + re.escape(c.strip()) + r'\b', line, re.IGNORECASE):
+                if m.start() > best_pos:
+                    best_pos, best_idx = m.start(), i
+        return best_idx
+
     def parse_response(self, response: str, sample: Sample) -> Optional[int]:
         """
         Parse model response to a 0-based choice index. Returns None if unparseable.
 
-        3 passes, first hit wins:
+        2 passes, first hit wins:
           1. Explicit marker regex — last occurrence of "answer is X", "correct option: X", etc.
-          2. Reverse line scan — first clean line whose full text or first token is a valid label.
-          3. Substring scan — any line containing a valid choice text (last occurrence wins).
+          2. Reverse line scan — for each line from last to first, find the last label occurrence.
+             Handles A/B/C, *C*, C., C; and choice text (Yes, No, Cannot be determined).
         """
         labels = CHOICE_LABELS[: len(sample.choices)]
         choices = sample.choices
@@ -76,34 +96,13 @@ class BaseTask(ABC):
             if idx is not None:
                 return idx
 
-        # --- Pass 2: reverse line scan for standalone label ---
-        _INLINE_LETTER_RE = re.compile(r'(?i)\boption\s+([A-F])\b')
+        # --- Pass 2: reverse line scan, last label occurrence per line ---
         for line in reversed(response.strip().splitlines()):
-            clean = self._clean_line(line)
-            if not clean:
+            if not line.strip():
                 continue
-            # Full cleaned line (handles "Yes", "No", "Cannot be determined", "C")
-            idx = self._match_token(clean, labels, choices)
+            idx = self._last_label_in_line(line, labels, choices)
             if idx is not None:
                 return idx
-            # First word of line (handles "C." or "Yes," etc. after cleaning)
-            first_word = self._clean_line(clean.split()[0]) if clean.split() else ""
-            idx = self._match_token(first_word, labels, choices)
-            if idx is not None:
-                return idx
-            # "option C is ..." — letter immediately after "option"
-            m = _INLINE_LETTER_RE.search(line)
-            if m:
-                idx = self._match_token(m.group(1), labels, choices)
-                if idx is not None:
-                    return idx
-
-        # --- Pass 3: word-boundary scan for choice text ---
-        # Uses \b so "No" does not match inside "not", "know", etc.
-        for line in reversed(response.strip().splitlines()):
-            for i, c in enumerate(choices):
-                if re.search(r'\b' + re.escape(c.strip()) + r'\b', line, re.IGNORECASE):
-                    return i
 
         return None
 
