@@ -77,7 +77,7 @@ class QwenVLM(BaseVLM):
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)
 
-        with torch.no_grad():
+        with torch.no_grad(), torch.backends.cuda.sdp_kernel(enable_flash=False, enable_math=True, enable_mem_efficient=True):
             output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
 
         return self._decode_outputs(output_ids, inputs.input_ids.shape[1], self._processor)
