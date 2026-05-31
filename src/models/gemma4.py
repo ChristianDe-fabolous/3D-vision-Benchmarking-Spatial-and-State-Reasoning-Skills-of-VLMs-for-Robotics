@@ -81,8 +81,10 @@ class Gemma4VLM(BaseVLM):
             raise RuntimeError("Call load() before infer().")
         inputs = self._prepare_inputs(batch)
         prompt_len = inputs["input_ids"].shape[1]
+        max_ctx = getattr(self._model.config, "max_position_embeddings", 32768)
+        max_new = min(self.max_new_tokens, max(64, max_ctx - prompt_len - 32))
         with torch.no_grad():
-            output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
+            output_ids = self._model.generate(**inputs, max_new_tokens=max_new)
         return self._decode_outputs(output_ids, prompt_len, self._processor)
 
     def infer_batch_logprobs(

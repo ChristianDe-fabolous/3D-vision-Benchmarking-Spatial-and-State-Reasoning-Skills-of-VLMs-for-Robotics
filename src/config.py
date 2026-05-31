@@ -163,7 +163,7 @@ QWEN_MODEL_IDS = {
 }
 
 QWEN_INT8_KEYS: set[str] = set()  # Qwen3-VL runs natively in bfloat16; use FP8 variants if needed
-QWEN_MAX_NEW_TOKENS = 512
+QWEN_MAX_NEW_TOKENS = 1024
 
 # Model identifiers — Gemma 4 (Google)
 MODEL_GEMMA4_E2B      = "gemma4-e2b"       # ~10GB VRAM bfloat16 — 5060ti   (5B)
@@ -187,7 +187,7 @@ GEMMA4_MODEL_IDS = {
 }
 
 GEMMA4_INT8_KEYS      = {MODEL_GEMMA4_E2B_INT8, MODEL_GEMMA4_E4B_INT8, MODEL_GEMMA4_26B_INT8, MODEL_GEMMA4_31B_INT8}
-GEMMA4_MAX_NEW_TOKENS = 512
+GEMMA4_MAX_NEW_TOKENS = 1024
 
 # Model identifiers — Phi (Microsoft)
 MODEL_PHI35_VISION      = "phi-3.5-vision"       # ~4GB bf16 — 1080ti
@@ -201,7 +201,7 @@ PHI_MODEL_IDS = {
 }
 
 PHI_INT8_KEYS      = {MODEL_PHI35_VISION_INT8}
-PHI_MAX_NEW_TOKENS = 512
+PHI_MAX_NEW_TOKENS = 1024
 
 # Model identifiers — NVIDIA Nemotron VL
 # TODO: verify HF model ID matches the release on huggingface.co/nvidia
@@ -214,7 +214,7 @@ NVLM_MODEL_IDS = {
 }
 
 NVLM_INT8_KEYS      = {MODEL_NVLM_12B_INT8}
-NVLM_MAX_NEW_TOKENS = 512
+NVLM_MAX_NEW_TOKENS = 1024
 
 # Scene analysis settings
 SCENE_MIN_QUESTIONS = 5       # scenes with fewer questions are excluded from analysis

@@ -98,11 +98,11 @@ class BaseTask(ABC):
                 if idx is not None:
                     return idx
 
-        # --- Pass 3: substring scan — any line containing a choice text ---
+        # --- Pass 3: word-boundary scan for choice text ---
+        # Uses \b so "No" does not match inside "not", "know", etc.
         for line in reversed(response.strip().splitlines()):
-            upper_line = line.upper()
             for i, c in enumerate(choices):
-                if c.strip().upper() in upper_line:
+                if re.search(r'\b' + re.escape(c.strip()) + r'\b', line, re.IGNORECASE):
                     return i
 
         return None
