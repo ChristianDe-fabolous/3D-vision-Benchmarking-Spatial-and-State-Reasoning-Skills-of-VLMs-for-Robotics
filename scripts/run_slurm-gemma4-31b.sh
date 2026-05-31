@@ -1,9 +1,9 @@
 #!/bin/bash
-# Gemma4-31B-int8 (33B dense) — gb10 (~31GB VRAM), batch_size=4/2
+# Gemma4-31B-int8 (33B dense) — gb10 (~31GB VRAM), batch_size=64
 #SBATCH --job-name=gemma4-31b
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=pmlr
+#SBATCH --account=cil_jobs
 #SBATCH --gpus=gb10:1
 #SBATCH --time=24:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
