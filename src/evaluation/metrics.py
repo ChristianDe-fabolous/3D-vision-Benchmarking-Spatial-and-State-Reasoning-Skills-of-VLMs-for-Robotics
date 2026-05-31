@@ -268,6 +268,37 @@ def yes_no_random_baseline_analysis(results: List[dict]) -> dict:
     }
 
 
+def cntbd_always_correct_baseline(results: List[dict]) -> dict:
+    """
+    Baseline: always answer 'Cannot be determined' correctly, then for the
+    remaining questions always guess only 'Yes' or only 'No'.
+
+    Strategy A (always-yes): score = n_cntbd_gt + n_yes_gt
+    Strategy B (always-no):  score = n_cntbd_gt + n_no_gt
+    Both divided by total questions in the subset (those with CNTBD as a choice).
+    """
+    subset = [r for r in results if "Cannot be determined" in r.get("choices", [])]
+    if not subset:
+        return {"total": 0, "baseline_always_yes": None, "baseline_always_no": None}
+
+    total = len(subset)
+    n_cntbd = sum(r["ground_truth_label"] == "Cannot be determined" for r in subset)
+    n_yes = sum(r["ground_truth_label"] == "Yes" for r in subset)
+    n_no = sum(r["ground_truth_label"] == "No" for r in subset)
+
+    return {
+        "total_with_cntbd_choice": total,
+        "gt_cntbd": n_cntbd,
+        "gt_yes": n_yes,
+        "gt_no": n_no,
+        "gt_cntbd_frac": round(n_cntbd / total, 4),
+        "gt_yes_frac": round(n_yes / total, 4),
+        "gt_no_frac": round(n_no / total, 4),
+        "baseline_always_yes": round((n_cntbd + n_yes) / total, 4),
+        "baseline_always_no": round((n_cntbd + n_no) / total, 4),
+    }
+
+
 def summarize(results: List[dict]) -> dict:
     total = len(results)
     correct = sum(r["correct"] for r in results)

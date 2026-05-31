@@ -18,6 +18,7 @@ from evaluation.metrics import (
     accuracy_by_field,
     answer_category_analysis,
     answer_distribution_analysis,
+    cntbd_always_correct_baseline,
     question_type_analysis,
     scene_analysis,
     summarize,
@@ -83,6 +84,13 @@ def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool
 
     summary["answer_distribution"] = answer_distribution_analysis(results)
     summary["yes_no_random_baseline"] = yes_no_random_baseline_analysis(results)
+    summary["cntbd_always_correct_baseline"] = cntbd_always_correct_baseline(results)
+
+    tasks = {str(r.get("task", "unknown")) for r in results}
+    summary["cntbd_always_correct_baseline_by_task"] = {
+        task: cntbd_always_correct_baseline([r for r in results if str(r.get("task", "unknown")) == task])
+        for task in sorted(tasks)
+    }
 
     if analyse_categories:
         summary["answer_category_analysis"] = answer_category_analysis(results)

@@ -256,10 +256,16 @@ def main():
         print("Warning: HF_TOKEN not set — unauthenticated HF requests may be rate-limited or fail. Pass --hf-token or set HF_TOKEN env var.", flush=True)
 
     slurm_job_id = os.environ.get("SLURM_JOB_ID")
+    _tags = [args.prompt]
+    if args.cot:
+        _tags.append("cot")
+    if args.individual_images:
+        _tags.append("individual")
+    _prompt_tag = "_".join(_tags)
     run_id = args.run_id or (
-        f"slurm{slurm_job_id}_{args.task}_{args.model}_{args.prompt}"
+        f"slurm{slurm_job_id}_{args.task}_{args.model}_{_prompt_tag}"
         if slurm_job_id
-        else f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{args.prompt}"
+        else f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{_prompt_tag}"
     )
 
     config = {

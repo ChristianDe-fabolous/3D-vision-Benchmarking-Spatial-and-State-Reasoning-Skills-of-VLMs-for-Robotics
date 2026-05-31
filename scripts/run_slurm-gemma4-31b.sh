@@ -1,5 +1,5 @@
 #!/bin/bash
-# Gemma4-31B-int8 (33B dense) — gb10 (~31GB VRAM), batch_size=1
+# Gemma4-31B-int8 (33B dense) — gb10 (~31GB VRAM), batch_size=4/2
 #SBATCH --job-name=gemma4-31b
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
@@ -13,7 +13,7 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-gemma4-31b-int8}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-1}"
+BATCH_SIZE="${BATCH_SIZE:-4}"
 
 module load cuda/13.0
 source ~/.bashrc   # sets HF_HOME, TRANSFORMERS_CACHE, etc.
