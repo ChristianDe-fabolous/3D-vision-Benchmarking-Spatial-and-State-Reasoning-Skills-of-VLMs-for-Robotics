@@ -1,10 +1,10 @@
 #!/bin/bash
-# Qwen3-VL-8B-Thinking with CoT (~8B BF16 ~16GB) — 5060ti (16GB), batch_size=1
+# Qwen3-VL-8B-Thinking with CoT (~8B BF16 ~16GB) — gb10 (128GB), batch_size=64
 #SBATCH --job-name=qwen3-8b-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=pmlr_jobs
-#SBATCH --gpus=5060ti:1
+#SBATCH --gpus=gb10:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
 #SBATCH --mail-type=END,FAIL
@@ -13,7 +13,7 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-qwen3-8b-thinking}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-1}"
+BATCH_SIZE="${BATCH_SIZE:-64}"
 
 module load cuda/13.0
 source ~/.bashrc

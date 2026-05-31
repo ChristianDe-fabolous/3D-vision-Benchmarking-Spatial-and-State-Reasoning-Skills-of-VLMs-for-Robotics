@@ -112,6 +112,7 @@ def run(
                 responses = model.infer_batch(batch_input)
                 prob_dicts = [{}] * len(buf)
         except torch.cuda.OutOfMemoryError as e:
+            print(f"\n*** OOM at batch_size={len(buf)} — reduce BATCH_SIZE! Retrying one-by-one. ***\n", flush=True)
             logger.error(f"Batch inference OOM (batch_size={len(buf)}): {e}")
             torch.cuda.empty_cache()
             if len(buf) == 1:

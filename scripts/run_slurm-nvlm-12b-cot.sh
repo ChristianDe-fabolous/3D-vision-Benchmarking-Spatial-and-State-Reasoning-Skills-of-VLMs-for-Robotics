@@ -1,5 +1,5 @@
 #!/bin/bash
-# NVLM-12B BF16 with CoT (12B BF16 ~24GB) — gb10 (128GB), batch_size=4
+# NVLM-12B BF16 with CoT (12B BF16 ~24GB) — gb10 (128GB), batch_size=64
 #SBATCH --job-name=nvlm-12b-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
@@ -13,7 +13,7 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-nvlm-12b}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-4}"
+BATCH_SIZE="${BATCH_SIZE:-64}"
 
 module load cuda/13.0
 source ~/.bashrc

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Gemma4-26B int8 with CoT (27B MoE int8 ~27GB) — gb10 (128GB), batch_size=4
+# Gemma4-26B int8 with CoT (27B MoE int8 ~27GB) — gb10 (128GB), batch_size=48
 #SBATCH --job-name=gemma4-26b-int8-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
@@ -13,7 +13,7 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-gemma4-26b-int8}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-4}"
+BATCH_SIZE="${BATCH_SIZE:-48}"
 
 module load cuda/13.0
 source ~/.bashrc

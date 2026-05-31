@@ -1,5 +1,5 @@
 #!/bin/bash
-# Qwen3-VL-30B-Thinking with CoT (30B MoE BF16 ~60GB) — gb10 (128GB), batch_size=2
+# Qwen3-VL-30B-Thinking with CoT (30B MoE BF16 ~60GB) — gb10 (128GB), batch_size=16
 #SBATCH --job-name=qwen3-30b-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
@@ -13,7 +13,7 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-qwen3-30b-thinking}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-2}"
+BATCH_SIZE="${BATCH_SIZE:-16}"
 
 module load cuda/13.0
 source ~/.bashrc

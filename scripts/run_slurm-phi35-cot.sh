@@ -1,10 +1,10 @@
 #!/bin/bash
-# Phi-3.5-Vision with CoT (3.8B BF16 ~8GB) — 5060ti (16GB), batch_size=2
+# Phi-3.5-Vision with CoT (3.8B BF16 ~8GB) — gb10 (128GB), batch_size=64
 #SBATCH --job-name=phi35-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=3dv
-#SBATCH --gpus=5060ti:1
+#SBATCH --gpus=gb10:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
 #SBATCH --mail-type=END,FAIL
@@ -13,7 +13,7 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-phi-3.5-vision}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-2}"
+BATCH_SIZE="${BATCH_SIZE:-64}"
 
 module load cuda/13.0
 source ~/.bashrc
