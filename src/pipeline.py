@@ -138,6 +138,8 @@ def run(
                     finally:
                         torch.cuda.empty_cache()
         except Exception as e:
+            logger.exception(f"Batch inference failed: {e}")
+            raise
             logger.error(f"Batch inference failed: {e}")
             responses = [""] * len(buf)
             prob_dicts = [{}] * len(buf)
