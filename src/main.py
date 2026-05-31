@@ -255,7 +255,12 @@ def main():
     elif not os.environ.get("HF_TOKEN"):
         print("Warning: HF_TOKEN not set — unauthenticated HF requests may be rate-limited or fail. Pass --hf-token or set HF_TOKEN env var.", flush=True)
 
-    run_id = args.run_id or f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{args.prompt}"
+    slurm_job_id = os.environ.get("SLURM_JOB_ID")
+    run_id = args.run_id or (
+        f"slurm{slurm_job_id}_{args.task}_{args.model}_{args.prompt}"
+        if slurm_job_id
+        else f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_{args.task}_{args.model}_{args.prompt}"
+    )
 
     config = {
         "run_id": run_id,
@@ -269,6 +274,7 @@ def main():
         "split": args.split,
         "limit": args.limit,
         "local_data": args.local_data,
+        "slurm_job_id": slurm_job_id,
     }
 
     if args.logprobs and (args.cot or args.prompt == PROMPT_PAPER_COT):
