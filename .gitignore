@@ -12,7 +12,6 @@ build/
 .venv/
 venv/
 env/
-3dvision/
 tmp/
 droid_index_env/
 

@@ -191,6 +191,12 @@ def parse_args():
         default=False,
         help="Smoke test: run 5 samples with describe + verbose output. Shorthand for --limit 5 --describe --test-pipeline.",
     )
+    parser.add_argument(
+        "--individual-images",
+        action="store_true",
+        default=False,
+        help="(failure_mode only) Split composite tiled image into individual images before passing to model.",
+    )
     return parser.parse_args()
 
 
@@ -207,7 +213,7 @@ def build_task(args):
         )
     kwargs = dict(split=args.split, limit=args.limit, local_path=args.local_data, prompt_id=args.prompt)
     if args.task == TASK_FAILURE_MODE:
-        return FailureModeTask(**kwargs)
+        return FailureModeTask(**kwargs, individual_images=args.individual_images, smoke=args.smoke)
     if args.task == TASK_MULTIVIEW:
         return MultiviewTask(**kwargs)
     raise ValueError(f"Unknown task: {args.task}")
@@ -237,9 +243,10 @@ SMOKE_SYSTEM_PROMPT = (
 def main():
     args = parse_args()
 
-    # --smoke is a shorthand for --limit 5 --describe --test-pipeline
+    # --smoke is a shorthand for --describe --test-pipeline (+ --limit 5 for non-failure_mode tasks)
     if args.smoke:
-        args.limit = args.limit or 5
+        if args.task != TASK_FAILURE_MODE:
+            args.limit = args.limit or 5
         args.describe = True
         args.test_pipeline = True
 

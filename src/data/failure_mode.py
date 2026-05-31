@@ -15,16 +15,31 @@ from PIL import Image
 from data.dataset import Sample
 
 
+_WIDE_ASPECT_THRESHOLD = 3.0  # matches tile_multiview.py
+
+
 def split_tiled_image(img: Image.Image) -> List[Image.Image]:
-    """Split a side-by-side composite into [left, right] if aspect ratio >= 1.5, else return [img]."""
     w, h = img.size
-    if w >= 1.5 * h:
-        mid = w // 2
-        return [img.crop((0, 0, mid, h)), img.crop((mid, 0, w, h))]
-    return [img]
+    if w / h >= _WIDE_ASPECT_THRESHOLD:
+        mw = w // 2
+        return [img.crop((0, 0, mw, h)), img.crop((mw, 0, w, h))]
+    mw, mh = w // 2, h // 2
+    return [
+        img.crop((0,   0,   mw, mh)),
+        img.crop((mw,  0,   w,  mh)),
+        img.crop((0,   mh,  mw, h)),
+        img.crop((mw,  mh,  w,  h)),
+    ]
 
 # Letters used to label choices in prompts (dataset has up to 5 options)
 CHOICE_LABELS = ["A", "B", "C", "D", "E"]
+
+
+def _image_context(sample: Sample) -> str:
+    n = len(sample.all_images)
+    if n > 1:
+        return f"You are given {n} camera views of the robot scene as separate images."
+    return "The image shows multiple camera views of the robot scene tiled into a single composite."
 
 
 def _build_prompt_default(sample: Sample) -> str:
@@ -32,9 +47,12 @@ def _build_prompt_default(sample: Sample) -> str:
         f"  {CHOICE_LABELS[i]}: {choice}"
         for i, choice in enumerate(sample.choices)
     )
+    n = len(sample.all_images)
+    image_word = "images" if n > 1 else "image"
     return (
-        "You are evaluating a robot performing a manipulation task. "
-        "Analyse the image carefully.\n\n"
+        f"{_image_context(sample)} "
+        f"You are evaluating a robot performing a manipulation task. "
+        f"Analyse the {image_word} carefully.\n\n"
         f"Question: {sample.question}\n\n"
         f"Choices:\n{choices_text}\n\n"
         "Reply with only the letter of the correct answer "
@@ -44,13 +62,13 @@ def _build_prompt_default(sample: Sample) -> str:
 
 def _build_prompt_paper(sample: Sample) -> str:
     """Replicates the exact prompt format from the Robo2VLM-1 paper evaluation."""
-    choice_labels = ["A", "B", "C", "D", "E"]
     inline_choices = "".join(
-        f" {choice_labels[i]}. {choice}"
+        f" {CHOICE_LABELS[i]}. {choice}"
         for i, choice in enumerate(sample.choices)
     )
     formatted_question = f"{sample.question}{inline_choices}"
     return (
+        f"{_image_context(sample)} "
         f"Answer the following multiple choice question by selecting the letter "
         f"(A, B, C, D, or E). ONLY output the correct option letter, i.e., A, B, C, D, E. "
         f"{formatted_question}"
@@ -75,13 +93,13 @@ def _build_prompt_test(sample: Sample) -> str:
 
 def _build_prompt_paper_cot(sample: Sample) -> str:
     """Paper prompt with Chain-of-Thought reasoning before the final answer."""
-    choice_labels = ["A", "B", "C", "D", "E"]
     inline_choices = "".join(
-        f" {choice_labels[i]}. {choice}"
+        f" {CHOICE_LABELS[i]}. {choice}"
         for i, choice in enumerate(sample.choices)
     )
     formatted_question = f"{sample.question}{inline_choices}"
     return (
+        f"{_image_context(sample)} "
         f"Answer the following multiple choice question. "
         f"Think step by step, then output your final answer as a single letter "
         f"(A, B, C, D, or E) on the last line. "
