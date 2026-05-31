@@ -78,8 +78,10 @@ class QwenVLM(BaseVLM):
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)
 
+        torch.backends.cudnn.enabled = False
         with torch.no_grad():
             output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
+        torch.backends.cudnn.enabled = True
 
         return self._decode_outputs(output_ids, inputs.input_ids.shape[1], self._processor)
 
