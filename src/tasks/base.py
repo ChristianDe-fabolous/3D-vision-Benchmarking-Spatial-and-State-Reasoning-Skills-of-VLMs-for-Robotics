@@ -61,25 +61,13 @@ class BaseTask(ABC):
         """
         Parse model response to a 0-based choice index. Returns None if unparseable.
 
-        CoT strategy (3 passes, first hit wins):
+        3 passes, first hit wins:
           1. Explicit marker regex — last occurrence of "answer is X", "correct option: X", etc.
           2. Reverse line scan — first clean line whose full text or first token is a valid label.
           3. Substring scan — any line containing a valid choice text (last occurrence wins).
-        Non-CoT: first word/token of the response.
         """
         labels = CHOICE_LABELS[: len(sample.choices)]
         choices = sample.choices
-        prompt_id = getattr(self, "prompt_id", "default")
-        cot = getattr(self, "cot", False) or prompt_id == "paper_cot"
-
-        if not cot:
-            # Direct-answer prompt: model should output just a letter or choice word.
-            first = self._clean_line(response.split()[0]) if response.strip() else ""
-            idx = self._match_token(first, labels, choices)
-            if idx is not None:
-                return idx
-            # Last resort: bare first character
-            return self._match_token(response.strip()[:1], labels, choices)
 
         # --- Pass 1: explicit marker pattern, last occurrence ---
         matches = _MARKER_RE.findall(response)
