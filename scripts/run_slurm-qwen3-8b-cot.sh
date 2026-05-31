@@ -1,5 +1,5 @@
 #!/bin/bash
-# Qwen3-VL-8B with CoT (~8B BF16 ~16GB) — 5060ti (16GB), batch_size=1
+# Qwen3-VL-8B-Thinking with CoT (~8B BF16 ~16GB) — 5060ti (16GB), batch_size=1
 #SBATCH --job-name=qwen3-8b-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
@@ -11,7 +11,7 @@
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
-MODEL="${MODEL:-qwen3-8b}"
+MODEL="${MODEL:-qwen3-8b-thinking}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
 BATCH_SIZE="${BATCH_SIZE:-1}"
 
@@ -52,5 +52,5 @@ eval $CMD
 echo "========================================"
 echo "Job $SLURM_JOB_ID done."
 
-[ "${CLEAN_CACHE:-1}" = "1" ] && rm -rf "$HF_HOME/hub/models--Qwen--Qwen3-VL-8B-Instruct"
+[ "${CLEAN_CACHE:-1}" = "1" ] && rm -rf "$HF_HOME/hub/models--Qwen--Qwen3-VL-8B-Thinking"
 echo "HF cache after cleanup: $(du -sh $HF_HOME 2>/dev/null | cut -f1)"
