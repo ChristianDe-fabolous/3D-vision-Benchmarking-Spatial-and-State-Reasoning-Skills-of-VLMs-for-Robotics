@@ -82,9 +82,10 @@ class PhiVLM(BaseVLM):
             texts.append(self._apply_template(self._build_messages(imgs, prompt)))
             images_per_sample.append(list(imgs))
 
+        flat_images = [img for imgs in images_per_sample for img in imgs]
         inputs = self._processor(
             text=texts,
-            images=images_per_sample if any(images_per_sample) else None,
+            images=flat_images if flat_images else None,
             padding=True,
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)
@@ -111,9 +112,10 @@ class PhiVLM(BaseVLM):
             texts.append(self._apply_template(self._build_messages(imgs, prompt)))
             images_per_sample.append(list(imgs))
 
+        flat_images = [img for imgs in images_per_sample for img in imgs]
         inputs = self._processor(
             text=texts,
-            images=images_per_sample if any(images_per_sample) else None,
+            images=flat_images if flat_images else None,
             padding=True,
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)

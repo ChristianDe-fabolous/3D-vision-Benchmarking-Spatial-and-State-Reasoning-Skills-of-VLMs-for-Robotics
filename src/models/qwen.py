@@ -36,7 +36,6 @@ class QwenVLM(BaseVLM):
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
         self._model = AutoModelForImageTextToText.from_pretrained(
             self.model_id, torch_dtype=dtype, device_map="auto", trust_remote_code=True,
-            attn_implementation="eager",
         )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id)
