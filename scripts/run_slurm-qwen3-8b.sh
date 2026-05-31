@@ -23,6 +23,7 @@ else
     source "$REPO/.venv/bin/activate"
 fi
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export TORCH_CUDNN_V8_API_ENABLED=0
 
 echo "========================================"
 echo "Job ID  : $SLURM_JOB_ID"
