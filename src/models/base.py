@@ -50,10 +50,14 @@ class BaseVLM(ABC):
     @staticmethod
     def _decode_outputs(output_ids: torch.Tensor, prompt_len: int, processor) -> List[str]:
         """Slice generated tokens past the prompt and decode to strings."""
-        return [
-            processor.decode(out[prompt_len:], skip_special_tokens=True).strip()
-            for out in output_ids
-        ]
+        results = []
+        for out in output_ids:
+            text = processor.decode(out[prompt_len:], skip_special_tokens=True).strip()
+            # Strip thinking block from models that reason internally (e.g. Qwen3-Thinking)
+            if "</think>" in text:
+                text = text.split("</think>", 1)[-1].strip()
+            results.append(text)
+        return results
 
     @staticmethod
     def _logprobs_from_first_token(
