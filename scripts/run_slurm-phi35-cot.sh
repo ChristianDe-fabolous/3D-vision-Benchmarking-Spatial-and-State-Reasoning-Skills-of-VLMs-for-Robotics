@@ -1,10 +1,10 @@
 #!/bin/bash
-# Phi-3.5-Vision with CoT (3.8B BF16 ~8GB) — 1080ti (11GB), batch_size=2
+# Phi-3.5-Vision with CoT (3.8B BF16 ~8GB) — 5060ti (16GB), batch_size=2
 #SBATCH --job-name=phi35-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=3dv
-#SBATCH --gpus=1080ti:1
+#SBATCH --gpus=5060ti:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
 #SBATCH --mail-type=END,FAIL
