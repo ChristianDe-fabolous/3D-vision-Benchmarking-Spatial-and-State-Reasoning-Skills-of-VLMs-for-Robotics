@@ -3,7 +3,7 @@
 #SBATCH --job-name=gemma4-e4b
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=3dv
+#SBATCH --account=cil_jobs
 #SBATCH --gpus=5060ti:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
