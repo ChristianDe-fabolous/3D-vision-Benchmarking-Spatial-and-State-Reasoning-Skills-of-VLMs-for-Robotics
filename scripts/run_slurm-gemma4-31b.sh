@@ -51,3 +51,7 @@ eval $CMD
 
 echo "========================================"
 echo "Job $SLURM_JOB_ID done."
+
+# Remove this model from HF cache to free space for the next job
+[ "${CLEAN_CACHE:-1}" = "1" ] && rm -rf "$HF_HOME/hub/models--google--gemma-4-31B-it"
+echo "HF cache after cleanup: $(du -sh $HF_HOME 2>/dev/null | cut -f1)"

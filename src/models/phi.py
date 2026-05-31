@@ -77,14 +77,14 @@ class PhiVLM(BaseVLM):
             raise RuntimeError("Call load() before infer().")
 
         texts = []
-        all_images: list[Image.Image] = []
+        images_per_sample: list[list[Image.Image]] = []
         for imgs, prompt in batch:
             texts.append(self._apply_template(self._build_messages(imgs, prompt)))
-            all_images.extend(imgs)
+            images_per_sample.append(list(imgs))
 
         inputs = self._processor(
             text=texts,
-            images=all_images if all_images else None,
+            images=images_per_sample if any(images_per_sample) else None,
             padding=True,
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)
@@ -104,14 +104,14 @@ class PhiVLM(BaseVLM):
             raise RuntimeError("Call load() before infer().")
 
         texts = []
-        all_images: list[Image.Image] = []
+        images_per_sample: list[list[Image.Image]] = []
         for imgs, prompt in batch:
             texts.append(self._apply_template(self._build_messages(imgs, prompt)))
-            all_images.extend(imgs)
+            images_per_sample.append(list(imgs))
 
         inputs = self._processor(
             text=texts,
-            images=all_images if all_images else None,
+            images=images_per_sample if any(images_per_sample) else None,
             padding=True,
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Gemma4-E4B (8B) — 5060ti (~16GB VRAM), batch_size=1 (processor batching unreliable)
+# Gemma4-E4B (8B BF16) — 5060ti (~16GB VRAM), batch_size=1
 #SBATCH --job-name=gemma4-e4b
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
