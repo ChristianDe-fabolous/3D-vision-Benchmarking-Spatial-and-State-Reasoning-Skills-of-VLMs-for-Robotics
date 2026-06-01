@@ -37,7 +37,10 @@ class Gemma4VLM(BaseVLM):
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
         kwargs = dict(device_map="auto")
         if self._int8:
-            kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
+            kwargs["quantization_config"] = BitsAndBytesConfig(
+                load_in_8bit=True,
+                llm_int8_skip_modules=["vision_tower", "multi_modal_projector", "lm_head"],
+            )
         else:
             kwargs["torch_dtype"] = dtype
         self._model = AutoModelForImageTextToText.from_pretrained(self.model_id, **kwargs)

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Gemma4-31B int8 with CoT (33B dense int8 ~31GB) — gb10 (128GB), batch_size=32
+# Gemma4-31B int8 with CoT (33B dense int8 ~31GB) — gb10 (128GB), batch_size=16
 #SBATCH --job-name=gemma4-31b-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
@@ -11,7 +11,7 @@
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
-MODEL="${MODEL:-gemma4-31b-int8}"
+MODEL="${MODEL:-gemma4-31b}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
 BATCH_SIZE="${BATCH_SIZE:-48}"
 
