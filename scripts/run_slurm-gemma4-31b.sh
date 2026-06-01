@@ -1,5 +1,5 @@
 #!/bin/bash
-# Gemma4-31B (33B dense bfloat16) — gb10 (~62GB VRAM), batch_size=48
+# Gemma4-31B (33B dense bfloat16) — gb10 (~62GB VRAM), batch_size=32
 #SBATCH --job-name=gemma4-31b
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
