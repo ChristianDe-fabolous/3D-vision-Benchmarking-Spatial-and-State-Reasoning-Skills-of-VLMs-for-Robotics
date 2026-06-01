@@ -11,7 +11,7 @@
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
-MODEL="${MODEL:-gemma4-31bt}"
+MODEL="${MODEL:-gemma4-31b}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
 BATCH_SIZE="${BATCH_SIZE:-4}"
 
