@@ -13,9 +13,9 @@ import logging
 
 import torch
 from PIL import Image
-from transformers import MllamaForConditionalGeneration, AutoProcessor, BitsAndBytesConfig
+from transformers import MllamaForConditionalGeneration, AutoProcessor
 
-from config import MODEL_NVLM_12B, NVLM_INT8_KEYS, NVLM_MAX_NEW_TOKENS, NVLM_MODEL_IDS
+from config import MODEL_NVLM_12B, NVLM_MAX_NEW_TOKENS, NVLM_MODEL_IDS
 from models.base import BaseVLM
 
 logger = logging.getLogger("vlm_bench")
@@ -28,22 +28,16 @@ class NemotronVLM(BaseVLM):
         max_new_tokens: int = NVLM_MAX_NEW_TOKENS,
     ):
         self.model_id = NVLM_MODEL_IDS[model_key]
-        self._int8 = model_key in NVLM_INT8_KEYS
         self.max_new_tokens = max_new_tokens
         self.system_prompt: str | None = None
         self._model = None
         self._processor = None
 
     def load(self) -> None:
-        logger.info(f"Loading {self.model_id} {'(int8)' if self._int8 else '(bf16)'} ...")
-        kwargs: dict = dict(device_map="auto")
-        if self._int8:
-            kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
-        else:
-            # Nemotron VL is designed for bfloat16
-            kwargs["torch_dtype"] = torch.bfloat16
-
-        self._model = MllamaForConditionalGeneration.from_pretrained(self.model_id, **kwargs)
+        logger.info(f"Loading {self.model_id} (bf16) ...")
+        self._model = MllamaForConditionalGeneration.from_pretrained(
+            self.model_id, device_map="auto", torch_dtype=torch.bfloat16
+        )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id)
         logger.info("Model loaded.")

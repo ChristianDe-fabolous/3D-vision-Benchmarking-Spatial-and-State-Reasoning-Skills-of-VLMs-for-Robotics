@@ -162,58 +162,42 @@ QWEN_MODEL_IDS = {
     MODEL_QWEN3_30B_THINKING:"Qwen/Qwen3-VL-30B-A3B-Thinking",
 }
 
-QWEN_INT8_KEYS: set[str] = set()  # Qwen3-VL runs natively in bfloat16; use FP8 variants if needed
 QWEN_MAX_NEW_TOKENS = 1024
 
 # Model identifiers — Gemma 4 (Google)
-MODEL_GEMMA4_E2B      = "gemma4-e2b"       # ~10GB VRAM bfloat16 — 5060ti   (5B)
-MODEL_GEMMA4_E2B_INT8 = "gemma4-e2b-int8"  # ~5GB  VRAM int8    — 1080ti
-MODEL_GEMMA4_E4B      = "gemma4-e4b"       # ~16GB VRAM bfloat16 — 5060ti   (8B)
-MODEL_GEMMA4_E4B_INT8 = "gemma4-e4b-int8"  # ~8GB  VRAM int8    — 2080ti
-MODEL_GEMMA4_26B      = "gemma4-26b"       # ~54GB VRAM bfloat16 — gb10     (27B MoE, 4B active)
-MODEL_GEMMA4_26B_INT8 = "gemma4-26b-int8"  # ~27GB VRAM int8    — gb10
-MODEL_GEMMA4_31B      = "gemma4-31b"       # ~62GB VRAM bfloat16 — gb10     (33B dense)
-MODEL_GEMMA4_31B_INT8 = "gemma4-31b-int8"  # ~31GB VRAM int8    — gb10
+MODEL_GEMMA4_E2B = "gemma4-e2b"  # ~10GB VRAM bfloat16 — 5060ti   (5B)
+MODEL_GEMMA4_E4B = "gemma4-e4b"  # ~16GB VRAM bfloat16 — 5060ti   (8B)
+MODEL_GEMMA4_26B = "gemma4-26b"  # ~54GB VRAM bfloat16 — gb10     (27B MoE, 4B active)
+MODEL_GEMMA4_31B = "gemma4-31b"  # ~62GB VRAM bfloat16 — gb10     (33B dense)
 
 GEMMA4_MODEL_IDS = {
-    MODEL_GEMMA4_E2B:      "google/gemma-4-E2B-it",
-    MODEL_GEMMA4_E2B_INT8: "google/gemma-4-E2B-it",   # same weights, loaded in 8-bit
-    MODEL_GEMMA4_E4B:      "google/gemma-4-E4B-it",
-    MODEL_GEMMA4_E4B_INT8: "google/gemma-4-E4B-it",   # same weights, loaded in 8-bit
-    MODEL_GEMMA4_26B:      "google/gemma-4-26B-A4B-it",
-    MODEL_GEMMA4_26B_INT8: "google/gemma-4-26B-A4B-it",  # same weights, loaded in 8-bit
-    MODEL_GEMMA4_31B:      "google/gemma-4-31B-it",
-    MODEL_GEMMA4_31B_INT8: "google/gemma-4-31B-it",   # same weights, loaded in 8-bit
+    MODEL_GEMMA4_E2B: "google/gemma-4-E2B-it",
+    MODEL_GEMMA4_E4B: "google/gemma-4-E4B-it",
+    MODEL_GEMMA4_26B: "google/gemma-4-26B-A4B-it",
+    MODEL_GEMMA4_31B: "google/gemma-4-31B-it",
 }
 
-GEMMA4_INT8_KEYS      = {MODEL_GEMMA4_E2B_INT8, MODEL_GEMMA4_E4B_INT8, MODEL_GEMMA4_26B_INT8, MODEL_GEMMA4_31B_INT8}
 GEMMA4_MAX_NEW_TOKENS = 1024
 
 # Model identifiers — Phi (Microsoft)
-MODEL_PHI35_VISION      = "phi-3.5-vision"       # ~4GB bf16 — 1080ti
-MODEL_PHI35_VISION_INT8 = "phi-3.5-vision-int8"  # ~2GB int8 — any GPU
-MODEL_PHI4_VISION       = "phi-4-vision"          # ~10GB bf16 — 5060ti
+MODEL_PHI35_VISION = "phi-3.5-vision"  # ~4GB bf16 — 1080ti
+MODEL_PHI4_VISION  = "phi-4-vision"   # ~10GB bf16 — 5060ti
 
 PHI_MODEL_IDS = {
-    MODEL_PHI35_VISION:      "microsoft/Phi-3.5-vision-instruct",
-    MODEL_PHI35_VISION_INT8: "microsoft/Phi-3.5-vision-instruct",   # same weights, 8-bit
-    MODEL_PHI4_VISION:       "microsoft/Phi-4-multimodal-instruct",
+    MODEL_PHI35_VISION: "microsoft/Phi-3.5-vision-instruct",
+    MODEL_PHI4_VISION:  "microsoft/Phi-4-multimodal-instruct",
 }
 
-PHI_INT8_KEYS      = {MODEL_PHI35_VISION_INT8}
 PHI_MAX_NEW_TOKENS = 1024
 
 # Model identifiers — NVIDIA Nemotron VL
 # TODO: verify HF model ID matches the release on huggingface.co/nvidia
-MODEL_NVLM_12B      = "nvlm-12b"       # nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16 — bf16 ~24GB — gb10
-MODEL_NVLM_12B_INT8 = "nvlm-12b-int8"  # same weights, int8 — ~12GB — 5060ti
+MODEL_NVLM_12B = "nvlm-12b"  # nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16 — bf16 ~24GB — gb10
 
 NVLM_MODEL_IDS = {
-    MODEL_NVLM_12B:      "nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16",
-    MODEL_NVLM_12B_INT8: "nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16",  # same weights, 8-bit
+    MODEL_NVLM_12B: "nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16",
 }
 
-NVLM_INT8_KEYS      = {MODEL_NVLM_12B_INT8}
 NVLM_MAX_NEW_TOKENS = 1024
 
 # Scene analysis settings

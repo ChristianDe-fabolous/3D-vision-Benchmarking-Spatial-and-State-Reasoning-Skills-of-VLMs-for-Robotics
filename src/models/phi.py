@@ -12,9 +12,9 @@ import logging
 
 import torch
 from PIL import Image
-from transformers import AutoModelForCausalLM, AutoProcessor, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, AutoProcessor
 
-from config import MODEL_PHI35_VISION, PHI_INT8_KEYS, PHI_MAX_NEW_TOKENS, PHI_MODEL_IDS
+from config import MODEL_PHI35_VISION, PHI_MAX_NEW_TOKENS, PHI_MODEL_IDS
 from models.base import BaseVLM
 
 logger = logging.getLogger("vlm_bench")
@@ -27,14 +27,13 @@ class PhiVLM(BaseVLM):
         max_new_tokens: int = PHI_MAX_NEW_TOKENS,
     ):
         self.model_id = PHI_MODEL_IDS[model_key]
-        self._int8 = model_key in PHI_INT8_KEYS
         self.max_new_tokens = max_new_tokens
         self.system_prompt: str | None = None
         self._model = None
         self._processor = None
 
     def load(self) -> None:
-        logger.info(f"Loading {self.model_id} {'(int8)' if self._int8 else ''} ...")
+        logger.info(f"Loading {self.model_id} ...")
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
 
         try:
@@ -43,13 +42,10 @@ class PhiVLM(BaseVLM):
         except ImportError:
             attn_impl = "eager"
 
-        kwargs: dict = dict(device_map="auto", trust_remote_code=True, _attn_implementation=attn_impl)
-        if self._int8:
-            kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
-        else:
-            kwargs["torch_dtype"] = dtype
-
-        self._model = AutoModelForCausalLM.from_pretrained(self.model_id, **kwargs)
+        self._model = AutoModelForCausalLM.from_pretrained(
+            self.model_id, device_map="auto", torch_dtype=dtype,
+            trust_remote_code=True, _attn_implementation=attn_impl,
+        )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id, trust_remote_code=True)
         self._processor.tokenizer.padding_side = "left"

@@ -32,18 +32,12 @@ from config import (
     MODEL_QWEN3_30B,
     MODEL_QWEN3_30B_THINKING,
     MODEL_GEMMA4_E2B,
-    MODEL_GEMMA4_E2B_INT8,
     MODEL_GEMMA4_E4B,
-    MODEL_GEMMA4_E4B_INT8,
     MODEL_GEMMA4_26B,
-    MODEL_GEMMA4_26B_INT8,
     MODEL_GEMMA4_31B,
-    MODEL_GEMMA4_31B_INT8,
     MODEL_PHI35_VISION,
-    MODEL_PHI35_VISION_INT8,
     MODEL_PHI4_VISION,
     MODEL_NVLM_12B,
-    MODEL_NVLM_12B_INT8,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
     PROMPT_PAPER,
@@ -97,14 +91,11 @@ def parse_args():
             MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
             MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING,
             # Gemma 4
-            MODEL_GEMMA4_E2B, MODEL_GEMMA4_E2B_INT8,
-            MODEL_GEMMA4_E4B, MODEL_GEMMA4_E4B_INT8,
-            MODEL_GEMMA4_26B, MODEL_GEMMA4_26B_INT8,
-            MODEL_GEMMA4_31B, MODEL_GEMMA4_31B_INT8,
+            MODEL_GEMMA4_E2B, MODEL_GEMMA4_E4B, MODEL_GEMMA4_26B, MODEL_GEMMA4_31B,
             # Phi
-            MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION,
+            MODEL_PHI35_VISION, MODEL_PHI4_VISION,
             # NVIDIA Nemotron VL
-            MODEL_NVLM_12B, MODEL_NVLM_12B_INT8,
+            MODEL_NVLM_12B,
         ],
     )
     parser.add_argument(
@@ -223,12 +214,11 @@ def build_model(args):
     if args.model in (MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
                       MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING):
         return QwenVLM(model_key=args.model)
-    if args.model in (MODEL_GEMMA4_E2B, MODEL_GEMMA4_E2B_INT8, MODEL_GEMMA4_E4B, MODEL_GEMMA4_E4B_INT8,
-                      MODEL_GEMMA4_26B, MODEL_GEMMA4_26B_INT8, MODEL_GEMMA4_31B, MODEL_GEMMA4_31B_INT8):
+    if args.model in (MODEL_GEMMA4_E2B, MODEL_GEMMA4_E4B, MODEL_GEMMA4_26B, MODEL_GEMMA4_31B):
         return Gemma4VLM(model_key=args.model)
-    if args.model in (MODEL_PHI35_VISION, MODEL_PHI35_VISION_INT8, MODEL_PHI4_VISION):
+    if args.model in (MODEL_PHI35_VISION, MODEL_PHI4_VISION):
         return PhiVLM(model_key=args.model)
-    if args.model in (MODEL_NVLM_12B, MODEL_NVLM_12B_INT8):
+    if args.model in (MODEL_NVLM_12B,):
         return NemotronVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
 

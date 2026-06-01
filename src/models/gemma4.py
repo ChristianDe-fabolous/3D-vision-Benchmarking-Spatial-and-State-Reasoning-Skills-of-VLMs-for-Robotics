@@ -11,9 +11,9 @@ import logging
 
 import torch
 from PIL import Image
-from transformers import AutoModelForImageTextToText, AutoProcessor, BitsAndBytesConfig
+from transformers import AutoModelForImageTextToText, AutoProcessor
 
-from config import GEMMA4_INT8_KEYS, GEMMA4_MAX_NEW_TOKENS, GEMMA4_MODEL_IDS, MODEL_GEMMA4_31B
+from config import GEMMA4_MAX_NEW_TOKENS, GEMMA4_MODEL_IDS, MODEL_GEMMA4_31B
 from models.base import BaseVLM
 
 logger = logging.getLogger("vlm_bench")
@@ -26,24 +26,17 @@ class Gemma4VLM(BaseVLM):
         max_new_tokens: int = GEMMA4_MAX_NEW_TOKENS,
     ):
         self.model_id = GEMMA4_MODEL_IDS[model_key]
-        self._int8 = model_key in GEMMA4_INT8_KEYS
         self.max_new_tokens = max_new_tokens
         self.system_prompt: str | None = None
         self._model = None
         self._processor = None
 
     def load(self) -> None:
-        logger.info(f"Loading {self.model_id} {'(int8)' if self._int8 else ''} ...")
+        logger.info(f"Loading {self.model_id} ...")
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
-        kwargs = dict(device_map="auto")
-        if self._int8:
-            kwargs["quantization_config"] = BitsAndBytesConfig(
-                load_in_8bit=True,
-                llm_int8_skip_modules=["vision_tower", "multi_modal_projector", "lm_head"],
-            )
-        else:
-            kwargs["torch_dtype"] = dtype
-        self._model = AutoModelForImageTextToText.from_pretrained(self.model_id, **kwargs)
+        self._model = AutoModelForImageTextToText.from_pretrained(
+            self.model_id, device_map="auto", torch_dtype=dtype
+        )
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id)
         self._processor.tokenizer.padding_side = "left"
