@@ -80,11 +80,16 @@ def _build_prompt_paper_cot(sample: Sample) -> str:
     )
 
 
+def _build_prompt_smoke(sample: Sample) -> str:
+    return "Describe what you observe in the image."
+
+
 _PROMPT_BUILDERS = {
     "default": _build_prompt_default,
     "paper": _build_prompt_paper,
     "paper_cot": _build_prompt_paper_cot,
     "test": _build_prompt_test,
+    "smoke": _build_prompt_smoke,
 }
 
 

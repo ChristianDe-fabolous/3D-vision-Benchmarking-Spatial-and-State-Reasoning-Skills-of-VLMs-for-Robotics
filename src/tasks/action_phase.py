@@ -120,6 +120,12 @@ class ActionPhaseTask(BaseTask):
                 yielded += 1
 
     def build_prompt(self, sample: Sample) -> str:
+        if self.prompt_id == "smoke":
+            n = len(sample.all_images)
+            if n > 1:
+                return f"You are given {n} images. Describe what you observe in each image."
+            return "Describe what you observe in the image."
+
         labels = CHOICE_LABELS[: len(sample.choices)]
         inline_choices = "".join(
             f" {labels[i]}. {choice}" for i, choice in enumerate(sample.choices)

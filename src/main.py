@@ -249,6 +249,7 @@ def main():
             args.limit = args.limit or 5
         args.describe = True
         args.test_pipeline = True
+        args.prompt = "smoke"
 
     if args.hf_token:
         os.environ["HF_TOKEN"] = args.hf_token
@@ -289,7 +290,7 @@ def main():
     task = build_task(args)
     model = build_model(args)
     model.load()
-    if args.test_pipeline or args.smoke:
+    if args.test_pipeline and not args.smoke:
         model.system_prompt = SMOKE_SYSTEM_PROMPT
 
     pipeline.run(
