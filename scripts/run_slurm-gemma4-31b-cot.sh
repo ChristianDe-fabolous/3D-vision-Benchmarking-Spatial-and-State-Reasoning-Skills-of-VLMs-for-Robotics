@@ -1,5 +1,5 @@
 #!/bin/bash
-# Gemma4-31B with CoT (33B dense bfloat16 ~62GB) — gb10 (128GB), batch_size=16
+# Gemma4-31B with CoT (33B dense bfloat16 ~62GB) — gb10 (128GB), batch_size=8
 #SBATCH --job-name=gemma4-31b-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
