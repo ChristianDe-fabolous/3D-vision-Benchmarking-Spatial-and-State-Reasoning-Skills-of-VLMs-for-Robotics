@@ -1,0 +1,74 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:  25%|██▌       | 1/4 [00:18<00:54, 18.13s/it]Fetching 4 files: 100%|██████████| 4/4 [00:18<00:00,  4.53s/it]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   1%|          | 6/750 [00:00<00:15, 48.92it/s]Loading weights:   2%|▏         | 16/750 [00:00<00:36, 20.03it/s]Loading weights:   3%|▎         | 19/750 [00:01<01:21,  8.98it/s]Loading weights:   3%|▎         | 26/750 [00:02<01:24,  8.61it/s]Loading weights:   3%|▎         | 26/750 [00:20<01:24,  8.61it/s]Loading weights:   4%|▎         | 27/750 [00:55<53:16,  4.42s/it]Loading weights:   4%|▎         | 28/750 [01:39<1:42:39,  8.53s/it]Loading weights:  76%|███████▌  | 571/750 [01:40<00:19,  9.41it/s] Loading weights:  86%|████████▌ | 646/750 [01:41<00:09, 11.04it/s]Loading weights:  92%|█████████▏| 692/750 [01:41<00:04, 12.56it/s]Loading weights:  95%|█████████▌| 713/750 [01:43<00:02, 12.44it/s]Loading weights: 100%|██████████| 750/750 [01:43<00:00,  7.27it/s]
+[22:20:19] INFO  Run 'slurm93090_action_phase_qwen3-8b-thinking_default_cot' | task=ActionPhaseTask | model=qwen3-8b-thinking | prompt=default
+[22:36:33] INFO  [1] ✓  idx=0  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [2] ✗  idx=1  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [3] ✗  idx=2  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [4] ✗  idx=3  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [5] ✗  idx=4  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='To determine if the robot is in the action phase "The gripper aligns with the rope," we analyze the visual cues across the camera views:  
+
+1. **Goal Context**: The robot’s task is to align the rope along the middle of the black object. For this, the gripper must position itself to interact with the rope (e.g., grasping, adjusting, or aligning it).'  gt='Yes'
+[22:36:33] INFO  [6] ✗  idx=5  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [7] ✗  idx=6  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [8] ✓  idx=7  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='No'
+[22:36:33] INFO  [9] ✗  idx=8  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='To determine if the robot is performing the action phase "Gripper pulls the rope," we analyze the images:  
+
+1. **Top Left Image**: The robot arm is positioned near the rope on the'  gt='Yes'
+[22:36:33] INFO  [10] ✓  idx=9  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [11] ✗  idx=10  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [12] ✗  idx=11  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [13] ✗  idx=12  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [14] ✗  idx=13  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [15] ✗  idx=14  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Cannot be determined'  gt='No'
+[22:36:33] INFO  [16] ✗  idx=15  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [17] ✗  idx=16  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Cannot be determined'  gt='Yes'
+[22:36:33] INFO  [18] ✗  idx=17  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [19] ✓  idx=18  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='No'
+[22:36:33] INFO  [20] ✓  idx=19  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='No'
+[22:36:33] INFO  [21] ✓  idx=20  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Cannot be determined'  gt='Cannot be determined'
+[22:36:33] INFO  [22] ✗  idx=21  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Cannot be determined'
+[22:36:33] INFO  [23] ✗  idx=22  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[22:36:33] INFO  [24] ✗  idx=23  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[22:36:33] INFO  [25] ✗  idx=24  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Cannot be determined'
+[22:36:33] INFO  [26] ✓  idx=25  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [27] ✓  idx=26  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [28] ✗  idx=27  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [29] ✗  idx=28  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [30] ✓  idx=29  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [31] ✓  idx=30  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [32] ✗  idx=31  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [33] ✗  idx=32  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [34] ✓  idx=33  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [35] ✓  idx=34  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [36] ✗  idx=35  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [37] ✗  idx=36  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [38] ✓  idx=37  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [39] ✓  idx=38  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [40] ✗  idx=39  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [41] ✗  idx=40  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [42] ✓  idx=41  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[22:36:33] INFO  [43] ✗  idx=42  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [44] ✗  idx=43  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [45] ✗  idx=44  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [46] ✓  idx=45  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Cannot be determined'  gt='Cannot be determined'
+[22:36:33] INFO  [47] ✗  idx=46  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[22:36:33] INFO  [48] ✗  idx=47  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[22:36:33] INFO  [49] ✗  idx=48  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Cannot be determined'
+[22:36:33] INFO  [50] ✗  idx=49  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Cannot be determined'
+[22:36:33] INFO  [51] ✗  idx=50  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='To determine if the robot made progress toward the goal, we analyze the key'  gt='Cannot be determined'
+[22:36:33] INFO  [52] ✗  idx=51  phase_success  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Is currently performing it'
+[22:36:33] INFO  [53] ✓  idx=52  phase_success  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Is currently performing it'  gt='Is currently performing it'
+[22:36:33] INFO  [54] ✗  idx=53  phase_success  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Is currently performing it'  gt='No'
+[22:36:33] INFO  [55] ✗  idx=54  phase_success  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [56] ✗  idx=55  phase_success  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Is currently performing it'  gt='No'
+[22:36:33] INFO  [57] ✗  idx=56  phase_success  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Cannot be determined'  gt='No'
+[22:36:33] INFO  [58] ✗  idx=57  phase_success  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [59] ✗  idx=58  phase_success  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[22:36:33] INFO  [60] ✗  idx=59  phase_success  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Is currently performing it'
+[22:36:33] INFO  [61] ✗  idx=60  phase_success  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Is currently performing it'
+[22:36:33] INFO  [62] ✗  idx=61  phase_success  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[22:36:33] INFO  [63] ✓  idx=62  phase_success  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='No'
+[22:36:33] INFO  [64] ✓  idx=63  phase_success  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='No'
+[2026-05-31T22:48:13.234] error: *** JOB 93090 ON studgpu-spark02 CANCELLED AT 2026-05-31T22:48:13 DUE to SIGNAL Terminated ***

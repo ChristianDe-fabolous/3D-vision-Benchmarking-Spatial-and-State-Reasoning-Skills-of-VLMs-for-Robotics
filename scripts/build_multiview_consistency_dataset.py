@@ -21,9 +21,20 @@ progress  (two images):
 Entries with special_image / special_a / special_b (random_scene, black_image)
 are skipped — they reference tiles from other scenes not in our tile directory.
 
-Annotation quality from merged_annotations.jsonl is attached as metadata
-(phase_understandable, goal_understandable per view) but does NOT filter entries.
-Researchers can filter downstream if needed.
+Viability filtering
+-------------------
+A timestep only makes sense for a *multiview* question if at least two views
+actually let you answer it. Each question type is gated on the annotation flag
+that matches what it asks about:
+
+  action_phase_id, phase_success, progress  → phase_understandable
+  task_success                               → goal_understandable
+
+A view is "viable" for an entry when the gating flag is True for every
+original_id involved (both sides of a progress pair must agree). Timesteps
+with fewer than two viable views are dropped entirely; for the ones that
+remain, only the viable views are emitted (the unusable view, if any, is
+skipped — there's nothing to compare it against).
 
 Usage:
   python scripts/build_multiview_consistency_dataset.py
@@ -37,6 +48,16 @@ from collections import Counter
 from pathlib import Path
 
 VIEWS = ["top_left", "top_right", "bottom_left"]
+
+MIN_VIABLE_VIEWS = 2
+
+# Annotation flag that gates view viability, keyed by question_type.
+GATING_FLAG = {
+    "action_phase_id": "phase_understandable",
+    "phase_success":   "phase_understandable",
+    "progress":        "phase_understandable",
+    "task_success":    "goal_understandable",
+}
 
 TILES_DIR      = "data/multiview_tiles/images"
 SRC_DATASET    = "data/action_phase_dataset.jsonl"
@@ -81,6 +102,24 @@ def quality_for_view(ann: dict | None, view: str) -> tuple[bool | None, bool | N
     return phase, goal
 
 
+def viable_views(
+    oids: list[str],
+    question_type: str,
+    merged_anns: dict[str, dict],
+    views: list[str],
+) -> list[str]:
+    """
+    Views where the question-type's gating flag is True for every original_id
+    involved (e.g. both sides of a progress pair).
+    """
+    flag = GATING_FLAG[question_type]
+    result = []
+    for view in views:
+        if all(merged_anns.get(oid, {}).get(flag, {}).get(view) is True for oid in oids):
+            result.append(view)
+    return result
+
+
 # ── expansion ─────────────────────────────────────────────────────────────────
 
 def expand_single_image(
@@ -97,10 +136,15 @@ def expand_single_image(
     if not oid:
         return []
 
+    qt = entry["question_type"]
+    usable = viable_views([oid], qt, merged_anns, views)
+    if len(usable) < MIN_VIABLE_VIEWS:
+        return []
+
     ann = merged_anns.get(oid)
     results = []
 
-    for view in views:
+    for view in usable:
         img = tile_img_path(root, oid, view)
         if not img.exists():
             continue
@@ -133,11 +177,16 @@ def expand_progress(
     if not oid_a or not oid_b:
         return []
 
+    qt = entry["question_type"]
+    usable = viable_views([oid_a, oid_b], qt, merged_anns, views)
+    if len(usable) < MIN_VIABLE_VIEWS:
+        return []
+
     ann_a = merged_anns.get(oid_a)
     ann_b = merged_anns.get(oid_b)
     results = []
 
-    for view in views:
+    for view in usable:
         img_a = tile_img_path(root, oid_a, view)
         img_b = tile_img_path(root, oid_b, view)
         if not img_a.exists() or not img_b.exists():

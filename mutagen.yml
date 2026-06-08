@@ -1,0 +1,37 @@
+sync:
+  defaults:
+    ignore:
+      vcs: true
+      paths:
+        - "**/data/**"
+        - "**/datasets/**"
+        - "**/checkpoints/**"
+        - "**/.venv/**"
+        - "**/.venv-arm64/**"
+        - "**/__pycache__/**"
+        - "**/*.jpg"
+        - "**/*.jpeg"
+        - "**/*.png"
+        - "**/*.npy"
+        - "**/*.h5"
+        - "**/*.pt"
+        - "**/*.pth"
+        - "**/tmp/**"
+        - "**/droid_index_env/**"
+        - "**/robo2vlm-original/**"
+        - "**/poster/**"
+        - "**/project-proposal/**"
+        - "**/.ipynb_checkpoints/**"
+        - "**/dataset_analysis/**"
+        - "**/*.so"
+        - "**/*.so.*"
+        - "**/3dvision/**"
+  sessions:
+    alpha: "."
+    beta: "cdeubel@student-cluster.inf.ethz.ch:/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics"
+    mode: "two-way-safe"
+
+forward:
+  sessions:
+    source: "tcp:localhost:8888"
+    destination: "cdeubel@student-cluster.inf.ethz.ch:tcp:localhost:8888"

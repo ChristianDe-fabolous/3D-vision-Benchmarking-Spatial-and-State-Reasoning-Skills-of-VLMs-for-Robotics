@@ -1,4 +1,4 @@
-% !TEX program = latex
+% !TEX program = pdflatex
 % ====================== THE SETTING FILE ===========================
 
 \documentclass[portrait,a0,posterdraft]{a0poster} %%% change "posterdraft" (A4-printout size) to "final" for A0-printout. 
@@ -17,6 +17,7 @@
 \usepackage{xcolor}            % color package 
 
 \usepackage{cite}
+\usepackage{tcolorbox}
 
 %%%% page margins, don't change
 \usepackage[includeheadfoot,
@@ -135,42 +136,33 @@
 \begin{mdframed}[style=smallframe]
 \introtext
 \end{mdframed}
-\end{minipage} 
+\end{minipage}
 \end{minipage}%%% end Introduction
 \\[40pt]
 %%
-\begin{minipage}[t]{\exHalfMinipage}%%% METHOD OVERVIEW
-\LARGE {\white  \bf 2 \ Method Overview}\\[-10pt]
-\begin{minipage}[t]{\exSubHalfMinipage}
-\begin{mdframed}[style=smallframe]
-\methodtext
-\end{mdframed}
-\end{minipage}
-\end{minipage}%%% end Method overview
-\\[40pt]
-%%%
-\begin{minipage}[t]{\exHalfMinipage}%%% MATERIALS
-\LARGE { \white \bf 3 \ Materials}\\[-10pt]
-\begin{minipage}[t]{\exSubHalfMinipage}
-\begin{mdframed}[style=smallframe]
-\materialstext
-\end{mdframed}
-\end{minipage}
-\end{minipage}%%% end Materials
-\\[40pt]
-\end{minipage}%%% end of left side
-\hspace{0.2cm}
-\begin{minipage}[t]{\exHalfMinipage}
-%===========================================================  RIGHT SIDE of poster
-
 \begin{minipage}[t]{\exHalfMinipage}%%% RESULTS and DISCUSSION
 \LARGE{\white  \bf 4 \ Results and Discussion}\\[-10pt]
 \begin{minipage}[t]{\exSubHalfMinipage}
 \begin{mdframed}[style=smallframe]
 \resultstext
 \end{mdframed}
-\end{minipage} 
-\end{minipage}%%%% end Results
+\end{minipage}
+\end{minipage}%%% end Results
+\\[40pt]
+%%%
+\end{minipage}%%% end of left side
+\hspace{0.2cm}
+\begin{minipage}[t]{\exHalfMinipage}
+%===========================================================  RIGHT SIDE of poster
+
+\begin{minipage}[t]{\exHalfMinipage}%%% METHOD OVERVIEW
+\LARGE{\white  \bf 2 \ Method Overview}\\[-10pt]
+\begin{minipage}[t]{\exSubHalfMinipage}
+\begin{mdframed}[style=smallframe]
+\methodtext
+\end{mdframed}
+\end{minipage}
+\end{minipage}%%% end Method overview
 \\[40pt]
 %%
 \begin{minipage}[t]{\exHalfMinipage}%%% CONCLUSION

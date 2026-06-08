@@ -1,0 +1,110 @@
+
+# >>>>>>>>>>>>>>>>>>>>>> ERROR REPORT <<<<<<<<<<<<<<<<<<<<<<
+
+    Traceback (most recent call last):
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/exception_handler.py", line 29, in __call__
+        return func(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/cli/main.py", line 88, in main_sourced
+        result = activator.execute()
+                 ^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 213, in execute
+        response = getattr(self, self.command)()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/anaconda_anon_usage/patch.py", line 52, in _new_activate
+        return self._old_activate()
+               ^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 175, in activate
+        builder_result = self.build_activate(self.env_name_or_prefix)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 324, in build_activate
+        return self._build_activate_stack(env_name_or_prefix, False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 414, in _build_activate_stack
+        deactivate_scripts = self._get_deactivate_scripts(old_conda_prefix)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 773, in _get_deactivate_scripts
+        for entry in os.scandir(join(prefix, "etc", "conda", "deactivate.d"))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "<frozen posixpath>", line 76, in join
+    TypeError: expected str, bytes or os.PathLike object, not NoneType
+
+`$ /cluster/courses/cil/envs/bin/conda shell.posix activate base`
+
+  environment variables:
+                 CIO_TEST=<not set>
+        CONDA_DEFAULT_ENV=base
+                CONDA_EXE=/cluster/courses/cil/envs/bin/conda
+    CONDA_PROMPT_MODIFIER=(base)
+         CONDA_PYTHON_EXE=/cluster/courses/cil/envs/bin/python
+               CONDA_ROOT=/cluster/courses/cil/envs
+              CONDA_SHLVL=1
+           CURL_CA_BUNDLE=<not set>
+          LD_LIBRARY_PATH=/cluster/data/cuda/x86_64/13.0/lib
+               LD_PRELOAD=<not set>
+               MODULEPATH=/etc/environment-modules/modules:/cluster/modules
+                     PATH=/cluster/courses/cil/envs/bin:/cluster/courses/cil/envs/condabin:/home
+                          /cdeubel/.local/bin:/home/cdeubel/bin:/cluster/data/cuda/x86_64/13.0/b
+                          in:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
+                          ames:/usr/local/games:/snap/bin
+         PYTHONNOUSERSITE=1
+       REQUESTS_CA_BUNDLE=<not set>
+            SSL_CERT_FILE=<not set>
+
+     active environment : None
+            shell level : 1
+       user config file : /home/cdeubel/.condarc
+ populated config files : /cluster/courses/cil/envs/.condarc
+                          /cluster/courses/cil/envs/condarc.d/anaconda-auth.yml
+          conda version : 25.11.1
+    conda-build version : not installed
+         python version : 3.11.14.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=broadwell
+                          __conda=25.11.1=0
+                          __glibc=2.39=0
+                          __linux=6.14.0=0
+                          __unix=0=0
+       base environment : /cluster/courses/cil/envs  (read only)
+      conda av data dir : /cluster/courses/cil/envs/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /cluster/courses/cil/envs/pkgs
+                          /home/cdeubel/.conda/pkgs
+       envs directories : /home/cdeubel/.conda/envs
+                          /cluster/courses/cil/envs/envs
+               platform : linux-64
+             user-agent : conda/25.11.1 requests/2.32.5 CPython/3.11.14 Linux/6.14.0-35-generic ubuntu/24.04.4 glibc/2.39 solver/libmamba conda-libmamba-solver/25.11.0 libmambapy/2.3.2 aau/0.7.5 c/. s/. e/.
+                UID:GID : 658861:540309
+             netrc file : /home/cdeubel/.netrc
+           offline mode : False
+
+
+An unexpected error has occurred. Conda has prepared the above report.
+If you suspect this error is being caused by a malfunctioning plugin,
+consider using the --no-plugins option to turn off plugins.
+
+Example: conda --no-plugins install <package>
+
+Alternatively, you can set the CONDA_NO_PLUGINS environment variable on
+the command line to run the command without plugins enabled.
+
+Example: CONDA_NO_PLUGINS=true conda install <package>
+
+/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv/lib/python3.12/site-packages/torch/cuda/__init__.py:187: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+  return torch._C._cuda_getDeviceCount() > 0
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:40<02:01, 40.59s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:40<00:10, 10.61s/it]Fetching 4 files: 100%|██████████| 4/4 [00:40<00:00, 10.21s/it]
+/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv/lib/python3.12/site-packages/torch/cuda/__init__.py:1074: UserWarning: Can't initialize NVML
+  raw_cnt = _raw_device_count_nvml()
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:03<43:55,  3.52s/it]Loading weights:   0%|          | 2/750 [00:03<20:42,  1.66s/it]Loading weights:   9%|▉         | 70/750 [00:04<00:21, 31.09it/s]Loading weights:  11%|█         | 83/750 [00:04<00:21, 31.67it/s]Loading weights:  12%|█▏        | 92/750 [00:04<00:20, 31.69it/s]Loading weights:  14%|█▎        | 103/750 [00:05<00:21, 29.98it/s]Loading weights:  15%|█▌        | 114/750 [00:05<00:18, 35.03it/s]Loading weights:  16%|█▌        | 120/750 [00:05<00:17, 35.37it/s]Loading weights:  17%|█▋        | 126/750 [00:05<00:21, 29.69it/s]Loading weights:  18%|█▊        | 136/750 [00:06<00:17, 35.52it/s]Loading weights:  19%|█▉        | 141/750 [00:06<00:18, 32.90it/s]Loading weights:  20%|█▉        | 147/750 [00:06<00:28, 21.19it/s]Loading weights:  20%|██        | 151/750 [00:08<01:17,  7.71it/s]Loading weights:  21%|██        | 158/750 [00:17<04:44,  2.08it/s]Loading weights:  23%|██▎       | 169/750 [00:18<02:57,  3.27it/s]Loading weights:  23%|██▎       | 171/750 [00:18<02:50,  3.39it/s]Loading weights:  24%|██▍       | 180/750 [00:18<01:47,  5.32it/s]Loading weights:  24%|██▍       | 183/750 [00:19<01:53,  5.01it/s]Loading weights:  25%|██▌       | 191/750 [00:19<01:20,  6.95it/s]Loading weights:  27%|██▋       | 202/750 [00:20<01:00,  9.04it/s]Loading weights:  27%|██▋       | 204/750 [00:23<02:04,  4.38it/s]Loading weights:  28%|██▊       | 213/750 [00:23<01:21,  6.55it/s]Loading weights:  29%|██▊       | 215/750 [00:24<01:50,  4.82it/s]Loading weights:  30%|██▉       | 224/750 [00:25<01:20,  6.57it/s]Loading weights:  31%|███       | 230/750 [00:25<01:03,  8.17it/s]Loading weights:  31%|███▏      | 235/750 [00:25<00:52,  9.87it/s]Loading weights:  32%|███▏      | 237/750 [00:26<01:10,  7.27it/s]Loading weights:  33%|███▎      | 246/750 [00:28<01:15,  6.67it/s]Loading weights:  34%|███▍      | 257/750 [00:29<00:57,  8.58it/s]Loading weights:  35%|███▍      | 259/750 [00:29<01:10,  6.97it/s]Loading weights:  35%|███▍      | 261/750 [00:29<01:04,  7.59it/s]Loading weights:  36%|███▌      | 268/750 [00:30<01:00,  7.99it/s]Loading weights:  36%|███▌      | 270/750 [00:31<01:05,  7.38it/s]Loading weights:  37%|███▋      | 279/750 [00:31<00:45, 10.26it/s]Loading weights:  37%|███▋      | 281/750 [00:32<01:03,  7.40it/s]Loading weights:  39%|███▉      | 291/750 [00:33<00:53,  8.53it/s]Loading weights:  40%|████      | 301/750 [00:33<00:37, 12.00it/s]Loading weights:  40%|████      | 303/750 [00:34<00:59,  7.55it/s]Loading weights:  42%|████▏     | 313/750 [00:35<00:50,  8.63it/s]Loading weights:  42%|████▏     | 315/750 [00:36<00:58,  7.46it/s]Loading weights:  43%|████▎     | 323/750 [00:36<00:47,  9.07it/s]Loading weights:  43%|████▎     | 325/750 [00:37<00:56,  7.53it/s]Loading weights:  45%|████▍     | 334/750 [00:38<00:43,  9.56it/s]Loading weights:  45%|████▍     | 336/750 [00:38<00:51,  8.04it/s]Loading weights:  46%|████▌     | 343/750 [00:38<00:34, 11.91it/s]Loading weights:  46%|████▌     | 346/750 [00:39<00:39, 10.13it/s]Loading weights:  46%|████▋     | 348/750 [00:39<00:38, 10.39it/s]Loading weights:  47%|████▋     | 356/750 [00:39<00:33, 11.76it/s]Loading weights:  49%|████▊     | 364/750 [00:40<00:21, 17.75it/s]Loading weights:  49%|████▉     | 368/750 [00:40<00:34, 11.14it/s]Loading weights:  50%|█████     | 378/750 [00:41<00:21, 17.27it/s]Loading weights:  51%|█████     | 382/750 [00:41<00:27, 13.39it/s]Loading weights:  51%|█████▏    | 386/750 [00:41<00:25, 14.26it/s]Loading weights:  52%|█████▏    | 389/750 [00:41<00:23, 15.37it/s]Loading weights:  52%|█████▏    | 392/750 [00:42<00:25, 14.25it/s]Loading weights:  57%|█████▋    | 425/750 [00:42<00:05, 54.65it/s]Loading weights:  58%|█████▊    | 437/750 [00:42<00:05, 53.43it/s]Loading weights:  60%|█████▉    | 447/750 [00:43<00:10, 28.44it/s]Loading weights:  61%|██████    | 454/750 [00:44<00:15, 19.16it/s]Loading weights:  62%|██████▏   | 465/750 [00:44<00:13, 20.37it/s]Loading weights:  63%|██████▎   | 470/750 [00:45<00:16, 17.33it/s]Loading weights:  64%|██████▎   | 477/750 [00:45<00:16, 17.06it/s]Loading weights:  65%|██████▍   | 487/750 [00:45<00:12, 20.92it/s]Loading weights:  65%|██████▌   | 491/750 [00:46<00:17, 14.64it/s]Loading weights:  67%|██████▋   | 501/750 [00:47<00:15, 15.96it/s]Loading weights:  68%|██████▊   | 511/750 [00:47<00:12, 18.86it/s]Loading weights:  69%|██████▊   | 514/750 [00:48<00:18, 12.54it/s]Loading weights:  84%|████████▍ | 633/750 [00:48<00:01, 94.73it/s]Loading weights:  89%|████████▉ | 671/750 [00:48<00:00, 118.08it/s]Loading weights:  94%|█████████▍| 707/750 [00:48<00:00, 142.58it/s]Loading weights:  98%|█████████▊| 738/750 [00:49<00:00, 115.32it/s]Loading weights: 100%|██████████| 750/750 [00:50<00:00, 14.82it/s] 
+[16:06:07] INFO  Run 'slurm93632_action_phase_qwen3-8b_default' | task=ActionPhaseTask | model=qwen3-8b | prompt=default
+[16:16:02] INFO  [1] ✓  idx=0  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[16:16:02] INFO  [2] ✓  idx=1  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[16:25:55] INFO  [3] ✗  idx=2  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[16:25:55] INFO  [4] ✗  idx=3  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[2026-06-01T16:26:02.860] error: *** JOB 93632 ON studgpu-node09 CANCELLED AT 2026-06-01T16:26:02 DUE to SIGNAL Terminated ***

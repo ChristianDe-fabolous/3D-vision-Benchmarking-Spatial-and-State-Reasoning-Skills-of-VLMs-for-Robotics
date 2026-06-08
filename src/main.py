@@ -38,6 +38,7 @@ from config import (
     MODEL_PHI35_VISION,
     MODEL_PHI4_VISION,
     MODEL_NVLM_12B,
+    MODEL_INTERNVL3_14B,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
     PROMPT_PAPER,
@@ -51,6 +52,7 @@ from models.qwen import QwenVLM
 from models.gemma4 import Gemma4VLM
 from models.phi import PhiVLM
 from models.nvlm import NemotronVLM
+from models.internvl import InternVLM
 from tasks.action_phase import ActionPhaseTask
 from tasks.failure_mode import FailureModeTask
 from tasks.multiview import MultiviewTask
@@ -96,6 +98,8 @@ def parse_args():
             MODEL_PHI35_VISION, MODEL_PHI4_VISION,
             # NVIDIA Nemotron VL
             MODEL_NVLM_12B,
+            # InternVL3
+            MODEL_INTERNVL3_14B,
         ],
     )
     parser.add_argument(
@@ -220,6 +224,8 @@ def build_model(args):
         return PhiVLM(model_key=args.model)
     if args.model in (MODEL_NVLM_12B,):
         return NemotronVLM(model_key=args.model)
+    if args.model in (MODEL_INTERNVL3_14B,):
+        return InternVLM(model_key=args.model)
     raise ValueError(f"Unknown model: {args.model}")
 
 

@@ -43,9 +43,11 @@ class PhiVLM(BaseVLM):
             attn_impl = "eager"
 
         self._model = AutoModelForCausalLM.from_pretrained(
-            self.model_id, device_map="auto", torch_dtype=dtype,
+            self.model_id, torch_dtype=dtype,
             trust_remote_code=True, _attn_implementation=attn_impl,
+            low_cpu_mem_usage=False,
         )
+        self._model = self._model.to("cuda")
         self._model.eval()
         self._processor = AutoProcessor.from_pretrained(self.model_id, trust_remote_code=True)
         self._processor.tokenizer.padding_side = "left"

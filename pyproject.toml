@@ -14,6 +14,9 @@ dependencies = [
     "datasets",
     "Pillow>=10.0.0",
     "python-dotenv",
+    "matplotlib>=3.10.9",
+    "timm",
+    "einops",
 ]
 
 [tool.uv.sources]

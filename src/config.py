@@ -155,7 +155,7 @@ MODEL_QWEN3_30B         = "qwen3-30b"         # ~60GB bfloat16  — gb10        
 MODEL_QWEN3_30B_THINKING= "qwen3-30b-thinking"# ~60GB bfloat16  — gb10        (30B MoE thinking)
 
 QWEN_MODEL_IDS = {
-    MODEL_QWEN3_4B:          "Qwen/Qwen3-VL-4B-Thinking",
+    MODEL_QWEN3_4B:          "Qwen/Qwen3-VL-4B-Instruct",
     MODEL_QWEN3_8B:          "Qwen/Qwen3-VL-8B-Instruct",
     MODEL_QWEN3_8B_THINKING: "Qwen/Qwen3-VL-8B-Thinking",
     MODEL_QWEN3_30B:         "Qwen/Qwen3-VL-30B-A3B-Instruct",
@@ -192,13 +192,24 @@ PHI_MAX_NEW_TOKENS = 1024
 
 # Model identifiers — NVIDIA Nemotron VL
 # TODO: verify HF model ID matches the release on huggingface.co/nvidia
-MODEL_NVLM_12B = "nvlm-12b"  # nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16 — bf16 ~24GB — gb10
+MODEL_NVLM_12B = "nvlm-12b"   # nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16 — bf16 ~24GB — gb10
+MODEL_NVLM_30B = "nvlm-30b"   # nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8  — fp8 ~30GB MoE — gb10
 
 NVLM_MODEL_IDS = {
     MODEL_NVLM_12B: "nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16",
+    MODEL_NVLM_30B: "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
 }
 
 NVLM_MAX_NEW_TOKENS = 1024
+
+# Model identifiers — InternVL3 (OpenGVLab)
+MODEL_INTERNVL3_14B = "internvl3-14b"  # ~28GB bfloat16 — gb10
+
+INTERNVL_MODEL_IDS = {
+    MODEL_INTERNVL3_14B: "OpenGVLab/InternVL3_5-14B",
+}
+
+INTERNVL_MAX_NEW_TOKENS = 1024
 
 # Scene analysis settings
 SCENE_MIN_QUESTIONS = 5       # scenes with fewer questions are excluded from analysis

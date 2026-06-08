@@ -20,6 +20,19 @@
 
 \def\linecolor{verylightgray} %%% don't change, necessary for white and colored posters
 
+\graphicspath{{./}{../../../pics-for-poster/}}
+
+\tcbset{
+  qbox/.style={
+    colback=white,
+    colframe=ETHPurple,
+    boxrule=0.8pt,
+    arc=3pt,
+    left=5pt, right=5pt, top=3pt, bottom=3pt,
+    fontupper=\small\black
+  }
+}
+
 
 % ===========Choose your COLOR here or change it to WHITE  ===========================
 
@@ -77,8 +90,8 @@ as possible  %\\[20pt]
 % ====================== INTRODUCTION ===================
 %% 
 \def\introtext
-{\Large \black 
-Far far away, behind the word mountains, far from the countries Vokalia and Consonantia \cite{Consonantia}, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+{\Large \black
+Vision-Language Models (VLMs) have emerged as promising candidates for robot supervision --- capable of interpreting scenes and providing semantic feedback without task-specific training. This work benchmarks two concrete capabilities: \textbf{multi-view consistency} (can a VLM extract coherent spatial information across camera angles?) and \textbf{failure mode detection} (can it identify when a robotic task has gone wrong?). We evaluate two model families across both tasks, providing an early empirical signal on where current VLMs succeed and where they fall short as supervisory tools for robotics.
 }%% end text
 
 
@@ -86,67 +99,126 @@ Far far away, behind the word mountains, far from the countries Vokalia and Cons
 % ====================== METHOD OVERVIEW ===================
 %% 
 \def\methodtext
-{\Large \black 
-You can place your pictures here. Mind the scale and good resolution of your figures for A0-poster size!\\[15pt]
-%
-\begin{center}
-\includegraphics[scale=2.5]{Fig-circles}\\
-{\small Figure 1: Method overview in 3  overlapping circles. } %% the captions 
-\end{center}
-%
-Even the all-powerful Pointing \cite{Consonantia21} has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn't listen.
+{\large \black
+\noindent%
+\begin{minipage}[t]{165mm}%
+  \centering
+  \includegraphics[width=\textwidth]{action_phase_id1_droid_align_the_rope_along_the_middle_of_the_black_object_10648_q14.jpg}\\[4pt]
+  \begin{tcolorbox}[qbox]
+    \textbf{Action Phase Identification}\\[2pt]
+    \textit{Task:} The robot is to align the rope along the middle of the black object.\\[2pt]
+    \textbf{Q:} The robot's goal is stated above. Is the robot currently performing the action phase \textit{``gripper moves toward the rope''}?
+  \end{tcolorbox}
+\end{minipage}\hfill%
+\begin{minipage}[t]{165mm}%
+  \centering
+  \includegraphics[width=\textwidth]{action_phase_id700_droid_close_the_tap_and_then_remove_the_shaving_stick_from_the_metal_cup_and_put_it_on_the_right_side_of_the_sink_counter_2069_q3.jpg}\\[4pt]
+  \begin{tcolorbox}[qbox]
+    \textbf{Task Success}\\[2pt]
+    \textit{Task:} The robot is to close the tap and then remove the shaving stick from the metal cup and place it on the right side of the sink counter.\\[2pt]
+    \textbf{Q:} Did the robot successfully complete the overall task?
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{14pt}
+\noindent%
+\begin{minipage}[t]{165mm}%
+  \centering
+  \includegraphics[width=\textwidth]{action_phase_id524_droid_scrunch_up_the_towel_on_the_table_3843_q10.jpg}\\[3pt]
+  \includegraphics[width=\textwidth]{action_phase_id524_droid_scrunch_up_the_towel_on_the_table_3843_q15.jpg}\\[4pt]
+  \begin{tcolorbox}[qbox]
+    \textbf{Progress Detection}\\[2pt]
+    \textit{Task:} The robot is to scrunch up the towel on the table.\\[2pt]
+    \textbf{Q:} The two images were taken during task execution. Did the robot make progress toward completing the goal from Image\,1 to Image\,2?
+  \end{tcolorbox}
+\end{minipage}\hfill%
+\begin{minipage}[t]{165mm}%
+  \centering
+  \includegraphics[width=\textwidth]{action_phase_id355_droid_put_the_green_object_inside_the_bowl_2798_q13.jpg}\\[4pt]
+  \begin{tcolorbox}[qbox]
+    \textbf{Task Success (Adversarial)}\\[2pt]
+    \textit{Task:} The robot is to organize all the containers on the white plate.\\[2pt]
+    \textbf{Q:} Did the robot successfully complete the overall task? Note: the shown image may depict an unrelated scene.
+  \end{tcolorbox}
+\end{minipage}
 } %% end text
 
 
 % ====================== MATERIALS ===================
 %% 
 \def\materialstext
-{\Large \black 
-\begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-\item Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. %Nulla consequat massa quis enim. 
-\item Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-\end{itemize}
-\vspace{6mm}
-\includegraphics[scale=2.5]{Fig-Lab1}\quad \includegraphics[scale=2.55]{Fig-Lab2}\\[-5mm] %%scale=2.5 f�r l�ngs
-{\small Figure 2: Pictures of lab staff and nanoscale experiment } %% the captions 
-
-{\bf Again, take care of the resolution of your inserted pictures.} \\
-She packed her seven versalia, put her initial into the belt
- and made herself on the way. 
+{\Large \black
 }%% end text
 
 
 % ====================== RESULTS / DISCUSSION ===================
 %% 
 \def\resultstext
-{\Large \black 
-Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. 
+{\large \black
+
 \begin{center}
-\includegraphics[scale=2.8]{Fig-Ring}\\[-5pt]
-{\small Figure 3: Tr�gerfinanzierung in Prozentangaben im Ringdiagramm } %% the captions 
+{\large
+\begin{tabular}{l|cccc|c}
+\hline
+\textbf{Model} & \textbf{Act.Phase} & \textbf{Phase Succ.} & \textbf{Progress} & \textbf{Task Succ.} & \textbf{Overall} \\
+\hline
+Gemma4-31B         & \textbf{46.1} & \textbf{46.2}          & \textbf{45.2} & 58.8          & \textbf{47.5} \\
+Gemma4-E4B         & 41.4 & 30.0          & 38.4 & 45.7          & 36.5 \\
+Gemma4-E4B (CoT)   & 39.3 & 22.4          & 39.6 & \underline{20.9}$^*$ & 29.9 \\
+Gemma4-E2B         & 31.7 & 24.6          & 35.0 & 37.4          & 30.0 \\
+Qwen3-8B           & 43.5 & 39.5 & 40.2 & 70.9$^\dagger$ & 44.6 \\
+Qwen3-4B           & 44.8 & 35.6 & 39.1 & \textbf{72.6}$^\dagger$ & 43.3 \\
+\hline
+\textit{Overall}   & \textit{41.1} & \textit{33.0} & \textit{39.6} & \textit{51.1} & \textit{38.6} \\
+\hline
+Random (uniform)   & 33.3 & 25.0 & 33.3 & 33.3 & 33.3 \\
+Random (yes/no)    & 40.6 & 38.2 & 38.4 & 43.9 & 39.6 \\
+Majority class     & 40.6 & 38.7 & 38.4 & 72.5 & 42.9 \\
+\hline
+\multicolumn{6}{l}{\scriptsize All values in \%. $^*$below random. $^\dagger$matches majority-class baseline.}
+\end{tabular}
+}
 \end{center}
 
+\vspace{6pt}
 
+\begin{itemize}
+  \item \textbf{Marginal gains over random.} Overall accuracy (38.6\,\%) barely exceeds uniform random (33.3\,\%) and falls below the yes/no baseline (39.6\,\%).
+  \item \textbf{Task success inflated by label bias.} Qwen models reach 72--73\,\% but match the majority-class baseline --- ``No'' dominates ground truth.
+  \item \textbf{Scenes differ substantially in difficulty.} Across the 47 evaluated scenes, Gemma4-31B ranges from 34.7\,\% (rope alignment) to 65.3\,\% (pick-and-place with distinct objects) --- a 31\,pp spread --- suggesting scene complexity and visual ambiguity are strong drivers of model error.
+  \item \textbf{Simple manipulation on clear surfaces works best.} Scenes featuring visually distinct objects on uncluttered, high-contrast surfaces yield the highest accuracy. Models appear to benefit from clear foreground--background separation and unambiguous object identity.
+\end{itemize}
 
-Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.  Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn't listen. 
- 
+\vspace{50pt}
+\noindent%
+\begin{minipage}[t]{165mm}%
+  \centering
+  \includegraphics[width=\textwidth]{action_phase_droid_put_the_green_marker_in_the_white_bowl_15148_q10.jpg}\\[4pt]
+  \begin{tcolorbox}[qbox]
+    \textbf{Easy scene} --- distinct objects, clear spatial reference points, unambiguous task state.
+  \end{tcolorbox}
+\end{minipage}\hfill%
+\begin{minipage}[t]{165mm}%
+  \centering
+  \includegraphics[width=\textwidth]{action_phase_droid_stack_the_two_paper_cups_7914_q10.jpg}\\[4pt]
+  \begin{tcolorbox}[qbox]
+    \textbf{Difficult scene} --- unusual camera angle, visually similar objects, subtle task state changes.
+  \end{tcolorbox}
+\end{minipage}
+
 }%% end text
 
 
 % ====================== CONCLUSION ===================
 %% 
 \def\conclusiontext
-{\Large \black 
-Here you present your conclusions in a short and easy to understand manner.
+{\Large \black
 \begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-\item Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-\item In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+  \item \textbf{CoT reveals reasoning limits.} Chain-of-thought drops task success to 20.9\,\% (below random), yet shows models \emph{can} articulate scene descriptions and hypothesise actions --- they just frequently draw false conclusions from ambiguous images.
+  \item \textbf{Without fine-tuning, scale wins.} Gemma4-31B leads overall (47.5\,\%); smaller variants trail by 10--17\,pp. Until domain adaptation is applied, model capacity remains the dominant factor.
+  \item \textbf{Not designed for robotic scene understanding.} Off-the-shelf VLMs excel at object detection and relative positions in pick-and-place scenarios, but struggle with tasks like \textit{scrunch up}, \textit{align}, or \textit{close lid}. We attribute this to insufficient training signal for fine-grained \emph{object state} --- deformation, orientation, and contact --- which rarely appears explicitly in web-scale data.
+  \item \textbf{Limitations \& future work.} Manual annotations limit scale; automated pipelines and fine-tuning on robotic manipulation data are the natural next step.
 \end{itemize}
-
-\includegraphics[scale=2.5]{Fig-Tabelle}
-
 }%% end text
 
 

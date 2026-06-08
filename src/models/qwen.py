@@ -7,7 +7,9 @@ Install:
 
 from __future__ import annotations
 
+import contextlib
 import logging
+import platform
 
 import torch
 from PIL import Image
@@ -32,6 +34,8 @@ class QwenVLM(BaseVLM):
         self._processor = None
 
     def load(self) -> None:
+        if platform.machine() == "aarch64":
+            torch.backends.cudnn.enabled = False
         logger.info(f"Loading {self.model_id} ...")
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
         self._model = AutoModelForImageTextToText.from_pretrained(
@@ -54,10 +58,41 @@ class QwenVLM(BaseVLM):
     def infer(self, image: Image.Image | list[Image.Image], prompt: str) -> str:
         return self.infer_batch([(image if isinstance(image, list) else [image], prompt)])[0]
 
+    def _infer_single(self, imgs: list[Image.Image], prompt: str) -> str:
+        from qwen_vl_utils import process_vision_info
+        msgs = self._build_messages(imgs, prompt)
+        text = self._processor.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+        image_inputs, _ = process_vision_info(msgs)
+        inputs = self._processor(
+            text=[text],
+            images=image_inputs or None,
+            return_tensors="pt",
+        ).to(next(self._model.parameters()).device)
+        _sdp = (
+            torch.nn.attention.sdpa_kernel([torch.nn.attention.SDPBackend.MATH])
+            if platform.machine() == "aarch64"
+            else contextlib.nullcontext()
+        )
+        with torch.no_grad(), _sdp:
+            output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
+        return self._decode_outputs(output_ids, inputs.input_ids.shape[1], self._processor)[0]
+
     def infer_batch(self, batch: list[tuple[list[Image.Image], str]]) -> list[str]:
         if self._model is None or self._processor is None:
             raise RuntimeError("Call load() before infer().")
+        groups: dict[int, list[int]] = {}
+        for i, (imgs, _) in enumerate(batch):
+            groups.setdefault(len(imgs), []).append(i)
+        print(f"[Qwen] batch={len(batch)} → {len(groups)} group(s): { {k: len(v) for k, v in groups.items()} }", flush=True)
+        results: list[str] = [""] * len(batch)
+        for indices in groups.values():
+            sub_batch = [batch[i] for i in indices]
+            for i, r in zip(indices, self._infer_batch_grouped(sub_batch)):
+                results[i] = r
+        return results
 
+    def _infer_batch_grouped(self, batch: list[tuple[list[Image.Image], str]]) -> list[str]:
+        """True batched inference — only safe when all samples have equal image counts."""
         from qwen_vl_utils import process_vision_info
 
         all_messages = [self._build_messages(imgs, prompt) for imgs, prompt in batch]
@@ -77,7 +112,12 @@ class QwenVLM(BaseVLM):
             return_tensors="pt",
         ).to(next(self._model.parameters()).device)
 
-        with torch.no_grad(), torch.backends.cuda.sdp_kernel(enable_flash=False, enable_math=True, enable_mem_efficient=False):
+        _sdp = (
+            torch.nn.attention.sdpa_kernel([torch.nn.attention.SDPBackend.MATH])
+            if platform.machine() == "aarch64"
+            else contextlib.nullcontext()
+        )
+        with torch.no_grad(), _sdp:
             output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
 
         return self._decode_outputs(output_ids, inputs.input_ids.shape[1], self._processor)

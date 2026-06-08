@@ -1,0 +1,189 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   1%|          | 9/750 [00:00<00:10, 69.82it/s]Loading weights:   2%|▏         | 16/750 [00:00<00:22, 32.87it/s]Loading weights:   3%|▎         | 21/750 [00:00<00:25, 28.32it/s]Loading weights:   3%|▎         | 25/750 [00:00<00:32, 22.02it/s]Loading weights:   4%|▎         | 28/750 [00:01<00:40, 17.81it/s]Loading weights:   4%|▍         | 32/750 [00:01<00:33, 21.29it/s]Loading weights:   5%|▍         | 36/750 [00:02<01:05, 10.88it/s]Loading weights:   5%|▌         | 38/750 [00:02<01:40,  7.07it/s]Loading weights:   5%|▌         | 40/750 [00:03<02:16,  5.20it/s]Loading weights:   6%|▌         | 42/750 [00:03<01:56,  6.09it/s]Loading weights:   6%|▌         | 45/750 [00:03<01:27,  8.08it/s]Loading weights:   7%|▋         | 49/750 [00:04<01:20,  8.67it/s]Loading weights:   7%|▋         | 54/750 [00:04<00:54, 12.71it/s]Loading weights:   8%|▊         | 58/750 [00:04<00:45, 15.06it/s]Loading weights:   8%|▊         | 61/750 [00:05<01:05, 10.51it/s]Loading weights:   9%|▉         | 66/750 [00:05<00:52, 12.92it/s]Loading weights:   9%|▉         | 69/750 [00:05<00:46, 14.55it/s]Loading weights:  10%|▉         | 72/750 [00:06<01:30,  7.48it/s]Loading weights:  10%|█         | 78/750 [00:06<01:05, 10.30it/s]Loading weights:  11%|█         | 82/750 [00:06<00:52, 12.72it/s]Loading weights:  11%|█▏        | 85/750 [00:07<00:49, 13.48it/s]Loading weights:  12%|█▏        | 87/750 [00:07<00:50, 13.01it/s]Loading weights:  12%|█▏        | 93/750 [00:07<00:49, 13.40it/s]Loading weights:  13%|█▎        | 99/750 [00:07<00:34, 19.04it/s]Loading weights:  14%|█▎        | 103/750 [00:08<00:39, 16.24it/s]Loading weights:  14%|█▍        | 106/750 [00:08<00:38, 16.90it/s]Loading weights:  15%|█▍        | 111/750 [00:08<00:29, 21.82it/s]Loading weights:  15%|█▌        | 115/750 [00:08<00:43, 14.55it/s]Loading weights:  16%|█▌        | 120/750 [00:09<00:38, 16.51it/s]Loading weights:  16%|█▋        | 123/750 [00:09<00:45, 13.90it/s]Loading weights:  17%|█▋        | 125/750 [00:10<01:11,  8.75it/s]Loading weights:  17%|█▋        | 127/750 [00:11<02:31,  4.12it/s]Loading weights:  17%|█▋        | 131/750 [00:11<01:50,  5.60it/s]Loading weights:  18%|█▊        | 133/750 [00:12<01:43,  5.95it/s]Loading weights:  18%|█▊        | 136/750 [00:12<01:56,  5.28it/s]Loading weights:  18%|█▊        | 137/750 [00:13<02:42,  3.78it/s]Loading weights:  18%|█▊        | 138/750 [00:14<03:24,  2.99it/s]Loading weights:  19%|█▊        | 140/750 [00:14<02:38,  3.84it/s]Loading weights:  19%|█▉        | 144/750 [00:14<01:32,  6.57it/s]Loading weights:  19%|█▉        | 146/750 [00:14<01:21,  7.41it/s]Loading weights:  20%|█▉        | 149/750 [00:15<01:13,  8.15it/s]Loading weights:  20%|██        | 153/750 [00:15<00:50, 11.93it/s]Loading weights:  21%|██        | 156/750 [00:15<00:41, 14.37it/s]Loading weights:  21%|██        | 159/750 [00:16<01:16,  7.75it/s]Loading weights:  21%|██▏       | 161/750 [00:16<01:13,  7.97it/s]Loading weights:  22%|██▏       | 164/750 [00:16<01:01,  9.50it/s]Loading weights:  23%|██▎       | 169/750 [00:17<01:07,  8.60it/s]Loading weights:  23%|██▎       | 171/750 [00:18<01:48,  5.33it/s]Loading weights:  23%|██▎       | 175/750 [00:18<01:21,  7.05it/s]Loading weights:  24%|██▎       | 177/750 [00:18<01:22,  6.97it/s]Loading weights:  24%|██▍       | 179/750 [00:18<01:15,  7.56it/s]Loading weights:  24%|██▍       | 181/750 [00:18<01:10,  8.10it/s]Loading weights:  25%|██▍       | 185/750 [00:19<00:48, 11.56it/s]Loading weights:  25%|██▌       | 188/750 [00:19<00:42, 13.33it/s]Loading weights:  25%|██▌       | 190/750 [00:19<00:39, 14.03it/s]Loading weights:  26%|██▌       | 193/750 [00:19<00:43, 12.79it/s]Loading weights:  26%|██▋       | 198/750 [00:19<00:35, 15.35it/s]Loading weights:  27%|██▋       | 203/750 [00:20<00:37, 14.65it/s]Loading weights:  28%|██▊       | 208/750 [00:20<00:33, 16.28it/s]Loading weights:  28%|██▊       | 210/750 [00:20<00:40, 13.35it/s]Loading weights:  28%|██▊       | 212/750 [00:21<01:14,  7.20it/s]Loading weights:  29%|██▊       | 214/750 [00:22<01:42,  5.24it/s]Loading weights:  29%|██▊       | 215/750 [00:23<02:23,  3.74it/s]Loading weights:  29%|██▉       | 219/750 [00:23<01:38,  5.39it/s]Loading weights:  29%|██▉       | 221/750 [00:23<01:31,  5.76it/s]Loading weights:  30%|██▉       | 224/750 [00:24<01:45,  4.97it/s]Loading weights:  30%|███       | 225/750 [00:25<02:30,  3.50it/s]Loading weights:  30%|███       | 226/750 [00:26<03:14,  2.69it/s]Loading weights:  31%|███       | 230/750 [00:26<01:56,  4.45it/s]Loading weights:  31%|███       | 232/750 [00:26<01:44,  4.94it/s]Loading weights:  31%|███       | 234/750 [00:27<02:10,  3.96it/s]Loading weights:  31%|███▏      | 236/750 [00:28<02:26,  3.50it/s]Loading weights:  32%|███▏      | 237/750 [00:28<03:08,  2.72it/s]Loading weights:  32%|███▏      | 240/750 [00:29<01:58,  4.31it/s]Loading weights:  32%|███▏      | 242/750 [00:29<01:46,  4.77it/s]Loading weights:  33%|███▎      | 247/750 [00:29<01:14,  6.76it/s]Loading weights:  34%|███▍      | 254/750 [00:29<00:40, 12.22it/s]Loading weights:  34%|███▍      | 257/750 [00:30<00:57,  8.63it/s]Loading weights:  35%|███▍      | 259/750 [00:32<01:54,  4.29it/s]Loading weights:  35%|███▍      | 261/750 [00:32<01:39,  4.92it/s]Loading weights:  35%|███▌      | 265/750 [00:32<01:06,  7.27it/s]Loading weights:  36%|███▌      | 268/750 [00:32<00:53,  8.99it/s]Loading weights:  36%|███▌      | 271/750 [00:32<00:54,  8.80it/s]Loading weights:  37%|███▋      | 277/750 [00:33<00:38, 12.27it/s]Loading weights:  37%|███▋      | 280/750 [00:33<00:32, 14.25it/s]Loading weights:  38%|███▊      | 283/750 [00:33<00:31, 14.71it/s]Loading weights:  38%|███▊      | 287/750 [00:33<00:28, 16.04it/s]Loading weights:  39%|███▉      | 291/750 [00:33<00:29, 15.39it/s]Loading weights:  39%|███▉      | 293/750 [00:34<00:31, 14.64it/s]Loading weights:  39%|███▉      | 296/750 [00:34<00:33, 13.75it/s]Loading weights:  40%|███▉      | 298/750 [00:34<00:39, 11.56it/s]Loading weights:  40%|████      | 301/750 [00:35<01:01,  7.26it/s]Loading weights:  40%|████      | 303/750 [00:36<02:07,  3.50it/s]Loading weights:  41%|████      | 307/750 [00:37<01:28,  5.00it/s]Loading weights:  41%|████      | 309/750 [00:37<01:22,  5.36it/s]Loading weights:  41%|████▏     | 311/750 [00:38<01:43,  4.24it/s]Loading weights:  42%|████▏     | 313/750 [00:39<01:58,  3.69it/s]Loading weights:  42%|████▏     | 314/750 [00:39<02:33,  2.85it/s]Loading weights:  43%|████▎     | 320/750 [00:40<01:16,  5.64it/s]Loading weights:  43%|████▎     | 324/750 [00:40<00:57,  7.39it/s]Loading weights:  43%|████▎     | 326/750 [00:40<00:53,  7.91it/s]Loading weights:  44%|████▍     | 330/750 [00:40<00:41, 10.11it/s]Loading weights:  45%|████▍     | 335/750 [00:41<00:38, 10.74it/s]Loading weights:  45%|████▌     | 340/750 [00:41<00:32, 12.70it/s]Loading weights:  46%|████▌     | 343/750 [00:41<00:28, 14.49it/s]Loading weights:  46%|████▋     | 347/750 [00:42<00:45,  8.87it/s]Loading weights:  48%|████▊     | 357/750 [00:43<00:36, 10.70it/s]Loading weights:  48%|████▊     | 359/750 [00:43<00:52,  7.43it/s]Loading weights:  48%|████▊     | 362/750 [00:44<00:49,  7.90it/s]Loading weights:  49%|████▊     | 364/750 [00:44<00:49,  7.78it/s]Loading weights:  49%|████▉     | 367/750 [00:45<01:02,  6.11it/s]Loading weights:  49%|████▉     | 368/750 [00:46<01:31,  4.19it/s]Loading weights:  49%|████▉     | 369/750 [00:46<01:55,  3.29it/s]Loading weights:  50%|████▉     | 373/750 [00:47<01:17,  4.89it/s]Loading weights:  50%|█████     | 375/750 [00:47<01:10,  5.30it/s]Loading weights:  50%|█████     | 377/750 [00:48<01:30,  4.11it/s]Loading weights:  51%|█████     | 379/750 [00:48<01:43,  3.59it/s]Loading weights:  51%|█████     | 380/750 [00:49<02:12,  2.80it/s]Loading weights:  51%|█████     | 381/750 [00:49<01:59,  3.08it/s]Loading weights:  51%|█████▏    | 386/750 [00:50<00:56,  6.50it/s]Loading weights:  52%|█████▏    | 390/750 [00:50<00:40,  8.98it/s]Loading weights:  52%|█████▏    | 392/750 [00:50<00:57,  6.17it/s]Loading weights:  53%|█████▎    | 400/750 [00:51<00:29, 11.82it/s]Loading weights:  56%|█████▌    | 417/750 [00:51<00:12, 26.32it/s]Loading weights:  57%|█████▋    | 431/750 [00:51<00:07, 39.89it/s]Loading weights:  60%|█████▉    | 447/750 [00:51<00:05, 56.31it/s]Loading weights:  63%|██████▎   | 472/750 [00:51<00:03, 88.19it/s]Loading weights:  67%|██████▋   | 505/750 [00:51<00:01, 126.76it/s]Loading weights:  70%|██████▉   | 522/750 [00:51<00:01, 118.42it/s]Loading weights:  73%|███████▎  | 546/750 [00:52<00:01, 134.75it/s]Loading weights:  75%|███████▌  | 563/750 [00:52<00:01, 137.06it/s]Loading weights:  77%|███████▋  | 579/750 [00:52<00:01, 139.52it/s]Loading weights:  80%|███████▉  | 599/750 [00:52<00:01, 140.80it/s]Loading weights:  82%|████████▏ | 618/750 [00:52<00:00, 143.22it/s]Loading weights:  84%|████████▍ | 633/750 [00:52<00:01, 78.82it/s] Loading weights:  88%|████████▊ | 660/750 [00:53<00:00, 97.46it/s]Loading weights:  90%|█████████ | 675/750 [00:53<00:00, 106.12it/s]Loading weights:  92%|█████████▏| 689/750 [00:53<00:00, 110.11it/s]Loading weights:  94%|█████████▎| 703/750 [00:53<00:00, 103.03it/s]Loading weights:  95%|█████████▌| 715/750 [00:53<00:00, 71.06it/s] Loading weights:  97%|█████████▋| 731/750 [00:54<00:00, 76.44it/s]Loading weights:  99%|█████████▉| 741/750 [00:54<00:00, 71.22it/s]Loading weights: 100%|██████████| 750/750 [00:54<00:00, 13.82it/s]
+[16:17:00] INFO  Run 'slurm93647_action_phase_qwen3-8b_default_cot' | task=ActionPhaseTask | model=qwen3-8b | prompt=default
+[16:17:02] ERROR  Batch inference failed: CUDNN_BACKEND_TENSOR_DESCRIPTOR cudnnFinalize failedptrDesc->finalize() cudnn_status: CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH
+Traceback (most recent call last):
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/pipeline.py", line 112, in _flush
+    responses = model.infer_batch(batch_input)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/models/qwen.py", line 81, in infer_batch
+    return [self._infer_single(imgs, prompt) for imgs, prompt in batch]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/models/qwen.py", line 75, in _infer_single
+    output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/generation/utils.py", line 2560, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/generation/utils.py", line 2753, in _sample
+    outputs = self._prefill(
+              ^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/generation/utils.py", line 3799, in _prefill
+    return self(**model_inputs, return_dict=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 900, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1509, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 900, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1290, in forward
+    image_outputs: BaseModelOutputWithDeepstackFeatures = self.get_image_features(
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 900, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1158, in get_image_features
+    vision_output: BaseModelOutputWithDeepstackFeatures = self.visual(
+                                                          ^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 976, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 248, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 780, in forward
+    hidden_states = self.patch_embed(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 88, in forward
+    hidden_states = self.proj(hidden_states.to(dtype=target_dtype)).view(-1, self.embed_dim)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 735, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 730, in _conv_forward
+    return F.conv3d(
+           ^^^^^^^^^
+RuntimeError: CUDNN_BACKEND_TENSOR_DESCRIPTOR cudnnFinalize failedptrDesc->finalize() cudnn_status: CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH
+Traceback (most recent call last):
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/main.py", line 304, in <module>
+    main()
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/main.py", line 286, in main
+    pipeline.run(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/pipeline.py", line 209, in run
+    _flush(pending)
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/pipeline.py", line 112, in _flush
+    responses = model.infer_batch(batch_input)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/models/qwen.py", line 81, in infer_batch
+    return [self._infer_single(imgs, prompt) for imgs, prompt in batch]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/models/qwen.py", line 75, in _infer_single
+    output_ids = self._model.generate(**inputs, max_new_tokens=self.max_new_tokens)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/generation/utils.py", line 2560, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/generation/utils.py", line 2753, in _sample
+    outputs = self._prefill(
+              ^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/generation/utils.py", line 3799, in _prefill
+    return self(**model_inputs, return_dict=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 900, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1509, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 900, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1290, in forward
+    image_outputs: BaseModelOutputWithDeepstackFeatures = self.get_image_features(
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 900, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1158, in get_image_features
+    vision_output: BaseModelOutputWithDeepstackFeatures = self.visual(
+                                                          ^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/generic.py", line 976, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 248, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 780, in forward
+    hidden_states = self.patch_embed(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 88, in forward
+    hidden_states = self.proj(hidden_states.to(dtype=target_dtype)).view(-1, self.embed_dim)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 735, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 730, in _conv_forward
+    return F.conv3d(
+           ^^^^^^^^^
+RuntimeError: CUDNN_BACKEND_TENSOR_DESCRIPTOR cudnnFinalize failedptrDesc->finalize() cudnn_status: CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH

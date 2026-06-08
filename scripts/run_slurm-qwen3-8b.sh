@@ -3,7 +3,7 @@
 #SBATCH --job-name=qwen3-8b
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=pmlr_jobs
+#SBATCH --account=cil_jobs  
 #SBATCH --gpus=5060ti:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
@@ -13,10 +13,11 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-qwen3-8b}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-2}"
+    BATCH_SIZE="${BATCH_SIZE:-2}"
 
 module load cuda/13.0
 source ~/.bashrc   # sets HF_HOME, TRANSFORMERS_CACHE, etc.
+export LD_LIBRARY_PATH=""
 if [ "$(uname -m)" = "aarch64" ]; then
     source "$REPO/.venv-arm64/bin/activate"
 else
