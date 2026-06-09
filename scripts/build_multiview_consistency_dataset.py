@@ -44,12 +44,15 @@ from __future__ import annotations
 
 import argparse
 import json
-from collections import Counter
+import random
+from collections import Counter, defaultdict
 from pathlib import Path
 
 VIEWS = ["top_left", "top_right", "bottom_left"]
 
 MIN_VIABLE_VIEWS = 2
+MAX_PER_SCENE    = 150   # cap entries per scene so no single scene dominates
+SAMPLE_SEED      = 0
 
 # Annotation flag that gates view viability, keyed by question_type.
 GATING_FLAG = {
@@ -100,6 +103,25 @@ def quality_for_view(ann: dict | None, view: str) -> tuple[bool | None, bool | N
     phase = ann.get("phase_understandable", {}).get(view)
     goal  = ann.get("goal_understandable", {}).get(view)
     return phase, goal
+
+
+def cap_per_scene(dataset: list[dict], cap: int, seed: int) -> list[dict]:
+    """
+    Limit entries per scene to `cap`, randomly sub-sampling scenes that exceed
+    it so no single scene dominates the dataset. Scenes at or below the cap
+    are kept in full. Sampling order is fixed by `seed` for reproducibility.
+    """
+    rng = random.Random(seed)
+    by_scene: dict[str, list[dict]] = defaultdict(list)
+    for e in dataset:
+        by_scene[e["scene_id"]].append(e)
+
+    capped = []
+    for scene_id, entries in by_scene.items():
+        capped.extend(entries if len(entries) <= cap else rng.sample(entries, cap))
+
+    capped.sort(key=lambda e: (e["source_id"], e["view"]))
+    return capped
 
 
 def viable_views(
@@ -238,6 +260,10 @@ def main() -> None:
     p.add_argument("--annotations", default=ANNOTATIONS,    metavar="PATH",
                    help="merged_annotations.jsonl for tile quality metadata")
     p.add_argument("--output",      default=DEFAULT_OUTPUT, metavar="PATH")
+    p.add_argument("--max-per-scene", type=int, default=MAX_PER_SCENE, metavar="N",
+                   help="cap entries per scene, randomly sub-sampling larger scenes (default: %(default)s)")
+    p.add_argument("--seed",        type=int, default=SAMPLE_SEED, metavar="N",
+                   help="random seed for per-scene sub-sampling (default: %(default)s)")
     args = p.parse_args()
 
     root     = Path(__file__).parent.parent
@@ -260,10 +286,9 @@ def main() -> None:
 
     print(f"Expanding to {len(VIEWS)} views: {VIEWS}…")
 
-    dataset:         list[dict]         = []
-    skipped_special: int                = 0
-    skipped_missing: int                = 0
-    qt_view_counts:  dict[str, Counter] = {}
+    dataset:         list[dict] = []
+    skipped_special: int        = 0
+    skipped_missing: int        = 0
 
     for entry in source:
         if entry.get("special_image") or entry.get("special_a") or entry.get("special_b"):
@@ -276,19 +301,24 @@ def main() -> None:
             skipped_missing += 1
             continue
 
-        for e in expanded:
-            qt = e["question_type"]
-            qt_view_counts.setdefault(qt, Counter())[e["view"]] += 1
-
         dataset.extend(expanded)
+
+    pre_cap_total = len(dataset)
+    pre_cap_scenes = len({e["scene_id"] for e in dataset})
+    dataset = cap_per_scene(dataset, args.max_per_scene, args.seed)
 
     # Assign fresh sequential IDs
     for i, e in enumerate(dataset):
         e["id"] = i
 
+    qt_view_counts: dict[str, Counter] = {}
+    for e in dataset:
+        qt_view_counts.setdefault(e["question_type"], Counter())[e["view"]] += 1
+
     # ── summary ───────────────────────────────────────────────────────────────
     print()
-    print(f"  {len(dataset):>6} entries generated")
+    print(f"  {pre_cap_total:>6} entries before per-scene cap (across {pre_cap_scenes} scenes)")
+    print(f"  {len(dataset):>6} entries after capping at {args.max_per_scene} per scene")
     print(f"  {skipped_special:>6} skipped  (special_image / random_scene / black_image)")
     print(f"  {skipped_missing:>6} skipped  (missing tile images)")
     print()

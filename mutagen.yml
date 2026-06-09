@@ -4,6 +4,8 @@ sync:
       vcs: true
       paths:
         - "**/data/**"
+        - "!**/data/**/*.jsonl"
+        - "!**/data/**/"
         - "**/datasets/**"
         - "**/checkpoints/**"
         - "**/.venv/**"

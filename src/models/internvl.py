@@ -99,6 +99,9 @@ class InternVLM(BaseVLM):
 
     def load(self) -> None:
         logger.info(f"Loading {self.model_id} ...")
+        # cuDNN 9.20's conv engine selection crashes (CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH)
+        # on the ViT patch_embedding Conv2d for this GPU arch — fall back to non-cuDNN conv.
+        torch.backends.cudnn.enabled = False
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
         self._model = AutoModel.from_pretrained(
             self.model_id,
@@ -131,6 +134,8 @@ class InternVLM(BaseVLM):
         pixel_values, num_patches = self._pixel_values(imgs)
         question = self._build_question(imgs, prompt)
         gen_config = dict(max_new_tokens=self.max_new_tokens, do_sample=False)
+        if self.system_prompt is not None:
+            self._model.system_message = self.system_prompt
         response = self._model.chat(
             self._tokenizer,
             pixel_values,
@@ -139,7 +144,6 @@ class InternVLM(BaseVLM):
             num_patches_list=num_patches if len(imgs) > 1 else None,
             history=None,
             return_history=False,
-            system=self.system_prompt,
         )
         return response.strip()
 

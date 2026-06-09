@@ -189,6 +189,30 @@ Majority class     & 40.6 & 38.7 & 38.4 & 72.5 & 42.9 \\
   \item \textbf{Simple manipulation on clear surfaces works best.} Scenes featuring visually distinct objects on uncluttered, high-contrast surfaces yield the highest accuracy. Models appear to benefit from clear foreground--background separation and unambiguous object identity.
 \end{itemize}
 
+\vspace{14pt}
+
+\noindent\textbf{Multi-view Cross-Camera Consistency}
+
+\vspace{6pt}
+
+\begin{center}
+{\large
+\begin{tabular}{l|ccc}
+\hline
+\textbf{Model} & \textbf{TL$\leftrightarrow$TR} & \textbf{$\geq$1\,Top$\leftrightarrow$W} & \textbf{All\,3\,Views} \\
+\hline
+Gemma4-31B    & \textbf{75.9} & \textbf{78.9} & \textbf{58.2} \\
+InternVL3-14B & 73.7          & 78.7          & 56.1 \\
+Gemma4-E4B    & 61.2          & 71.0          & 45.2 \\
+Gemma4-E2B    & 48.3          & 63.7          & 27.9 \\
+\hline
+Random (binary) & 50.0 & 75.0 & 25.0 \\
+\hline
+\multicolumn{4}{l}{\scriptsize All values in \%. TL$\leftrightarrow$TR: top-left agrees with top-right. $\geq$1\,Top$\leftrightarrow$W: at least one top view agrees with wrist. All\,3: all views agree.}
+\end{tabular}
+}
+\end{center}
+
 \vspace{50pt}
 \noindent%
 \begin{minipage}[t]{165mm}%

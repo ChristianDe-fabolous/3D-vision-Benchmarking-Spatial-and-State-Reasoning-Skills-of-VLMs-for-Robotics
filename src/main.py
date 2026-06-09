@@ -31,6 +31,7 @@ from config import (
     MODEL_QWEN3_8B_THINKING,
     MODEL_QWEN3_30B,
     MODEL_QWEN3_30B_THINKING,
+    MODEL_QWEN3_32B,
     MODEL_GEMMA4_E2B,
     MODEL_GEMMA4_E4B,
     MODEL_GEMMA4_26B,
@@ -91,7 +92,7 @@ def parse_args():
         choices=[
             # Qwen3-VL
             MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
-            MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING,
+            MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING, MODEL_QWEN3_32B,
             # Gemma 4
             MODEL_GEMMA4_E2B, MODEL_GEMMA4_E4B, MODEL_GEMMA4_26B, MODEL_GEMMA4_31B,
             # Phi
@@ -216,7 +217,7 @@ def build_task(args):
 
 def build_model(args):
     if args.model in (MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
-                      MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING):
+                      MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING, MODEL_QWEN3_32B):
         return QwenVLM(model_key=args.model)
     if args.model in (MODEL_GEMMA4_E2B, MODEL_GEMMA4_E4B, MODEL_GEMMA4_26B, MODEL_GEMMA4_31B):
         return Gemma4VLM(model_key=args.model)

@@ -1,9 +1,9 @@
 #!/bin/bash
-# Gemma4-E2B (5B BF16) — 5060ti (~10GB VRAM), batch_size=2
-#SBATCH --job-name=gemma4-e2b
+# Gemma4-E2B on multiview consistency dataset (5B BF16 ~10GB) — 5060ti (~16GB VRAM), batch_size=1
+#SBATCH --job-name=gemma4-e2b-multiview
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=pmlr_jobs
+#SBATCH --account=3dv
 #SBATCH --gpus=5060ti:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
@@ -12,11 +12,11 @@
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
 MODEL="${MODEL:-gemma4-e2b}"
-DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-2}"
+DATASET="${DATASET:-data/multiview_consistency_dataset.jsonl}"
+BATCH_SIZE="${BATCH_SIZE:-1}"
 
 module load cuda/13.0
-source ~/.bashrc   # sets HF_HOME, TRANSFORMERS_CACHE, etc.
+source ~/.bashrc
 if [ "$(uname -m)" = "aarch64" ]; then
     source "$REPO/.venv-arm64/bin/activate"
 else
@@ -34,6 +34,9 @@ nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
 cd "$REPO"
 
+# Multiview consistency dataset is built on the action_phase schema
+# (id, scene_id, question_type, images, choices, answer, ...), so it runs
+# through the same action_phase task loader.
 CMD="python src/main.py \
     --task action_phase \
     --model $MODEL \

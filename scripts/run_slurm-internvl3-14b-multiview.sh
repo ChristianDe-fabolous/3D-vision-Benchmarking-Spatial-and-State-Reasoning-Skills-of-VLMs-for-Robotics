@@ -1,27 +1,23 @@
 #!/bin/bash
-# Gemma4-E2B (5B BF16) — 5060ti (~10GB VRAM), batch_size=2
-#SBATCH --job-name=gemma4-e2b
+# InternVL3-14B BF16 on the multiview consistency dataset (~28GB) — gb10 (128GB), batch_size=4
+#SBATCH --job-name=internvl3-14b-multiview
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=pmlr_jobs
-#SBATCH --gpus=5060ti:1
-#SBATCH --time=12:00:00
+#SBATCH --account=cil_jobs
+#SBATCH --gpus=gb10:1
+#SBATCH --time=24:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
 #SBATCH --mail-type=END,FAIL
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
-MODEL="${MODEL:-gemma4-e2b}"
-DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-2}"
+MODEL="${MODEL:-internvl3-14b}"
+DATASET="${DATASET:-data/multiview_consistency_dataset.jsonl}"
+BATCH_SIZE="${BATCH_SIZE:-4}"
 
 module load cuda/13.0
-source ~/.bashrc   # sets HF_HOME, TRANSFORMERS_CACHE, etc.
-if [ "$(uname -m)" = "aarch64" ]; then
-    source "$REPO/.venv-arm64/bin/activate"
-else
-    source "$REPO/.venv/bin/activate"
-fi
+source ~/.bashrc
+source "$REPO/.venv-internvl/bin/activate"
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 echo "========================================"
@@ -34,6 +30,9 @@ nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
 cd "$REPO"
 
+# Multiview consistency dataset is built on the action_phase schema
+# (id, scene_id, question_type, images, choices, answer, ...), so it runs
+# through the same action_phase task loader.
 CMD="python src/main.py \
     --task action_phase \
     --model $MODEL \
@@ -52,5 +51,5 @@ eval $CMD
 echo "========================================"
 echo "Job $SLURM_JOB_ID done."
 
-[ "${CLEAN_CACHE:-1}" = "1" ] && rm -rf "$HF_HOME/hub/models--google--gemma-4-E2B-it"
+[ "${CLEAN_CACHE:-1}" = "1" ] && rm -rf "$HF_HOME/hub/models--OpenGVLab--InternVL3_5-14B"
 echo "HF cache after cleanup: $(du -sh $HF_HOME 2>/dev/null | cut -f1)"

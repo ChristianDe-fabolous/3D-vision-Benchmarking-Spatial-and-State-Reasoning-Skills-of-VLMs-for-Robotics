@@ -153,6 +153,7 @@ MODEL_QWEN3_8B          = "qwen3-8b"          # ~16GB bfloat16  — 5060ti      
 MODEL_QWEN3_8B_THINKING = "qwen3-8b-thinking" # ~16GB bfloat16  — 5060ti      (8B thinking)
 MODEL_QWEN3_30B         = "qwen3-30b"         # ~60GB bfloat16  — gb10        (30B MoE, 3B active)
 MODEL_QWEN3_30B_THINKING= "qwen3-30b-thinking"# ~60GB bfloat16  — gb10        (30B MoE thinking)
+MODEL_QWEN3_32B         = "qwen3-32b"         # ~64GB bfloat16  — gb10        (32B dense)
 
 QWEN_MODEL_IDS = {
     MODEL_QWEN3_4B:          "Qwen/Qwen3-VL-4B-Instruct",
@@ -160,6 +161,7 @@ QWEN_MODEL_IDS = {
     MODEL_QWEN3_8B_THINKING: "Qwen/Qwen3-VL-8B-Thinking",
     MODEL_QWEN3_30B:         "Qwen/Qwen3-VL-30B-A3B-Instruct",
     MODEL_QWEN3_30B_THINKING:"Qwen/Qwen3-VL-30B-A3B-Thinking",
+    MODEL_QWEN3_32B:         "Qwen/Qwen3-VL-32B-Instruct",
 }
 
 QWEN_MAX_NEW_TOKENS = 1024

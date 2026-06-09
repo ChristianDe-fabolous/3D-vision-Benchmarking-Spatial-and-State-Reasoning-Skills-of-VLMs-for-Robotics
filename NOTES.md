@@ -310,3 +310,23 @@ run for action phase id: easy
 progress easy 
 next action: give one will all phases and one with not all phases and one without 
 phase success  check specific case where step(image) = step(phase)
+
+
+
+
+
+action phase:
+gemma:
+31b
+e4b
+e2b
+
+qwen
+30b
+8b
+4b
+
+internvl 
+14b
+
+maybe nemotron 

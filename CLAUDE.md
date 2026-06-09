@@ -19,7 +19,6 @@ Primary model under evaluation: Qwen (potentially others like Pi, RT2).
 
 ## Dataset Notes
 
-- Dataset entries with known wrong answers: #5, #35, #37, #67, #69
 - Failure mode task: images may be presented in reverse order (as if robot did the opposite action)
 - Multi-view task: two camera angles available; one with spatial reference points
 

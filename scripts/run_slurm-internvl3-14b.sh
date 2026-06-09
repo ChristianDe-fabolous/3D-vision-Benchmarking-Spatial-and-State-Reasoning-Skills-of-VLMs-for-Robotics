@@ -17,11 +17,7 @@ BATCH_SIZE="${BATCH_SIZE:-4}"
 
 module load cuda/13.0
 source ~/.bashrc
-if [ "$(uname -m)" = "aarch64" ]; then
-    source "$REPO/.venv-arm64/bin/activate"
-else
-    source "$REPO/.venv/bin/activate"
-fi
+source "$REPO/.venv-internvl/bin/activate"
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 echo "========================================"

@@ -1,0 +1,116 @@
+
+# >>>>>>>>>>>>>>>>>>>>>> ERROR REPORT <<<<<<<<<<<<<<<<<<<<<<
+
+    Traceback (most recent call last):
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/exception_handler.py", line 29, in __call__
+        return func(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/cli/main.py", line 88, in main_sourced
+        result = activator.execute()
+                 ^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 213, in execute
+        response = getattr(self, self.command)()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/anaconda_anon_usage/patch.py", line 52, in _new_activate
+        return self._old_activate()
+               ^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 175, in activate
+        builder_result = self.build_activate(self.env_name_or_prefix)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 324, in build_activate
+        return self._build_activate_stack(env_name_or_prefix, False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 414, in _build_activate_stack
+        deactivate_scripts = self._get_deactivate_scripts(old_conda_prefix)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 773, in _get_deactivate_scripts
+        for entry in os.scandir(join(prefix, "etc", "conda", "deactivate.d"))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "<frozen posixpath>", line 76, in join
+    TypeError: expected str, bytes or os.PathLike object, not NoneType
+
+`$ /cluster/courses/cil/envs/bin/conda shell.posix activate base`
+
+  environment variables:
+                 CIO_TEST=<not set>
+        CONDA_DEFAULT_ENV=base
+                CONDA_EXE=/cluster/courses/cil/envs/bin/conda
+    CONDA_PROMPT_MODIFIER=(base)
+         CONDA_PYTHON_EXE=/cluster/courses/cil/envs/bin/python
+               CONDA_ROOT=/cluster/courses/cil/envs
+              CONDA_SHLVL=1
+           CURL_CA_BUNDLE=<not set>
+          LD_LIBRARY_PATH=
+               LD_PRELOAD=<not set>
+               MODULEPATH=/etc/environment-modules/modules:/cluster/modules
+                     PATH=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-
+                          Reasoning-Skills-of-VLMs-for-Robotics/.venv/bin:/cluster/courses/cil/e
+                          nvs/bin:/cluster/courses/cil/envs/condabin:/home/cdeubel/.local/bin:/h
+                          ome/cdeubel/bin:/cluster/data/cuda/x86_64/13.0/bin:/usr/local/sbin:/us
+                          r/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:
+                          /snap/bin
+         PYTHONNOUSERSITE=1
+       REQUESTS_CA_BUNDLE=<not set>
+            SSL_CERT_FILE=<not set>
+
+     active environment : None
+            shell level : 1
+       user config file : /home/cdeubel/.condarc
+ populated config files : /cluster/courses/cil/envs/.condarc
+                          /cluster/courses/cil/envs/condarc.d/anaconda-auth.yml
+          conda version : 25.11.1
+    conda-build version : not installed
+         python version : 3.11.14.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=broadwell
+                          __conda=25.11.1=0
+                          __cuda=13.3=0
+                          __glibc=2.39=0
+                          __linux=6.14.0=0
+                          __unix=0=0
+       base environment : /cluster/courses/cil/envs  (read only)
+      conda av data dir : /cluster/courses/cil/envs/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /cluster/courses/cil/envs/pkgs
+                          /home/cdeubel/.conda/pkgs
+       envs directories : /home/cdeubel/.conda/envs
+                          /cluster/courses/cil/envs/envs
+               platform : linux-64
+             user-agent : conda/25.11.1 requests/2.32.5 CPython/3.11.14 Linux/6.14.0-35-generic ubuntu/24.04.4 glibc/2.39 solver/libmamba conda-libmamba-solver/25.11.0 libmambapy/2.3.2 aau/0.7.5 c/. s/. e/.
+                UID:GID : 658861:540309
+             netrc file : /home/cdeubel/.netrc
+           offline mode : False
+
+
+An unexpected error has occurred. Conda has prepared the above report.
+If you suspect this error is being caused by a malfunctioning plugin,
+consider using the --no-plugins option to turn off plugins.
+
+Example: conda --no-plugins install <package>
+
+Alternatively, you can set the CONDA_NO_PLUGINS environment variable on
+the command line to run the command without plugins enabled.
+
+Example: CONDA_NO_PLUGINS=true conda install <package>
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  36%|███▋      | 754/2076 [00:00<00:01, 812.89it/s]Loading weights:  40%|████      | 836/2076 [00:01<00:02, 441.37it/s]Loading weights:  42%|████▏     | 877/2076 [00:01<00:03, 360.15it/s]Loading weights:  44%|████▎     | 905/2076 [00:02<00:03, 315.62it/s]Loading weights:  45%|████▍     | 927/2076 [00:02<00:04, 279.13it/s]Loading weights:  46%|████▌     | 946/2076 [00:02<00:04, 243.85it/s]Loading weights:  46%|████▋     | 962/2076 [00:02<00:04, 226.04it/s]Loading weights:  47%|████▋     | 977/2076 [00:02<00:05, 192.58it/s]Loading weights:  48%|████▊     | 992/2076 [00:02<00:06, 174.61it/s]Loading weights:  49%|████▉     | 1014/2076 [00:03<00:06, 175.79it/s]Loading weights:  50%|████▉     | 1031/2076 [00:03<00:06, 164.32it/s]Loading weights:  50%|█████     | 1046/2076 [00:03<00:07, 136.83it/s]Loading weights:  51%|█████     | 1063/2076 [00:03<00:07, 139.31it/s]Loading weights:  52%|█████▏    | 1080/2076 [00:03<00:06, 146.01it/s]Loading weights:  53%|█████▎    | 1098/2076 [00:03<00:06, 142.99it/s]Loading weights:  54%|█████▎    | 1112/2076 [00:03<00:06, 141.96it/s]Loading weights:  54%|█████▍    | 1126/2076 [00:04<00:07, 128.69it/s]Loading weights:  55%|█████▍    | 1139/2076 [00:04<00:07, 121.40it/s]Loading weights:  55%|█████▌    | 1152/2076 [00:04<00:08, 113.40it/s]Loading weights:  56%|█████▌    | 1167/2076 [00:04<00:08, 108.48it/s]Loading weights:  57%|█████▋    | 1182/2076 [00:04<00:07, 112.60it/s]Loading weights:  58%|█████▊    | 1196/2076 [00:04<00:07, 110.63it/s]Loading weights:  58%|█████▊    | 1208/2076 [00:04<00:08, 106.35it/s]Loading weights:  59%|█████▉    | 1223/2076 [00:04<00:07, 107.72it/s]Loading weights:  60%|█████▉    | 1237/2076 [00:05<00:07, 108.12it/s]Loading weights:  60%|██████    | 1250/2076 [00:05<00:07, 107.40it/s]Loading weights:  61%|██████    | 1261/2076 [00:05<00:07, 107.80it/s]Loading weights:  61%|██████▏   | 1272/2076 [00:05<00:08, 95.25it/s] Loading weights:  62%|██████▏   | 1282/2076 [00:05<00:08, 93.40it/s]Loading weights:  62%|██████▏   | 1294/2076 [00:05<00:08, 93.77it/s]Loading weights:  63%|██████▎   | 1307/2076 [00:05<00:08, 94.90it/s]Loading weights:  64%|██████▎   | 1321/2076 [00:05<00:07, 105.52it/s]Loading weights:  64%|██████▍   | 1334/2076 [00:06<00:06, 108.67it/s]Loading weights:  65%|██████▍   | 1346/2076 [00:06<00:06, 107.63it/s]Loading weights:  65%|██████▌   | 1357/2076 [00:06<00:07, 100.61it/s]Loading weights:  66%|██████▌   | 1368/2076 [00:06<00:07, 91.30it/s] Loading weights:  66%|██████▋   | 1378/2076 [00:06<00:08, 85.13it/s]Loading weights:  73%|███████▎  | 1513/2076 [00:06<00:01, 394.15it/s]Loading weights:  82%|████████▏ | 1701/2076 [00:06<00:00, 772.94it/s]Loading weights:  91%|█████████ | 1883/2076 [00:06<00:00, 1049.78it/s]Loading weights: 100%|█████████▉| 2068/2076 [00:06<00:00, 1268.38it/s]Loading weights: 100%|██████████| 2076/2076 [00:06<00:00, 297.16it/s] 
+Some parameters are on the meta device because they were offloaded to the cpu.
+[19:56:26] INFO  Run 'slurm97549_action_phase_gemma4-e4b_default' | task=ActionPhaseTask | model=gemma4-e4b | prompt=default
+Traceback (most recent call last):
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/main.py", line 310, in <module>
+    main()
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/main.py", line 292, in main
+    pipeline.run(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/pipeline.py", line 200, in run
+    for sample in task.get_samples(skip=skip_rows):
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/tasks/action_phase.py", line 43, in get_samples
+    with open(self.dataset_path, encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/multiview_consistency_dataset.jsonl'

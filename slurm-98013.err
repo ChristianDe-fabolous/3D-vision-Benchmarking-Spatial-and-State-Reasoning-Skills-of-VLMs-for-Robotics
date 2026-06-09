@@ -1,0 +1,12 @@
+usage: main.py [-h] [--task {failure_mode,multiview,action_phase}]
+               [--action-phase-data ACTION_PHASE_DATA]
+               [--action-phase-type {action_phase_id,progress,next_action,phase_success,task_success}]
+               [--image-root IMAGE_ROOT]
+               [--model {qwen3-4b,qwen3-8b,qwen3-8b-thinking,qwen3-30b,qwen3-30b-thinking,gemma4-e2b,gemma4-e4b,gemma4-26b,gemma4-31b,phi-3.5-vision,phi-4-vision,nvlm-12b,internvl3-14b}]
+               [--prompt {default,paper,paper_cot,test}]
+               [--split {train,test}] [--limit LIMIT]
+               [--local-data LOCAL_DATA] [--analyse-categories]
+               [--hf-token HF_TOKEN] [--run-id RUN_ID] [--resume]
+               [--batch-size BATCH_SIZE] [--describe] [--cot] [--logprobs]
+               [--test-pipeline] [--smoke] [--individual-images]
+main.py: error: argument --model: invalid choice: 'qwen3-32b' (choose from qwen3-4b, qwen3-8b, qwen3-8b-thinking, qwen3-30b, qwen3-30b-thinking, gemma4-e2b, gemma4-e4b, gemma4-26b, gemma4-31b, phi-3.5-vision, phi-4-vision, nvlm-12b, internvl3-14b)
