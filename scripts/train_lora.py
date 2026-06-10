@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""LoRA fine-tune google/gemma-4-E2B-it on action_phase_dataset.
+"""LoRA fine-tune Qwen/Qwen3-VL-4B-Instruct on action_phase_dataset.
 
 Data selection: scene-level random split — all questions from a scene
 go to the same split, preventing data leakage between train and val.
@@ -12,12 +12,14 @@ Usage:
 import argparse
 import json
 import random
+import re
+from datetime import datetime
 from pathlib import Path
 
 import torch
 from PIL import Image
 from peft import LoraConfig, TaskType, get_peft_model
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import Dataset
 from transformers import (
     AutoModelForImageTextToText,
     AutoProcessor,
@@ -25,10 +27,8 @@ from transformers import (
     TrainingArguments,
 )
 
-MODEL_ID = "google/gemma-4-E2B-it"
-# Samples with known wrong ground-truth labels — always excluded
-# Token sequence that marks the start of the model turn in Gemma chat template
-RESPONSE_TEMPLATE = "<start_of_turn>model\n"
+MODEL_ID = "Qwen/Qwen3-VL-4B-Instruct"
+RESPONSE_TEMPLATE = "<|im_start|>assistant\n"
 
 
 # ---------------------------------------------------------------------------
@@ -40,7 +40,8 @@ def load_scene_split(
     n_train_scenes: int,
     n_val_scenes: int,
     seed: int,
-) -> tuple[list[dict], list[dict], list[str], list[str]]:
+) -> tuple[list[dict], list[dict], list[dict], list[str], list[str], list[str]]:
+    """Split scenes into train / val (small, for per-epoch eval loss) / test (held-out benchmark)."""
     data = [json.loads(line) for line in open(jsonl_path)]
 
     all_scenes = sorted({d["scene_id"] for d in data})
@@ -49,11 +50,13 @@ def load_scene_split(
 
     train_scenes = set(all_scenes[:n_train_scenes])
     val_scenes = set(all_scenes[n_train_scenes : n_train_scenes + n_val_scenes])
+    test_scenes = set(all_scenes[n_train_scenes + n_val_scenes :])
 
     train_data = [d for d in data if d["scene_id"] in train_scenes]
     val_data = [d for d in data if d["scene_id"] in val_scenes]
+    test_data = [d for d in data if d["scene_id"] in test_scenes]
 
-    return train_data, val_data, sorted(train_scenes), sorted(val_scenes)
+    return train_data, val_data, test_data, sorted(train_scenes), sorted(val_scenes), sorted(test_scenes)
 
 
 # ---------------------------------------------------------------------------
@@ -80,7 +83,7 @@ class ActionPhaseDataset(Dataset):
             {
                 "role": "user",
                 "content": [
-                    {"type": "image"},
+                    {"type": "image", "image": image},
                     {"type": "text", "text": user_text},
                 ],
             },
@@ -89,7 +92,7 @@ class ActionPhaseDataset(Dataset):
                 "content": [{"type": "text", "text": s["answer"]}],
             },
         ]
-        return {"messages": messages, "image": image}
+        return {"messages": messages, "meta": s}
 
 
 # ---------------------------------------------------------------------------
@@ -97,27 +100,30 @@ class ActionPhaseDataset(Dataset):
 # ---------------------------------------------------------------------------
 
 def make_collator(processor: AutoProcessor, max_length: int):
-    # Pre-encode the response template tokens (no special tokens) for masking
     response_ids = processor.tokenizer.encode(
         RESPONSE_TEMPLATE, add_special_tokens=False
     )
     resp_len = len(response_ids)
 
     def _find_response_start(input_ids: list[int]) -> int:
-        """Return index of first token after the response template, or 0 if not found."""
         for i in range(len(input_ids) - resp_len + 1):
             if input_ids[i : i + resp_len] == response_ids:
                 return i + resp_len
         return 0
 
     def collate(examples: list[dict]) -> dict:
-        texts = [
-            processor.apply_chat_template(
-                ex["messages"], tokenize=False, add_generation_prompt=False
+        from qwen_vl_utils import process_vision_info
+
+        texts = []
+        images = []
+        for ex in examples:
+            texts.append(
+                processor.apply_chat_template(
+                    ex["messages"], tokenize=False, add_generation_prompt=False
+                )
             )
-            for ex in examples
-        ]
-        images = [ex["image"] for ex in examples]
+            image_inputs, _ = process_vision_info(ex["messages"])
+            images.append(image_inputs)
 
         batch = processor(
             text=texts,
@@ -129,9 +135,7 @@ def make_collator(processor: AutoProcessor, max_length: int):
         )
 
         labels = batch["input_ids"].clone()
-        # Mask padding
         labels[batch["attention_mask"] == 0] = -100
-        # Mask prompt — only supervise on the assistant answer
         for i, ids in enumerate(batch["input_ids"].tolist()):
             resp_start = _find_response_start(ids)
             labels[i, :resp_start] = -100
@@ -143,6 +147,78 @@ def make_collator(processor: AutoProcessor, max_length: int):
 
 
 # ---------------------------------------------------------------------------
+# Benchmark eval on val scenes
+# ---------------------------------------------------------------------------
+
+def run_eval(model, processor, val_data: list[dict], data_root: Path, output_dir: Path) -> float:
+    from qwen_vl_utils import process_vision_info
+
+    model.eval()
+    device = next(model.parameters()).device
+    results = []
+
+    for s in val_data:
+        image = Image.open(data_root / s["images"][0]).convert("RGB")
+        choices_str = "\n".join(s["choices"])
+        user_text = (
+            f"{s['question']}\n\n{choices_str}\n\n"
+            "Reply with the answer letter only (e.g. A)."
+        )
+        messages = [
+            {
+                "role": "user",
+                "content": [{"type": "image", "image": image}, {"type": "text", "text": user_text}],
+            }
+        ]
+        text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        image_inputs, _ = process_vision_info(messages)
+        inputs = processor(text=[text], images=[image_inputs], return_tensors="pt").to(device)
+
+        with torch.inference_mode():
+            out = model.generate(
+                **inputs,
+                max_new_tokens=8,
+                do_sample=False,
+            )
+
+        response_raw = processor.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+        predicted = re.search(r"[A-D]", response_raw)
+        predicted_label = predicted.group(0) if predicted else ""
+        correct = predicted_label == s["answer"]
+
+        results.append({
+            "id": s["id"],
+            "scene_id": s["scene_id"],
+            "question_type": s["question_type"],
+            "ground_truth": s["answer"],
+            "response_raw": response_raw,
+            "predicted": predicted_label,
+            "correct": correct,
+        })
+
+    accuracy = sum(r["correct"] for r in results) / len(results) if results else 0.0
+
+    # Save results
+    results_path = output_dir / "eval_results.jsonl"
+    with open(results_path, "w") as f:
+        for r in results:
+            f.write(json.dumps(r) + "\n")
+
+    # Per question_type breakdown
+    by_type: dict[str, list[bool]] = {}
+    for r in results:
+        by_type.setdefault(r["question_type"], []).append(r["correct"])
+
+    print(f"\n=== Eval on {len(val_data)} val samples ===")
+    print(f"Overall accuracy: {accuracy:.3f}")
+    for qt, corrects in sorted(by_type.items()):
+        print(f"  {qt}: {sum(corrects)}/{len(corrects)} = {sum(corrects)/len(corrects):.3f}")
+    print(f"Results saved to {results_path}")
+
+    return accuracy
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -150,10 +226,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", default="data/action_phase_dataset.jsonl")
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--n-train-scenes", type=int, default=23,
-                        help="half of 47 scenes ≈ 3000 samples")
-    parser.add_argument("--n-val-scenes", type=int, default=24)
-    parser.add_argument("--output-dir", default="outputs/lora-gemma-e2b")
+    parser.add_argument("--n-train-scenes", type=int, default=20)
+    parser.add_argument("--n-val-scenes", type=int, default=7,
+                        help="held-out set for per-epoch eval loss")
+    parser.add_argument("--output-dir", default="outputs/lora-qwen3-vl-4b")
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--grad-accum", type=int, default=8)
@@ -164,14 +240,16 @@ def main() -> None:
     args = parser.parse_args()
 
     data_root = Path(args.data).parent.parent  # project root
+    output_dir = Path(args.output_dir)
 
     # ---- data ----
-    train_data, val_data, train_scenes, val_scenes = load_scene_split(
+    train_data, val_data, test_data, train_scenes, val_scenes, test_scenes = load_scene_split(
         args.data, args.n_train_scenes, args.n_val_scenes, args.seed
     )
     print(f"Train scenes ({len(train_scenes)}): {train_scenes}")
     print(f"Val   scenes ({len(val_scenes)}):   {val_scenes}")
-    print(f"Train samples: {len(train_data)}  |  Val samples: {len(val_data)}")
+    print(f"Test  scenes ({len(test_scenes)}):  {test_scenes}")
+    print(f"Train samples: {len(train_data)}  |  Val samples: {len(val_data)}  |  Test samples: {len(test_data)}")
 
     # ---- model ----
     processor = AutoProcessor.from_pretrained(MODEL_ID)
@@ -179,15 +257,16 @@ def main() -> None:
         MODEL_ID,
         torch_dtype=torch.bfloat16,
         device_map="auto",
+        trust_remote_code=True,
     )
-    model.enable_input_require_grads()  # required for gradient checkpointing + LoRA
+    model.enable_input_require_grads()
 
     # ---- LoRA ----
     lora_cfg = LoraConfig(
         task_type=TaskType.CAUSAL_LM,
         r=args.lora_r,
         lora_alpha=args.lora_alpha,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+        target_modules=r".*language_model\..*\.(q_proj|k_proj|v_proj|o_proj)",
         lora_dropout=0.05,
         bias="none",
     )
@@ -230,7 +309,12 @@ def main() -> None:
     trainer.train()
     trainer.save_model(args.output_dir)
     processor.save_pretrained(args.output_dir)
-    print(f"\nDone. Adapter saved to {args.output_dir}")
+    print(f"\nAdapter saved to {args.output_dir}")
+
+    # ---- benchmark eval on held-out test scenes ----
+    # Merge LoRA into base weights so inference runs at full speed
+    merged = trainer.model.merge_and_unload()
+    run_eval(merged, processor, test_data, data_root, output_dir)
 
 
 if __name__ == "__main__":

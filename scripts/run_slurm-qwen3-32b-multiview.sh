@@ -1,9 +1,9 @@
 #!/bin/bash
-# Qwen3-VL-32B-Instruct on multiview consistency dataset (32B dense BF16 ~64GB) — gb10 (128GB), batch_size=4
+# Qwen3-VL-32B-Instruct on multiview consistency dataset (32B dense BF16 ~64GB) — gb10 (128GB), batch_size=2
 #SBATCH --job-name=qwen3-32b-multiview
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=3dv
+#SBATCH --account=pmlr_jobs
 #SBATCH --gpus=gb10:1
 #SBATCH --time=24:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
@@ -13,7 +13,7 @@ REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning
 
 MODEL="${MODEL:-qwen3-32b}"
 DATASET="${DATASET:-data/multiview_consistency_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-4}"
+BATCH_SIZE="${BATCH_SIZE:-2}"
 
 module load cuda/13.0
 source ~/.bashrc

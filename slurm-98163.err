@@ -1,0 +1,169 @@
+
+# >>>>>>>>>>>>>>>>>>>>>> ERROR REPORT <<<<<<<<<<<<<<<<<<<<<<
+
+    Traceback (most recent call last):
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/exception_handler.py", line 29, in __call__
+        return func(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/cli/main.py", line 88, in main_sourced
+        result = activator.execute()
+                 ^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 213, in execute
+        response = getattr(self, self.command)()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/anaconda_anon_usage/patch.py", line 52, in _new_activate
+        return self._old_activate()
+               ^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 175, in activate
+        builder_result = self.build_activate(self.env_name_or_prefix)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 324, in build_activate
+        return self._build_activate_stack(env_name_or_prefix, False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 414, in _build_activate_stack
+        deactivate_scripts = self._get_deactivate_scripts(old_conda_prefix)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 773, in _get_deactivate_scripts
+        for entry in os.scandir(join(prefix, "etc", "conda", "deactivate.d"))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "<frozen posixpath>", line 76, in join
+    TypeError: expected str, bytes or os.PathLike object, not NoneType
+
+`$ /cluster/courses/cil/envs/bin/conda shell.posix activate base`
+
+  environment variables:
+                 CIO_TEST=<not set>
+        CONDA_DEFAULT_ENV=base
+                CONDA_EXE=/cluster/courses/cil/envs/bin/conda
+    CONDA_PROMPT_MODIFIER=(base)
+         CONDA_PYTHON_EXE=/cluster/courses/cil/envs/bin/python
+               CONDA_ROOT=/cluster/courses/cil/envs
+              CONDA_SHLVL=1
+           CURL_CA_BUNDLE=<not set>
+          LD_LIBRARY_PATH=
+               LD_PRELOAD=<not set>
+               MODULEPATH=/etc/environment-modules/modules:/cluster/modules
+                     PATH=/cluster/courses/cil/envs/bin:/cluster/courses/cil/envs/condabin:/home
+                          /cdeubel/.local/bin:/home/cdeubel/bin:/cluster/data/cuda/x86_64/13.0/b
+                          in:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
+                          ames:/usr/local/games:/snap/bin
+         PYTHONNOUSERSITE=1
+       REQUESTS_CA_BUNDLE=<not set>
+            SSL_CERT_FILE=<not set>
+
+     active environment : None
+            shell level : 1
+       user config file : /home/cdeubel/.condarc
+ populated config files : /cluster/courses/cil/envs/.condarc
+                          /cluster/courses/cil/envs/condarc.d/anaconda-auth.yml
+          conda version : 25.11.1
+    conda-build version : not installed
+         python version : 3.11.14.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=broadwell
+                          __conda=25.11.1=0
+                          __cuda=13.3=0
+                          __glibc=2.39=0
+                          __linux=6.14.0=0
+                          __unix=0=0
+       base environment : /cluster/courses/cil/envs  (read only)
+      conda av data dir : /cluster/courses/cil/envs/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /cluster/courses/cil/envs/pkgs
+                          /home/cdeubel/.conda/pkgs
+       envs directories : /home/cdeubel/.conda/envs
+                          /cluster/courses/cil/envs/envs
+               platform : linux-64
+             user-agent : conda/25.11.1 requests/2.32.5 CPython/3.11.14 Linux/6.14.0-35-generic ubuntu/24.04.4 glibc/2.39 solver/libmamba conda-libmamba-solver/25.11.0 libmambapy/2.3.2 aau/0.7.5 c/. s/. e/.
+                UID:GID : 658861:540309
+             netrc file : /home/cdeubel/.netrc
+           offline mode : False
+
+
+An unexpected error has occurred. Conda has prepared the above report.
+If you suspect this error is being caused by a malfunctioning plugin,
+consider using the --no-plugins option to turn off plugins.
+
+Example: conda --no-plugins install <package>
+
+Alternatively, you can set the CONDA_NO_PLUGINS environment variable on
+the command line to run the command without plugins enabled.
+
+Example: CONDA_NO_PLUGINS=true conda install <package>
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1951 [00:00<?, ?it/s]Loading weights:   8%|▊         | 162/1951 [00:00<00:01, 1605.76it/s]Loading weights:  17%|█▋        | 323/1951 [00:00<00:01, 1444.23it/s]Loading weights:  24%|██▍       | 475/1951 [00:00<00:00, 1476.52it/s]Loading weights:  32%|███▏      | 624/1951 [00:00<00:00, 1471.25it/s]Loading weights:  40%|███▉      | 772/1951 [00:04<00:10, 109.06it/s] Loading weights:  44%|████▍     | 868/1951 [00:04<00:08, 129.95it/s]Loading weights:  48%|████▊     | 942/1951 [00:04<00:06, 149.73it/s]Loading weights:  51%|█████▏    | 1003/1951 [00:04<00:05, 168.14it/s]Loading weights:  54%|█████▍    | 1056/1951 [00:05<00:05, 163.83it/s]Loading weights:  56%|█████▌    | 1097/1951 [00:05<00:05, 161.74it/s]Loading weights:  58%|█████▊    | 1130/1951 [00:05<00:04, 165.42it/s]Loading weights:  59%|█████▉    | 1159/1951 [00:05<00:04, 161.52it/s]Loading weights:  61%|██████    | 1184/1951 [00:05<00:04, 156.94it/s]Loading weights:  62%|██████▏   | 1206/1951 [00:06<00:04, 165.68it/s]Loading weights:  63%|██████▎   | 1228/1951 [00:06<00:04, 157.02it/s]Loading weights:  64%|██████▍   | 1247/1951 [00:06<00:04, 162.32it/s]Loading weights:  65%|██████▍   | 1266/1951 [00:06<00:04, 156.19it/s]Loading weights:  66%|██████▌   | 1284/1951 [00:06<00:04, 151.71it/s]Loading weights:  74%|███████▍  | 1439/1951 [00:06<00:01, 457.94it/s]Loading weights:  85%|████████▍ | 1653/1951 [00:06<00:00, 859.12it/s]Loading weights:  96%|█████████▌| 1865/1951 [00:06<00:00, 1168.69it/s]Loading weights: 100%|██████████| 1951/1951 [00:06<00:00, 279.41it/s] 
+[11:09:46] INFO  Resuming — 1142 already done, fast-forwarding 1141 dataset rows.
+[11:09:47] INFO  Run 'slurm98157_action_phase_gemma4-e2b_default' | task=ActionPhaseTask | model=gemma4-e2b | prompt=default
+[11:09:49] INFO  [1] ✓  idx=1142  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='No'
+[11:09:49] INFO  [2] ✗  idx=1143  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='Yes'
+[11:09:50] INFO  [3] ✗  idx=1144  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Yes'
+[11:09:50] INFO  [4] ✗  idx=1145  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='No'
+[11:09:51] INFO  [5] ✗  idx=1146  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='No'
+[11:09:52] INFO  [6] ✗  idx=1147  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='No'
+[11:09:52] INFO  [7] ✗  idx=1148  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='No'
+[11:09:53] INFO  [8] ✗  idx=1149  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='Yes'
+[11:09:53] INFO  [9] ✗  idx=1150  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Yes'
+[11:09:54] INFO  [10] ✗  idx=1151  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='Is currently performing it'
+[11:09:54] INFO  [11] ✗  idx=1152  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='Is currently performing it'
+[11:09:54] INFO  [12] ✗  idx=1153  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='No'
+[11:09:55] INFO  [13] ✗  idx=1154  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='No'
+[11:09:55] INFO  [14] ✗  idx=1155  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='No'
+[11:09:55] INFO  [15] ✗  idx=1156  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='No'
+[11:09:55] INFO  [16] ✓  idx=1157  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='Yes'
+[11:09:56] INFO  [17] ✗  idx=1158  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='Yes'
+[11:09:57] INFO  [18] ✓  idx=1159  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='Yes'
+[11:10:00] INFO  [19] ✓  idx=1160  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='Yes'
+[11:10:01] INFO  [20] ✗  idx=1161  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Is currently performing it'
+[11:10:02] INFO  [21] ✗  idx=1162  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='Is currently performing it'
+[11:10:04] INFO  [22] ✗  idx=1163  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='No'
+[11:10:05] INFO  [23] ✗  idx=1164  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='No'
+[11:10:07] INFO  [24] ✓  idx=1165  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='No'
+[11:10:07] INFO  [25] ✗  idx=1166  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='No'
+[11:10:07] INFO  [26] ✗  idx=1167  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Yes'
+[11:10:08] INFO  [27] ✗  idx=1168  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='Yes'
+[11:10:08] INFO  [28] ✗  idx=1169  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Yes'
+[11:10:08] INFO  [29] ✗  idx=1170  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='Yes'
+[11:10:09] INFO  [30] ✗  idx=1171  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Is currently performing it'
+[11:10:10] INFO  [31] ✓  idx=1172  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='Is currently performing it'
+[11:10:10] INFO  [32] ✓  idx=1173  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='No'
+[11:10:12] INFO  [33] ✗  idx=1174  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='No'
+[11:10:15] INFO  [34] ✗  idx=1175  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='Yes'
+[11:10:15] INFO  [35] ✓  idx=1176  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='Yes'
+[11:10:15] INFO  [36] ✗  idx=1177  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='Yes'
+[11:10:16] INFO  [37] ✗  idx=1178  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Yes'
+[11:10:16] INFO  [38] ✓  idx=1179  phase_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='Is currently performing it'
+[11:10:16] INFO  [39] ✓  idx=1180  phase_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Is currently performing it'  gt='Is currently performing it'
+[11:10:17] INFO  [40] ✓  idx=1181  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='No'
+[11:10:17] INFO  [41] ✗  idx=1182  task_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='No'
+[11:10:17] INFO  [42] ✗  idx=1183  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='No'
+[11:10:18] INFO  [43] ✗  idx=1184  task_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='No'
+[11:10:18] INFO  [44] ✓  idx=1185  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='No'
+[11:10:19] INFO  [45] ✗  idx=1186  task_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='No'
+[11:10:19] INFO  [46] ✓  idx=1187  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='No'
+[11:10:20] INFO  [47] ✓  idx=1188  task_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='No'  gt='No'
+[11:10:20] INFO  [48] ✗  idx=1189  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='No'
+[11:10:20] INFO  [49] ✗  idx=1190  task_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='No'
+[11:10:21] INFO  [50] ✗  idx=1191  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Yes'
+[11:10:21] INFO  [51] ✓  idx=1192  task_success  var=B  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='Yes'
+[11:10:21] INFO  [52] ✗  idx=1193  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Yes'  gt='Cannot be determined'
+[11:10:22] INFO  [53] ✓  idx=1194  task_success  var=A  droid_pick_the_orange_thing_and_place_it_onto_the_spoon_then_pick_the_spoon_and_put_the_orange_thing_back_onto_the_take_away_food_container_9372  pred='Cannot be determined'  gt='Cannot be determined'
+[11:10:22] INFO  [54] ✗  idx=1195  action_phase_id  var=A  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='No'  gt='Yes'
+[11:10:23] INFO  [55] ✓  idx=1196  action_phase_id  var=B  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Yes'  gt='Yes'
+[11:10:27] INFO  [56] ✓  idx=1197  action_phase_id  var=A  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='No'  gt='No'
+[11:10:27] INFO  [57] ✗  idx=1198  action_phase_id  var=B  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Cannot be determined'  gt='No'
+[11:10:28] INFO  [58] ✗  idx=1199  action_phase_id  var=A  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Cannot be determined'  gt='Yes'
+[11:10:28] INFO  [59] ✗  idx=1200  action_phase_id  var=B  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Cannot be determined'  gt='Yes'
+[11:10:29] INFO  [60] ✓  idx=1201  action_phase_id  var=A  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='No'  gt='No'
+[11:10:29] INFO  [61] ✗  idx=1202  action_phase_id  var=B  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Cannot be determined'  gt='No'
+[11:10:30] INFO  [62] ✗  idx=1203  action_phase_id  var=A  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Cannot be determined'  gt='Yes'
+[11:10:30] INFO  [63] ✗  idx=1204  action_phase_id  var=B  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Cannot be determined'  gt='Yes'
+[11:10:31] INFO  [64] ✓  idx=1205  action_phase_id  var=A  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='No'  gt='No'
+[11:10:31] INFO  [65] ✗  idx=1206  action_phase_id  var=B  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Cannot be determined'  gt='No'
+[11:10:31] INFO  [66] ✓  idx=1207  action_phase_id  var=A  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='Yes'  gt='Yes'
+[11:10:32] INFO  [67] ✗  idx=1208  action_phase_id  var=B  droid_push_down_on_the_bottle__then_clean_the_table__and_then_move_the_bottle_to_the_right_12787  pred='No'  gt='Yes'

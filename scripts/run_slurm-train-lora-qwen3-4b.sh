@@ -1,9 +1,9 @@
 #!/bin/bash
-# Gemma4-E2B (5B BF16) — 5060ti (~10GB VRAM), batch_size=2
-#SBATCH --job-name=gemma4-e2b
+# LoRA fine-tune Qwen3-VL-4B-Instruct on action_phase_dataset — 5060ti (~12GB VRAM)
+#SBATCH --job-name=lora-qwen3-4b
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=cil_jobs
+#SBATCH --account=3dv
 #SBATCH --gpus=5060ti:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
@@ -11,46 +11,45 @@
 
 REPO=/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics
 
-MODEL="${MODEL:-gemma4-e2b}"
 DATASET="${DATASET:-data/action_phase_dataset.jsonl}"
-BATCH_SIZE="${BATCH_SIZE:-2}"
+SEED="${SEED:-42}"
+OUTPUT_DIR="${OUTPUT_DIR:-outputs/lora-qwen3-vl-4b}"
+N_TRAIN_SCENES="${N_TRAIN_SCENES:-20}"
+N_VAL_SCENES="${N_VAL_SCENES:-7}"
+EPOCHS="${EPOCHS:-3}"
 
 module load cuda/13.0
 source ~/.bashrc   # sets HF_HOME, TRANSFORMERS_CACHE, etc.
+export LD_LIBRARY_PATH=""
 if [ "$(uname -m)" = "aarch64" ]; then
     source "$REPO/.venv-arm64/bin/activate"
 else
     source "$REPO/.venv/bin/activate"
 fi
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export TORCH_CUDNN_V8_API_ENABLED=0
 
 echo "========================================"
-echo "Job ID  : $SLURM_JOB_ID"
-echo "Node    : $SLURM_NODELIST"
-echo "Model   : $MODEL"
-echo "Dataset : $DATASET"
+echo "Job ID     : $SLURM_JOB_ID"
+echo "Node       : $SLURM_NODELIST"
+echo "Dataset    : $DATASET"
+echo "Output dir : $OUTPUT_DIR"
+echo "Seed       : $SEED"
 echo "========================================"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
 cd "$REPO"
 
-CMD="python src/main.py \
-    --task action_phase \
-    --model $MODEL \
-    --action-phase-data $DATASET \
-    --batch-size $BATCH_SIZE"
-
-[ -n "$ACTION_PHASE_TYPE" ] && CMD="$CMD --action-phase-type $ACTION_PHASE_TYPE"
-[ -n "$RUN_ID" ]            && CMD="$CMD --run-id $RUN_ID --resume"
-[ -n "$LIMIT" ]             && CMD="$CMD --limit $LIMIT"
-[ "${COT:-0}"   = "1" ]     && CMD="$CMD --cot"
-[ "${SMOKE:-0}" = "1" ]     && CMD="$CMD --smoke"
+CMD="python scripts/train_lora.py \
+    --data $DATASET \
+    --seed $SEED \
+    --output-dir $OUTPUT_DIR \
+    --n-train-scenes $N_TRAIN_SCENES \
+    --n-val-scenes $N_VAL_SCENES \
+    --epochs $EPOCHS"
 
 echo "CMD: $CMD"
 eval $CMD
 
 echo "========================================"
 echo "Job $SLURM_JOB_ID done."
-
-[ "${CLEAN_CACHE:-1}" = "1" ] && rm -rf "$HF_HOME/hub/models--google--gemma-4-E2B-it"
-echo "HF cache after cleanup: $(du -sh $HF_HOME 2>/dev/null | cut -f1)"

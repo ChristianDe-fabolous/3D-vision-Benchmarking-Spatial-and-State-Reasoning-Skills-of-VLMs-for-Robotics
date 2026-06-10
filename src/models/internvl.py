@@ -105,7 +105,7 @@ class InternVLM(BaseVLM):
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
         self._model = AutoModel.from_pretrained(
             self.model_id,
-            torch_dtype=dtype,
+            dtype=dtype,
             trust_remote_code=True,
         ).eval().to("cuda")
         self._tokenizer = AutoTokenizer.from_pretrained(
