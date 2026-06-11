@@ -83,6 +83,46 @@ def scene_analysis(results: List[dict], min_questions: int, outlier_std: float) 
     }
 
 
+def scene_ranking(results: List[dict], min_questions: int) -> dict:
+    """Per-scene accuracy for ALL included scenes, ranked hardest to easiest."""
+    buckets: Dict[str, List[bool]] = defaultdict(list)
+    task_descs: Dict[str, str] = {}
+    for r in results:
+        scene_id = r.get("scene_id")
+        if scene_id:
+            buckets[scene_id].append(r["correct"])
+            if scene_id not in task_descs and r.get("task_desc"):
+                task_descs[scene_id] = r["task_desc"]
+
+    total_scenes = len(buckets)
+    excluded_scenes = {s for s, v in buckets.items() if len(v) < min_questions}
+    excluded_questions = sum(len(buckets[s]) for s in excluded_scenes)
+    included = {s: v for s, v in buckets.items() if s not in excluded_scenes}
+
+    ranking = sorted(
+        [
+            {
+                "scene_id": s,
+                "task_desc": task_descs.get(s, ""),
+                "accuracy": round(sum(v) / len(v), 3),
+                "correct": sum(v),
+                "n": len(v),
+            }
+            for s, v in included.items()
+        ],
+        key=lambda x: x["accuracy"],
+    )
+
+    return {
+        "total_scenes": total_scenes,
+        "excluded_scenes": len(excluded_scenes),
+        "excluded_questions": excluded_questions,
+        "included_scenes": len(included),
+        "min_questions": min_questions,
+        "ranking": ranking,
+    }
+
+
 def question_type_analysis(results: List[dict], outlier_std: float) -> dict:
     """Per-question-type accuracy with outlier flagging."""
     buckets: Dict[str, List[bool]] = defaultdict(list)

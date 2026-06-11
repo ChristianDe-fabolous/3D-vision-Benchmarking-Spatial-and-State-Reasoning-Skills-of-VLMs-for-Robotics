@@ -1,0 +1,3 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 14 files:   0%|          | 0/14 [00:00<?, ?it/s]Fetching 14 files:   7%|▋         | 1/14 [00:46<10:05, 46.60s/it]Fetching 14 files:  14%|█▍        | 2/14 [00:51<04:26, 22.22s/it]Fetching 14 files:  21%|██▏       | 3/14 [00:55<02:30, 13.70s/it]Fetching 14 files:  64%|██████▍   | 9/14 [01:20<00:30,  6.19s/it]Fetching 14 files:  71%|███████▏  | 10/14 [01:22<00:21,  5.39s/it]Fetching 14 files:  79%|███████▊  | 11/14 [01:24<00:14,  4.89s/it]

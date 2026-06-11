@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/scripts/train_lora_qwen3_8b.py", line 21, in <module>
+    from peft import LoraConfig, TaskType, get_peft_model
+ModuleNotFoundError: No module named 'peft'

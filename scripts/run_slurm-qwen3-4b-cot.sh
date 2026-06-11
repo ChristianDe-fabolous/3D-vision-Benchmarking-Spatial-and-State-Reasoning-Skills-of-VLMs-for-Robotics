@@ -3,7 +3,7 @@
 #SBATCH --job-name=qwen3-4b-cot
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
-#SBATCH --account=3dv
+#SBATCH --account=pmlr_jobs
 #SBATCH --gpus=gb10:1
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch

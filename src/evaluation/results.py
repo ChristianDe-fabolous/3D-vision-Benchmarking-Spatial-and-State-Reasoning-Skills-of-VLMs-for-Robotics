@@ -21,6 +21,7 @@ from evaluation.metrics import (
     cntbd_always_correct_baseline,
     question_type_analysis,
     scene_analysis,
+    scene_ranking,
     summarize,
     yes_no_random_baseline_analysis,
 )
@@ -70,6 +71,19 @@ def save_type_issues(output_dir: Path, results: List[dict]) -> None:
 
     if multi or untyped:
         print(f"  Type issues: {len(multi)} multi-type, {len(untyped)} untyped — see question_type_issues.txt")
+
+
+def save_scene_ranking(output_dir: Path, results: List[dict]) -> None:
+    """Write scene_ranking.json — every scene ordered by accuracy (hardest first)."""
+    ranking = scene_ranking(results, SCENE_MIN_QUESTIONS)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with open(output_dir / "scene_ranking.json", "w") as f:
+        json.dump(ranking, f, indent=2)
+    print(
+        f"Scene ranking: {ranking['included_scenes']}/{ranking['total_scenes']} scenes ranked "
+        f"({ranking['excluded_scenes']} excluded, <{SCENE_MIN_QUESTIONS} questions) "
+        f"-> {output_dir / 'scene_ranking.json'}"
+    )
 
 
 def save_summary(output_dir: Path, results: List[dict], analyse_categories: bool = False) -> None:

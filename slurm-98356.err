@@ -1,0 +1,148 @@
+
+# >>>>>>>>>>>>>>>>>>>>>> ERROR REPORT <<<<<<<<<<<<<<<<<<<<<<
+
+    Traceback (most recent call last):
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/exception_handler.py", line 29, in __call__
+        return func(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/cli/main.py", line 88, in main_sourced
+        result = activator.execute()
+                 ^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 213, in execute
+        response = getattr(self, self.command)()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/anaconda_anon_usage/patch.py", line 52, in _new_activate
+        return self._old_activate()
+               ^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 175, in activate
+        builder_result = self.build_activate(self.env_name_or_prefix)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 324, in build_activate
+        return self._build_activate_stack(env_name_or_prefix, False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 414, in _build_activate_stack
+        deactivate_scripts = self._get_deactivate_scripts(old_conda_prefix)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 773, in _get_deactivate_scripts
+        for entry in os.scandir(join(prefix, "etc", "conda", "deactivate.d"))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "<frozen posixpath>", line 76, in join
+    TypeError: expected str, bytes or os.PathLike object, not NoneType
+
+`$ /cluster/courses/cil/envs/bin/conda shell.posix activate base`
+
+  environment variables:
+                 CIO_TEST=<not set>
+        CONDA_DEFAULT_ENV=base
+                CONDA_EXE=/cluster/courses/cil/envs/bin/conda
+    CONDA_PROMPT_MODIFIER=(base)
+         CONDA_PYTHON_EXE=/cluster/courses/cil/envs/bin/python
+               CONDA_ROOT=/cluster/courses/cil/envs
+              CONDA_SHLVL=1
+           CURL_CA_BUNDLE=<not set>
+          LD_LIBRARY_PATH=
+               LD_PRELOAD=<not set>
+               MODULEPATH=/etc/environment-modules/modules:/cluster/modules
+                     PATH=/cluster/courses/cil/envs/bin:/cluster/courses/cil/envs/condabin:/home
+                          /cdeubel/.local/bin:/home/cdeubel/bin:/cluster/data/cuda/x86_64/13.0/b
+                          in:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
+                          ames:/usr/local/games:/snap/bin
+         PYTHONNOUSERSITE=1
+       REQUESTS_CA_BUNDLE=<not set>
+            SSL_CERT_FILE=<not set>
+
+     active environment : None
+            shell level : 1
+       user config file : /home/cdeubel/.condarc
+ populated config files : /cluster/courses/cil/envs/.condarc
+                          /cluster/courses/cil/envs/condarc.d/anaconda-auth.yml
+          conda version : 25.11.1
+    conda-build version : not installed
+         python version : 3.11.14.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=broadwell
+                          __conda=25.11.1=0
+                          __cuda=13.3=0
+                          __glibc=2.39=0
+                          __linux=6.14.0=0
+                          __unix=0=0
+       base environment : /cluster/courses/cil/envs  (read only)
+      conda av data dir : /cluster/courses/cil/envs/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /cluster/courses/cil/envs/pkgs
+                          /home/cdeubel/.conda/pkgs
+       envs directories : /home/cdeubel/.conda/envs
+                          /cluster/courses/cil/envs/envs
+               platform : linux-64
+             user-agent : conda/25.11.1 requests/2.32.5 CPython/3.11.14 Linux/6.14.0-35-generic ubuntu/24.04.4 glibc/2.39 solver/libmamba conda-libmamba-solver/25.11.0 libmambapy/2.3.2 aau/0.7.5 c/. s/. e/.
+                UID:GID : 658861:540309
+             netrc file : /home/cdeubel/.netrc
+           offline mode : False
+
+
+An unexpected error has occurred. Conda has prepared the above report.
+If you suspect this error is being caused by a malfunctioning plugin,
+consider using the --no-plugins option to turn off plugins.
+
+Example: conda --no-plugins install <package>
+
+Alternatively, you can set the CONDA_NO_PLUGINS environment variable on
+the command line to run the command without plugins enabled.
+
+Example: CONDA_NO_PLUGINS=true conda install <package>
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/713 [00:00<?, ?it/s]Loading weights:   0%|          | 1/713 [00:01<11:59,  1.01s/it]Loading weights:   1%|          | 5/713 [00:01<02:24,  4.90it/s]Loading weights:   2%|▏         | 12/713 [00:01<01:01, 11.41it/s]Loading weights:   2%|▏         | 16/713 [00:01<00:51, 13.52it/s]Loading weights:   3%|▎         | 21/713 [00:02<00:51, 13.54it/s]Loading weights:   4%|▍         | 31/713 [00:02<00:31, 21.54it/s]Loading weights:   5%|▌         | 37/713 [00:02<00:25, 26.64it/s]Loading weights:   6%|▌         | 41/713 [00:02<00:29, 22.49it/s]Loading weights:   6%|▌         | 44/713 [00:02<00:36, 18.27it/s]Loading weights:   7%|▋         | 48/713 [00:03<00:35, 18.70it/s]Loading weights:   8%|▊         | 54/713 [00:03<00:28, 23.35it/s]Loading weights:   8%|▊         | 60/713 [00:03<00:27, 24.17it/s]Loading weights:   9%|▉         | 66/713 [00:03<00:23, 27.42it/s]Loading weights:  10%|▉         | 70/713 [00:03<00:23, 27.82it/s]Loading weights:  10%|█         | 74/713 [00:03<00:23, 27.52it/s]Loading weights:  11%|█         | 77/713 [00:04<00:26, 23.82it/s]Loading weights:  11%|█▏        | 81/713 [00:04<00:31, 20.22it/s]Loading weights:  13%|█▎        | 90/713 [00:04<00:25, 24.69it/s]Loading weights:  13%|█▎        | 93/713 [00:04<00:27, 22.66it/s]Loading weights:  13%|█▎        | 96/713 [00:05<00:27, 22.22it/s]Loading weights:  15%|█▍        | 104/713 [00:05<00:20, 30.03it/s]Loading weights:  15%|█▌        | 109/713 [00:05<00:23, 26.07it/s]Loading weights:  16%|█▌        | 114/713 [00:05<00:20, 29.78it/s]Loading weights:  17%|█▋        | 118/713 [00:05<00:20, 29.73it/s]Loading weights:  17%|█▋        | 122/713 [00:05<00:21, 26.97it/s]Loading weights:  18%|█▊        | 126/713 [00:06<00:24, 24.45it/s]Loading weights:  19%|█▊        | 132/713 [00:06<00:20, 28.91it/s]Loading weights:  19%|█▉        | 136/713 [00:06<00:20, 28.37it/s]Loading weights:  19%|█▉        | 139/713 [00:06<00:24, 23.75it/s]Loading weights:  20%|█▉        | 142/713 [00:06<00:27, 20.93it/s]Loading weights:  21%|██        | 147/713 [00:07<00:27, 20.44it/s]Loading weights:  21%|██▏       | 153/713 [00:07<00:25, 22.01it/s]Loading weights:  22%|██▏       | 159/713 [00:07<00:22, 24.62it/s]Loading weights:  23%|██▎       | 164/713 [00:07<00:21, 25.91it/s]Loading weights:  24%|██▍       | 170/713 [00:07<00:19, 28.31it/s]Loading weights:  25%|██▍       | 175/713 [00:07<00:17, 31.11it/s]Loading weights:  25%|██▌       | 179/713 [00:08<00:26, 20.34it/s]Loading weights:  26%|██▌       | 182/713 [00:08<00:25, 20.78it/s]Loading weights:  26%|██▋       | 188/713 [00:08<00:19, 26.85it/s]Loading weights:  27%|██▋       | 192/713 [00:08<00:18, 28.90it/s]Loading weights:  28%|██▊       | 198/713 [00:08<00:15, 32.62it/s]Loading weights:  28%|██▊       | 202/713 [00:08<00:17, 29.15it/s]Loading weights:  29%|██▉       | 206/713 [00:09<00:17, 29.01it/s]Loading weights:  30%|██▉       | 211/713 [00:09<00:16, 30.02it/s]Loading weights:  30%|███       | 215/713 [00:09<00:17, 29.18it/s]Loading weights:  31%|███       | 221/713 [00:09<00:15, 31.00it/s]Loading weights:  32%|███▏      | 225/713 [00:09<00:17, 28.02it/s]Loading weights:  32%|███▏      | 229/713 [00:09<00:18, 26.46it/s]Loading weights:  33%|███▎      | 236/713 [00:10<00:13, 34.69it/s]Loading weights:  34%|███▍      | 242/713 [00:10<00:15, 31.34it/s]Loading weights:  35%|███▍      | 247/713 [00:10<00:14, 32.60it/s]Loading weights:  35%|███▌      | 252/713 [00:10<00:15, 29.39it/s]Loading weights:  36%|███▌      | 257/713 [00:10<00:17, 25.80it/s]Loading weights:  37%|███▋      | 263/713 [00:11<00:16, 27.75it/s]Loading weights:  38%|███▊      | 269/713 [00:11<00:16, 27.09it/s]Loading weights:  38%|███▊      | 272/713 [00:11<00:17, 25.14it/s]Loading weights:  39%|███▉      | 279/713 [00:11<00:18, 22.98it/s]Loading weights:  40%|████      | 286/713 [00:11<00:14, 28.78it/s]Loading weights:  41%|████      | 290/713 [00:12<00:14, 29.44it/s]Loading weights:  41%|████      | 294/713 [00:12<00:15, 27.24it/s]Loading weights:  42%|████▏     | 299/713 [00:12<00:14, 28.95it/s]Loading weights:  42%|████▏     | 303/713 [00:12<00:17, 23.07it/s]Loading weights:  43%|████▎     | 308/713 [00:12<00:18, 21.71it/s]Loading weights:  44%|████▍     | 314/713 [00:13<00:14, 27.47it/s]Loading weights:  45%|████▍     | 318/713 [00:13<00:15, 25.09it/s]Loading weights:  45%|████▌     | 324/713 [00:13<00:14, 26.01it/s]Loading weights:  46%|████▌     | 328/713 [00:13<00:13, 28.04it/s]Loading weights:  47%|████▋     | 332/713 [00:13<00:12, 29.47it/s]Loading weights:  47%|████▋     | 336/713 [00:13<00:13, 27.40it/s]Loading weights:  48%|████▊     | 341/713 [00:14<00:18, 20.55it/s]Loading weights:  49%|████▊     | 347/713 [00:14<00:14, 25.66it/s]Loading weights:  49%|████▉     | 351/713 [00:14<00:15, 22.96it/s]Loading weights:  50%|████▉     | 355/713 [00:14<00:14, 23.87it/s]Loading weights:  50%|█████     | 358/713 [00:14<00:15, 23.01it/s]Loading weights:  51%|█████     | 361/713 [00:15<00:16, 20.92it/s]Loading weights:  51%|█████▏    | 367/713 [00:15<00:14, 23.72it/s]Loading weights:  52%|█████▏    | 373/713 [00:15<00:11, 29.55it/s]Loading weights:  53%|█████▎    | 377/713 [00:15<00:10, 31.05it/s]Loading weights:  53%|█████▎    | 381/713 [00:15<00:10, 32.35it/s]Loading weights:  54%|█████▍    | 385/713 [00:15<00:11, 29.47it/s]Loading weights:  55%|█████▍    | 389/713 [00:16<00:14, 22.30it/s]Loading weights:  56%|█████▋    | 402/713 [00:16<00:07, 41.58it/s]Loading weights:  59%|█████▉    | 419/713 [00:16<00:04, 67.65it/s]Loading weights:  61%|██████    | 435/713 [00:16<00:03, 84.32it/s]Loading weights:  64%|██████▍   | 457/713 [00:16<00:02, 113.37it/s]Loading weights:  68%|██████▊   | 484/713 [00:16<00:01, 151.59it/s]Loading weights:  70%|███████   | 502/713 [00:16<00:01, 154.90it/s]Loading weights:  74%|███████▍  | 529/713 [00:16<00:01, 177.77it/s]Loading weights:  79%|███████▉  | 562/713 [00:16<00:00, 217.83it/s]Loading weights:  83%|████████▎ | 590/713 [00:17<00:00, 220.97it/s]Loading weights:  86%|████████▋ | 616/713 [00:17<00:00, 225.53it/s]Loading weights:  90%|█████████ | 643/713 [00:17<00:00, 209.76it/s]Loading weights:  95%|█████████▍| 675/713 [00:17<00:00, 237.99it/s]Loading weights:  98%|█████████▊| 700/713 [00:17<00:00, 135.40it/s]Loading weights: 100%|██████████| 713/713 [00:17<00:00, 39.62it/s] 
+[23:26:59] INFO  Run 'slurm98356_action_phase_qwen3-4b_default_cot' | task=ActionPhaseTask | model=qwen3-4b | prompt=default
+[23:27:27] INFO  [1] ✓  idx=0  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:27:27] INFO  [2] ✓  idx=1  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:27:57] INFO  [3] ✗  idx=2  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:27:57] INFO  [4] ✗  idx=3  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:28:19] INFO  [5] ✓  idx=4  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:28:19] INFO  [6] ✓  idx=5  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:28:44] INFO  [7] ✗  idx=6  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:28:44] INFO  [8] ✗  idx=7  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:29:03] INFO  [9] ✓  idx=8  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:29:03] INFO  [10] ✓  idx=9  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:29:29] INFO  [11] ✗  idx=10  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:29:29] INFO  [12] ✗  idx=11  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:29:49] INFO  [13] ✗  idx=12  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[23:29:49] INFO  [14] ✗  idx=13  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[23:30:23] INFO  [15] ✗  idx=14  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:30:23] INFO  [16] ✗  idx=15  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:30:52] INFO  [17] ✗  idx=16  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[23:30:52] INFO  [18] ✗  idx=17  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[23:31:14] INFO  [19] ✗  idx=18  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:31:14] INFO  [20] ✗  idx=19  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:31:40] INFO  [21] ✗  idx=20  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Cannot be determined'
+[23:31:40] INFO  [22] ✗  idx=21  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[23:32:00] INFO  [23] ✗  idx=22  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Cannot be determined'
+[23:32:00] INFO  [24] ✗  idx=23  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[23:32:30] INFO  [25] ✗  idx=24  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[23:32:30] INFO  [26] ✓  idx=25  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:32:50] INFO  [27] ✓  idx=26  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:32:50] INFO  [28] ✗  idx=27  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:33:13] INFO  [29] ✗  idx=28  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:33:13] INFO  [30] ✓  idx=29  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:33:38] INFO  [31] ✓  idx=30  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:33:38] INFO  [32] ✗  idx=31  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:33:59] INFO  [33] ✗  idx=32  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:33:59] INFO  [34] ✓  idx=33  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:34:18] INFO  [35] ✓  idx=34  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:34:18] INFO  [36] ✗  idx=35  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:34:40] INFO  [37] ✗  idx=36  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:34:40] INFO  [38] ✓  idx=37  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:34:57] INFO  [39] ✓  idx=38  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:34:57] INFO  [40] ✗  idx=39  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:35:19] INFO  [41] ✗  idx=40  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:35:19] INFO  [42] ✓  idx=41  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:35:39] INFO  [43] ✓  idx=42  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:35:39] INFO  [44] ✗  idx=43  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:35:59] INFO  [45] ✗  idx=44  progress  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:35:59] INFO  [46] ✗  idx=45  progress  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Cannot be determined'
+[2026-06-10T23:36:05.170] error: *** JOB 98356 ON studgpu-node09 CANCELLED AT 2026-06-10T23:36:05 DUE to SIGNAL Terminated ***

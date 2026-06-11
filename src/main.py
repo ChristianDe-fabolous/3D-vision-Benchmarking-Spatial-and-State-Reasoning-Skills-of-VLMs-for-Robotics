@@ -16,6 +16,7 @@ Examples:
 import argparse
 import os
 import sys
+import traceback
 from datetime import datetime
 from pathlib import Path
 
@@ -40,6 +41,7 @@ from config import (
     MODEL_PHI4_VISION,
     MODEL_NVLM_12B,
     MODEL_INTERNVL3_14B,
+    COT_MAX_NEW_TOKENS,
     OUTPUT_DIR,
     PROMPT_DEFAULT,
     PROMPT_PAPER,
@@ -216,17 +218,19 @@ def build_task(args):
 
 
 def build_model(args):
+    is_cot = args.cot or args.prompt == PROMPT_PAPER_COT
+    kwargs = {"max_new_tokens": COT_MAX_NEW_TOKENS} if is_cot else {}
     if args.model in (MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
                       MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING, MODEL_QWEN3_32B):
-        return QwenVLM(model_key=args.model)
+        return QwenVLM(model_key=args.model, **kwargs)
     if args.model in (MODEL_GEMMA4_E2B, MODEL_GEMMA4_E4B, MODEL_GEMMA4_26B, MODEL_GEMMA4_31B):
-        return Gemma4VLM(model_key=args.model)
+        return Gemma4VLM(model_key=args.model, **kwargs)
     if args.model in (MODEL_PHI35_VISION, MODEL_PHI4_VISION):
-        return PhiVLM(model_key=args.model)
+        return PhiVLM(model_key=args.model, **kwargs)
     if args.model in (MODEL_NVLM_12B,):
-        return NemotronVLM(model_key=args.model)
+        return NemotronVLM(model_key=args.model, **kwargs)
     if args.model in (MODEL_INTERNVL3_14B,):
-        return InternVLM(model_key=args.model)
+        return InternVLM(model_key=args.model, **kwargs)
     raise ValueError(f"Unknown model: {args.model}")
 
 
@@ -286,7 +290,13 @@ def main():
 
     task = build_task(args)
     model = build_model(args)
-    model.load()
+    try:
+        model.load()
+    except BaseException:
+        traceback.print_exc()
+        sys.stdout.flush()
+        sys.stderr.flush()
+        raise
     if args.test_pipeline and not args.smoke:
         model.system_prompt = SMOKE_SYSTEM_PROMPT
 

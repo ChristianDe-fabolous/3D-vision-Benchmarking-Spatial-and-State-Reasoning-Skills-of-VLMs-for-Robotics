@@ -36,14 +36,18 @@ class QwenVLM(BaseVLM):
     def load(self) -> None:
         if platform.machine() == "aarch64":
             torch.backends.cudnn.enabled = False
-        logger.info(f"Loading {self.model_id} ...")
+        print(f"[qwen] Loading {self.model_id} ...", flush=True)
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        print(f"[qwen] dtype={dtype}, calling from_pretrained ...", flush=True)
         self._model = AutoModelForImageTextToText.from_pretrained(
             self.model_id, torch_dtype=dtype, device_map="auto", trust_remote_code=True,
         )
+        print("[qwen] from_pretrained done, calling .eval() ...", flush=True)
         self._model.eval()
+        print("[qwen] loading processor ...", flush=True)
         self._processor = AutoProcessor.from_pretrained(self.model_id)
         self._processor.tokenizer.padding_side = "left"
+        print("[qwen] Model loaded.", flush=True)
         logger.info("Model loaded.")
 
     def _build_messages(self, images: list[Image.Image], prompt: str) -> list[dict]:

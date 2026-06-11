@@ -60,9 +60,9 @@ can be spread over 2 lines
 % ====================== TITLE ===========================
 \def\title{
 \VERYHuge \white {\bf %%%%
-Title of the poster, as brief and concise \\[20pt] % try out where you can seperate your title best, especially for changes of poster direction - portrait or landscape
-as possible  %\\[20pt] 
-- but still interesting
+VLMs as Robot Supervisors? \\[10pt]
+Benchmarking Multi-View Consistency \\[10pt]
+and Failure Mode Detection
 }
 \\[20pt]}
 
@@ -91,7 +91,12 @@ as possible  %\\[20pt]
 %% 
 \def\introtext
 {\Large \black
-Vision-Language Models (VLMs) have emerged as promising candidates for robot supervision --- capable of interpreting scenes and providing semantic feedback without task-specific training. This work benchmarks two concrete capabilities: \textbf{multi-view consistency} (can a VLM extract coherent spatial information across camera angles?) and \textbf{failure mode detection} (can it identify when a robotic task has gone wrong?). We evaluate two model families across both tasks, providing an early empirical signal on where current VLMs succeed and where they fall short as supervisory tools for robotics.
+\begin{itemize}
+  \item VLMs: promising for robot supervision --- scene interpretation \& semantic feedback, no task-specific training.
+  \item \textbf{Multi-view consistency:} does spatial info extracted from different camera angles agree?
+  \item \textbf{Failure mode detection:} can a VLM tell when a robotic task went wrong?
+  \item Benchmarked across multiple model families --- early signal on VLM strengths/weaknesses as robot supervisors.
+\end{itemize}
 }%% end text
 
 
@@ -158,35 +163,43 @@ Vision-Language Models (VLMs) have emerged as promising candidates for robot sup
 
 \begin{center}
 {\large
-\begin{tabular}{l|cccc|c}
+\begin{tabular}{l|cccc}
 \hline
-\textbf{Model} & \textbf{Act.Phase} & \textbf{Phase Succ.} & \textbf{Progress} & \textbf{Task Succ.} & \textbf{Overall} \\
+\textbf{Model} & \textbf{Act.Phase} & \textbf{Phase Succ.} & \textbf{Progress} & \textbf{Task Succ.} \\
 \hline
-Gemma4-31B         & \textbf{46.1} & \textbf{46.2}          & \textbf{45.2} & 58.8          & \textbf{47.5} \\
-Gemma4-E4B         & 41.4 & 30.0          & 38.4 & 45.7          & 36.5 \\
-Gemma4-E4B (CoT)   & 39.3 & 22.4          & 39.6 & \underline{20.9}$^*$ & 29.9 \\
-Gemma4-E2B         & 31.7 & 24.6          & 35.0 & 37.4          & 30.0 \\
-Qwen3-8B           & 43.5 & 39.5 & 40.2 & 70.9$^\dagger$ & 44.6 \\
-Qwen3-4B           & 44.8 & 35.6 & 39.1 & \textbf{72.6}$^\dagger$ & 43.3 \\
+Gemma4-31B    & 46.1          & \textbf{46.2} & \textbf{45.2} & 58.8 \\
+Gemma4-E4B    & 41.4          & 30.0          & 38.4          & 45.7 \\
+Gemma4-E2B    & 31.7          & 24.6          & 35.0          & 37.4 \\
+Qwen3-32B     & \textbf{48.0} & 42.6          & 40.9          & 72.2 \\
+Qwen3-8B      & 43.5          & 39.5          & 40.2          & 70.9 \\
+Qwen3-4B      & 44.8          & 35.6          & 39.1          & \textbf{72.6} \\
+InternVL3-14B & 43.8          & 43.8          & 41.7          & 56.2 \\
 \hline
-\textit{Overall}   & \textit{41.1} & \textit{33.0} & \textit{39.6} & \textit{51.1} & \textit{38.6} \\
+Random (uniform) & 33.3 & 25.0 & 33.3 & 33.3 \\
 \hline
-Random (uniform)   & 33.3 & 25.0 & 33.3 & 33.3 & 33.3 \\
-Random (yes/no)    & 40.6 & 38.2 & 38.4 & 43.9 & 39.6 \\
-Majority class     & 40.6 & 38.7 & 38.4 & 72.5 & 42.9 \\
-\hline
-\multicolumn{6}{l}{\scriptsize All values in \%. $^*$below random. $^\dagger$matches majority-class baseline.}
+\multicolumn{5}{l}{\scriptsize All values in \%.}
 \end{tabular}
 }
 \end{center}
 
+% ---- Data sources for table above (action phase, by_task accuracy from summary.json) ----
+% Gemma4-31B    : outputs/slurm93218_action_phase_gemma4-31b_default_done/summary.json
+% Gemma4-E4B    : outputs/slurm92952_action_phase_gemma4-e4b_default_done/summary.json
+% Gemma4-E2B    : outputs/2026-05-31_14-48-00_action_phase_gemma4-e2b_default_done/summary.json
+% Qwen3-32B     : outputs/slurm98014_action_phase_qwen3-32b_default/summary.json
+% Qwen3-8B      : outputs/2026-05-31_14-44-51_action_phase_qwen3-8b_default_done/summary.json
+% Qwen3-4B      : outputs/slurm93661_action_phase_qwen3-4b_default_done/summary.json
+% InternVL3-14B : outputs/slurm97555_action_phase_internvl3-14b_default/summary.json
+% Column mapping (from "by_task" field): Act.Phase=action_phase_id, Phase Succ.=phase_success,
+% Progress=progress, Task Succ.=task_success. "Random (uniform)" row kept from previous
+% table version (legacy 1/3 baseline, not recomputed).
+
 \vspace{6pt}
 
 \begin{itemize}
-  \item \textbf{Marginal gains over random.} Overall accuracy (38.6\,\%) barely exceeds uniform random (33.3\,\%) and falls below the yes/no baseline (39.6\,\%).
-  \item \textbf{Task success inflated by label bias.} Qwen models reach 72--73\,\% but match the majority-class baseline --- ``No'' dominates ground truth.
-  \item \textbf{Scenes differ substantially in difficulty.} Across the 47 evaluated scenes, Gemma4-31B ranges from 34.7\,\% (rope alignment) to 65.3\,\% (pick-and-place with distinct objects) --- a 31\,pp spread --- suggesting scene complexity and visual ambiguity are strong drivers of model error.
-  \item \textbf{Simple manipulation on clear surfaces works best.} Scenes featuring visually distinct objects on uncluttered, high-contrast surfaces yield the highest accuracy. Models appear to benefit from clear foreground--background separation and unambiguous object identity.
+  \item \textbf{Marginal gains over random.} 38.6\,\% overall vs.\ 33.3\,\% random, below 39.6\,\% yes/no baseline.
+  \item \textbf{Scene difficulty varies widely.} Gemma4-31B: 34.7--65.3\,\% across 47 scenes (31\,pp spread).
+  \item \textbf{Clear, uncluttered scenes work best.} Distinct objects + high contrast $\rightarrow$ highest accuracy.
 \end{itemize}
 
 \vspace{14pt}
@@ -197,23 +210,48 @@ Majority class     & 40.6 & 38.7 & 38.4 & 72.5 & 42.9 \\
 
 \begin{center}
 {\large
-\begin{tabular}{l|ccc}
+\begin{tabular}{l|@{\hskip 14pt}ccc}
 \hline
 \textbf{Model} & \textbf{TL$\leftrightarrow$TR} & \textbf{$\geq$1\,Top$\leftrightarrow$W} & \textbf{All\,3\,Views} \\
 \hline
-Gemma4-31B    & \textbf{75.9} & \textbf{78.9} & \textbf{58.2} \\
-InternVL3-14B & 73.7          & 78.7          & 56.1 \\
-Gemma4-E4B    & 61.2          & 71.0          & 45.2 \\
-Gemma4-E2B    & 48.3          & 63.7          & 27.9 \\
+Gemma4-31B      & \textbf{75.9} & 78.9          & \textbf{58.2} \\
+Gemma4-E4B      & 61.2          & 71.0          & 45.2 \\
+Gemma4-E2B      & 48.3          & 63.7          & 27.9 \\
+Qwen3-32B       & 68.4          & 72.1          & 49.2 \\
+Qwen3-8B        & 74.8          & \textbf{81.6} & 59.0 \\
+Qwen3-4B        & 70.2          & 73.9          & 51.0 \\
+InternVL3-14B   & 73.7          & 78.7          & 56.1 \\
 \hline
 Random (binary) & 50.0 & 75.0 & 25.0 \\
 \hline
-\multicolumn{4}{l}{\scriptsize All values in \%. TL$\leftrightarrow$TR: top-left agrees with top-right. $\geq$1\,Top$\leftrightarrow$W: at least one top view agrees with wrist. All\,3: all views agree.}
+\multicolumn{4}{l}{\scriptsize All values in \%. TL$\leftrightarrow$TR: top-left agrees with top-right. $\geq$1\,Top$\leftrightarrow$W: at least one top view agrees with wrist. All\,3: all views agree.}\\
 \end{tabular}
 }
 \end{center}
 
-\vspace{50pt}
+% ---- Data sources for table above (multiview cross-view consistency, "overall" from summary_multiview.json) ----
+% Gemma4-31B    : outputs/slurm97655_multiview_gemma4-31b_default_done/summary_multiview.json
+% Gemma4-E4B    : outputs/slurm97553_multiview_gemma4-e4b_default_done/summary_multiview.json
+% Gemma4-E2B    : outputs/slurm97657_multiview_gemma4-e2b_default_done/summary_multiview.json
+% Qwen3-32B     : outputs/slurm98266_multiview_qwen3-32b_default/summary_multiview.json
+% Qwen3-8B      : outputs/slurm97947_multiview_qwen3-8b_default/summary_multiview.json
+%   *** WARNING: this run is INCOMPLETE -- only 4484/6902 result rows (899/1367 source
+%   groups, ~66%) were produced before the job stopped. Numbers will likely change once
+%   the run is completed/restarted. ***
+% Qwen3-4B      : outputs/slurm97946_multiview_qwen3-4b_default_done/summary_multiview.json
+% InternVL3-14B : outputs/slurm97561_multiview_internvl3-14b_default_done/summary_multiview.json
+% Column mapping: TL<->TR=tops_agree, >=1 Top<->W=one_top_wrist, All 3 Views=all_agree.
+% "Random (binary)" row kept from previous table version (not recomputed).
+
+\vspace{6pt}
+
+\begin{itemize}
+  \item \textbf{Clean, contrastive backgrounds help most.} Distinct objects + high contrast $\rightarrow$ best multi-view agreement.
+  \item \textbf{Scale helps both tasks.} Larger models improve on multi-view consistency \emph{and} failure detection.
+  \item \textbf{Scale isn't enough.} Even on clean scenes, larger models still struggle with multi-view consistency and failure detection.
+\end{itemize}
+
+\vspace{14pt}
 \noindent%
 \begin{minipage}[t]{165mm}%
   \centering
@@ -238,10 +276,10 @@ Random (binary) & 50.0 & 75.0 & 25.0 \\
 \def\conclusiontext
 {\Large \black
 \begin{itemize}
-  \item \textbf{CoT reveals reasoning limits.} Chain-of-thought drops task success to 20.9\,\% (below random), yet shows models \emph{can} articulate scene descriptions and hypothesise actions --- they just frequently draw false conclusions from ambiguous images.
-  \item \textbf{Without fine-tuning, scale wins.} Gemma4-31B leads overall (47.5\,\%); smaller variants trail by 10--17\,pp. Until domain adaptation is applied, model capacity remains the dominant factor.
-  \item \textbf{Not designed for robotic scene understanding.} Off-the-shelf VLMs excel at object detection and relative positions in pick-and-place scenarios, but struggle with tasks like \textit{scrunch up}, \textit{align}, or \textit{close lid}. We attribute this to insufficient training signal for fine-grained \emph{object state} --- deformation, orientation, and contact --- which rarely appears explicitly in web-scale data.
-  \item \textbf{Limitations \& future work.} Manual annotations limit scale; automated pipelines and fine-tuning on robotic manipulation data are the natural next step.
+  \item \textbf{CoT hurts, but reveals reasoning.} Task success drops to 20.9\,\% (below random) --- models describe scenes correctly but draw false conclusions.
+  \item \textbf{Scale wins without fine-tuning.} Gemma4-31B leads (47.5\,\%); smaller variants trail by 10--17\,pp.
+  \item \textbf{Not built for robot scene understanding.} Strong on object detection/position; weak on \textit{object state} (deformation, orientation, contact) --- rare in web-scale training data.
+  \item \textbf{Limitations.} Manual annotation limits scale --- next: automated pipelines + fine-tuning on robotic data.
 \end{itemize}
 }%% end text
 

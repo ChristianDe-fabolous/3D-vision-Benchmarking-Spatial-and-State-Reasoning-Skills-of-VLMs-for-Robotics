@@ -1,0 +1,135 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 14 files:   0%|          | 0/14 [00:00<?, ?it/s]Fetching 14 files:   7%|▋         | 1/14 [01:17<16:48, 77.58s/it]Fetching 14 files:  14%|█▍        | 2/14 [01:19<06:37, 33.09s/it]Fetching 14 files:  64%|██████▍   | 9/14 [01:59<01:06, 13.25s/it]
+Traceback (most recent call last):
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/main.py", line 291, in main
+    model.load()
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/models/qwen.py", line 42, in load
+    self._model = AutoModelForImageTextToText.from_pretrained(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 405, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4153, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/modeling_utils.py", line 797, in _get_resolved_checkpoint_files
+    checkpoint_files, sharded_metadata = get_checkpoint_shard_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/hub.py", line 879, in get_checkpoint_shard_files
+    cached_filenames = cached_files(
+                       ^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/hub.py", line 512, in cached_files
+    raise e
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/hub.py", line 437, in cached_files
+    snapshot_download(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 455, in snapshot_download
+    thread_map(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+               ^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 435, in _inner_hf_hub_download
+    hf_hub_download(  # type: ignore
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 997, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1216, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1842, in _download_to_tmp_and_move
+    xet_get(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 558, in xet_get
+    download_files(
+OSError: I/O error: IO Error: Disk quota exceeded (os error 122)
+Traceback (most recent call last):
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/main.py", line 318, in <module>
+    main()
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/main.py", line 291, in main
+    model.load()
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/src/models/qwen.py", line 42, in load
+    self._model = AutoModelForImageTextToText.from_pretrained(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 405, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4153, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/modeling_utils.py", line 797, in _get_resolved_checkpoint_files
+    checkpoint_files, sharded_metadata = get_checkpoint_shard_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/hub.py", line 879, in get_checkpoint_shard_files
+    cached_filenames = cached_files(
+                       ^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/hub.py", line 512, in cached_files
+    raise e
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/transformers/utils/hub.py", line 437, in cached_files
+    snapshot_download(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 455, in snapshot_download
+    thread_map(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+               ^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/cdeubel/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 435, in _inner_hf_hub_download
+    hf_hub_download(  # type: ignore
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 997, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1216, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1842, in _download_to_tmp_and_move
+    xet_get(
+  File "/work/courses/3dv/team29/3D-vision-Benchmarking-Spatial-and-State-Reasoning-Skills-of-VLMs-for-Robotics/.venv-arm64/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 558, in xet_get
+    download_files(
+OSError: I/O error: IO Error: Disk quota exceeded (os error 122)

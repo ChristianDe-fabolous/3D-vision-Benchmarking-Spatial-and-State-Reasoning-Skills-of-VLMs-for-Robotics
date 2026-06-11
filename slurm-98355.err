@@ -1,0 +1,116 @@
+
+# >>>>>>>>>>>>>>>>>>>>>> ERROR REPORT <<<<<<<<<<<<<<<<<<<<<<
+
+    Traceback (most recent call last):
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/exception_handler.py", line 29, in __call__
+        return func(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/cli/main.py", line 88, in main_sourced
+        result = activator.execute()
+                 ^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 213, in execute
+        response = getattr(self, self.command)()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/anaconda_anon_usage/patch.py", line 52, in _new_activate
+        return self._old_activate()
+               ^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 175, in activate
+        builder_result = self.build_activate(self.env_name_or_prefix)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 324, in build_activate
+        return self._build_activate_stack(env_name_or_prefix, False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 414, in _build_activate_stack
+        deactivate_scripts = self._get_deactivate_scripts(old_conda_prefix)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/cluster/courses/cil/envs/lib/python3.11/site-packages/conda/activate.py", line 773, in _get_deactivate_scripts
+        for entry in os.scandir(join(prefix, "etc", "conda", "deactivate.d"))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "<frozen posixpath>", line 76, in join
+    TypeError: expected str, bytes or os.PathLike object, not NoneType
+
+`$ /cluster/courses/cil/envs/bin/conda shell.posix activate base`
+
+  environment variables:
+                 CIO_TEST=<not set>
+        CONDA_DEFAULT_ENV=base
+                CONDA_EXE=/cluster/courses/cil/envs/bin/conda
+    CONDA_PROMPT_MODIFIER=(base)
+         CONDA_PYTHON_EXE=/cluster/courses/cil/envs/bin/python
+               CONDA_ROOT=/cluster/courses/cil/envs
+              CONDA_SHLVL=1
+           CURL_CA_BUNDLE=<not set>
+          LD_LIBRARY_PATH=
+               LD_PRELOAD=<not set>
+               MODULEPATH=/etc/environment-modules/modules:/cluster/modules
+                     PATH=/cluster/courses/cil/envs/bin:/cluster/courses/cil/envs/condabin:/home
+                          /cdeubel/.local/bin:/home/cdeubel/bin:/cluster/data/cuda/x86_64/13.0/b
+                          in:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
+                          ames:/usr/local/games:/snap/bin
+         PYTHONNOUSERSITE=1
+       REQUESTS_CA_BUNDLE=<not set>
+            SSL_CERT_FILE=<not set>
+
+     active environment : None
+            shell level : 1
+       user config file : /home/cdeubel/.condarc
+ populated config files : /cluster/courses/cil/envs/.condarc
+                          /cluster/courses/cil/envs/condarc.d/anaconda-auth.yml
+          conda version : 25.11.1
+    conda-build version : not installed
+         python version : 3.11.14.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=broadwell
+                          __conda=25.11.1=0
+                          __cuda=13.3=0
+                          __glibc=2.39=0
+                          __linux=6.14.0=0
+                          __unix=0=0
+       base environment : /cluster/courses/cil/envs  (read only)
+      conda av data dir : /cluster/courses/cil/envs/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /cluster/courses/cil/envs/pkgs
+                          /home/cdeubel/.conda/pkgs
+       envs directories : /home/cdeubel/.conda/envs
+                          /cluster/courses/cil/envs/envs
+               platform : linux-64
+             user-agent : conda/25.11.1 requests/2.32.5 CPython/3.11.14 Linux/6.14.0-35-generic ubuntu/24.04.4 glibc/2.39 solver/libmamba conda-libmamba-solver/25.11.0 libmambapy/2.3.2 aau/0.7.5 c/. s/. e/.
+                UID:GID : 658861:540309
+             netrc file : /home/cdeubel/.netrc
+           offline mode : False
+
+
+An unexpected error has occurred. Conda has prepared the above report.
+If you suspect this error is being caused by a malfunctioning plugin,
+consider using the --no-plugins option to turn off plugins.
+
+Example: conda --no-plugins install <package>
+
+Alternatively, you can set the CONDA_NO_PLUGINS environment variable on
+the command line to run the command without plugins enabled.
+
+Example: CONDA_NO_PLUGINS=true conda install <package>
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1951 [00:00<?, ?it/s]Loading weights:  15%|█▍        | 284/1951 [00:00<00:00, 2818.99it/s]Loading weights:  29%|██▉       | 566/1951 [00:00<00:00, 1775.37it/s]Loading weights:  39%|███▉      | 765/1951 [00:03<00:08, 139.05it/s] Loading weights:  45%|████▍     | 876/1951 [00:04<00:06, 162.05it/s]Loading weights:  49%|████▉     | 958/1951 [00:04<00:05, 178.80it/s]Loading weights:  52%|█████▏    | 1022/1951 [00:04<00:04, 189.31it/s]Loading weights:  55%|█████▍    | 1073/1951 [00:05<00:04, 181.26it/s]Loading weights:  57%|█████▋    | 1112/1951 [00:05<00:04, 179.60it/s]Loading weights:  59%|█████▊    | 1145/1951 [00:05<00:04, 178.77it/s]Loading weights:  60%|██████    | 1173/1951 [00:05<00:04, 173.40it/s]Loading weights:  61%|██████▏   | 1197/1951 [00:05<00:04, 166.33it/s]Loading weights:  63%|██████▎   | 1220/1951 [00:05<00:04, 173.42it/s]Loading weights:  64%|██████▎   | 1241/1951 [00:06<00:04, 163.40it/s]Loading weights:  65%|██████▍   | 1265/1951 [00:06<00:03, 174.65it/s]Loading weights:  66%|██████▌   | 1285/1951 [00:06<00:04, 165.16it/s]Loading weights:  74%|███████▍  | 1439/1951 [00:06<00:01, 447.91it/s]Loading weights:  86%|████████▌ | 1670/1951 [00:06<00:00, 866.08it/s]Loading weights:  96%|█████████▋| 1879/1951 [00:06<00:00, 1155.90it/s]Loading weights: 100%|██████████| 1951/1951 [00:06<00:00, 288.27it/s] 
+[23:24:48] INFO  Run 'slurm98355_action_phase_gemma4-e2b_default_cot' | task=ActionPhaseTask | model=gemma4-e2b | prompt=default
+[23:25:30] INFO  [1] ✓  idx=0  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:26:22] INFO  [2] ✓  idx=1  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:27:09] INFO  [3] ✓  idx=2  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='No'
+[23:28:10] INFO  [4] ✗  idx=3  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:28:50] INFO  [5] ✓  idx=4  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:29:28] INFO  [6] ✓  idx=5  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='Yes'
+[23:30:18] INFO  [7] ✗  idx=6  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Cannot be determined'  gt='No'
+[23:31:14] INFO  [8] ✗  idx=7  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:32:15] INFO  [9] ✗  idx=8  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[23:32:55] INFO  [10] ✗  idx=9  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[23:33:42] INFO  [11] ✗  idx=10  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Yes'  gt='No'
+[23:34:19] INFO  [12] ✓  idx=11  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='No'
+[23:35:12] INFO  [13] ✗  idx=12  action_phase_id  var=A  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='Cannot be determined'  gt='Yes'
+[23:36:02] INFO  [14] ✗  idx=13  action_phase_id  var=B  droid_align_the_rope_along_the_middle_of_the_black_object_10648  pred='No'  gt='Yes'
+[2026-06-10T23:36:13.216] error: *** JOB 98355 ON studgpu-node01 CANCELLED AT 2026-06-10T23:36:13 DUE to SIGNAL Terminated ***

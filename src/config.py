@@ -21,6 +21,10 @@ PROMPT_TEST = "test"
 PROMPT_PAPER = "paper"
 PROMPT_PAPER_COT = "paper_cot"
 
+# Generation budget when CoT reasoning is enabled (--cot or paper_cot prompt) —
+# overrides the per-model MAX_NEW_TOKENS to leave room for the reasoning trace.
+COT_MAX_NEW_TOKENS = 2048
+
 # Question type buckets, nested by task.
 # Maps task -> (type name -> list of substrings, case-insensitive).
 # A question can match multiple types — all matches are recorded.

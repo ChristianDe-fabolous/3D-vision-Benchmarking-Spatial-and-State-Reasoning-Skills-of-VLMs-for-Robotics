@@ -5,6 +5,7 @@
 #SBATCH --error=slurm-%j.err
 #SBATCH --account=pmlr_jobs
 #SBATCH --gpus=gb10:1
+#SBATCH --mem=100G
 #SBATCH --time=24:00:00
 #SBATCH --mail-user=cdeubel@ethz.ch
 #SBATCH --mail-type=END,FAIL
