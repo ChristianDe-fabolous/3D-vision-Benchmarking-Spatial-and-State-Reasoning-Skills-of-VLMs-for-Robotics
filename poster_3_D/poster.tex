@@ -1,0 +1,360 @@
+\documentclass[
+portrait,
+% landscape,
+a0paper%,
+%draft
+]
+{baposter}
+%
+
+\usepackage{graphicx}
+\usepackage[percent]{overpic}
+\usepackage{tabto}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{qrcode}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\definecolor{myblack}{RGB}{0,0,0}
+\definecolor{accent}{RGB}{0,0,0}
+
+\newlength{\mytextsize}
+\newcommand\e{\cdot 10^}
+\setlength{\unitlength}{1.0cm}
+
+% fonts
+\usepackage[scaled]{helvet}
+%
+%
+%##################################################################################
+\begin{document}
+%##################################################################################
+\begin{poster}
+{
+  % options
+  grid=false,%true,
+  background=plain,
+  bgColorOne=white,
+  columns=6, % for flexibility changing 2/3 columns with columnspan
+  eyecatcher=false,
+  borderColor=myblack,
+  headerColorOne=myblack, %white,
+  headershade=plain,
+  %headerColorTwo=white,
+  headerborder=open,
+  % for rectangular boxes change the next two options, rectangular header will cause left aligning of box title 
+  textborder=rounded, %rectangle,
+  headershape=rounded, %rectangle,
+  headerfont=\bf\Large,
+  boxshade=none,
+  headerFontColor=white
+}
+{
+  
+}
+{
+  %poster title
+  % first put graphics for header
+  \hspace*{-0.5mm}
+  \begin{picture}(23.7, 3)
+  \fboxsep0pt
+  \put(-0.196, -0.6){\colorbox{white}{\rule[96pt]{675.82pt}{0pt}}}
+  \thicklines
+  % minipage box for title and authors
+  \put(2.55, 2.35){
+    \begin{minipage}[t][96pt]{0.75\textwidth}
+    % centering
+    \begin{center}
+    
+
+{\bf\Large\color{myblack}\selectfont 
+\parbox{0.7\textwidth}{
+\centering
+Benchmarking Spatial and State Reasoning Skills of Vision-Language Models for Robotics
+\vspace{0.35cm}
+\small\color{myblack}\selectfont 
+
+ Alexander Padula\textsuperscript{1},  Anna Kravchenko \textsuperscript{1}, Christian Deubel \textsuperscript{1}, Defne Soganci \textsuperscript{1}, Jovana Videnović\textsuperscript{2}, Jelena Trisovic\textsuperscript{2}, Rene Zurbrugg\textsuperscript{2}\\
+\vspace{0.2cm}
+\textsuperscript{1}ETH Zurich, D-INFK
+\textsuperscript{2}Computer Vision and Geometry Lab
+\textsuperscript{3}Institute for Visual Computing
+}
+}
+
+
+    
+\end{center} 
+\end{minipage}}
+  \put(19.52,-1.1){\includegraphics[height=95pt]{logos/CVG.jpg}}
+  \put(0.18,-0.29){\includegraphics[height=25pt]{logos/ethz.png}}
+  \end{picture} 
+}
+{
+}
+{
+}
+%
+% three part footnote box with references, logos, contact infos
+\vspace{-2cm}
+\headerbox{}{headershape=rectangle, name=foottext, column=0, span=6, above=bottom, textborder=none, borderColor=myblack,  boxheaderheight=1pt}{
+ 
+  % 1. minipage for references
+  \begin{minipage}[t][1.6cm]{.32\textwidth}
+  \begin{center} 
+	\vspace{0.25cm}
+	$\quad$\textbf{\small\color{myblack} REFERENCES}\footnotesize\\
+\end{center} 
+{\fontsize{4}{5}\selectfont
+\vspace{-0.2cm}
+[1] Chen et al., Robo2VLM-1, 2025.\\
+[2] Lin, Vision Language Models: A Survey of 26K Papers, 2025.\\
+[3]
+\vspace{-0.2cm}
+
+}
+
+\vspace{-0.2cm}
+
+  \end{minipage}
+  \hfill\vline\hfill
+  %
+  % 2. minipage for CONTRIBUTIONS
+  \begin{minipage}[t][1.6cm]{.32\textwidth}
+  \begin{center} 
+	\vspace{0.25cm}
+	$\quad$\textbf{\small\color{myblack}  CONTRIBUTIONS}\\$\;$\\
+    \end{center} 
+	\footnotesize
+  \end{minipage}
+  \hfill\vline\hfill
+  %
+  % 3. mini page for more info/links
+  \begin{minipage}[t][1.6cm]{.32\textwidth}
+  \begin{center} 
+  \vspace{0.3cm}
+  $\quad$\textbf{\small\color{myblack}MORE INFORMATION} 
+  \end{center} 
+  \vspace{0.01cm}\\ 
+
+\begin{minipage}{.35\textwidth}
+\begin{center}
+\vspace{0.1cm}
+%\qrcode[hyperlink,height=.9\textwidth]
+%{https://}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{.55\textwidth}
+\color{myblack}
+\footnotesize
+%\textbf{more info}\\[0.15cm]
+{\scriptsize }
+\end{minipage}
+\end{minipage}
+}
+
+
+\headerbox{Introduction}{name=intro, column=0, row=0, span=6}{
+{\color{myblack}
+\textbf{Abstract:} We benchmark Vision-Language Models (VLMs) on two robot-supervision capabilities --- \textbf{multi-view consistency} and \textbf{failure-mode detection} --- using newly designed evaluation questions built on the Robo2VLM-1 [1] dataset. We evaluate 7 models across 3 families (Gemma4, Qwen3, InternVL3).
+\\[4pt]
+\noindent
+\begin{minipage}[t]{0.14\linewidth}
+\vspace{0pt}
+\textbf{Motivation:}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.41\linewidth}
+\vspace{-2pt} % <- move bullets UP (try -1pt to -4pt)
+\textbullet\ Robotics requires reliability beyond recognition.\\[-1pt]
+\textbullet\ Failure awareness is essential for robot supervision.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.41\linewidth}
+\vspace{-2pt} % <- same here
+\textbullet\ Viewpoint changes expose inconsistency.\\[-1pt]
+\textbullet\ Robot data enables grounded evaluation.
+\end{minipage}
+}
+}
+
+%%%\headerbox{Motivation}{name=motivation, column=0, row=0, span=6, below = abstract}{
+%%%\scriptsize
+%%%\linespread{0.75}
+%%%\normalsize
+%%%\footnotesize
+%%%\fontsize{7}{6.5}\selectfont
+%%%\setlength{\itemsep}{2pt}
+%%%\setlength{\parskip}{1pt}
+%%%{\color{myblack}
+%%%\textbf{Robotics requires reliability beyond recognition.}\\[1pt]
+%Even strong VLMs can be brittle when decisions depend on task-relevant state rather than object labels.
+%{\color{orange}\rule{1\linewidth}{0.4pt}}\\[1pt]
+%%%\textbf{Failure awareness is essential for robot supervision.}\\[1pt]
+%For safe deployment, a model must detect when execution deviates from the goal (unsuccessful outcome / incorrect state), not only describe the scene.
+%{\color{orange}\rule{1\linewidth}{0.4pt}}\\[1pt]
+%%%\textbf{Viewpoint changes expose inconsistency.}\\[1pt]
+%The same physical situation observed from different cameras should yield consistent answers; instability undermines downstream monitoring and control.
+%{\color{orange}\rule{1\linewidth}{0.4pt}}\\[4pt]
+%%%\textbf{Robot data enables grounded evaluation.}\\[1pt]
+%%%\vspace{-12pt}
+%Robo2VLM provides multi-view observations and sensor-derived ground truth, supporting controlled benchmarking of failure detection and multi-view consistency.
+%%%}
+%%%\vspace{0.35cm} sdf
+%%%}
+
+\headerbox{Method Overview}{name=method, column=0, span=3, below=intro, borderColor=white, boxshade=none}{
+\begin{center}
+\makebox[\linewidth][c]{%
+\includegraphics[width=1\linewidth]{method_overview.pdf}
+}
+\end{center}
+\vspace{-3cm}
+}
+
+
+
+\headerbox{Evaluation Targets}{name=targets, column=0, row=0, span=3, below=method, borderColor=white,
+  boxshade=none}{
+\vspace{0cm}
+\begin{center}
+\makebox[\linewidth][c]{%
+\includegraphics[width=1\linewidth]{phase_success_top.pdf}
+}
+\end{center}
+\vspace{-0.63cm}
+\begin{center}
+\makebox[\linewidth][c]{%
+\includegraphics[width=1\linewidth]{mutlview_consistency_evaluation_targets_bottom.pdf}
+}
+\end{center}
+%\vspace{0.04cm}
+}
+
+\headerbox{Results}{name=results, column=3, row=0, span=3, below=intro, borderColor=white, boxshade=none}{
+{\color{myblack}
+\large
+\vspace{0cm}
+\begin{center}
+\makebox[\linewidth][c]{%
+\includegraphics[width=1\linewidth]{easy_hard_scenes.pdf}
+}
+\end{center}
+\vspace{0.3cm}
+
+\begin{center}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l|cccc|c}
+\hline
+\textbf{Model} & \textbf{Act.Ph.} & \textbf{Ph.Succ.} & \textbf{Prog.} & \textbf{Task S.} & \textbf{All\,3V} \\
+\hline
+Gemma4-E2B    & 31.7          & 24.6          & 35.0          & 37.4          & 27.9 \\
+Gemma4-E4B    & 41.4          & 30.0          & 38.4          & 45.7          & 45.2 \\
+Gemma4-31B    & 46.1          & \textbf{46.2} & \textbf{45.2} & 58.8          & 58.2 \\
+\hline
+Qwen3-4B      & 44.8          & 35.6          & 39.1          & \textbf{72.6} & 51.0 \\
+Qwen3-8B      & 43.5          & 39.5          & 40.2          & 70.9          & \textbf{59.0} \\
+Qwen3-32B     & \textbf{48.0} & 42.6          & 40.9          & 72.2          & 49.2 \\
+\hline
+InternVL3-14B & 43.8          & 43.8          & 41.7          & 56.2          & 56.1 \\
+\hline
+Random        & 33.3 & 25.0 & 33.3 & 33.3 & 25.0 \\
+\hline
+\multicolumn{6}{l}{\scriptsize All values in \%. Random: uniform (cols 1--4) / independent-binary (All\,3V) baseline.}
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l|cccc|c}
+\hline
+\textbf{Qwen3-4B} & \textbf{Act.Ph.} & \textbf{Ph.Succ.} & \textbf{Prog.} & \textbf{Task S.} & \textbf{Overall} \\
+\hline
+BASE  & 45.1 & 37.9 & 38.2 & 73.5 & 44.2 \\
++LoRA & \textbf{61.0} & \textbf{51.8} & 37.5 & \textbf{81.1} & \textbf{55.1} \\
+\hline
+$\Delta$ & +15.9 & +13.9 & $-$0.8 & +7.6 & +10.9 \\
+\hline
+\multicolumn{6}{l}{\scriptsize Matched 20-scene / 2706-q held-out test split.}
+\end{tabular}
+\end{center}
+
+% ---- Data sources (action phase, by_task accuracy from summary.json) ----
+% Gemma4-31B    : outputs/slurm93218_action_phase_gemma4-31b_default_done/summary.json
+% Gemma4-E4B    : outputs/slurm92952_action_phase_gemma4-e4b_default_done/summary.json
+% Gemma4-E2B    : outputs/2026-05-31_14-48-00_action_phase_gemma4-e2b_default_done/summary.json
+% Qwen3-32B     : outputs/slurm98014_action_phase_qwen3-32b_default/summary.json
+% Qwen3-8B      : outputs/2026-05-31_14-44-51_action_phase_qwen3-8b_default_done/summary.json
+% Qwen3-4B      : outputs/slurm93661_action_phase_qwen3-4b_default_done/summary.json
+% InternVL3-14B : outputs/slurm97555_action_phase_internvl3-14b_default/summary.json
+%
+% ---- Qwen3-4B LoRA before/after table (BASE-vs-LoRA minipage block above) ----
+% LoRA     : outputs/lora-qwen3-vl-4b/summary.json          -> 61.0 / 51.8 / 37.5 / 81.1 (overall 55.1)
+% Baseline : outputs/lora-qwen3-vl-4b/baseline_test_summary.json -> 45.1 / 37.9 / 38.2 / 73.5 (overall 44.2)
+% (matched same 2706 questions / 20 test scenes as LoRA run; see ANALYSIS.md)
+%
+% ---- Data sources (multiview "All 3 Views" overall, from summary_multiview.json) ----
+% Gemma4-31B    : outputs/slurm97655_multiview_gemma4-31b_default_done/summary_multiview.json
+% Gemma4-E4B    : outputs/slurm97553_multiview_gemma4-e4b_default_done/summary_multiview.json
+% Gemma4-E2B    : outputs/slurm97657_multiview_gemma4-e2b_default_done/summary_multiview.json
+% Qwen3-32B     : outputs/slurm98266_multiview_qwen3-32b_default/summary_multiview.json
+% Qwen3-8B      : outputs/slurm97947_multiview_qwen3-8b_default/summary_multiview.json
+%   produced before the job stopped. Numbers will change once rerun completes. ***
+% Qwen3-4B      : outputs/slurm97946_multiview_qwen3-4b_default_done/summary_multiview.json
+% InternVL3-14B : outputs/slurm97561_multiview_internvl3-14b_default_done/summary_multiview.json
+%
+% ---- Disregarded multiview columns (dropped when merging into single table above; kept for reference) ----
+% Original "Multi-view Cross-Camera Consistency" table:
+% Model            TL<->TR   >=1Top<->W   All 3 Views
+% Gemma4-31B         75.9       78.9         58.2
+% Gemma4-E4B         61.2       71.0         45.2
+% Gemma4-E2B         48.3       63.7         27.9
+% Qwen3-32B          68.4       72.1         49.2
+% Qwen3-8B           74.8       81.6         59.0
+% Qwen3-4B           70.2       73.9         51.0
+% InternVL3-14B      73.7       78.7         56.1
+% Random (binary)    50.0       75.0         25.0
+% TL<->TR: top-left agrees with top-right. >=1Top<->W: >=1 top view agrees with wrist.
+% NOTE (bug fix): original table bolded Gemma4-31B's All-3-Views (58.2) as "best", but
+% Qwen3-8B's 59.0 is actually higher -- corrected in the merged table above.
+}
+}
+}
+}
+
+\headerbox{Conclusion}{name=conclusion, column=0, span=3, below=targets}{
+\setlength{\itemsep}{2pt}
+\setlength{\parskip}{1pt}
+{\color{myblack}
+\large
+\begin{itemize}
+  \item \textbf{Overall performance is low.} All 7 models miss the fail at object state and temporal reasoning
+  \item \textbf{Scale helps without adaptation.} Gemma4-31B performs best overall (47.5\,\%)
+  \item \textbf{Robotic state understanding remains weak.} Off-the-shelf VLMs do not randomly guess some object identity/relative position (pick-and-place) but struggle with state-dependent actions (e.g., \textit{scrunch}, \textit{align}, \textit{close}).
+\end{itemize}
+}}
+
+\headerbox{Limitations \& Future Work}{name=limitations, column=3, span=3, below=results}{
+\setlength{\itemsep}{2pt}
+\setlength{\parskip}{1pt}
+{\color{myblack}
+\large
+\begin{itemize}
+  \item \textbf{Manual verification limits scale.} Automated pipelines are necessary to extend beyond the current 47 scenes / 6224 questions.
+  \item \textbf{Future step.} Use Robo2VLM idea to generate large scale dataset and test task cross difficulty.
+\end{itemize}
+}}
+
+
+
+%
+
+\end{poster}
+\end{document}
+

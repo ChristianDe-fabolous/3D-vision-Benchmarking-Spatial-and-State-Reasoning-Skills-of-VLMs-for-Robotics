@@ -190,6 +190,12 @@ def parse_args():
         help="Smoke test: run 5 samples with describe + verbose output. Shorthand for --limit 5 --describe --test-pipeline.",
     )
     parser.add_argument(
+        "--lora-adapter",
+        type=str,
+        default=None,
+        help="Path to a LoRA adapter directory to merge into the (Qwen) model before inference.",
+    )
+    parser.add_argument(
         "--individual-images",
         action="store_true",
         default=False,
@@ -222,7 +228,9 @@ def build_model(args):
     kwargs = {"max_new_tokens": COT_MAX_NEW_TOKENS} if is_cot else {}
     if args.model in (MODEL_QWEN3_4B, MODEL_QWEN3_8B, MODEL_QWEN3_8B_THINKING,
                       MODEL_QWEN3_30B, MODEL_QWEN3_30B_THINKING, MODEL_QWEN3_32B):
-        return QwenVLM(model_key=args.model, **kwargs)
+        return QwenVLM(model_key=args.model, lora_adapter=args.lora_adapter, **kwargs)
+    if args.lora_adapter:
+        raise ValueError("--lora-adapter is only supported for Qwen models")
     if args.model in (MODEL_GEMMA4_E2B, MODEL_GEMMA4_E4B, MODEL_GEMMA4_26B, MODEL_GEMMA4_31B):
         return Gemma4VLM(model_key=args.model, **kwargs)
     if args.model in (MODEL_PHI35_VISION, MODEL_PHI4_VISION):
@@ -263,6 +271,8 @@ def main():
         _tags.append("cot")
     if args.individual_images:
         _tags.append("individual")
+    if args.lora_adapter:
+        _tags.append(f"lora-{Path(args.lora_adapter).name}")
     _prompt_tag = "_".join(_tags)
     run_id = args.run_id or (
         f"slurm{slurm_job_id}_{args.task}_{args.model}_{_prompt_tag}"
@@ -274,6 +284,7 @@ def main():
         "run_id": run_id,
         "task": args.task,
         "model": args.model,
+        "lora_adapter": args.lora_adapter,
         "prompt": args.prompt,
         "cot": args.cot,
         "describe": args.describe,

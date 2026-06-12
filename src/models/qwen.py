@@ -26,9 +26,11 @@ class QwenVLM(BaseVLM):
         self,
         model_key: str = MODEL_QWEN3_4B,
         max_new_tokens: int = QWEN_MAX_NEW_TOKENS,
+        lora_adapter: str | None = None,
     ):
         self.model_id = QWEN_MODEL_IDS[model_key]
         self.max_new_tokens = max_new_tokens
+        self.lora_adapter = lora_adapter
         self.system_prompt: str | None = None
         self._model = None
         self._processor = None
@@ -42,6 +44,11 @@ class QwenVLM(BaseVLM):
         self._model = AutoModelForImageTextToText.from_pretrained(
             self.model_id, torch_dtype=dtype, device_map="auto", trust_remote_code=True,
         )
+        if self.lora_adapter:
+            print(f"[qwen] Applying LoRA adapter from {self.lora_adapter} ...", flush=True)
+            from peft import PeftModel
+            self._model = PeftModel.from_pretrained(self._model, self.lora_adapter)
+            self._model = self._model.merge_and_unload()
         print("[qwen] from_pretrained done, calling .eval() ...", flush=True)
         self._model.eval()
         print("[qwen] loading processor ...", flush=True)
