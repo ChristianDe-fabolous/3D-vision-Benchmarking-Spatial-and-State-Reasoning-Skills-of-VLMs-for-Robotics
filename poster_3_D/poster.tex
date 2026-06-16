@@ -83,7 +83,6 @@ Benchmarking Spatial and State Reasoning Skills of Vision-Language Models for Ro
 \vspace{0.2cm}
 \textsuperscript{1}ETH Zurich, D-INFK
 \textsuperscript{2}Computer Vision and Geometry Lab
-\textsuperscript{3}Institute for Visual Computing
 }
 }
 
@@ -101,22 +100,27 @@ Benchmarking Spatial and State Reasoning Skills of Vision-Language Models for Ro
 }
 %
 % three part footnote box with references, logos, contact infos
-\vspace{-2cm}
+\vspace{-0.2cm}
 \headerbox{}{headershape=rectangle, name=foottext, column=0, span=6, above=bottom, textborder=none, borderColor=myblack,  boxheaderheight=1pt}{
- 
-  % 1. minipage for references
-  \begin{minipage}[t][1.6cm]{.32\textwidth}
-  \begin{center} 
+
+  % 1. minipage for references (double column, 6 refs)
+  \begin{minipage}[t][2.8cm]{.48\textwidth}
+  \begin{center}
 	\vspace{0.25cm}
 	$\quad$\textbf{\small\color{myblack} REFERENCES}\footnotesize\\
-\end{center} 
-{\fontsize{4}{5}\selectfont
+\end{center}
+{\fontsize{7}{8}\selectfont
 \vspace{-0.2cm}
-[1] Chen et al., Robo2VLM-1, 2025.\\
-[2] Lin, Vision Language Models: A Survey of 26K Papers, 2025.\\
-[3]
-\vspace{-0.2cm}
-
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{p{0.46\textwidth}p{0.46\textwidth}}
+[1] Chen et al., Robo2VLM-1, arXiv 2025. &
+[2] Khazatsky et al., DROID: A Large-Scale In-the-Wild Robot Manipulation Dataset, RSS 2024. \\
+[3] Lin, Vision Language Models: A Survey of 26K Papers, arXiv 2025. &
+[4] Qwen Team, Qwen3 Technical Report, arXiv 2025. \\
+[5] Gemma Team, Gemma 3 Technical Report, arXiv 2025. &
+[6] Chen et al., InternVL3: Exploring Advanced Training and Test-Time Recipes for Open-Source Multimodal Models, arXiv 2025. \\
+\end{tabular}
 }
 
 \vspace{-0.2cm}
@@ -125,38 +129,24 @@ Benchmarking Spatial and State Reasoning Skills of Vision-Language Models for Ro
   \hfill\vline\hfill
   %
   % 2. minipage for CONTRIBUTIONS
-  \begin{minipage}[t][1.6cm]{.32\textwidth}
-  \begin{center} 
+  \begin{minipage}[t][2.8cm]{.48\textwidth}
+  \begin{center}
 	\vspace{0.25cm}
-	$\quad$\textbf{\small\color{myblack}  CONTRIBUTIONS}\\$\;$\\
-    \end{center} 
-	\footnotesize
-  \end{minipage}
-  \hfill\vline\hfill
-  %
-  % 3. mini page for more info/links
-  \begin{minipage}[t][1.6cm]{.32\textwidth}
-  \begin{center} 
-  \vspace{0.3cm}
-  $\quad$\textbf{\small\color{myblack}MORE INFORMATION} 
-  \end{center} 
-  \vspace{0.01cm}\\ 
-
-\begin{minipage}{.35\textwidth}
-\begin{center}
-\vspace{0.1cm}
-%\qrcode[hyperlink,height=.9\textwidth]
-%{https://}
+	$\quad$\textbf{\small\color{myblack}  CONTRIBUTIONS}\footnotesize\\
 \end{center}
-\end{minipage}
-\hfill
-\begin{minipage}{.55\textwidth}
-\color{myblack}
-\footnotesize
-%\textbf{more info}\\[0.15cm]
-{\scriptsize }
-\end{minipage}
-\end{minipage}
+{\fontsize{8}{9}\selectfont
+\vspace{-0.2cm}
+New benchmark (6224 questions / 47 scenes) on Robo2VLM-1 (DROID), covering failure-mode detection and multi-view consistency.\\
+Self-designed question types (action phase, phase success, progress, task success, multi-view consistency).\\
+Zero-shot evaluation of 7 VLMs across 3 families (Gemma3, Qwen3, InternVL3), with easy/hard scene-difficulty breakdown.\\
+LoRA fine-tuning case study (Qwen3-4B): +10.9pp overall, decomposed per sub-task.
+\vspace{-0.2cm}
+
+}
+
+\vspace{-0.2cm}
+
+  \end{minipage}
 }
 
 
@@ -244,7 +234,7 @@ Benchmarking Spatial and State Reasoning Skills of Vision-Language Models for Ro
 \includegraphics[width=1\linewidth]{easy_hard_scenes.pdf}
 }
 \end{center}
-\vspace{0.3cm}
+\vspace{-0.2cm}
 
 \begin{center}
 \setlength{\tabcolsep}{4pt}
@@ -268,7 +258,7 @@ Random        & 33.3 & 25.0 & 33.3 & 33.3 & 25.0 \\
 \end{tabular}
 \end{center}
 
-\vspace{0.3cm}
+\vspace{-0.4cm}
 
 \begin{center}
 \setlength{\tabcolsep}{4pt}
@@ -276,7 +266,7 @@ Random        & 33.3 & 25.0 & 33.3 & 33.3 & 25.0 \\
 \hline
 \textbf{Qwen3-4B} & \textbf{Act.Ph.} & \textbf{Ph.Succ.} & \textbf{Prog.} & \textbf{Task S.} & \textbf{Overall} \\
 \hline
-BASE  & 45.1 & 37.9 & 38.2 & 73.5 & 44.2 \\
+BASE  & 45.1 & 37.9 & \textbf{38.2} & 73.5 & 44.2 \\
 +LoRA & \textbf{61.0} & \textbf{51.8} & 37.5 & \textbf{81.1} & \textbf{55.1} \\
 \hline
 $\Delta$ & +15.9 & +13.9 & $-$0.8 & +7.6 & +10.9 \\
@@ -285,7 +275,9 @@ $\Delta$ & +15.9 & +13.9 & $-$0.8 & +7.6 & +10.9 \\
 \end{tabular}
 \end{center}
 
-% ---- Data sources (action phase, by_task accuracy from summary.json) ----
+\vspace{-0.6cm}
+
+% ---- Data sources (actionphase, by_task accuracy from summary.json) ----
 % Gemma4-31B    : outputs/slurm93218_action_phase_gemma4-31b_default_done/summary.json
 % Gemma4-E4B    : outputs/slurm92952_action_phase_gemma4-e4b_default_done/summary.json
 % Gemma4-E2B    : outputs/2026-05-31_14-48-00_action_phase_gemma4-e2b_default_done/summary.json
@@ -325,8 +317,6 @@ $\Delta$ & +15.9 & +13.9 & $-$0.8 & +7.6 & +10.9 \\
 % Qwen3-8B's 59.0 is actually higher -- corrected in the merged table above.
 }
 }
-}
-}
 
 \headerbox{Conclusion}{name=conclusion, column=0, span=3, below=targets}{
 \setlength{\itemsep}{2pt}
@@ -334,9 +324,8 @@ $\Delta$ & +15.9 & +13.9 & $-$0.8 & +7.6 & +10.9 \\
 {\color{myblack}
 \large
 \begin{itemize}
-  \item \textbf{Overall performance is low.} All 7 models miss the fail at object state and temporal reasoning
-  \item \textbf{Scale helps without adaptation.} Gemma4-31B performs best overall (47.5\,\%)
-  \item \textbf{Robotic state understanding remains weak.} Off-the-shelf VLMs do not randomly guess some object identity/relative position (pick-and-place) but struggle with state-dependent actions (e.g., \textit{scrunch}, \textit{align}, \textit{close}).
+  \item \textbf{Robotic state understanding remains weak.} Off-the-shelf small VLMs perform simple object recognition and position estimation but struggle with state-dependent actions.
+  \item \textbf{Scale helps without adaptation.}
 \end{itemize}
 }}
 
@@ -346,8 +335,10 @@ $\Delta$ & +15.9 & +13.9 & $-$0.8 & +7.6 & +10.9 \\
 {\color{myblack}
 \large
 \begin{itemize}
-  \item \textbf{Manual verification limits scale.} Automated pipelines are necessary to extend beyond the current 47 scenes / 6224 questions.
-  \item \textbf{Future step.} Use Robo2VLM idea to generate large scale dataset and test task cross difficulty.
+  \item \textbf{Manual verification limits scale.} Automated pipelines are necessary to extend beyond the current 47 scenes.
+  \item \textbf{LoRA Training.} Finetuning seems effective but only actual benefits in Action Phase Identification. 
+  \item \textbf{Future step:} Use Robo2VLM VQA-pipeline to generate large scale dataset and test task cross difficulty.
+  
 \end{itemize}
 }}
 
