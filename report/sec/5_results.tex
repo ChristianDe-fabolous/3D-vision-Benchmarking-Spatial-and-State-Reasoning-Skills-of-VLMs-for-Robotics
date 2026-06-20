@@ -154,18 +154,11 @@ semantics as the main driver of difficulty.
 \subsection{LoRA Fine-Tuning Case Study (Qwen3-4B)}
 \label{sec:results-lora}
 Table~\ref{tab:lora_results} compares Qwen3-4B BASE against +LoRA on the identical
-2706-question, 20-scene held-out test split. Overall accuracy rises from 44.2\% to
-55.1\% (+10.9pp, +295 correct answers) -- a substantial headline gain. Decomposing this
-gain, however, shows that most of it is not improved phase or temporal reasoning but two
-coarse heuristics.
+2706-question, 20-scene held-out test split. Overall accuracy rises from 44.2\% to 55.1\% (+10.9pp, +295 correct answers) -- a substantial headline gain. Decomposing this gain, however, shows that most of it is not improved phase or temporal reasoning but two coarse heuristics.
 
-The first heuristic (roughly 44\% of the gain) is improved detection of the adversarial
+The model (roughly 44\% of the gain) improves detection of the adversarial
 CnBD variant: on the 130 random-scene questions in \texttt{action\_phase\_id} and
-\texttt{task\_success} (6.5\% of the test set), BASE accuracy is 0--15\% while +LoRA
-reaches 78--88\%. The model has effectively learned the rule ``if the image scene does
-not match the goal text, answer Cannot be determined.'' This is a real, generalizable
-skill rather than memorization: splitting CnBD recall by the donor scene's origin gives
-comparable recall whether the donor scene was seen in training (0.92 / 0.65 for
+\texttt{task\_success} (6.5\% of the test set), BASE accuracy is 0--15\% while +LoRA reaches 78--88\%. The model has effectively learned the rule ``if the image scene does not match the goal text, answer Cannot be determined.'' This is a real, generalizable skill rather than memorization: splitting CnBD recall by the donor scene's origin gives comparable recall whether the donor scene was seen in training (0.92 / 0.65 for
 \texttt{action\_phase\_id} / \texttt{task\_success}), in validation (1.0 / 1.0), or
 entirely unseen (0.82 / 0.82) -- recall on unseen donor scenes is not lower, so the rule
 generalizes to novel scene pairings rather than memorizing specific images.

@@ -2,28 +2,24 @@
 \label{sec:dataset}
 
 \subsection{Source Data}
-Robo2VLM-1~\cite{chen2025robo2vlm} builds VQA pairs from DROID~\cite{khazatsky2024droid}
-trajectories (roughly half of the data) and OXE trajectories (the other half).
+To leverage Robo2VLM-1~\cite{chen2025robo2vlm} keyframe selection of the scene diverse DROID~\cite{khazatsky2024droid} dataset.
 \cite{chen2025robo2vlm} use a novel framework to identify keyframes within each
 trajectory and pair them with the goal text, ordered action-phase labels, and
 sensor-derived success/failure signals captured from three synchronized camera views
 (top-left, top-right, wrist). From this pool we select 47 scenes from the DROID subset,
-covering diverse manipulation tasks such as placing, screwing, folding, and stacking.
+covering diverse manipulation tasks such as placing, screwing, folding, and stacking. We label and sort the action phases manually to ensure (1) high quality and diverse scene selection (2) scene and task understanding is humanly possible (3) securing groundtruth annotation on which view holds necesssary visual signal (4) temporal consistency.
+As a result we obtain an ordered list of keyframes, their action-phase labels of what the robot is doing, as well as annotation of which view enables comprehension and correct answering. 
 
-\subsection{Failure-Mode Detection Sub-Tasks}
-We define four multiple-choice failure-mode sub-tasks, all evaluated on real DROID/OXE
-trajectory frames.
+We define four multiple-choice failure-mode sub-tasks, all evaluated on real DROID trajectory keyframes.
 
-\textbf{Action Phase Identification} (\texttt{action\_phase\_id}): given a single image,
-the goal text, and an ordered list of phases, the model selects which phase (A--D) is
-currently depicted, or answers ``Cannot be determined'' (E). Random baseline: 33.3\%.
+\textbf{Action Phase Identification} (\texttt{action\_phase\_id}): given a single moment, the goal text, and a claimed current action phase, the model selects which phase (A--D) is currently depicted, or answers ``Cannot be determined'' (E). Random baseline: 33.3\%. 
 
-\textbf{Phase Success} (\texttt{phase\_success}): given a single image, the goal text, and
+\textbf{Phase Success} (\texttt{phase\_success}): given a single moment, the goal text, and
 a target phase, the model judges whether that phase is Before, Is currently performing,
-After, or Cannot be determined. Random baseline: 25.0\%.
+After, or Cannot be determined. Random baseline: 25.0\%. 
 
-\textbf{Progress Detection} (\texttt{progress}): given two side-by-side images and the
-goal text, the model judges whether the task progressed forward, backward, not at all, or
+\textbf{Progress Detection} (\texttt{progress}): given two distinct moments and the
+goal text, the model judges whether the task progressed forward, backward, or
 Cannot be determined. Random baseline: 33.3\%.
 
 \textbf{Task Success} (\texttt{task\_success}): given a single image and the goal text,
@@ -36,6 +32,8 @@ additionally inject an adversarial \emph{Cannot be determined} (CnBD) variant: w
 scene, making ``Cannot be determined'' the only correct answer. This variant tests
 whether a model detects a domain mismatch between image and goal text, rather than
 guessing a plausible-looking phase.
+Additionally we provide each question with context of a sorted list of action phase labels of the scene, to provide the model with potentially needed context. E.g. for action phase detection, the model might answer incorrectly, because it would attribute it sligthley differently formulated action phase.
+
 
 % Figure: evaluation target examples
 \begin{figure}[t]
@@ -46,15 +44,11 @@ guessing a plausible-looking phase.
   \label{fig:task_examples}
 \end{figure}
 
+\subsection{Failure-Mode Detection Sub-Tasks}
+For failure detection, we prompt the model with all 3 views merged into a single image, as prodvided by \cite{chen2025robo2vlm}. CoT shows the models can identify the individual views in a merged image.
 \subsection{Multi-View Consistency}
-The same question is additionally posed from three camera views of the same scene:
-top-left (TL), top-right (TR), and wrist (W). We measure consistency as whether
-independently elicited answers agree across views, using three metrics: TL$\leftrightarrow$TR
-agreement, agreement of at least one top view with the wrist view
-($\geq$1~Top$\leftrightarrow$W), and All-3-agree, where all three views give the same
-answer. Treating each view as an independent binary draw gives baselines of 50\%, 75\%,
-and 25\% for the three metrics, respectively.
-
+The same question is additionally posed from multiple camera views of the same scene, if a human labelled the view as "action-phase is comprehensible from single view":
+top-left (TL), top-right (TR), and wrist (W). 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{../poster_3_D/mutlview_consistency_evaluation_targets_bottom.pdf}

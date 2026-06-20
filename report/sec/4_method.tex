@@ -1,12 +1,22 @@
 \section{Method}
 \label{sec:method}
 
+As the trajectories of the \cite{chen2025robo2vlm} dataset are success only, this framework is designed to use temporal and action-phase-label - vision alignment to test model capabilities across object-, state-, manipulation-, and scene-understanding. And in particular temporal comprehension of robotic tasks. 
+
+\subsection{Metrics}
+We measure consistency as whether
+independently elicited answers agree across views, using three metrics: TL$\leftrightarrow$TR
+agreement, agreement of at least one top view with the wrist view
+($\geq$1~Top$\leftrightarrow$W), and All-3-agree, where all three views give the same
+answer. Treating each view as an independent binary draw gives baselines of 50\%, 75\%,
+and 25\% for the three metrics, respectively.
+
 \subsection{Models}
 We evaluate seven publicly available VLMs spanning three model families, chosen to cover
 a range of parameter counts within and across families: Gemma3~\cite{gemma2025gemma3}
 (E2B, E4B, 31B), Qwen3~\cite{qwen2025qwen3} (4B, 8B, 32B), and
 InternVL3~\cite{chen2025internvl3} (14B). All models are run zero-shot on the ETH Zurich
-student cluster (A100 GPUs) without any task-specific training.
+student cluster without any task-specific training.
 
 \subsection{Zero-Shot Evaluation Setup}
 The models are prompted with a single image (or two, for \texttt{progress}), the goal
