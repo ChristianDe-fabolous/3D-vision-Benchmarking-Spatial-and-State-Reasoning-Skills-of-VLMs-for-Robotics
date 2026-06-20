@@ -1,0 +1,40 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\textbf{Why are absolute numbers so close to random?} Object \emph{state} -- deformation,
+contact, orientation change -- is underrepresented in web-scale VLM training data
+relative to object \emph{identity} and \emph{position}. Models can usually describe which
+objects are present and roughly where, but not reliably what has happened to them or
+which phase of an action is depicted. Compounding the problem, the models rarely use
+``Cannot be determined'' as an answer even when it is correct, defaulting instead to a
+confident Yes or No (\cref{sec:results-lora}: BASE Qwen3-4B scores 0--15\% on the CnBD
+variant). The 70\%-plus \texttt{task\_success} accuracy of the Qwen3 family is a partial
+exception: binary success/failure framing may be closer to the kind of outcome
+classification VLMs see at web scale.
+
+\textbf{Scale helps, but is not enough.} Within-family scaling consistently improves
+accuracy (Gemma3 E2B~$\to$~E4B~$\to$~31B), but even 31B/32B-class models plateau in the
+high-40s\% on phase-level reasoning. Cross-family, InternVL3-14B is competitive with
+Qwen3-8B despite the parameter gap, suggesting architecture and training data matter at
+least as much as raw parameter count. More parameters alone are unlikely to close the
+gap; robot-domain training data is needed.
+
+\textbf{LoRA gains require decomposition before deployment decisions.} The 11pp headline
+improvement could be read as ``fine-tuning works for robot state reasoning,'' but the
+decomposition in \cref{sec:results-lora} shows that roughly 80\% of the gain is two
+coarse heuristics. The OOD-scene detector is genuinely useful and generalizable, but it is
+domain-mismatch detection, not phase or temporal reasoning. The label-position bias on
+\texttt{phase\_success} is net positive under this dataset's label distribution, but a
+regression for the most safety-critical use case: detecting when a robot is currently in
+the middle of an action. The lesson is to always decompose fine-tuning gains by question
+type and answer class before concluding that a model is ``better'' at a target skill.
+
+\textbf{Multi-view consistency tracks confidence, not correctness.} Models are most
+self-consistent when uniformly right (72.3\%) or uniformly wrong (66.4\%) across views,
+and least consistent when only some views are correct (34.4\%). We read this as
+view-consistency reflecting how unambiguous a scene is to the model, not whether its
+answer is correct. This connects to the scene-difficulty finding (\cref{sec:results}):
+scenes that drive accuracy down also destabilize cross-view agreement, suggesting both
+effects share the same root cause -- visual ambiguity, not task semantics. For multi-view
+fusion, this implies that simple voting across views may not help on exactly the hardest
+scenes, where inconsistency is highest.

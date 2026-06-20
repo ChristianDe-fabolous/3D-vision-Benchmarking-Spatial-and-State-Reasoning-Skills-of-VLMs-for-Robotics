@@ -1,0 +1,95 @@
+% 3DV 2025 Paper Template
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+% \usepackage{cvpr}              % camera-ready
+\usepackage[review]{cvpr}      % review version
+% \usepackage[pagenumbers]{cvpr}
+
+\input{preamble}
+
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,citecolor=cvprblue]{hyperref}
+
+\def\paperID{*****}
+\def\confName{3DV\xspace}
+\def\confYear{2025\xspace}
+
+\title{Benchmarking Spatial and State Reasoning Skills of\\
+Vision-Language Models for Robotics}
+
+\author{Alexander Padula$^1$ \quad Anna Kravchenko$^1$ \quad Christian Deubel$^1$ \quad Defne Soganci$^1$\\
+Jovana Videnovi\'{c}$^2$ \quad Jelena Trisovic$^2$ \quad Rene Zurbrugg$^2$\\[4pt]
+$^1$ETH Zurich, D-INFK \quad $^2$Computer Vision and Geometry Lab
+}
+
+\begin{document}
+\maketitle
+
+% Abstract should answer:
+% - What problem are we tackling (VLM spatial/state reasoning for robotics)?
+% - What benchmark/approach did we build to test it?
+% - What are the headline findings (zero-shot gap, CoT hurts, LoRA gain decomposition)?
+\input{sec/0_abstract}
+
+% Introduction should answer:
+% - Why are VLMs relevant as zero-shot "robot supervisors" (scene understanding + feedback
+%   without task-specific training)?
+% - Can a VLM judge task progress, current action phase, and success/failure from a single
+%   image + stated goal?
+% - Do answers extracted from different camera angles of the same moment agree with each
+%   other?
+% - What is the contribution summary (benchmark, models evaluated, ablations, LoRA case study)?
+\input{sec/1_intro}
+
+% Related Work should answer:
+% - What existing datasets generate VQA from robot trajectories (Robo2VLM-1 and similar)?
+% - How have VLMs been used as evaluators/supervisors/reward models in prior work?
+% - What known VLM weaknesses exist in spatial/3D reasoning and chain-of-thought for visual
+%   tasks?
+\input{sec/2_related}
+
+% Dataset & Tasks should answer:
+% - Where does Robo2VLM-1 come from (DROID/OXE) and how are questions/images generated?
+% - What are the 4 action-phase sub-tasks, and what is the CnBD adversarial variant?
+% - How does the multi-view benchmark define cross-camera consistency?
+% - What are the dataset statistics (scenes, questions per task, train/val/test splits)?
+% - What baselines is model performance compared against?
+\input{sec/3_dataset}
+
+% Method should answer:
+% - Which models are evaluated, and how are they prompted (zero-shot multiple-choice)?
+% - What does the chain-of-thought variant change about the prompting?
+% - What is the LoRA fine-tuning setup (scene-level split, hyperparameters, eval pipeline)?
+\input{sec/4_method}
+
+% Results should answer:
+% - How accurate are models at action-phase/failure-mode detection vs. random/majority
+%   baselines?
+% - How consistent are multi-view answers across camera angles?
+% - Does chain-of-thought prompting help or hurt accuracy?
+% - How does accuracy vary across scenes (difficulty spread)?
+% - How much does LoRA fine-tuning improve accuracy, and what is the gain actually made of?
+\input{sec/5_results}
+% Discussion should answer:
+% - Why are absolute accuracies so close to random chance?
+% - Does model scale help, and is it enough on its own?
+% - Is the LoRA gain genuine phase/temporal reasoning or coarse heuristics (and is one of
+%   those heuristics actually a trade-off)?
+% - What drives multi-view consistency/inconsistency (confidence vs. correctness)?
+\input{sec/6_discussion}
+
+% Conclusion should answer:
+% - What are the three main findings to restate (marginal zero-shot gains, CoT hurts,
+%   fine-tuning gains are mostly coarse heuristics)?
+% - What is the single most important takeaway for the reader?
+\input{sec/7_conclusion}
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+% \input{sec/X_suppl}  % uncomment if supplementary needed
+
+\end{document}

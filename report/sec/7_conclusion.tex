@@ -1,0 +1,40 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We benchmark VLMs on two robot-supervision capabilities and arrive at three findings.
+First, zero-shot state reasoning is weak but non-trivial: accuracy stays only marginally
+above random across model families, scale helps within a family, but even 30B+ models
+plateau well short of reliable supervision. Second, chain-of-thought prompting hurts
+rather than helps: two independent models drop below random on \texttt{task\_success}
+with CoT, suggesting free-form reasoning chains introduce hallucinated conclusions on
+perceptual tasks rather than improving them. Third, fine-tuning gains are real but mostly
+coarse: LoRA lifts Qwen3-4B accuracy by +10.9pp, but roughly 80\% of that gain decomposes
+into a generalizable out-of-distribution scene detector and a label-position bias that is
+in fact a regression for the most critical failure-detection cases. Taken together, these
+results suggest current VLMs are not yet ready for reliable robot-state supervision out
+of the box, and that fine-tuning gains must be decomposed by question type and answer
+class before they can be trusted for deployment.
+
+\section{Limitations \& Future Work}
+\label{sec:limitations}
+
+\textbf{Limitations.} Manual annotation limits scale: 47 scenes is enough for a
+controlled study but too small to draw strong statistical conclusions about
+model-family differences; an automated annotation pipeline would let this scale up.
+Train and test splits are drawn from the same Robo2VLM-1 distribution, so our results do
+not test sim-to-real or cross-dataset generalization. Some OXE episodes cannot be traced
+back to their raw source, limiting reproducibility for those questions. Two runs were
+incomplete at the time of writing: the Qwen3-4B CoT run (814 of 6224 questions) and the
+Qwen3-8B multi-view run (899 of 1367 source groups, $\sim$66\%) -- the corresponding
+numbers may shift once these complete. Finally, LoRA fine-tuning was only run on
+Qwen3-4B, so it is unknown whether the CnBD-generalization and IPI-collapse pattern holds
+at larger scale.
+
+\textbf{Future work.} We plan to use the Robo2VLM-1 pipeline to generate a larger-scale
+dataset for more robust cross-difficulty testing; to test a list-position hypothesis for
+\texttt{phase\_success} by swapping \texttt{label\_phase} text for the same-position
+phase from a different scene (if the answer is unchanged, this would confirm a
+position-only cue rather than temporal grounding); to run LoRA on a larger model
+(Qwen3-8B) to check whether the gain-decomposition pattern holds at scale; and to run an
+error taxonomy on the CoT transcripts to confirm the ``correct description, wrong
+conclusion'' failure mode with concrete examples.

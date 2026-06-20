@@ -1,0 +1,211 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Failure-Mode Detection: Zero-Shot}
+Table~\ref{tab:main_results} reports zero-shot accuracy on the four failure-mode
+sub-tasks and on multi-view consistency. All seven models score above random on
+\texttt{action\_phase\_id} and \texttt{task\_success}, but sit much closer to random on
+\texttt{phase\_success} and \texttt{progress} -- the two sub-tasks that require comparing
+across phases or images rather than judging a single frame in isolation. Scale helps
+within a family: Gemma3 improves monotonically from E2B to E4B to 31B on every sub-task
+(e.g.\ 31.7\%~$\to$~41.4\%~$\to$~46.1\% on \texttt{action\_phase\_id}). \texttt{task\_success}
+is an outlier: the Qwen3 family scores 70.9--72.6\%, nearly twice random, while Gemma3 and
+InternVL3-14B plateau in the 45--59\% range, which we attribute to Qwen3's stronger
+instruction following on a binary success/failure framing rather than better state
+understanding. Even so, the best model on the hardest sub-task (Qwen3-32B, 48.0\% on
+\texttt{action\_phase\_id}) is barely above the 33.3\% random baseline -- absolute
+numbers tell a sobering story about current VLM state-reasoning capability. Consistent
+with this, models rarely use ``Cannot be determined'' even where it is the correct
+answer, defaulting instead to a confident Yes or No (\cref{sec:results-lora} quantifies
+this for the CnBD variant under BASE Qwen3-4B).
+
+\begin{table}[t]
+  \centering
+  \caption{Zero-shot accuracy (\%) on failure-mode detection sub-tasks and multi-view
+  consistency (All\,3V). Best per column in \textbf{bold}.}
+  \label{tab:main_results}
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{l|cccc|c}
+    \toprule
+    \textbf{Model} & \textbf{Act.Ph.} & \textbf{Ph.Succ.} & \textbf{Prog.} & \textbf{Task\,S.} & \textbf{All\,3V} \\
+    \midrule
+    Gemma3-E2B    & 31.7          & 24.6          & 35.0          & 37.4          & 27.9 \\
+    Gemma3-E4B    & 41.4          & 30.0          & 38.4          & 45.7          & 45.2 \\
+    Gemma3-31B    & 46.1          & \textbf{46.2} & \textbf{45.2} & 58.8          & 58.2 \\
+    \midrule
+    Qwen3-4B      & 44.8          & 35.6          & 39.1          & \textbf{72.6} & 51.0 \\
+    Qwen3-8B      & 43.5          & 39.5          & 40.2          & 70.9          & \textbf{59.0} \\
+    Qwen3-32B     & \textbf{48.0} & 42.6          & 40.9          & 72.2          & 49.2 \\
+    \midrule
+    InternVL3-14B & 43.8          & 43.8          & 41.7          & 56.2          & 56.1 \\
+    \midrule
+    Random        & 33.3          & 25.0          & 33.3          & 33.3          & 25.0 \\
+    \bottomrule
+    \multicolumn{6}{l}{\scriptsize Random: uniform (cols 1--4) / independent-binary (All\,3V).} \\
+  \end{tabular}
+\end{table}
+
+\subsection{Multi-View Consistency}
+Table~\ref{tab:multiview_results} reports the three consistency metrics. Qwen3-8B
+(59.0\%), Gemma3-31B (58.2\%), and InternVL3-14B (56.1\%) are the most self-consistent
+across views; Gemma3-E2B (27.9\%) is the weakest, barely above the 25.0\%
+independent-binary random baseline. For every model, TL$\leftrightarrow$TR agreement is
+higher than All-3-agree, indicating that the wrist view is the hardest to align with the
+two top-down views. Breaking the (fully completed) Qwen3-32B run down by correctness
+(Table~\ref{tab:multiview_correctness}) shows that models are most self-consistent when
+uniformly correct (72.3\%) or uniformly wrong (66.4\%) across the three views, and least
+consistent when only some views are correct (34.4\%) -- consistency tracks how
+unambiguous a scene appears to the model, not whether its answer happens to be right.
+
+\begin{table}[t]
+  \centering
+  \caption{Qwen3-32B all-3-agree rate (\%) by view-correctness group (1367 source groups).}
+  \label{tab:multiview_correctness}
+  \begin{tabular}{lc}
+    \toprule
+    \textbf{Group} & \textbf{All\,3V agree} \\
+    \midrule
+    All views correct  & 72.3 \\
+    Some views correct & 34.4 \\
+    No views correct   & 66.4 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Multi-view consistency (\%) across three agreement metrics. Best per column in
+  \textbf{bold}.}
+  \label{tab:multiview_results}
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{l|ccc}
+    \toprule
+    \textbf{Model} & \textbf{TL$\leftrightarrow$TR} & \textbf{$\geq$1\,Top$\leftrightarrow$W} & \textbf{All\,3V} \\
+    \midrule
+    Gemma3-E2B    & 48.3          & 63.7          & 27.9 \\
+    Gemma3-E4B    & 61.2          & 71.0          & 45.2 \\
+    Gemma3-31B    & 75.9          & 78.9          & 58.2 \\
+    \midrule
+    Qwen3-4B      & 70.2          & 73.9          & 51.0 \\
+    Qwen3-8B      & \textbf{74.8} & \textbf{81.6} & \textbf{59.0} \\
+    Qwen3-32B     & 68.4          & 72.1          & 49.2 \\
+    \midrule
+    InternVL3-14B & 73.7          & 78.7          & 56.1 \\
+    \midrule
+    Random        & 50.0          & 75.0          & 25.0 \\
+    \bottomrule
+    \multicolumn{4}{l}{\scriptsize Random: independent per-view binary baseline.} \\
+  \end{tabular}
+\end{table}
+
+\subsection{Chain-of-Thought Ablation}
+Table~\ref{tab:cot_results} compares default vs.\ CoT prompting for the two Gemma3
+models with complete CoT runs at time of writing (the Qwen3-4B CoT run had completed only
+814 of 6224 questions, see \cref{sec:limitations}). CoT prompting consistently hurts:
+Gemma3-E4B's \texttt{task\_success} accuracy drops from 45.7\% to 20.9\%, below the
+33.3\% random baseline, and Gemma3-E2B's drops from 37.4\% to 15.5\%, with its overall
+accuracy on the full 6224-question set falling to 28.8\%, below the 29.8\% random
+baseline for that set. Two independent models now show CoT hurting accuracy, and one
+drags overall accuracy below random -- this looks like a pattern rather than a single
+model's anomaly. We hypothesize that models describe the visual content correctly but
+draw an incorrect conclusion partway through the free-form reasoning chain, which then
+anchors an incorrect final letter; confirming this would require an error-taxonomy pass
+over the CoT transcripts, which we leave to future work (\cref{sec:limitations}).
+
+\begin{table}[t]
+  \centering
+  \caption{Default vs.\ chain-of-thought (CoT) accuracy (\%) on \texttt{task\_success}.}
+  \label{tab:cot_results}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Model} & \textbf{Default} & \textbf{CoT} \\
+    \midrule
+    Gemma3-E2B & 37.4 & 15.5 \\
+    Gemma3-E4B & 45.7 & 20.9 \\
+    \midrule
+    Random & 33.3 & 33.3 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Scene Difficulty Analysis}
+Per-scene accuracy varies widely: the best zero-shot model spans roughly 31 percentage
+points across the 47 scenes (Figure~\ref{fig:easy_hard}). Averaging across all seven
+models, the consensus-hardest scene (\textit{align the rope along the middle of the
+black object}, 35.1\% mean accuracy) sits 13.6pp below the consensus-easiest scene
+(\textit{pick the orange ball and put it in the pot on the stove}, 48.7\%), and these
+consensus rankings are far more stable than any single model's own ranking: the average
+pairwise Spearman correlation of per-scene accuracy across the seven models is only
+0.194, meaning models largely disagree on which scenes are hard. Qualitatively, easy
+scenes feature visually distinct objects and clear state changes; hard scenes are
+cluttered, have visually similar phases, or involve subtle state changes. This points to
+scene visual properties -- clutter, contrast, object distinctness -- rather than task
+semantics as the main driver of difficulty.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{../poster_3_D/easy_hard_scenes.pdf}
+  \caption{Per-scene accuracy distribution (best zero-shot model). Easy scenes (left) feature
+  distinct objects and clear state changes; hard scenes (right) are cluttered or visually
+  ambiguous. \TODO{Write caption.}}
+  \label{fig:easy_hard}
+\end{figure}
+
+\subsection{LoRA Fine-Tuning Case Study (Qwen3-4B)}
+\label{sec:results-lora}
+Table~\ref{tab:lora_results} compares Qwen3-4B BASE against +LoRA on the identical
+2706-question, 20-scene held-out test split. Overall accuracy rises from 44.2\% to
+55.1\% (+10.9pp, +295 correct answers) -- a substantial headline gain. Decomposing this
+gain, however, shows that most of it is not improved phase or temporal reasoning but two
+coarse heuristics.
+
+The first heuristic (roughly 44\% of the gain) is improved detection of the adversarial
+CnBD variant: on the 130 random-scene questions in \texttt{action\_phase\_id} and
+\texttt{task\_success} (6.5\% of the test set), BASE accuracy is 0--15\% while +LoRA
+reaches 78--88\%. The model has effectively learned the rule ``if the image scene does
+not match the goal text, answer Cannot be determined.'' This is a real, generalizable
+skill rather than memorization: splitting CnBD recall by the donor scene's origin gives
+comparable recall whether the donor scene was seen in training (0.92 / 0.65 for
+\texttt{action\_phase\_id} / \texttt{task\_success}), in validation (1.0 / 1.0), or
+entirely unseen (0.82 / 0.82) -- recall on unseen donor scenes is not lower, so the rule
+generalizes to novel scene pairings rather than memorizing specific images.
+
+The second heuristic (roughly 55\% of the gain, 161 questions) appears on
+\texttt{phase\_success} at MIDDLE phase positions (where the depicted image step equals
+the target phase, i.e.\ neither first nor last): accuracy improves from 36.9\% to 49.9\%.
+This gain, however, comes with a regression: +LoRA nearly abandons ``Is currently
+performing it'' (IPI) as an answer, with IPI recall dropping from 35.8\% to 6.6\% and raw
+IPI predictions falling from 383 to 43 across the full test set. Under a lenient scoring
+rule that also accepts ``Yes'' for IPI, +LoRA is still worse than BASE (58.0\% vs.\
+48.9\%), and of the 274 ground-truth IPI cases, +LoRA predicts ``No'' on 140 of them.
+This is a net-positive headline number that is, in fact, a regression for the most
+safety-critical use case: detecting that a robot is currently in the middle of performing
+an action.
+
+Notably, \texttt{progress} -- which also contains a CnBD variant -- does not pick up the
+same OOD-detection cue despite comparable training exposure (110 vs.\ 130 examples),
+which we attribute to \texttt{progress} swapping only one of its two side-by-side images
+for the random scene, making the cue visually less salient than the full-image swap used
+in \texttt{action\_phase\_id} and \texttt{task\_success}.
+
+\begin{table}[t]
+  \centering
+  \caption{Qwen3-4B LoRA fine-tuning results on matched 20-scene / 2706-question
+  held-out test split. $\Delta$ = LoRA minus BASE.}
+  \label{tab:lora_results}
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{l|cccc|c}
+    \toprule
+    \textbf{Qwen3-4B} & \textbf{Act.Ph.} & \textbf{Ph.Succ.} & \textbf{Prog.} & \textbf{Task\,S.} & \textbf{Overall} \\
+    \midrule
+    BASE    & 45.1          & 37.9          & \textbf{38.2} & 73.5          & 44.2 \\
+    +LoRA   & \textbf{61.0} & \textbf{51.8} & 37.5          & \textbf{81.1} & \textbf{55.1} \\
+    \midrule
+    $\Delta$ & +15.9        & +13.9         & $-$0.8        & +7.6          & +10.9 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% TODO: Add gain-decomposition bar chart figure once generated.
+% TODO: Add CnBD example (BASE wrong vs LoRA correct) figure.
+% TODO: Add IPI-collapse example figure (ground truth IPI, BASE correct, LoRA wrong).
