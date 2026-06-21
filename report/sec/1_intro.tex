@@ -1,11 +1,18 @@
 \section{Introduction}
 \label{sec:intro}
+% LENGTH TARGET: ~0.75 page
 
-Recent advances in Vision-Language-Models~(VLM) brought LLM-type scaling and reasoning into the domain of robotics. As VLMs are used in both next-action prediction~(Vision-Language-Action models) and higher-level task planning and supervision, they require state understanding of the robot and the objects it interacts with, given the context of the task. To bridge the gap to real-world deployment, the models have to be self-sufficient, thus generalizing to unforeseen environments, tasks, and edge cases, relieving the user from finetuning the model and modifying the environment to prevent OOD situations. Thus it is necessary for these models to reliably track progress during a task, identify which sub-task the robot is currently attempting, and understand success/failure of robotic actions across diverse tasks and scenes. Furthermore, it has to be time and resource efficient based on the system of the robot and overall pipeline: e.g.\ for a household robot it might suffice to empty the dishwasher under 20 minutes, while an industrial production pipeline might have only several seconds to determine success or failure of a task. We investigate the zero-shot capabilities of different model families and sizes for failure
-mode detection and multi-view consistency, to determine under which task-specific and scene conditions the models' effectiveness collapses. 
+% Recent advances in Vision-Language Models (VLMs) have brought LLM-style scaling and reasoning capabilities into robotics. Survey evidence suggests these models perform strongly on object identity and coarse spatial reasoning, while state-change, contact reasoning and temporal reasoning capabilities remain comparatively weak \cite{lin2025vlmsurvey}. Yet robot supervision fundamentally depends on understanding object state, task progress, and action outcomes.
 
-We study this gap along two concrete capability questions. First, failure-mode detection: given multiple views of the scene, can a VLM judge task progress,
-identify the current action phase, and determine whether action-phase execution succeeded or failed? Low performance implies a lack of semantic scene-comphrension.
+% As VLMs are increasingly used for next-action prediction, task planning, and execution supervision, they must reliably infer manipulation progress and action success across diverse scenes and viewpoints. We investigate these capabilities through two concrete questions. First, failure-mode detection: can a VLM identify the current action phase, judge task progress, and determine whether an action succeeded or failed? Second, multi-view consistency: do predictions remain consistent across synchronized camera views of the same scene? Robust robot supervision requires both accurate state reasoning and stable cross-view behavior.
+ 
+% We study these questions using a benchmark built on Robo2VLM-1~\cite{...}, evaluating zero-shot, CoT, and LoRA-finetuned VLMs across robot manipulation tasks.
+
+Recent advances in Vision-Language-Models~(VLM) brought LLM-type scaling and reasoning into robotics. While these models perform strongly on object identity and -position queries, state-change, contact and temporal zero-shot and reasoning remain comparatively weak~\cite{lin2025vlmsurvey}. Yet robot supervision depends on understanding these exact dynamics.
+
+% As VLMs are used increasingly used for next-action prediction, task planning and supervision, they require state understanding of the robot and the objects it interacts with, given the context of the task. To bridge the gap to real-world deployment, the models have to be self-sufficient, thus generalizing to unforeseen environments, tasks, and edge cases, relieving the user from finetuning the model and modifying the environment to prevent OOD situations. Thus it is necessary for these models to reliably track progress during a task, identify which sub-task the robot is currently attempting, and understand success/failure of robotic actions across diverse tasks and scenes. We investigate the zero-shot capabilities of different model families and sizes for failure mode detection and multi-view consistency, to determine under which task-specific and scene conditions the models' effectiveness collapses. 
+
+We study two capabilities required for reliable robot supervision. First, failure-mode detection: given multiple views of the scene, can a VLM judge task progress, identify the current action phase, and determine whether action-phase execution succeeded or failed? Low performance implies a lack of semantic scene-comphrension.
 Second, multi-view consistency: do answers extracted from different camera angles of the same moment agree with each other? Inconsistency across views would
 undermine true scene understanding and entails intensive calibration phase.
 
@@ -18,8 +25,7 @@ Our contributions are as follows:
   \item Self-designed question types (action phase, phase success, progress, task success,
         multi-view consistency), to test temporal- and state-reasoning. 
   \item Zero-shot evaluation of 7 VLMs across 3 families (Gemma3, Qwen3, InternVL3) with easy/hard scene-difficulty breakdown.
-  \item LoRA fine-tuning case study (Qwen3-4B) and CoT prompting ablation: +10.9pp overall, with detailed gain
-        decomposition revealing two coarse heuristics rather than improved phase reasoning.     
+  \item LoRA fine-tuning case study (Qwen3-4B) and CoT prompting ablation with detailed gain decomposition.     
   \item Scene- and task-level dissection of task-specific difficulty.
 \end{itemize}
 

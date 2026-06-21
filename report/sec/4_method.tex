@@ -1,5 +1,6 @@
 \section{Method}
 \label{sec:method}
+% LENGTH TARGET: ~0.75 page
 
 As the trajectories of the \cite{chen2025robo2vlm} dataset are success only, this framework is designed to use temporal and action-phase-label - vision alignment to test model capabilities across object-, state-, manipulation-, and scene-understanding. And in particular temporal comprehension of robotic tasks. 
 
@@ -25,18 +26,19 @@ count depends on the sub-task). We extract the first letter predicted in a singl
 pass as the model's answer, without few-shot examples or task-specific instructions. In
 the chain-of-thought (CoT) variant, the model is instead asked to reason freely before
 stating a final answer letter; we apply the same extraction procedure to the last letter
-emitted in the response. \TODO{include the exact prompt template here, or move it to
-supplementary.}
+emitted in the response. 
 
 \subsection{LoRA Fine-Tuning}
 We additionally fine-tune Qwen3-4B with LoRA to control for the possibility that low
 zero-shot accuracy reflects missing task-specific grounding rather than a fundamental
-reasoning ceiling. We use rank 16, alpha 32, and dropout 0.05 on the query, key, value,
-and output projections of the language-model layers, trained on a scene-level split with
-20 training scenes (2535 questions) and 7 validation scenes (983 questions); the held-out
-test split (20 scenes, 2706 questions) shares no scene with training, preventing the
-model from memorizing specific visual scenes. Training runs for 3 epochs with a learning
-rate of $2\times10^{-4}$, batch size 1 with gradient accumulation 8 (effective batch size
-8), and a maximum sequence length of 1024 tokens (seed 42). We compare against zero-shot
-Qwen3-4B evaluated on the identical 2706-question test split, giving an apples-to-apples
-BASE vs.\ +LoRA comparison.
+reasoning ceiling. The training specifics are in the Appendix.
+
+% We use rank 16, alpha 32, and dropout 0.05 on the query, key, value,
+% and output projections of the language-model layers, trained on a scene-level split with
+% 20 training scenes (2535 questions) and 7 validation scenes (983 questions); the held-out
+% test split (20 scenes, 2706 questions) shares no scene with training, preventing the
+% model from memorizing specific visual scenes. Training runs for 3 epochs with a learning
+% rate of $2\times10^{-4}$, batch size 1 with gradient accumulation 8 (effective batch size
+% 8), and a maximum sequence length of 1024 tokens (seed 42). We compare against zero-shot
+% Qwen3-4B evaluated on the identical 2706-question test split, giving an apples-to-apples
+% BASE vs.\ +LoRA comparison.

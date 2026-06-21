@@ -1,5 +1,6 @@
 \section{Dataset \& Tasks}
 \label{sec:dataset}
+% LENGTH TARGET: ~1 page
 
 \subsection{Source Data}
 To leverage Robo2VLM-1~\cite{chen2025robo2vlm} keyframe selection of the scene diverse DROID~\cite{khazatsky2024droid} dataset.
@@ -40,7 +41,7 @@ Additionally we provide each question with context of a sorted list of action ph
   \centering
   \includegraphics[width=\linewidth]{../poster_3_D/phase_success_top.pdf}
   \caption{Example questions for the four failure-mode detection sub-tasks.
-  \TODO{Write caption describing what each row shows.}}
+  See Appendix for more information.}
   \label{fig:task_examples}
 \end{figure}
 
@@ -53,31 +54,24 @@ top-left (TL), top-right (TR), and wrist (W).
   \centering
   \includegraphics[width=\linewidth]{../poster_3_D/mutlview_consistency_evaluation_targets_bottom.pdf}
   \caption{Multi-view consistency evaluation: same scene captured from top-left, top-right,
-  and wrist cameras. \TODO{Write caption.}}
+  and wrist cameras is given to model in distinct prompts.}
   \label{fig:multiview_examples}
 \end{figure}
 
-\subsection{Dataset Statistics}
+% \begin{table}[h]
+%   \centering
+%   \caption{Dataset statistics. The LoRA split uses a scene-level partition with no
+%   scene overlap between train, val, and test.}
+%   \label{tab:dataset_stats}
+%   \begin{tabular}{lrrr}
+%     \toprule
+%     & \textbf{Train} & \textbf{Val} & \textbf{Test} \\
+%     \midrule
+%     Scenes      & 20    & 7   & 20   \\
+%     Questions   & 2535  & 983 & 2706 \\
+%     \midrule
+%     \multicolumn{4}{l}{\small Total: 47 scenes, 6224 questions} \\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
 
-\begin{table}[h]
-  \centering
-  \caption{Dataset statistics. The LoRA split uses a scene-level partition with no
-  scene overlap between train, val, and test.}
-  \label{tab:dataset_stats}
-  \begin{tabular}{lrrr}
-    \toprule
-    & \textbf{Train} & \textbf{Val} & \textbf{Test} \\
-    \midrule
-    Scenes      & 20    & 7   & 20   \\
-    Questions   & 2535  & 983 & 2706 \\
-    \midrule
-    \multicolumn{4}{l}{\small Total: 47 scenes, 6224 questions} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-Table~\ref{tab:dataset_stats} reports scene and question counts for the LoRA train/val/test
-split. The full benchmark, used for zero-shot and CoT evaluation, totals 47 scenes and
-6224 questions; the LoRA split is scene-disjoint, so no scene appears in more than one of
-train, val, and test.
-% TODO: Add per-sub-task question count breakdown if available.

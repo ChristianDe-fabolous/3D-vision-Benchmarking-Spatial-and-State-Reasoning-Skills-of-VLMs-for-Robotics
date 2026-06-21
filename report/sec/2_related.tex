@@ -1,31 +1,15 @@
 \section{Related Work}
 \label{sec:related}
+% LENGTH TARGET: ~0.5 page
 
-\textbf{VLMs as evaluators and robot supervisors.} VLMs have been proposed for action-prediction, as well as supervision, where supervision can be viewed as a mandatory subtask of the former. As standalone supervision models, they are used as judges for production outcomes and high level planning to execute the gating logic for the next action phases. 
-detectors, reward models, and failure classifiers for robotic manipulation
-\TODO{cite RT-2 / VoxPoser / success-detector papers}, and a separate line of work studies
-VLMs as general-purpose judges, showing that judgment quality depends heavily on prompt
-format, answer ordering, and question complexity \TODO{cite VLM-as-judge literature}.  
+\textbf{VLMs as evaluators and robot supervisors.} VLMs have been proposed for action-prediction, as well as supervision, where supervision can be viewed as a mandatory subtask of the former. As standalone supervision models, they are used as judges for production outcomes, high level planning to execute the gating logic for the next action phases, reward models etc. \TODO{cite RT-2 / VoxPoser / success-detector papers}.  
 
-\textbf{Benchmarking VLMs} offer a wide range of general semantic image comprehension questions. %TODO  
-Many benchmarks focus on semantic understanding, such as instance counting, unrealistic and therefore OOD (as they do not occur in web-scale data) scene understanding. They rarely leverage robotic real-world data at all and concurrently do not address robot specific difficulties such as complex cross-object dependencies, task-specifics, visually obstructed scenes and temporal reasoning. 
+% \textbf{Benchmarking VLMs} offer a wide range of general semantic image comprehension questions and focus on semantic understanding, such as instance counting, unrealistic and therefore OOD (as they do not occur in web-scale data) scene. But they rarely leverage robotic real-world data and concurrently do not address robot specific difficulties such as complex cross-object dependencies, task-specifics, visually obstructed scenes and temporal reasoning. 
+
+\textbf{Benchmarking VLMs}
+Existing VLM benchmarks focus primarily on general semantic reasoning tasks [TODO: benchmark citations], while robotic VQA datasets such as Robo2VLM-1 [1] evaluate embodied visual understanding from robot trajectories.
 
 \textbf{VQA from robot trajectories.} Robo2VLM-1~\cite{chen2025robo2vlm} automatically generates visual-question-answering pairs from real robot trajectories and multiple synchronized views (top-left, top-right, wrist) using
-DROID~\cite{khazatsky2024droid} and Open X-Embodiment (OXE) data, deriving ground-truth answers from sensor and trajectory metadata rather than human annotation; they cover a wide range of questions from spatial reasoning to task state goal. (1) Q: "In the left image (ext1 camera), a red dot is marked. Which point is the closest point in the right image (ext2 camera) corresponding to the same 3D location?" (2) Q: "Is the grasp of the robot stable?" (3) Q: "The robot is tasked to ..., which configuration shows the goal state that the robot should achieve."
-A majority of these questions rely on visual annotations of the images, such as inserted dots, arrows etc. However they are not designed for failure mode detection specifically and negect to consider multiview consistency questions, where only the image view is exchanged. Inadvertiently increasing VQA complexity, the model has to understand the visual modifications in the image and reason correctly internally, adding a layer of abstraction beyond what is necessary in real-world deployment. 
+DROID~\cite{khazatsky2024droid} and Open X-Embodiment (OXE) data, deriving ground-truth answers from sensor and trajectory metadata rather than human annotation; they cover a wide range of questions from spatial reasoning to task state goal. A majority of these questions rely on visual annotations of the images, such as inserted dots, arrows etc. However they are not designed for failure mode detection specifically and neglect multiview consistency questions. Inadvertiently increasing VQA complexity, the model has to understand the visual modifications in the image and reason correctly internally, adding a layer of abstraction beyond what is necessary in real-world deployment. 
 
-
-%TODO not sure wether to include this part and where before or after VQA from robot trajectories
-\textbf{Known VLM weaknesses in spatial and temporal reasoning.} Survey evidence suggests
-VLMs trained on web-scale data perform robustly on object-identity and object-position queries,
-while state-change and contact reasoning are comparatively underrepresented in their
-training distributions~\cite{lin2025vlmsurvey}. Evidence on chain-of-thought prompting for
-visual tasks is mixed: it helps on math- and logic-heavy benchmarks but can hurt on
-perceptual tasks by introducing hallucinated reasoning chains
-\TODO{cite CoT-hurts-perception literature}; our CoT ablation
-(\cref{sec:results}) adds a robotics data point to this debate. The model families we
-evaluate are Gemma3~\cite{gemma2025gemma3}, Qwen3~\cite{qwen2025qwen3}, and
-InternVL3~\cite{chen2025internvl3}.
-Our work differs in two ways: we evaluate both failure-mode detection and multi-view
-consistency on the same real-robot data, and we decompose fine-tuning gains by question
-type and answer class rather than reporting a single headline accuracy number.
+\textbf{Failure modes and Multi view consistency.} Current benchmarks fail to correctly assess the capabilities in these domains. Our work differs in two ways: We evaluate both failure-mode detection and multi-view consistency on the same real-robot data, and we decompose results on zero-shot, CoT-prompting and fine-tuning gains by question type, scene and answer class rather than reporting a single headline accuracy number.
