@@ -8,26 +8,11 @@
  
 % We study these questions using a benchmark built on Robo2VLM-1~\cite{...}, evaluating zero-shot, CoT, and LoRA-finetuned VLMs across robot manipulation tasks.
 
-Recent advances in Vision-Language Models~(VLMs) brought LLM-type scaling and reasoning into robotics. While these models perform strongly on object identity and position queries, state-change, contact, and temporal reasoning remain comparatively weak~\cite{lin2025vlmsurvey}. Yet robot supervision depends on understanding these exact dynamics.
+Recent advances in Vision-Language Models~(VLMs) have pushed strong object-recognition and coarse spatial reasoning into robotics, but state-change, contact, and temporal reasoning remain comparatively weak~\cite{lin2025vlmsurvey}. This gap matters directly for robot supervision, which depends on knowing whether a grasp succeeded, where a task stands mid-execution, and whether the current action phase is on track.
 
-% As VLMs are used increasingly used for next-action prediction, task planning and supervision, they require state understanding of the robot and the objects it interacts with, given the context of the task. To bridge the gap to real-world deployment, the models have to be self-sufficient, thus generalizing to unforeseen environments, tasks, and edge cases, relieving the user from finetuning the model and modifying the environment to prevent OOD situations. Thus it is necessary for these models to reliably track progress during a task, identify which sub-task the robot is currently attempting, and understand success/failure of robotic actions across diverse tasks and scenes. We investigate the zero-shot capabilities of different model families and sizes for failure mode detection and multi-view consistency, to determine under which task-specific and scene conditions the models' effectiveness collapses. 
+We probe two concrete facets of this problem. The first is \emph{failure-mode detection}: given images from multiple viewpoints, can a VLM identify the current action phase, judge whether that phase succeeded, and estimate overall task progress? The second is \emph{multi-view consistency}: when the same scene moment is captured from two synchronized cameras, do the model's answers agree? A model that reasons about the same scene differently depending on which camera it sees is unreliable as a supervisor regardless of its average accuracy.
 
-We study two capabilities required for reliable robot supervision. First, failure-mode detection: given multiple views of the scene, can a VLM judge task progress, identify the current action phase, and determine whether action-phase execution succeeded or failed? Low performance implies a lack of semantic scene comprehension.
-Second, multi-view consistency: do answers extracted from different camera angles of the same moment agree with each other? Inconsistency across views would
-undermine true scene understanding and would require extensive per-view calibration.
-
-To answer these questions, we build a new benchmark on Robo2VLM-1~\cite{chen2025robo2vlm} (DROID~\cite{khazatsky2024droid} and OXE
-trajectories), covering 47 scenes and 6224 questions for failure-mode detection and 6902 questions for multi-view consistency across four question types. We evaluate seven VLMs across three families zero-shot, ablate chain-of-thought~(CoT) prompting, analyze accuracy as a function of task- and scene-difficulty, and run a LoRA fine-tuning case study on Qwen3-4B with a decomposition of the performance gains.
-Our contributions are as follows:
-\begin{itemize}
-  \item New benchmark: 6224 questions across 47 scenes on Robo2VLM-1 (DROID), covering
-        failure-mode detection (4 sub-tasks) and multi-view consistency.
-  \item Self-designed question types (action phase, phase success, progress, task success,
-        multi-view consistency), to test temporal- and state-reasoning. 
-  \item Zero-shot evaluation of 7 VLMs across 3 families (Gemma3, Qwen3, InternVL3) with easy/hard scene-difficulty breakdown.
-  \item LoRA fine-tuning case study (Qwen3-4B) and CoT prompting ablation with detailed gain decomposition.     
-  \item Scene- and task-level dissection of task-specific difficulty.
-\end{itemize}
+To study both, we build a new benchmark based on Robo2VLM-1~\cite{chen2025robo2vlm} (DROID~\cite{khazatsky2024droid} and OXE trajectories), comprising 6224 failure-mode and 6902 multi-view consistency questions across 47 hand-labeled scenes and five self-designed question types (action phase, phase success, progress, task success, and multi-view consistency). We evaluate seven VLMs from three families (Gemma3, Qwen3, InternVL3) zero-shot, ablate chain-of-thought~(CoT) prompting, break results down by scene difficulty, and run a LoRA fine-tuning case study on Qwen3-4B.
 
 % --- Figure: method overview ---
 \begin{figure}[t]
@@ -40,4 +25,4 @@ Our contributions are as follows:
   \label{fig:method_overview}
 \end{figure}
 
-Our experiments show that current small- and mid-sized VLMs fail to deliver this level of reliability: zero-shot accuracy stays close to random for small models, CoT prompting yields only nuanced improvements or is actively harmful, and LoRA fine-tuning gains are largely attributable to coarse heuristics rather than stronger reasoning. While such models exhibit reasonable performance on object detection and positional queries, they struggle with object states and complex cross-object relationships. We dissect at which task- and scene-complexity levels this breakdown occurs.
+The results paint a sobering picture: zero-shot accuracy of small models hovers near chance, CoT prompting is inconsistent and often harmful, and LoRA fine-tuning gains decompose mostly into learned answer-distribution shortcuts rather than improved scene understanding. We trace where performance collapses as task and scene complexity increase.
