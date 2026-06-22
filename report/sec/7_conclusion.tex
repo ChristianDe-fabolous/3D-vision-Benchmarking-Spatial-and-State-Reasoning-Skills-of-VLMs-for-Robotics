@@ -16,6 +16,9 @@ at larger scale.
 
 \textbf{Future work.} We plan to use the Robo2VLM-1 pipeline to generate a larger-scale dataset for more robust cross-difficulty testing. Running LoRA on larger models and fine-tuning the vision backbone would clarify whether the gain-decomposition pattern holds at scale. Running CoT on larger models would separately test whether the over-caution effect is size-dependent. Finally, another interesting angle would be to use video segments around keypoints of the model, by either using video-language-models directly or by giving multiple images in close temporal consistency. This could surface new temporal reasoning capabilities that our single-frame queries can't test.
 
+\section*{Acknowledgments}
+We thank our supervisors Jovana Videnovi\'{c}, Jelena Trisovi\'{c}, and Ren\'{e} Zurbr\"{u}gg for their guidance throughout the project.
+
 \section{Statement of work distribution.}
 While we all contributed to each stage of the project, we each spent more time on certain tasks:
 Christian dedicated the most time to LoRA training, the data labeling interface, and compiling the labeled data into the final benchmark questions.
