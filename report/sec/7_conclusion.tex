@@ -3,8 +3,7 @@
 
 We benchmark VLMs on two robot-supervision capabilities and arrive at three findings.
 First, zero-shot state reasoning is weak: accuracy stays only marginally above random across model families, scale helps within a family, but even 30B+ models
-plateau well short of reliable supervision. Second, chain-of-thought prompting introduces additional difficulties and requires siginificantly more compute. CoT, suggesting free-form reasoning chains introduce hallucinated conclusions on
-perceptual tasks rather than improving them. Third, fine-tuning gains are real but mostly coarse: LoRA lifts Qwen3-4B accuracy by +10.9pp, but improvements can not be attributed to improved temporal- or state-reasoning. Taken together, these
+plateau well short of reliable supervision. Second, chain-of-thought prompting introduces additional difficulties and requires significantly more compute; free-form reasoning chains appear to introduce hallucinated conclusions on perceptual tasks rather than improving them. Third, fine-tuning gains are real but mostly coarse: LoRA lifts Qwen3-4B accuracy by +10.9pp, but improvements can not be attributed to improved temporal- or state-reasoning. Taken together, these
 results suggest current VLMs are not yet ready for reliable robot-state supervision out of the box, and that fine-tuning gains must be carefully decomposed by question type and answer class before they can be trusted for deployment.
 
 \section{Limitations \& Future Work}

@@ -33,45 +33,45 @@ additionally inject an adversarial \emph{Cannot be determined} (CnBD) variant: w
 scene, making ``Cannot be determined'' the only correct answer. This variant tests
 whether a model detects a domain mismatch between image and goal text, rather than
 guessing a plausible-looking phase.
-Additionally we provide each question with context of a sorted list of action phase labels of the scene, to provide the model with potentially needed context. E.g. for action phase detection, the model might answer incorrectly, because it would attribute it sligthley differently formulated action phase.
+Additionally we provide each question with context of a sorted list of action phase labels of the scene, to provide the model with potentially needed context. E.g.\ for action phase detection, the model might answer incorrectly because it would attribute a slightly differently formulated action phase.
 
 
 % Figure: evaluation target examples
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{../poster_3_D/phase_success_top.pdf}
+  \includegraphics[width=\linewidth]{../poster_3_D/targets.png}
   \caption{Example questions for the four failure-mode detection sub-tasks.
   See Appendix for more information.}
   \label{fig:task_examples}
 \end{figure}
 
 \subsection{Failure-Mode Detection Sub-Tasks}
-For failure detection, we prompt the model with all 3 views merged into a single image, as prodvided by \cite{chen2025robo2vlm}. CoT shows the models can identify the individual views in a merged image.
+For failure detection, we prompt the model with all 3 views merged into a single image, as provided by \cite{chen2025robo2vlm}. CoT shows the models can identify the individual views in a merged image.
 \subsection{Multi-View Consistency}
 The same question is additionally posed from multiple camera views of the same scene, if a human labelled the view as "action-phase is comprehensible from single view":
 top-left (TL), top-right (TR), and wrist (W). 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{../poster_3_D/mutlview_consistency_evaluation_targets_bottom.pdf}
-  \caption{Multi-view consistency evaluation: same scene captured from top-left, top-right,
-  and wrist cameras is given to model in distinct prompts.}
+  \includegraphics[width=\linewidth]{../poster_3_D/targets.png}
+  \caption{Multi-view consistency evaluation: the same scene captured from top-left, top-right,
+  and wrist cameras is presented to the model in distinct prompts. \TODO{Replace with multi-view figure.}}
   \label{fig:multiview_examples}
 \end{figure}
 
-% \begin{table}[h]
-%   \centering
-%   \caption{Dataset statistics. The LoRA split uses a scene-level partition with no
-%   scene overlap between train, val, and test.}
-%   \label{tab:dataset_stats}
-%   \begin{tabular}{lrrr}
-%     \toprule
-%     & \textbf{Train} & \textbf{Val} & \textbf{Test} \\
-%     \midrule
-%     Scenes      & 20    & 7   & 20   \\
-%     Questions   & 2535  & 983 & 2706 \\
-%     \midrule
-%     \multicolumn{4}{l}{\small Total: 47 scenes, 6224 questions} \\
-%     \bottomrule
-%   \end{tabular}
-% \end{table}
+\begin{table}[h]
+  \centering
+  \caption{Dataset statistics. The LoRA split uses a scene-level partition with no
+  scene overlap between train, val, and test.}
+  \label{tab:dataset_stats}
+  \begin{tabular}{lrrr}
+    \toprule
+    & \textbf{Train} & \textbf{Val} & \textbf{Test} \\
+    \midrule
+    Scenes      & 20    & 7   & 20   \\
+    Questions   & 2535  & 983 & 2706 \\
+    \midrule
+    \multicolumn{4}{l}{\small Total: 47 scenes, 6224 questions} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 

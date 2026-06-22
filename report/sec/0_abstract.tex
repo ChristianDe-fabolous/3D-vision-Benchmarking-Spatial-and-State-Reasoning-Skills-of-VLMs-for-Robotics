@@ -1,17 +1,17 @@
 % LENGTH TARGET: ~150-200 words, single paragraph (CVPR norm)
 \begin{abstract}
-Vision-Language-Models (VLMs) are increasingly proposed action-prediction models and supervisors for
-robotic manipulation. Both demand judgment upon task progress and detecting failures from camera input within the context of the task. 
-We benchmark these capabilities with a curated dataset: (1)
+Vision-Language Models (VLMs) are increasingly proposed as action-prediction models and supervisors for
+robotic manipulation, both of which require judging task progress and detecting failures from camera input in the context of the current goal.
+We benchmark these capabilities with a curated dataset covering: (1)
 failure-mode and state reasoning from a single image and a stated goal, and (2)
 consistency of answers extracted from different camera viewpoints of the same moment.
-Using a new benchmark built on Robo2VLM-1 (DROID + OXE; 47 scenes, 6224 questions, 4
+Using a new benchmark built on Robo2VLM-1 (DROID + OXE; 47 scenes split 20/7/20 train/val/test, 6224 questions across 4
 question types), we evaluate seven VLMs across three families (Gemma3, Qwen3, InternVL3)
 zero-shot, with a chain-of-thought (CoT) ablation and a LoRA fine-tuning case study. We
 find that (i) zero-shot accuracy is only marginally above random (high-40s\% vs.\ 33\%
-uniform random) and plateaus even at 30B+ scale; (ii) CoT prompting introduces secondary complications; and (iii) LoRA
+uniform random) and plateaus even at 30B+ scale; (ii) CoT prompting consistently hurts accuracy, primarily by inducing over-caution on \texttt{task\_success}; and (iii) LoRA
 fine-tuning yields a sizeable +10.9pp headline gain on Qwen3-4B, but roughly 80\% of it
-decomposes into two coarse heuristics -- a generalizable out-of-distribution scene
-detector and a label-position bias -- rather than improved phase or temporal reasoning. Our results suggest current small- and mid-sized VLMs are not yet reliable robot-state
-supervisors out of the box, and that fine-tuning gains require careful control.
+decomposes into two coarse heuristics --- a generalizable out-of-distribution scene
+detector and a label-position bias --- rather than improved phase or temporal reasoning. Our results suggest current small- and mid-sized VLMs are not yet reliable robot-state
+supervisors out of the box, and that fine-tuning gains require careful decomposition before deployment.
 \end{abstract}

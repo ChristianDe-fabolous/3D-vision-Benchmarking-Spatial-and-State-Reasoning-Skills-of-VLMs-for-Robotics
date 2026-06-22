@@ -2,12 +2,12 @@
 \label{sec:related}
 % LENGTH TARGET: ~0.5 page
 
-\textbf{VLMs as evaluators and robot supervisors.} VLMs have been proposed for action-prediction, as well as supervision, where supervision can be viewed as a mandatory subtask of the former. As standalone supervision models, they are used as judges for production outcomes, high level planning to execute the gating logic for the next action phases, reward models etc. \TODO{cite RT-2 / VoxPoser / success-detector papers}.  
+\textbf{VLMs as evaluators and robot supervisors.} VLMs have been proposed for action-prediction as well as supervision, where supervision can be viewed as a mandatory subtask of the former. As standalone supervision models, they are used as judges for production outcomes, high-level planning, gating logic for the next action phases, and reward models~\cite{brohan2023rt2}\TODO{VoxPoser, success-detector citations}.
 
 % \textbf{Benchmarking VLMs} offer a wide range of general semantic image comprehension questions and focus on semantic understanding, such as instance counting, unrealistic and therefore OOD (as they do not occur in web-scale data) scene. But they rarely leverage robotic real-world data and concurrently do not address robot specific difficulties such as complex cross-object dependencies, task-specifics, visually obstructed scenes and temporal reasoning. 
 
-\textbf{Benchmarking VLMs}
-Existing VLM benchmarks focus primarily on general semantic reasoning tasks [TODO: benchmark citations], while robotic VQA datasets such as Robo2VLM-1 [1] evaluate embodied visual understanding from robot trajectories.
+\textbf{Benchmarking VLMs.}
+Existing VLM benchmarks focus primarily on general semantic reasoning tasks~\cite{li2025benchmark,yang2025embodiedbench}, while robotic VQA datasets such as Robo2VLM-1~\cite{chen2025robo2vlm} evaluate embodied visual understanding from robot trajectories.
 
 \textbf{VQA from robot trajectories.} Robo2VLM-1~\cite{chen2025robo2vlm} automatically generates visual-question-answering pairs from real robot trajectories and multiple synchronized views (top-left, top-right, wrist) using
 DROID~\cite{khazatsky2024droid} and Open X-Embodiment (OXE) data, deriving ground-truth answers from sensor and trajectory metadata rather than human annotation; they cover a wide range of questions from spatial reasoning to task state goal. A majority of these questions rely on visual annotations of the images, such as inserted dots, arrows etc. However they are not designed for failure mode detection specifically and neglect multiview consistency questions. Inadvertiently increasing VQA complexity, the model has to understand the visual modifications in the image and reason correctly internally, adding a layer of abstraction beyond what is necessary in real-world deployment. 
