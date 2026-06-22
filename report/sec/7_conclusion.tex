@@ -3,7 +3,7 @@
 
 We benchmark VLMs on two robot-supervision capabilities and arrive at three findings.
 First, zero-shot state reasoning is weak: accuracy stays only marginally above random across model families, scale helps within a family, but even 30B+ models
-plateau well short of reliable supervision. Second, chain-of-thought prompting introduces additional difficulties and requires significantly more compute; free-form reasoning chains appear to introduce hallucinated conclusions on perceptual tasks rather than improving them. Third, fine-tuning gains are real but mostly coarse: LoRA lifts Qwen3-4B accuracy by +10.9pp, but improvements can not be attributed to improved temporal- or state-reasoning. Taken together, these
+plateau well short of reliable supervision. Second, chain-of-thought prompting introduces additional difficulties and requires significantly more compute; free-form reasoning chains appear to introduce hallucinated conclusions on perceptual tasks rather than improving them. Third, fine-tuning gains are real but mostly coarse: LoRA lifts Qwen3-4B accuracy by +10.9pp, but the gains cannot be attributed to improved temporal or state reasoning. Taken together, these
 results suggest current VLMs are not yet ready for reliable robot-state supervision out of the box, and that fine-tuning gains must be carefully decomposed by question type and answer class before they can be trusted for deployment.
 
 \section{Limitations \& Future Work}
@@ -14,7 +14,5 @@ controlled study but too small to draw strong statistical conclusions about
 model-family differences; an automated annotation pipeline as in \cite{chen2025robo2vlm} would let this scale up. Train and test splits are drawn from the DROID dataset, so our results do not test sim-to-real or cross-dataset generalization. Finally, LoRA fine-tuning was only run on Qwen3-4B, so it is unknown whether the CnBD-generalization and IPI-collapse pattern holds
 at larger scale.
 
-\textbf{Future work.} We plan to use the Robo2VLM-1 pipeline to generate a larger-scale dataset for more robust cross-difficulty testing. 
-Run LoRA training on a larger model and finetune the backbone to check whether the gain-decomposition pattern holds at scale; and to run CoT on larger models to control for the potential benefits of CoT at scale. 
-Another interesting angle would be to use video segments around keypoints of the model, by either using video-language-models directly or by giving multiple images in close temporal consistency
+\textbf{Future work.} We plan to use the Robo2VLM-1 pipeline to generate a larger-scale dataset for more robust cross-difficulty testing. Running LoRA on larger models and fine-tuning the vision backbone would clarify whether the gain-decomposition pattern holds at scale. Running CoT on larger models would separately test whether the over-caution effect is size-dependent. Finally, another interesting angle would be to use video segments around keypoints of the model, by either using video-language-models directly or by giving multiple images in close temporal consistency. This could surface new temporal reasoning capabilities that our single-frame queries can't test.
 

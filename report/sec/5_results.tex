@@ -84,12 +84,12 @@ unambiguous a scene appears to the model, not whether its answer happens to be r
 \end{table}
 
 \subsection{Chain-of-Thought Ablation}
-Table~\ref{tab:cot_results} compares default vs.\ chain-of-thought (CoT) prompting for Gemma3-E2B and E4b models with complete CoT runs. CoT hurts both models overall and collapses \texttt{task\_success} in particular: Gemma3-E4B drops from 45.7\% to 20.9\%, and
+Table~\ref{tab:cot_results} compares default vs.\ chain-of-thought (CoT) prompting for Gemma3-E2B and E4B, the two models with complete CoT runs. CoT hurts both models overall and collapses \texttt{task\_success} in particular: Gemma3-E4B drops from 45.7\% to 20.9\%, and
 Gemma3-E2B from 37.4\% to 15.5\%, both well below the 33.3\% per-task and 29.8\%
-full-set random baselines. Overall accuracy falls for both models.
+full-set random baselines.
 
-Inspecting the raw CoT transcripts shows this is a genuine reasoning failure, not a parsing artifact. The model heavily favors ``Cannot be determined'' during, when CoT-prompted (12\% $\rightarrow$ 66\%) on \texttt{task\_success}, e.g.\ reasoning that ``the images capture the execution phase rather than a verified completion state,
-therefore Cannot be determined is the most cautious answer,'' even in clear instances. Free-form, step-by-step reasoning pushes the model toward careful answers. 
+Inspecting the raw CoT transcripts shows this is a genuine reasoning failure, not a parsing artifact. When CoT-prompted, the model heavily favors ``Cannot be determined'' on \texttt{task\_success} (12\% $\rightarrow$ 66\%), e.g.\ reasoning that ``the images capture the execution phase rather than a verified completion state,
+therefore Cannot be determined is the most cautious answer,'' even in clear instances. Free-form reasoning appears to push models toward unreasonable caution regardless of visual evidence.
 
 \begin{table}[t]
   \centering

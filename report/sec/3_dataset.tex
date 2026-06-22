@@ -3,13 +3,12 @@
 % LENGTH TARGET: ~1 page
 
 \subsection{Source Data}
-To leverage Robo2VLM-1~\cite{chen2025robo2vlm} keyframe selection of the scene diverse DROID~\cite{khazatsky2024droid} dataset.
-\cite{chen2025robo2vlm} use a novel framework to identify keyframes within each
-trajectory and pair them with the goal text, ordered action-phase labels, and
-sensor-derived success/failure signals captured from three synchronized camera views
-(top-left, top-right, wrist). From this pool we select 47 scenes from the DROID subset,
-covering diverse manipulation tasks such as placing, screwing, folding, and stacking. We label and sort the action phases manually to ensure (1) high quality and diverse scene selection (2) scene and task understanding is humanly possible (3) securing groundtruth annotation on which view holds necesssary visual signal (4) temporal consistency.
-As a result we obtain an ordered list of keyframes, their action-phase labels of what the robot is doing, as well as annotation of which view enables comprehension and correct answering. 
+We leverage the keyframe selection pipeline of Robo2VLM-1~\cite{chen2025robo2vlm} applied to the scene-diverse DROID~\cite{khazatsky2024droid} dataset.
+Robo2VLM-1 identifies keyframes within each trajectory and pairs them with the goal text,
+ordered action-phase labels, and sensor-derived success/failure signals captured from three
+synchronized camera views (top-left, top-right, wrist). From this pool we select 47 scenes
+from the DROID subset, covering diverse manipulation tasks such as placing, screwing, folding, and stacking. We manually label and sort the action phases to ensure (1) high-quality, diverse scene selection; (2) human-verifiable scene and task understanding; (3) ground-truth annotation of which view contains the necessary visual signal; and (4) temporal consistency.
+The result is an ordered list of keyframes with action-phase labels and per-view comprehension annotations.
 
 We define four multiple-choice failure-mode sub-tasks, all evaluated on real DROID trajectory keyframes.
 
@@ -46,7 +45,7 @@ Additionally we provide each question with context of a sorted list of action ph
 \end{figure}
 
 \subsection{Failure-Mode Detection Sub-Tasks}
-For failure detection, we prompt the model with all 3 views merged into a single image, as provided by \cite{chen2025robo2vlm}. CoT shows the models can identify the individual views in a merged image.
+For failure detection, we prompt the model with all three views merged into a single image, as provided by \cite{chen2025robo2vlm}. CoT transcripts confirm that models can identify the individual views within this merged image.
 \subsection{Multi-View Consistency}
 The same question is additionally posed from multiple camera views of the same scene, if a human labelled the view as "action-phase is comprehensible from single view":
 top-left (TL), top-right (TR), and wrist (W). 
@@ -58,20 +57,5 @@ top-left (TL), top-right (TR), and wrist (W).
   \label{fig:multiview_examples}
 \end{figure}
 
-\begin{table}[h]
-  \centering
-  \caption{Dataset statistics. The LoRA split uses a scene-level partition with no
-  scene overlap between train, val, and test.}
-  \label{tab:dataset_stats}
-  \begin{tabular}{lrrr}
-    \toprule
-    & \textbf{Train} & \textbf{Val} & \textbf{Test} \\
-    \midrule
-    Scenes      & 20    & 7   & 20   \\
-    Questions   & 2535  & 983 & 2706 \\
-    \midrule
-    \multicolumn{4}{l}{\small Total: 47 scenes, 6224 questions} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+Dataset statistics are summarised in \cref{tab:dataset_stats} (Appendix).
 

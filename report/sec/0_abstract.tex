@@ -1,17 +1,15 @@
 % LENGTH TARGET: ~150-200 words, single paragraph (CVPR norm)
 \begin{abstract}
-Vision-Language Models (VLMs) are increasingly proposed as action-prediction models and supervisors for
-robotic manipulation, both of which require judging task progress and detecting failures from camera input in the context of the current goal.
-We benchmark these capabilities with a curated dataset covering: (1)
-failure-mode and state reasoning from a single image and a stated goal, and (2)
-consistency of answers extracted from different camera viewpoints of the same moment.
-Using a new benchmark built on Robo2VLM-1 (DROID + OXE; 47 scenes split 20/7/20 train/val/test, 6224 questions across 4
-question types), we evaluate seven VLMs across three families (Gemma3, Qwen3, InternVL3)
-zero-shot, with a chain-of-thought (CoT) ablation and a LoRA fine-tuning case study. We
-find that (i) zero-shot accuracy is only marginally above random (high-40s\% vs.\ 33\%
-uniform random) and plateaus even at 30B+ scale; (ii) CoT prompting consistently hurts accuracy, primarily by inducing over-caution on \texttt{task\_success}; and (iii) LoRA
-fine-tuning yields a sizeable +10.9pp headline gain on Qwen3-4B, but roughly 80\% of it
-decomposes into two coarse heuristics --- a generalizable out-of-distribution scene
-detector and a label-position bias --- rather than improved phase or temporal reasoning. Our results suggest current small- and mid-sized VLMs are not yet reliable robot-state
-supervisors out of the box, and that fine-tuning gains require careful decomposition before deployment.
+Vision-Language Models (VLMs) have been proposed as action-prediction models and
+robot supervisors, roles that both demand reliable judgment of task progress and failure
+detection from camera input.
+We introduce a new benchmark targeting failure-mode detection and multi-view answer consistency. It comprises 6224 questions across 47 hand-labeled scenes
+drawn from Robo2VLM-1 (DROID).
+We evaluate seven VLMs from three families (Gemma3, Qwen3, InternVL3) zero-shot,
+with a chain-of-thought (CoT) ablation and a LoRA fine-tuning case study on Qwen3-4B.
+Zero-shot accuracy sits only marginally above random (high-40s\% vs.\ 33\%) and plateaus
+at 30B+ scale; CoT prompting consistently hurts overall accuracy; and LoRA fine-tuning
+yields a +10.9pp headline gain, but roughly 80\% of the gain can be attributed to label-position bias and learning to detect out-of-distribution scenes rather than improved temporal or task reasoning.
+We find that current small- and mid-sized open-weight VLMs perform remarkably poorly as robot supervisors, and
+fine-tuning does not significantly improve their performance.
 \end{abstract}
